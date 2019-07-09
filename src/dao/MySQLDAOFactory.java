@@ -27,13 +27,15 @@ public class MySQLDAOFactory {
     public Connection createConnection() {
         Connection conn = null;
         try {
-            Class driver_class = Class.forName(DRIVER);
-            Driver driver = (Driver) driver_class.newInstance();
-            DriverManager.registerDriver(driver);
+            //Class.forName(DRIVER);
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            //Driver driver = (Driver) driver_class.newInstance();
+            //DriverManager.registerDriver(driver);
 
 
             //conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cardwebapp?useSSL=false&user=root&password=abcd");
             conn = DriverManager.getConnection(DBURL, USER, PASS);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

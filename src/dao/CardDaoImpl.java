@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardDaoImpl implements CardDao {
@@ -27,8 +28,7 @@ public class CardDaoImpl implements CardDao {
     private static final String FIND_BY_CLASS = "SELECT * FROM catalog WHERE Class = ?";
     /**query used to find all cards in DB*/
     private static final String FIND_ALL= "SELECT * FROM catalog";
-	
-			
+
 
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
@@ -225,7 +225,7 @@ public class CardDaoImpl implements CardDao {
 
 public ArrayList<Card> findAll() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
-        //conn = null;
+        conn = null;
         try {
             conn = connector.createConnection();
             preparedStatement = conn.prepareStatement(FIND_ALL);

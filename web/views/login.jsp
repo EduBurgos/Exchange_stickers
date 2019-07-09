@@ -9,7 +9,8 @@
     <!--<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 -->
     <!-- Main css -->
-    <link rel="stylesheet" href="static/ok.css">
+      <link rel="stylesheet" type = "text/css" href="../stylesheets/login.css">
+
     <!-- Non funziona! -->
     <script type="text/javascript" src="js/disable_button.js"></script>
   </head>

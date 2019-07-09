@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="progettoF19webApp" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="JUnit4" module-name="progettoF19webApp" />
+        </element>
       </element>
     </root>
   </artifact>

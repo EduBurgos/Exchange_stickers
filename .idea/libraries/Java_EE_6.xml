@@ -2,7 +2,7 @@
   <library name="Java EE 6">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jar!/" />
-      <root url="jar://$PROJECT_DIR$/web/WEB-INF/mysql-connector-java-5.1.46.jar!/" />
+      <root url="jar://C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.16.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

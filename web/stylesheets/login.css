@@ -2,7 +2,7 @@ display-flex {
   display: flex;
   display: -webkit-flex; }
 
-   @extend list-type-ulli;
+   /*@extend list-type-ulli;*/
 
 list-type-ulli {
   list-style-type: none;
@@ -38,7 +38,7 @@ list-type-ulli {
 }
   
 input[type=radio] {
-appearance: radio !important;
+/*appearance: radio !important;*/
 -moz-appearance: radio !important;
 -webkit-appearance: radio !important;
 -o-appearance: radio !important;
@@ -60,7 +60,7 @@ figure {
   margin: 0; }
 
   #sfondo {
-  background-image: url("images/giphy.gif");
+  background-image: url("../img/images/giphy.gif");
     -webkit-filter: blur(70px);
     -moz-filter: blur(70px);
     -o-filter: blur(70px);
@@ -99,7 +99,7 @@ body {
 }
 
 .container {
-    background-image: url("images/drago.png");
+    background-image: url("../img/images/drago.png");
     background-repeat: no-repeat;
     /*Riempimento sfondo*/
     min-height: 100%;
