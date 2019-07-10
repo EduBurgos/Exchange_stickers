@@ -1,15 +1,13 @@
 display-flex {
   display: flex;
   display: -webkit-flex; }
-
-   /*@extend list-type-ulli;*/
-
+/* @extend list-type-ulli; */
 list-type-ulli {
   list-style-type: none;
   margin: 0;
   padding: 0; }
-
 .form-submit {
+
   width: auto;
   display: inline-block;
   border: none;
@@ -23,109 +21,75 @@ list-type-ulli {
   -o-box-shadow: 0px 15px 9.9px 0.1px rgba(0, 0, 0, 0.15);
   -ms-box-shadow: 0px 15px 9.9px 0.1px rgba(0, 0, 0, 0.15);
   margin-right: 20px; }
-  
-    
+
+
 .main {
   position: relative; }
 
 .signup-form {
   padding: 54px 80px 36px 170px;
   position:relative;
+
 }
 
 .form-group {
   margin-bottom: 23px;
+
 }
-  
-input[type=radio] {
-/*appearance: radio !important;*/
--moz-appearance: radio !important;
--webkit-appearance: radio !important;
--o-appearance: radio !important;
--ms-appearance: radio !important; }
+
+
 
 input:-webkit-autofill {
   box-shadow: 0 0 0 30px transparent inset;
-  -moz-box-shadow: 0 0 0 30px  transparent inset;
+  -moz-box-shadow: 0 0 0 30px transparent inset;
   -webkit-box-shadow: 0 0 0 30px transparent inset;
   -o-box-shadow: 0 0 0 30px transparent inset;
   -ms-box-shadow: 0 0 0 30px transparent inset;
   background-color: transparent !important; }
-  
+
 img {
   max-width: 100%;
-  height: auto; }
+  height: auto;
+}
 
 figure {
   margin: 0; }
 
-  #sfondo {
-  background-image: url("../img/images/giphy.gif");
-    -webkit-filter: blur(70px);
-    -moz-filter: blur(70px);
-    -o-filter: blur(70px);
-    -ms-filter: blur(70px);
-      /*Riempimento sfondo*/
-      min-height: 100%;
-      min-width: 800px;
-
-      /*Scala proporzionale*/
-      width: 100%;
-      height: auto;
-
-      /*Posizione*/
-      position: fixed;
-      top: 0;
-      left: 0;
-  }
 body {
-  /*background-image: url("images/body-bg.jpg");
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);*/
-    /*Riempimento sfondo*/
-    min-height: 100%;
-    min-width: 800px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Poppins';
+  margin: 0px;
+  background-image: url("../img/images/body-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-position: center center;
 
-    /*Scala proporzionale*/
-    width: 100%;
-    height: auto;
-
-    /*Posizione*/
-    position: fixed;
-    top: 0;
-    left: 0;
 }
 
 .container {
-    background-image: url("../img/images/drago.png");
-    background-repeat: no-repeat;
-    /*Riempimento sfondo*/
-    min-height: 100%;
-    min-width: 800px;
+  margin-top: 120px;
+  margin-bottom: 70px;
+  width: 1123px;
+  padding-top: 135px;
+  padding-bottom: 115px;
+  background-image: url("../img/images/drago.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-position: center center;
+  overflow: hidden;
 
-    /*Scala proporzionale*/
-    width: 100%;
-    height: auto;
-
-    /*Posizione*/
-    position: fixed;
-    top: 0;
-    left: 0;
 }
-
-
-/*COLORE TITOLO*/
-h2{
-    color: crimson;
-}
-
-/*COLORE RADION BUTTON*/
-#signup-form{
-    color: crimson;
-}
-
 @media screen and (max-width: 992px) {
   .container {
     width: calc( 100% - 30px);
@@ -134,7 +98,6 @@ h2{
 
   .signup-content {
     width: 100%; } }
-
 @media screen and (max-width: 480px) {
   .submit {
     width: 100%; }
@@ -149,7 +112,7 @@ h2{
 .signup-content {
   width: 562px;
   margin-right: 0px;
-  /*background: rgba(177, 135, 77, 0.75);*/
+  background: rgba(177, 135, 77, 0.75);
   float: right; }
 
 .submit {
@@ -161,9 +124,9 @@ h2{
   -ms-border-radius: 25px;
   text-transform: uppercase;
   font-size: 13px;
-  cursor: pointer; 
+  cursor: pointer;
   margin-left:-20px;
-}  
+}
 submit:disabled,
 submit[disabled]{
   border: 1px solid #999999;
