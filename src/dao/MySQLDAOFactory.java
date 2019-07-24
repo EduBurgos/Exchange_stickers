@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -27,8 +26,8 @@ public class MySQLDAOFactory {
     public Connection createConnection() {
         Connection conn = null;
         try {
-            //Class.forName(DRIVER);
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName(DRIVER);
+            //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             //Driver driver = (Driver) driver_class.newInstance();
             //DriverManager.registerDriver(driver);
 
@@ -40,11 +39,11 @@ public class MySQLDAOFactory {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } /*catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
-        }
+        }*/
         return conn;
     }
 }
