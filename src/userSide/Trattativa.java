@@ -7,14 +7,16 @@ import java.util.ArrayList;
 public class Trattativa {
 
     private User offerer, receiver;
-    private ArrayList<Card> Cardoffer;
+    private ArrayList<Card> cardoffer;
     private ArrayList<Card> counterOffer;
+    private String status;
 
-    public Trattativa(User offerer, User receiver, ArrayList<Card> cardOffer, ArrayList<Card> counterOffer) {
+    public Trattativa(User offerer, User receiver, ArrayList<Card> cardOffer, ArrayList<Card> counterOffer, String status) {
         this.offerer = offerer;
         this.receiver = receiver;
-        this.Cardoffer = cardOffer;
+        this.cardoffer = cardOffer;
         this.counterOffer = counterOffer;
+        this.status=status;
     }
 
 
@@ -34,6 +36,8 @@ public class Trattativa {
         return idString;
     }
 
+    //TODO fare metodo per passar da stringa a collezione
+
     public User getOfferer() {
         return offerer;
     }
@@ -51,11 +55,11 @@ public class Trattativa {
     }
 
     public ArrayList<Card> getCardoffer() {
-        return Cardoffer;
+        return cardoffer;
     }
 
     public void setCardoffer(ArrayList<Card> cardoffer) {
-        Cardoffer = cardoffer;
+        cardoffer = cardoffer;
     }
 
     public ArrayList<Card> getCounterOffer() {
@@ -64,5 +68,13 @@ public class Trattativa {
 
     public void setCounterOffer(ArrayList<Card> counterOffer) {
         this.counterOffer = counterOffer;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
