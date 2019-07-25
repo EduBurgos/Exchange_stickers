@@ -77,20 +77,20 @@ INSERT INTO catalog VALUES(48,'Hearthstone','Stregone',4,'Rara','Magia','Imp-los
 INSERT INTO catalog VALUES(49,'Hearthstone','Stregone',6,'Rara','Servitore','Lacchè Posseduto','Rantolo di Morte: recluta un Demone.');
 INSERT INTO catalog VALUES(50,'Hearthstone','Stregone',3,'Rara','Demone', 'Terrore del Vuoto','Grido di Battaglia: distrugge i servitori adiacenti e ne ottiene Attacco e Salute');
 
-INSERT INTO catalog VALUES(51,'Pokemon','Fase 1','Rara',130,'Erba','Abomasnow','Abilita.Preghiera dei Ghiacci:Quando giochi questo Pokémon dalla tua mano durante il tuo turno
+INSERT INTO catalog VALUES(51,'Pokemon','Fase 1',130,'Rara','Erba','Abomasnow','Abilita.Preghiera dei Ghiacci:Quando giochi questo Pokémon dalla tua mano durante il tuo turno
                                                             per far evolvere uno dei tuoi Pokémon, puoi assegnare a uno dei tuoi Pokémon una  carta Energia Grass dalla tua pila degli scarti.
 												            Martello Ipnotico 80
 												            Il Pokémon attivo del tuo avversario viene addormentato.');
-INSERT INTO catalog VALUES(52,'Pokemon','Base','Rara Holo Ex',180,'Erba','VenusaurEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
+INSERT INTO catalog VALUES(52,'Pokemon','Base',180,'Rara Holo Ex','Erba','VenusaurEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
 														  Velenpolvere 60
 														  Il Pokémon attivo del tuo avversario viene avvelenato.
 														  Martelgiungla	90
 														  Cura questo Pokémon da 30 danni.');
 
-INSERT INTO catalog VALUES(53,'Pokemon','Base','Comune',60,'Erba','Treecko','Attacco Rapido  10+
+INSERT INTO catalog VALUES(53,'Pokemon','Base',60,'Comune','Erba','Treecko','Attacco Rapido  10+
                                                       Lancia una moneta. Se esce testa, questo attacco infligge 10 danni in più.');
-INSERT INTO catalog VALUES(54,'Pokemon','Base','Comune',70,'Erba','Celebi','Blocco Θ Previeni tutti gli effetti delle abilità dei Pokémon del tuo avversario inflitti a questo Pokémon.');
-INSERT INTO catalog VALUES(55,'Pokemon','Fase 1','Arcobaleno Rara',200,'Erba','LeafeonGX','Abilità. Alito di Foglie:Una sola volta durante il tuo turno, se questo Pokémon è il tuo Pokémon attivo,
+INSERT INTO catalog VALUES(54,'Pokemon','Base',70,'Comune','Erba','Celebi','Blocco Θ Previeni tutti gli effetti delle abilità dei Pokémon del tuo avversario inflitti a questo Pokémon.');
+INSERT INTO catalog VALUES(55,'Pokemon','Fase 1',200,'Arcobaleno Rara','Erba','LeafeonGX','Abilità. Alito di Foglie:Una sola volta durante il tuo turno, se questo Pokémon è il tuo Pokémon attivo,
                                                               prima di attaccare, puoi curare da 50 danni uno dei tuoi Pokémon che ha Energie assegnate.
                                                               Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX
                                                               viene messo K.O.
@@ -98,24 +98,24 @@ INSERT INTO catalog VALUES(55,'Pokemon','Fase 1','Arcobaleno Rara',200,'Erba','L
                                                               Per ogni Pokémon Base nella tua panchina, cerca nel tuo mazzo una carta che si evolve
                                                               da quel Pokémon e metticela sopra per farlo evolvere. Poi rimischia le carte del tuo
                                                               mazzo. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(56,'Pokemon','Base','Comune',50,'Fuoco','Chimchar','Morso 10. Fuocopugno 20');
-INSERT INTO catalog VALUES(57,'Pokemon','Base','UltraRara',180,'Fuoco','CharizardEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
+INSERT INTO catalog VALUES(56,'Pokemon','Base',50,'Comune','Fuoco','Chimchar','Morso 10. Fuocopugno 20');
+INSERT INTO catalog VALUES(57,'Pokemon','Base',180,'UltraRara','Fuoco','CharizardEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
 														 Megascensione
                                                          Cerca nel tuo mazzo un M Charizard-EX, mostralo e aggiungilo alle carte che hai in mano.
                                                          Poi rimischia le carte del tuo mazzo.
                                                          Cuorinfiamme	120
                                                          Este Pokémon se hace 30 puntos de daño a sí mismo.');
-INSERT INTO catalog VALUES(58,'Pokemon','Mega','Comune',210, 'Fuoco','MBlazikenEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
+INSERT INTO catalog VALUES(58,'Pokemon','Mega',210,'Comune', 'Fuoco','MBlazikenEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
 													         Regola della Megaevoluzione
                                                              Quando uno dei tuoi Pokémon diventa un Pokémon Megaevoluzione, il tuo turno termina.
                                                              Fuoco Acrobatico	100
                                                              Durante il tuo prossimo turno, l''attacco Fuoco Acrobatico di questo Pokémon infligge 100 danni in più,
                                                              prima di aver applicato debolezza e resistenza.');
-INSERT INTO catalog VALUES(59,'Pokemon','Fase 2','Rara',160,'Fuoco','Incineroar','Rogodenti	30
+INSERT INTO catalog VALUES(59,'Pokemon','Fase 2',160,'Rara','Fuoco','Incineroar','Rogodenti	30
 													      Il Pokémon attivo del tuo avversario viene bruciato.
 													      Braccioteso  100×
                                                           Lancia due volte una moneta. Questo attacco infligge 100 danni ogni volta che esce testa.');
-INSERT INTO catalog VALUES(60,'Pokemon','Base','Rara Holo gx',190,'Fuoco','HO-OhGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
+INSERT INTO catalog VALUES(60,'Pokemon','Base',190,'Rara Holo gx','Fuoco','HO-OhGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
 														      Magifuoco
                                                               Questo attacco infligge 50 danni a uno dei Pokémon del tuo avversario. Ricorda che non puoi
                                                               applicare debolezza e resistenza ai Pokémon in panchina.
@@ -124,97 +124,97 @@ INSERT INTO catalog VALUES(60,'Pokemon','Base','Rara Holo gx',190,'Fuoco','HO-Oh
                                                               Fiamma Eterna-GX
                                                               Prendi tre Pokémon-GX Fire o Pokémon-EX Fire in qualsiasi combinazione dalla tua pila
                                                               degli scarti e mettili nella tua panchina. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(61,'Pokemon','Base','Comune',70,'Acqua','Psyduck','Confusionda.Entrambi i Pokémon attivi vengono confusi.');
-INSERT INTO catalog VALUES(62,'Pokemon','Fase 1','Raro',90,'Acqua','Glaceon','Bora	30
+INSERT INTO catalog VALUES(61,'Pokemon','Base',70,'Comune','Acqua','Psyduck','Confusionda.Entrambi i Pokémon attivi vengono confusi.');
+INSERT INTO catalog VALUES(62,'Pokemon','Fase 1',90,'Raro','Acqua','Glaceon','Bora	30
                                                        Questo attacco infligge 10 danni a ciascun Pokémon nella panchina del tuo avversario.
                                                        Ricorda che non puoi applicare debolezza e resistenza ai Pokémon in panchina.
 												       Fendighiaccio 	60+
 												       Lancia una moneta. Se esce testa, questo attacco infligge 30 danni in più.');
-INSERT INTO catalog VALUES(63,'Pokemon','Fase 2','Comune',250,'Acqua','PrimarinaGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
+INSERT INTO catalog VALUES(63,'Pokemon','Fase 2',250,'Comune','Acqua','PrimarinaGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
                                                               Bollabotta 10+
                                                               Questo attacco infligge 20 danni in più per ogni Energia Water assegnata ai tuoi Pokémon.
                                                               Mari Ruggenti 120
                                                               Scarta un’Energia assegnata al Pokémon attivo del tuo avversario.
                                                               Eco Formidabile-GX
                                                               Cura tutti i tuoi Pokémon da tutti i danni. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(64,'Pokemon','Fase 2','Rara Holo gx',230,'Acqua','GreninjaEX','Abilità.Lameturbine: Quando giochi questo Pokémon dalla tua mano per far evolvere uno dei tuoi Pokémon durante il tuo turno, puoi mettere tre segnalini danno su uno dei Pokémon del tuo avversario.
+INSERT INTO catalog VALUES(64,'Pokemon','Fase 2',230,'Rara Holo gx','Acqua','GreninjaEX','Abilità.Lameturbine: Quando giochi questo Pokémon dalla tua mano per far evolvere uno dei tuoi Pokémon durante il tuo turno, puoi mettere tre segnalini danno su uno dei Pokémon del tuo avversario.
                                                                    Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
 															       Sferzanube	110
                                                                    Puoi rimischiare questo Pokémon e tutte le carte a esso assegnate nel tuo mazzo.
                                                                    Cacciatore Oscuro-GX
                                                                    Questo attacco infligge 130 danni a uno dei Pokémon nella panchina del tuo avversario.
                                                                    Ricorda che non puoi applicare debolezza e resistenza ai Pokémon in panchina. Non puoi usare più di un attacco GX a partita');
-INSERT INTO catalog VALUES(65,'Pokemon','Base','Comune',120,'Acqua','Palkia','Schizzi d''Onda30');
-INSERT INTO catalog VALUES(66,'Pokemon','Fase 1','Arcobaleno Rara',210,'Lampo','RaichuGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
+INSERT INTO catalog VALUES(65,'Pokemon','Base',120,'Comune','Acqua','Palkia','Schizzi d''Onda30');
+INSERT INTO catalog VALUES(66,'Pokemon','Fase 1',210,'Arcobaleno Rara','Lampo','RaichuGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
 															        Superscintilla	20+
                                                                     Questo attacco infligge 20 danni in più per ogni Energia Lightning assegnata ai tuoi Pokémon.
                                                                     Tuono		160
                                                                     Questo Pokémon infligge 30 danni a se stesso.
                                                                     Coda Voltaica-GX	120
                                                                     Il Pokémon attivo del tuo avversario viene paralizzato. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(67,'Pokemon','Fase 2','Rara Holo',150,'Lampo', 'Ampharos','Abilità.Bagliore Perduto:Una sola volta durante il tuo turno, prima di attaccare, puoi prendere due carte Energia Lightning dalla tua mano e metterle nell’area perduta.
+INSERT INTO catalog VALUES(67,'Pokemon','Fase 2',150,'Rara Holo','Lampo', 'Ampharos','Abilità.Bagliore Perduto:Una sola volta durante il tuo turno, prima di attaccare, puoi prendere due carte Energia Lightning dalla tua mano e metterle nell’area perduta.
                                                               Se lo fai, il Pokémon attivo del tuo avversario viene paralizzato.
                                                               Squarciabomba.
                                                               Questo attacco infligge 50 danni a due dei Pokémon del tuo avversario.
                                                               Ricorda che non puoi applicare debolezza e resistenza ai Pokémon in panchina' );
-INSERT INTO catalog VALUES(68,'Pokemon','Base','Comune',110,'Lampo','Tapu KoKo','Svolta Volante:Questo attacco infligge 20 danni a ciascuno dei Pokémon del tuo avversario.
+INSERT INTO catalog VALUES(68,'Pokemon','Base',110,'Comune','Lampo','Tapu KoKo','Svolta Volante:Questo attacco infligge 20 danni a ciascuno dei Pokémon del tuo avversario.
 													     Ricorda che non puoi applicare debolezza e resistenza ai Pokémon in panchina.
                                                          Lamposfera100');
-INSERT INTO catalog VALUES(69,'Pokemon','Base','Comune',70,'Lampo','Pikachu','Tuononda:Lancia una moneta. Se esce testa, il Pokémon attivo del tuo avversario viene paralizzato.
+INSERT INTO catalog VALUES(69,'Pokemon','Base',70,'Comune','Lampo','Pikachu','Tuononda:Lancia una moneta. Se esce testa, il Pokémon attivo del tuo avversario viene paralizzato.
 												       Energisfera');
-INSERT INTO catalog VALUES(70,'Pokemon','Base','Rara Holo EX',110,'Lampo','EmolgaEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
+INSERT INTO catalog VALUES(70,'Pokemon','Base',110,'Rara Holo EX','Lampo','EmolgaEX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
 														       Energialiante: Cerca nel tuo mazzo una carta Energia Lightning e assegnala a questo Pokémon. Poi rimischia le carte del tuo mazzo. Se assegni Energia in questo modo, scambia questo Pokémon con uno della tua panchina.
                                                                Elettrostritolamento  60+
                                                                Puoi scartare un''Energia assegnata a questo Pokémon. Se lo fai, questo attacco infligge 30 danni in più.');
-INSERT INTO catalog VALUES(71,'Pokemon','Base','Rara Holo EX',120,'Psico','MewEX','Abilità.Versatile:Questo Pokémon può usare gli attacchi di tutti i Pokémon in gioco,
+INSERT INTO catalog VALUES(71,'Pokemon','Base',120,'Rara Holo EX','Psico','MewEX','Abilità.Versatile:Questo Pokémon può usare gli attacchi di tutti i Pokémon in gioco,
 													        sia tuoi che del tuo avversario. Devi comunque avere l''Energia necessaria per usare quegli attacchi.
                                                             Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-EX viene messo K.O.
                                                             Sostituzione: Distribuisci a piacimento tutte le Energie assegnate ai tuoi Pokémon.');
-INSERT INTO catalog VALUES(72,'Pokemon','Fase 2','Rara Holo',130,'Psico','Crobat','Abilità.Vista Notturna:Una sola volta durante il tuo turno, prima di attaccare, puoi pescare una carta.
+INSERT INTO catalog VALUES(72,'Pokemon','Fase 2',130,'Rara Holo','Psico','Crobat','Abilità.Vista Notturna:Una sola volta durante il tuo turno, prima di attaccare, puoi pescare una carta.
 														   Dentavvelenato 40
                                                            Il Pokémon difensore viene avvelenato. Tra un turno e l''altro, metti quattro segnalini danno invece di uno su quel Pokémon.');
-INSERT INTO catalog VALUES(73,'Pokemon','Fase 2','Comune',250,'Psico','LunalaGX','Abilità.Psicotransfer:Durante il tuo turno, prima di attaccare, puoi spostare un’Energia Psychic da uno a un altro dei tuoi Pokémon tutte le volte che vuoi.
+INSERT INTO catalog VALUES(73,'Pokemon','Fase 2',250,'Comune','Psico','LunalaGX','Abilità.Psicotransfer:Durante il tuo turno, prima di attaccare, puoi spostare un’Energia Psychic da uno a un altro dei tuoi Pokémon tutte le volte che vuoi.
 													       Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
                                                            Raggio d’Ombra  120
                                                            Durante il prossimo turno del tuo avversario, il Pokémon difensore non può essere curato.
                                                            Caduta Lunare-GX
                                                            Metti KO un Pokémon Base del tuo avversario che non è un Pokémon-GX. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(74,'Pokemon','Base','Comune',70,'Psico','Mimikyu','Infestare:Metti un segnalino danno sul Pokémon attivo del tuo avversario.
+INSERT INTO catalog VALUES(74,'Pokemon','Base',70,'Comune','Psico','Mimikyu','Infestare:Metti un segnalino danno sul Pokémon attivo del tuo avversario.
 												       Sgomento: Scegli una carta a caso dalla mano del tuo avversario. Il tuo avversario mostra quella carta e la rimischia nel suo mazzo.');
-INSERT INTO catalog VALUES(75,'Pokemon','Fase1','Comune',200,'Psico','EspeonGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
+INSERT INTO catalog VALUES(75,'Pokemon','Fase1',200,'Comune','Psico','EspeonGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
 														  Psicoraggio	30
                                                           Il Pokémon attivo del tuo avversario viene confuso.
                                                           Psichico		60+
                                                           Questo attacco infligge 30 danni in più per ogni Energia assegnata al Pokémon attivo del tuo avversario.
                                                           Distribuzione-GX
                                                           Distribuisci a piacimento dieci segnalini danno sui Pokémon del tuo avversario. Non puoi usare più di un attacco GX a partita.' );
-INSERT INTO catalog VALUES(76,'Pokemon','Base','Comune',70,'Lotta','Riolu','Colpo Duplice 10×
+INSERT INTO catalog VALUES(76,'Pokemon','Base',70,'Comune','Lotta','Riolu','Colpo Duplice 10×
 									                 Lancia due volte una moneta. Questo attacco infligge 10 danno ogni volta che esce testa.');
-INSERT INTO catalog VALUES(77,'Pokemon','Base','Rara',120,'Lotta','Landorus','Urlotonante  20
+INSERT INTO catalog VALUES(77,'Pokemon','Base',120,'Rara','Lotta','Landorus','Urlotonante  20
 											          Assegna a uno dei tuoi Pokémon in panchina una carta Energia base dalla tua pila degli scarti.
 												      Lazoaereo 90');
-INSERT INTO catalog VALUES(78,'Pokemon','Fase1','Comune',210,'Lotta','LucarioGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
+INSERT INTO catalog VALUES(78,'Pokemon','Fase1',210,'Comune','Lotta','LucarioGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
 													       Colpo d’Aura  30+
 													       Se questo Pokémon si è evoluto da Riolu durante questo turno, questo attacco infligge 90 danni in più.
                                                            Calciovento   130
                                                            Batosta Litigiosa-GX  30×
                                                            Questo attacco infligge 30 danni per ogni segnalino danno presente su questo Pokémon. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(79,'Pokemon','Fase1','Comune',100,'Lotta','Pangoro','Abilità.Bravo Boss:Se questo Pokémon è il tuo Pokémon attivo, ha 20 PS in più per ogni Pokémon che hai in panchina.
+INSERT INTO catalog VALUES(79,'Pokemon','Fase1',100,'Comune','Lotta','Pangoro','Abilità.Bravo Boss:Se questo Pokémon è il tuo Pokémon attivo, ha 20 PS in più per ogni Pokémon che hai in panchina.
 												        Pugnomatto   80＋
                                                         Se questo Pokémon è influenzato da una condizione speciale, questo attacco infligge 40 danni in più.');
-INSERT INTO catalog VALUES(80,'Pokemon','Base','Comune',70,'Lotta','Gligar','Colpo Doppio
+INSERT INTO catalog VALUES(80,'Pokemon','Base',70,'Comune','Lotta','Gligar','Colpo Doppio
 												      Questo attacco infligge 10 danni a due dei Pokémon nella panchina del tuo avversario.
                                                       Ricorda che non puoi applicare debolezza e resistenza ai Pokémon in panchina.');
-INSERT INTO catalog VALUES(81,'Pokemon','Fase 1','Comune',100,'Oscurità','Umbreon','Artiglio Mach  30
+INSERT INTO catalog VALUES(81,'Pokemon','Fase 1',100,'Comune','Oscurità','Umbreon','Artiglio Mach  30
 													        I danni di questo attacco non sono influenzati dalla resistenza.
                                                             Senso Siderale  60+
                                                             Gira a faccia in su delle tue carte Premio che sono a faccia in giù.
                                                             Se quella carta Premio è un Pokemon è un Pokemon, questo attacco infligge 60 danni in più.
                                                             La carta Premio resta a faccia in su per il resto della partita.');
-INSERT INTO catalog VALUES(82,'Pokemon','Base','Comune',60,'Oscurità','Sneasel','Ventogelato
+INSERT INTO catalog VALUES(82,'Pokemon','Base',60,'Comune','Oscurità','Sneasel','Ventogelato
 													      Il Pokémon attivo del tuo avversario viene addormentato.
                                                            Graffio20');
-INSERT INTO catalog VALUES(83,'Pokemon','Base','Rara Ultra',180,'Oscurità','DarkraiGX','Abilità.Restaurazione:Una sola volta durante il tuo turno, prima di attaccare,
+INSERT INTO catalog VALUES(83,'Pokemon','Base',180,'Rara Ultra','Oscurità','DarkraiGX','Abilità.Restaurazione:Una sola volta durante il tuo turno, prima di attaccare,
 														        se questo Pokémon è nella tua pila degli scarti, puoi metterlo in panchina. Poi, assegnagli una carta Energia Darkness dalla tua pila degli scarti.
 														         Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
                                                                  Fendente Oscuro     130
@@ -222,97 +222,88 @@ INSERT INTO catalog VALUES(83,'Pokemon','Base','Rara Ultra',180,'Oscurità','Dar
                                                                  Vicolo Cieco-GX
                                                                  Se il Pokémon attivo del tuo avversario è influenzato da una condizione speciale, quel Pokémon viene messo KO.
                                                                  Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(84,'Pokemon','Fase 1','Rara',100,'Oscurità','Mightyena','Morso  30
+INSERT INTO catalog VALUES(84,'Pokemon','Fase 1',100,'Rara','Oscurità','Mightyena','Morso  30
 													        Zanna Oscura  50
 													        Scarta una carta a caso dalla mano del tuo avversario.');
-INSERT INTO catalog VALUES(85,'Pokemon','Base','Comune',70,'Oscurità','Sandile','Fauci Imponenti  30
+INSERT INTO catalog VALUES(85,'Pokemon','Base',70,'Comune','Oscurità','Sandile','Fauci Imponenti  30
 													      Se il Pokémon del tuo avversario viene messo KO dai danni di questo attacco, gli attacchi di questo Pokémon
                                                           infliggono 120 danni in più al Pokémon attivo del tuo avversario durante il tuo prossimo turno, prima di aver
                                                           applicato debolezza e resistenza.');
-INSERT INTO catalog VALUES(86,'Pokemon','Base','Comune',70,'Metallo','Jirachi','Premonisogno: Pescare tre carte.Questo Pokemon viene addormentato.
+INSERT INTO catalog VALUES(86,'Pokemon','Base',70,'Comune','Metallo','Jirachi','Premonisogno: Pescare tre carte.Questo Pokemon viene addormentato.
 												         Metaltestata 30x
 												         Lancia una moneta finchè non esce croce.Questo attacco infligge 30 danni ogni volta che esce testa.');
-INSERT INTO catalog VALUES(87,'Pokemon','Base','Comune',120,'Metallo','Dialga','Ferrartigli   30
+INSERT INTO catalog VALUES(87,'Pokemon','Base',120,'Comune','Metallo','Dialga','Ferrartigli   30
 												        Fermatempo    80
                                                         Il tuo avversario non può giocare Pokemon dalla sua mano per far evolvere il POkemon difensore durante il suo turno.');
-INSERT INTO catalog VALUES(88,'Pokemon','Fase 1','Rara',100,'Metallo','Forretress','Abilità.Spintempesta:Quando giochi questo Pokémon dalla tua mano per far evolvere uno dei
+INSERT INTO catalog VALUES(88,'Pokemon','Fase 1',100,'Rara','Metallo','Forretress','Abilità.Spintempesta:Quando giochi questo Pokémon dalla tua mano per far evolvere uno dei
 													       tuoi Pokémon, puoi mettere un segnalino danno su ciascuno dei Pokémon del tuo avversario.
                                                            Schiacciaferro   20+
                                                            Questo attacco infligge 20 danni in più per ogni Energia Colorless nel costo di ritirata del Pokémon attivo del tuo avversario.');
-INSERT INTO catalog VALUES(89,'Pokemon','Fase 2','Rara',160,'Metallo','Solgaleo','Freccia Lucente
+INSERT INTO catalog VALUES(89,'Pokemon','Fase 2',160,'Rara','Metallo','Solgaleo','Freccia Lucente
 													      Questo attacco infligge 50 danni a uno dei Pokémon del tuo avversario.
                                                           Ricorda che non puoi applicare debolezza e resistenza ai Pokémon in panchina.
                                                           Zanne Solari     170
                                                           Durante il tuo prossimo turno, questo Pokémon non può usare Zanne Solari.');
-INSERT INTO catalog VALUES(90,'Pokemon','Fase 2','Rara Holo',160,'Metallo','Empoleon','Comando Assoluto   20×
+INSERT INTO catalog VALUES(90,'Pokemon','Fase 2',160,'Rara Holo','Metallo','Empoleon','Comando Assoluto   20×
                                                                Questo attacco infligge 20 danni per ogni Pokémon in panchina, sia tuo che del tuo avversario.
                                                                Mulinello    90
                                                                Scarta un’Energia assegnata al Pokémon attivo del tuo avversario.');
-INSERT INTO catalog VALUES(91,'Pokemon','Fase 2','Rara',130,'Incolore','Pidgeot','Grinfie   40
+INSERT INTO catalog VALUES(91,'Pokemon','Fase 2',130,'Rara','Incolore','Pidgeot','Grinfie   40
 												         Durante il prossimo turno del tuo avversario, il Pokémon difensore non può ritirarsi.
                                                          Forteraffica  60
                                                          Durante il tuo prossimo turno, l''attacco Forteraffica di questo Pokémon infligge 60 danni in più,
                                                          prima di aver applicato debolezza e resistenza.');
-INSERT INTO catalog VALUES(92,'Pokemon','Base','Comune',60,'Incolore','Axew','Porzione Extra  20
+INSERT INTO catalog VALUES(92,'Pokemon','Base',60,'Comune','Incolore','Axew','Porzione Extra  20
                                                        Questo Pokémon infligge 10 danni a se stesso.
                                                         Dragartigli  40');
-INSERT INTO catalog VALUES(93,'Pokemon','Base','Rara Holo EX',180,'Incolore','LugiaEX','Abilità.Eccedenza:Se un Pokémon del tuo avversario viene messo K.O.
+INSERT INTO catalog VALUES(93,'Pokemon','Base',180,'Rara Holo EX','Incolore','LugiaEX','Abilità.Eccedenza:Se un Pokémon del tuo avversario viene messo K.O.
 														         dal danno di un attacco di questo Pokémon, prendi una carta Premio in più.
                                                                  Burrasca Plasma  120
                                                                  Scarta un''Energia Plasma assegnata a questo Pokémon. Se non puoi scartare
                                                                  un''Energia Plasma, questo attacco non ha effetto.');
-INSERT INTO catalog VALUES(94,'Pokemon','Base','Non Comune',80,'Incolore','Farfetch''d','Tassa: Pesca due carte.
+INSERT INTO catalog VALUES(94,'Pokemon','Base',80,'Non Comune','Incolore','Farfetch''d','Tassa: Pesca due carte.
                                                                          Sfondaoggetto   20+
                                                                          Prima di infliggere danni, scarta tutte le carte Oggetto Pokémon assegnate al Pokémon attivo del tuo avversario.
                                                                          Se scarti una carta Oggetto Pokémon in questo modo, questo attacco infligge 70 danni in più.');
-INSERT INTO catalog VALUES(95,'Pokemon','Base','Rara',130,'Incolore','Snorlax','Abilità.Lasciadormir:Se questo Pokémon è addormentato, tra un turno e l''altro, lancia due volte una moneta invece di una.
+INSERT INTO catalog VALUES(95,'Pokemon','Base',130,'Rara','Incolore','Snorlax','Abilità.Lasciadormir:Se questo Pokémon è addormentato, tra un turno e l''altro, lancia due volte una moneta invece di una.
 												        Se esce almeno una volta croce, questo Pokémon resta addormentato.
                                                         Sonnopressa    120
                                                         Cura questo Pokémon da 20 danni. Questo Pokémon viene addormentato.');
-INSERT INTO catalog VALUES(96,'Pokemon','Base','Comune',70,'Folletto','Snubbull', 'Carica Avventata  20
+INSERT INTO catalog VALUES(96,'Pokemon','Base',70,'Comune','Folletto','Snubbull', 'Carica Avventata  20
                                                            Lancia una moneta. Se esce croce, questo Pokémon infligge 10 danni a se stesso.');
-INSERT INTO catalog VALUES(97,'Pokemon','Base','Comune',60,'Folletto','Jigglypuff','Rotolamento  10
+INSERT INTO catalog VALUES(97,'Pokemon','Base',60,'Comune','Folletto','Jigglypuff','Rotolamento  10
                                                             Cantosincero
                                                             Scarta un''Energia Darkness assegnata al Pokémon attivo del tuo avversario.');
-INSERT INTO catalog VALUES(98,'Pokemon','Fase 1','Rara',200,'Folletto','SylveonGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
+INSERT INTO catalog VALUES(98,'Pokemon','Fase 1',200,'Rara','Folletto','SylveonGX','Il tuo avversario prende due carte Premio ogni volta che uno dei tuoi Pokémon-GX viene messo K.O.
                                                                         Fiocco Magico
                                                                         Cerca nel tuo mazzo fino a tre carte e aggiungile alle carte che hai in mano. Poi rimischia le carte del tuo mazzo.
                                                                         Vento di Fata    110
 																        Istanza-GX
                                                                         Prendi due dei Pokémon in panchina del tuo avversario e tutte le carte loro assegnate e aggiungili alle carte che ha in mano. Non puoi usare più di un attacco GX a partita.');
-INSERT INTO catalog VALUES(99,'Pokemon','Fase 1','Rara',90,'Folletto','Azumarill','Bollaraggio 30
+INSERT INTO catalog VALUES(99,'Pokemon','Fase 1',90,'Rara','Folletto','Azumarill','Bollaraggio 30
                                                            Lancia una moneta. Se esce testa, il Pokémon attivo del tuo avversario viene paralizzato.
                                                            Troppoforte  60+
                                                            Puoi infliggere 30 danni in più. Se lo fai, questo Pokémon infligge 30 danni a se stesso.');
-INSERT INTO catalog VALUES(100,'Pokemon','Base','Comune',40,'Folletto','Togepi','Dolcebacio  10
+INSERT INTO catalog VALUES(100,'Pokemon','Base',40,'Comune','Folletto','Togepi','Dolcebacio  10
                                                          Il tuo avversario pesca una carta.');
-INSERT INTO catalog VALUES(101,'Pokemon','Base','Rara',130,'Drago','Kyurem Nero','Doppiagrinfia 20x
+INSERT INTO catalog VALUES(101,'Pokemon','Base',130,'Rara','Drago','Kyurem Nero','Doppiagrinfia 20x
                                                           Lancia due volte una moneta. Questo attacco infligge 20 danni ogni volta che esce testa.
                                                           Lampogelido   100
                                                           Scarta un''Energia assegnata a questo Pokémon.');
-INSERT INTO catalog VALUES(102,'Pokemon','Base','Comune',90,'Drago','Latias','Legame Eonico
+INSERT INTO catalog VALUES(102,'Pokemon','Base',90,'Comune','Drago','Latias','Legame Eonico
                                                         Pesca una carta. Se Latios è nella tua panchina, pesca un''altra carta.');
-INSERT INTO catalog VALUES(103,'Pokemon','Base','Comune',100,'Drago','Latios','Aliante 20
+INSERT INTO catalog VALUES(103,'Pokemon','Base',100,'Comune','Drago','Latios','Aliante 20
 												       Cielolama 70+
                                                        Se Latias è nella tua panchina, questo attacco infligge 50 danni in più.');
-INSERT INTO catalog VALUES(104,'Pokemon','Fase 2','Rara Holo',160,'Drago','Dragonite','Ondadrago  130
+INSERT INTO catalog VALUES(104,'Pokemon','Fase 2',160,'Rara Holo','Drago','Dragonite','Ondadrago  130
                                                                Scarta un''Energia Grass e un''Energia Lightning assegnate a questo Pokémon.
                                                                Gigacoda   200
                                                                Lancia una moneta. Se esce croce, questo attacco non ha effetto.');
-INSERT INTO catalog VALUES(105,'Pokemon','Fase 1','Non Comune',80,'Drago','Dragonair', 'Muta
+INSERT INTO catalog VALUES(105,'Pokemon','Fase 1',80,'Non Comune','Drago','Dragonair', 'Muta
                                                                 Cura questo Pokémon da 30 danni.
                                                                 Schianto   60×
                                                                 Lancia due volte una moneta. Questo attacco infligge 60 danni ogni volta che esce testa.');
 
-
-INSERT INTO catalog VALUES(104,'Pokemon','Fase 2','Rara Holo',160,'Drago','Dragonite','Ondadrago  130
-                                                               Scarta un''Energia Grass e un''Energia Lightning assegnate a questo Pokémon.
-                                                               Gigacoda   200
-                                                               Lancia una moneta. Se esce croce, questo attacco non ha effetto.');
-INSERT INTO catalog VALUES(105,'Pokemon','Fase 1','Non Comune',80,'Drago','Dragonair', 'Muta
-                                                                Cura questo Pokémon da 30 danni.
-                                                                Schianto   60×
-                                                                Lancia due volte una moneta. Questo attacco infligge 60 danni ogni volta che esce testa.');
 INSERT INTO catalog VALUES(106,'Yu-Gi-Oh!','N/A',0,'Continua','Trappola','Anima Immortale','Ogni "Mago Nero" nella tua Zona Mostri è immune agli effetti delle carte del tuo avversario.
                                                                                                Se questa carta scoperta lascia il Terreno: distruggi tutti i mostri che controlli. Puoi utilizzare
                                                                                                 il seguente effetto di "Anima Immortale" una sola volta per turno. Puoi attivare 1 di questi effetti;
