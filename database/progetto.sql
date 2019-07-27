@@ -476,6 +476,28 @@ FOREIGN KEY (Offerer) REFERENCES Users(Username),
 FOREIGN KEY (Receiver) REFERENCES Users(Username)
 );
 
+CREATE TABLE SCAMBIODIRETTO(
+ID NUMERIC(10) PRIMARY KEY,
+Date Date,
+Offerer VARCHAR(20) NOT NULL,
+Receiver VARCHAR(20) NOT NULL,
+Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
+CardOffered VARCHAR(1000) NOT NULL,
+CardCounterOffered VARCHAR(1000) NOT NULL,
+FOREIGN KEY (Offerer) REFERENCES Users(Username),
+FOREIGN KEY (Receiver) REFERENCES Users(Username)
+);
+
+CREATE TABLE PROPOSTASCAMBIO(
+ID NUMERIC(10) PRIMARY KEY,
+Date Date,
+Offerer VARCHAR(20) NOT NULL,
+Status VARCHAR(20) NOT NULL,     
+CardOffered VARCHAR(1000) NOT NULL,
+CardCounterOffered VARCHAR(1000) NOT NULL,
+FOREIGN KEY (Offerer) REFERENCES Users(Username)
+);
+
 
 CREATE TABLE Exchanges(
 ID NUMERIC(10) PRIMARY KEY,
