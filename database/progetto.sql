@@ -497,6 +497,8 @@ CREATE TABLE PROPOSTASCAMBIO(
                                 CardCounterOffered VARCHAR(1000) NOT NULL,
                                 FOREIGN KEY (Offerer) REFERENCES Users(Username)
 );
+/*table Exchanges e CardExchanges da non prendere in considerazione*/
+/*
 CREATE TABLE Exchanges(
 ID NUMERIC(10) PRIMARY KEY,
 Offerer VARCHAR(20) NOT NULL,
@@ -513,14 +515,13 @@ FOREIGN KEY (ID)  REFERENCES Exchanges(ID),
 FOREIGN KEY (IDOffer) REFERENCES Catalog(ID),
 FOREIGN KEY (IDCounteroffer) REFERENCES Catalog(ID)
 );
-
-INSERT INTO Exchanges VALUES(1,'MRossi', 'StellaTheBest', 0);
-INSERT INTO CardExchange VALUES(1, 1, 2);
-INSERT INTO CardExchange(ID, IDCounteroffer) VALUES(1,3);
-/*
-select e.ID, Offerer, Receiver, IDOffer, IDCounteroffer 
-from Exchanges e join CardExchange ce on e.ID=ce.ID;
 */
+INSERT INTO CardsExchanges VALUES(1,'MRossi', 'StellaTheBest', 0,22, 50);
+/*INSERT INTO CardExchange VALUES(1, 1, 2);
+INSERT INTO CardExchange(ID, IDCounteroffer) VALUES(1,3);
+  */
+
+
 /*CREATE TABLE Exchanges(
 IDExchange NUMERIC(10) PRIMARY KEY,
 Offerer VARCHAR(20),
