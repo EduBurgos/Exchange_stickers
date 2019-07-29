@@ -123,7 +123,7 @@ a {
     width: 32%;
     margin-right: 2%;
     margin-bottom: 2%;
-    height: 198px;
+    height: 200px;
     padding-bottom: 30%;
     background-image: url("../img/Pokemon/Azumarill.png");
     -webkit-background-size: 100%;
@@ -133,7 +133,7 @@ a {
     width: 32%;
     margin-right: 2%;
     margin-bottom: 2%;
-    height: 198px;
+    height: 200px;
     padding-bottom: 30%;
     background-image: url("../img/Pokemon/Chimchar.png");
     -webkit-background-size: 100%;
@@ -143,7 +143,7 @@ a {
     width: 32%;
     margin-right: 2%;
     margin-bottom: 2%;
-    height: 198px;
+    height: 200px;
     padding-bottom: 30%;
     background-image: url("../img/Pokemon/Gligar.png");
     -webkit-background-size: 100%;
@@ -153,7 +153,7 @@ a {
     width: 32%;
     margin-right: 2%;
     margin-bottom: 2%;
-    height: 198px;
+    height: 200px;
     padding-bottom: 30%;
     background-image: url("../img/Pokemon/Dialga.png");
     -webkit-background-size: 100%;
@@ -163,7 +163,7 @@ a {
     width: 32%;
     margin-right: 2%;
     margin-bottom: 2%;
-    height: 198px;
+    height: 200px;
     padding-bottom: 30%;
     background-image: url("../img/Pokemon/Axew.png");
     -webkit-background-size: 100%;
@@ -173,7 +173,7 @@ a {
     width: 32%;
     margin-right: 2%;
     margin-bottom: 2%;
-    height: 198px;
+    height: 200px;
     padding-bottom: 30%;
     background-image: url("../img/Pokemon/Glaceon.png");
     -webkit-background-size: 100%;
@@ -244,4 +244,10 @@ a {
 }
 .content .unit .more a {
     color: #777;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }

@@ -69,19 +69,121 @@
             <p><i class="email"></i> E-mail: carlottaverde@gmail.com </p>
         </div>
     </section>
-    <section class="section center-col content">
+    <div class="section center-col content">
         <!-- Nav -->
+        <!--
         <nav class="profile-nav">
             <ul>
                 <li class="collection">My Collection</li>
                 <li>Scambiabili</li>
             </ul>
         </nav>
+        -->
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li>
+            <li role="presentation"><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
+            <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="ultimoaggiornamento">
+
+
+                    <ul class="image-grid col-1">
+                        <li></li>
+                    </ul>
+                    <ul class="image-grid col-2">
+                        <li></li>
+                    </ul>
+
+                    <!--
+                    <div class="col-sm-4">
+                        <h3>Tab 1</h3>
+                        <p>olakjaj</p>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h3>Tab 1</h3>
+                        <p>olakjaj</p>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h3>Tab 1</h3>
+                        <p>olakjaj</p>
+                    </div> -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mycollection">
+
+                    <ul class="image-grid col-1">
+                        <li></li>
+                    </ul>
+                    <ul class="image-grid col-2">
+                        <li></li>
+                    </ul>
+                    <ul class="image-grid col-3">
+                        <li></li>
+                    </ul>
+                    <ul class="image-grid col-4">
+                        <li></li>
+                    </ul>
+                    <ul class="image-grid col-5">
+                        <li></li>
+                    </ul>
+                    <ul class="image-grid col-6">
+                        <li></li>
+                    </ul>
+                    <!--
+                    <div class="col-sm-6">
+                        <h3>Tab 2</h3>
+                        <p>olakjaj</p>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h3>Tab 2</h3>
+                        <p>olakjaj</p>
+                    </div>
+                    -->
+
+            </div>
+
+        <div role="tabpanel" class="tab-pane" id="exchangeables">
+
+                <ul class="image-grid col-1">
+                    <li></li>
+                </ul>
+                <ul class="image-grid col-2">
+                    <li></li>
+                </ul>
+                <ul class="image-grid col-3">
+                    <li></li>
+                </ul>
+                <ul class="image-grid col-4">
+                    <li></li>
+                </ul>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
 
         <!-- Wil hyped X-->
+        <!--
         <div class="unit user-hyped">
             <h3><a href="http://lookbook.nu/user/17530-Willabelle-O">Ultimo aggiornamento</a> My collection<a href="#more-looks-url"></a></h3>
             <p class="time">12 hours ago</p>
+
             <ul class="image-grid col-1">
                 <li></li>
             </ul>
@@ -100,7 +202,9 @@
             <ul class="image-grid col-6">
                 <li></li>
             </ul>
+
             <a href="#more-looks-url" class="more">View more <i class="fa fa-angle-down"></i></a>
+            -->
         </div>
 
         <!-- Carte scambiabili-->

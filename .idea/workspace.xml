@@ -7,49 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/QueryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/QueryTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/AbstractCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/AbstractCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Cards.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Cards.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/CollectionOwn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/CollectionOwn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/MySQLDAOFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/MySQLDAOFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/TrattativaDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/TrattativaDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/TrattativaDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/TrattativaDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/AbstractServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/AbstractServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/HomePageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/HomePageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/Trattativa.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/Trattativa.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/QueryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/QueryTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/Server/MYSQLConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/Server/MYSQLConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/AbstractCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/AbstractCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/Cards.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/Cards.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/Catalogue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/CollectionOwn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/collection/CollectionOwn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/CollectionOwnDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/CollectionOwnDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/CollectionOwnDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/CollectionOwnDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/MySQLDAOFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/MySQLDAOFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/TrattativaDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/TrattativaDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/TrattativaDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/TrattativaDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/dao/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/platform/Platform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/servlets/AbstractServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/servlets/AbstractServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/servlets/HomePageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/servlets/HomePageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/userSide/Trattativa.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/userSide/Trattativa.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/progettoF19webApp/userSide/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/progettoF19webApp/userSide/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/MYSQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/MYSQLConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/MySQLDAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/MySQLDAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/stylesheets/userprofile.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/userprofile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,11 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="321">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -97,15 +59,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
               <caret line="523" selection-start-line="523" selection-end-line="523" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/stylesheets/homepage.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -131,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/stylesheets/login.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="212">
+              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
@@ -140,8 +93,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+            <state relative-caret-position="20">
+              <caret line="99" column="25" lean-forward="true" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/stylesheets/userprofile.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="120" column="1" selection-start-line="120" selection-start-column="1" selection-end-line="120" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -155,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server/MYSQLConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="272">
+              <caret line="18" column="92" selection-start-line="18" selection-start-column="92" selection-end-line="18" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -171,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/dao/MySQLDAOFactory.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+              <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -206,13 +168,13 @@
         <option value="$PROJECT_DIR$/web/stylesheets/login.css" />
         <option value="$PROJECT_DIR$/web/views/homepage.jsp" />
         <option value="$PROJECT_DIR$/src/dao/CardDaoImpl.java" />
-        <option value="$PROJECT_DIR$/web/stylesheets/userprofile.css" />
         <option value="$PROJECT_DIR$/src/servlets/AbstractServlet.java" />
         <option value="$PROJECT_DIR$/database/progetto.sql" />
-        <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/views/userprofile.jsp" />
+        <option value="$PROJECT_DIR$/web/stylesheets/userprofile.css" />
         <option value="$PROJECT_DIR$/src/dao/MySQLDAOFactory.java" />
         <option value="$PROJECT_DIR$/src/Server/MYSQLConnection.java" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
       </list>
     </option>
   </component>
@@ -286,6 +248,12 @@
               <item name="PiattaformaCarteV2" type="b2602c69:ProjectViewProjectNode" />
               <item name="PiattaformaCarteV2" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PiattaformaCarteV2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PiattaformaCarteV2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PiattaformaCarteV2" type="b2602c69:ProjectViewProjectNode" />
@@ -511,6 +479,14 @@
       <workItem from="1563996405877" duration="5470000" />
       <workItem from="1564078612595" duration="5677000" />
     </task>
+    <task id="LOCAL-00001" summary="Aggiunta navbar alla pagina userprofile">
+      <created>1564407144122</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564407144141</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -546,10 +522,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49646000" />
+    <option name="totallyTimeSpent" value="55489000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29954615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -561,7 +538,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4304419" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23240589" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39966834" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -590,7 +567,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Revisione database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revisione database" />
+    <MESSAGE value="Aggiunta navbar alla pagina userprofile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta navbar alla pagina userprofile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -620,13 +598,6 @@
     <entry file="jar://$PROJECT_DIR$/web/WEB-INF/mysql-connector-java-5.1.46.jar!/com/mysql/jdbc/AbandonedConnectionCleanupThread.class" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4ec65aae-0914-44fe-b5e3-9e158f937cb5/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d2491db3-7132-45dc-ac93-5bb687d02469/console.sql" />
-    <entry file="file://$PROJECT_DIR$/web/stylesheets/userprofile.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="210" column="22" lean-forward="true" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/userSide/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -743,20 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/stylesheets/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -771,17 +728,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/stylesheets/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/stylesheets/userprofile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="120" column="1" selection-start-line="120" selection-start-column="1" selection-end-line="120" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+        <state relative-caret-position="20">
+          <caret line="99" column="25" lean-forward="true" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/MySQLDAOFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -790,11 +761,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/MYSQLConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="272">
+          <caret line="18" column="92" selection-start-line="18" selection-start-column="92" selection-end-line="18" selection-end-column="92" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
