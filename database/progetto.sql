@@ -20,7 +20,47 @@ Mail VARCHAR(55) NOT NULL,
 Pass VARCHAR(20) NOT NULL,
 Unique(Mail)
 );
+CREATE TABLE collections(
+                            Username VARCHAR(20),
+                            IDCard NUMERIC(6),
+                            Quantity INTEGER NOT NULL,
+                            PRIMARY KEY(Username, IDCard),
+                            FOREIGN KEY (Username) REFERENCES Users(Username),
+                            FOREIGN KEY (IDCard) REFERENCES Catalog(ID)
+);
 
+CREATE TABLE CardsExchanges(
+                               ID NUMERIC(10) PRIMARY KEY,
+                               Offerer VARCHAR(20) NOT NULL,
+                               Receiver VARCHAR(20) NOT NULL,
+                               Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
+                               CardOffered VARCHAR(1000) NOT NULL,
+                               CardCounterOffered VARCHAR(1000) NOT NULL,
+                               FOREIGN KEY (Offerer) REFERENCES Users(Username),
+                               FOREIGN KEY (Receiver) REFERENCES Users(Username)
+);
+
+CREATE TABLE SCAMBIODIRETTO(
+                               ID NUMERIC(10) PRIMARY KEY,
+                               Date Date,
+                               Offerer VARCHAR(20) NOT NULL,
+                               Receiver VARCHAR(20) NOT NULL,
+                               Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
+                               CardOffered VARCHAR(1000) NOT NULL,
+                               CardCounterOffered VARCHAR(1000) NOT NULL,
+                               FOREIGN KEY (Offerer) REFERENCES Users(Username),
+                               FOREIGN KEY (Receiver) REFERENCES Users(Username)
+);
+
+CREATE TABLE PROPOSTASCAMBIO(
+                                ID NUMERIC(10) PRIMARY KEY,
+                                Date Date,
+                                Offerer VARCHAR(20) NOT NULL,
+                                Status VARCHAR(20) NOT NULL,
+                                CardOffered VARCHAR(1000) NOT NULL,
+                                CardCounterOffered VARCHAR(1000) NOT NULL,
+                                FOREIGN KEY (Offerer) REFERENCES Users(Username)
+);
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');
 INSERT INTO catalog VALUES(2,'Hearthstone','Druido',3,'Comune','Magia','Benedizione degli Antichi','Magia Gemella. +1/+1 ai tuoi servitori.');
 INSERT INTO catalog VALUES(3,'Hearthstone','Druido',5,'Epica','Bestia','Cervo di Cristallo','Assalto. Grido di Battaglia: se hai rigenerato 5 Salute in questa partita, evoca una copia di se stesso.');
@@ -456,47 +496,7 @@ INSERT INTO users VALUES('SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.co
 INSERT INTO users VALUES('EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
 INSERT INTO users VALUES('Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
 
-CREATE TABLE collections(
-Username VARCHAR(20),
-IDCard NUMERIC(6),
-Quantity INTEGER NOT NULL,
-PRIMARY KEY(Username, IDCard),
-FOREIGN KEY (Username) REFERENCES Users(Username),
-FOREIGN KEY (IDCard) REFERENCES Catalog(ID)
-);
 
-CREATE TABLE CardsExchanges(
-ID NUMERIC(10) PRIMARY KEY,
-Offerer VARCHAR(20) NOT NULL,
-Receiver VARCHAR(20) NOT NULL,
-Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
-CardOffered VARCHAR(1000) NOT NULL,
-CardCounterOffered VARCHAR(1000) NOT NULL,
-FOREIGN KEY (Offerer) REFERENCES Users(Username),
-FOREIGN KEY (Receiver) REFERENCES Users(Username)
-);
-
-CREATE TABLE SCAMBIODIRETTO(
-                               ID NUMERIC(10) PRIMARY KEY,
-                               Date Date,
-                               Offerer VARCHAR(20) NOT NULL,
-                               Receiver VARCHAR(20) NOT NULL,
-                               Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
-                               CardOffered VARCHAR(1000) NOT NULL,
-                               CardCounterOffered VARCHAR(1000) NOT NULL,
-                               FOREIGN KEY (Offerer) REFERENCES Users(Username),
-                               FOREIGN KEY (Receiver) REFERENCES Users(Username)
-);
-
-CREATE TABLE PROPOSTASCAMBIO(
-                                ID NUMERIC(10) PRIMARY KEY,
-                                Date Date,
-                                Offerer VARCHAR(20) NOT NULL,
-                                Status VARCHAR(20) NOT NULL,
-                                CardOffered VARCHAR(1000) NOT NULL,
-                                CardCounterOffered VARCHAR(1000) NOT NULL,
-                                FOREIGN KEY (Offerer) REFERENCES Users(Username)
-);
 /*table Exchanges e CardExchanges da non prendere in considerazione*/
 /*
 CREATE TABLE Exchanges(

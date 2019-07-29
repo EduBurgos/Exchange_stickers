@@ -116,7 +116,7 @@ public class TrattativaDaoImpl implements TrattativaDao{
     }
 
     @Override
-    public boolean accept(Trattativa trattativa) throws SQLException {
+    public boolean setAcceptFlag(Trattativa trattativa) throws SQLException {
 
         conn = null;
         String cardsOffered = trattativa.fromArraylistToString(trattativa.getCardoffer());
@@ -152,7 +152,7 @@ public class TrattativaDaoImpl implements TrattativaDao{
     }
 
     @Override
-    public boolean deny(Trattativa trattativa) throws SQLException {
+    public boolean setDenyFlag(Trattativa trattativa) throws SQLException {
         conn = null;
         String cardsOffered = trattativa.fromArraylistToString(trattativa.getCardoffer());
         String cardsCounterOffered = trattativa.fromArraylistToString(trattativa.getCounterOffer());

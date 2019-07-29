@@ -11,7 +11,8 @@ public interface TrattativaDao {
     Trattativa findByTrattativa(Trattativa trattativa) throws SQLException;
     boolean update() throws SQLException;
     boolean delete() throws SQLException;
-    boolean accept(Trattativa trattativa) throws SQLException;
-    boolean deny(Trattativa trattativa) throws SQLException;
+    boolean setAcceptFlag(Trattativa trattativa) throws SQLException;
+    boolean setDenyFlag(Trattativa trattativa) throws SQLException;
+
 
 }
