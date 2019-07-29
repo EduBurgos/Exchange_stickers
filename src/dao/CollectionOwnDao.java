@@ -7,13 +7,14 @@ import userSide.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface CollectionOwnDao {
     //CRUD
+    Map<Card,Integer> create_collection(User owner) throws SQLException;
     boolean insert() throws SQLException;
-    boolean find() throws SQLException;
     boolean update() throws SQLException;
     boolean delete() throws SQLException;
-    ArrayList<Card> view_collection(User owner) throws SQLException;
+
 
 }

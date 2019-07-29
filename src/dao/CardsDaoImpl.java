@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardDaoImpl implements CardDao {
+public class CardsDaoImpl implements CardsDao {
 
     //esplicitazione query
     /**query used to insert a new card in DB*/

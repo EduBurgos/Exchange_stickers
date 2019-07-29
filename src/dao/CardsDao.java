@@ -6,7 +6,7 @@ import userSide.User;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CardDao {
+public interface CardsDao {
     //tutte le query che faremo
     boolean insert(Card card) throws SQLException;
     Card findByID(int id) throws  SQLException;

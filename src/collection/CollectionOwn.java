@@ -3,6 +3,7 @@ package collection;
 import userSide.User;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /** Class that represents the collection owned by the user
  * @see User
@@ -10,9 +11,10 @@ import java.util.ArrayList;
  */
 public class CollectionOwn {
     private User owner;
-    private ArrayList<Card> cardsOwn;
+    private Map<Card,Integer> cardsOwn;
 
-    public CollectionOwn(User owner, ArrayList<Card> cardsOwn) {
+
+    public CollectionOwn(User owner, Map<Card,Integer> cardsOwn) {
         this.owner = owner;
         this.cardsOwn = cardsOwn;
     }
@@ -22,10 +24,11 @@ public class CollectionOwn {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    public ArrayList<Card> getCardsOwn() {
+    public Map<Card, Integer> getCardsOwn() {
         return cardsOwn;
     }
-    public void setCardsOwn(ArrayList<Card> cardsOwn) {
+    public void setCardsOwn(Map<Card,Integer> cardsOwn) {
         this.cardsOwn = cardsOwn;
     }
+
 }

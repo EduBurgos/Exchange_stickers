@@ -5,6 +5,7 @@ package platform;//singleton pattern
 
 import Server.MYSQLConnection;
 import collection.Card;
+import collection.CollectionOwn;
 import dao.CollectionOwnDao;
 import dao.CollectionOwnDaoImpl;
 import dao.UserDao;
@@ -22,13 +23,10 @@ public class Platform {
     private MYSQLConnection conn;
     private static Platform Platform_instance=null;
 
-    /*private Catalogue cat;
-    private ArrayList<User> users;*/
 
     private Platform() {
         this.conn= MYSQLConnection.getInstance();
-        /*users = new ArrayList<>();
-        cat= new Catalogue();*/
+
     }
 
     public static Platform getInstance()
@@ -50,7 +48,7 @@ public class Platform {
      * @return  true if the user is found, false otherwise
      * @exception SQLException
      */
-    public boolean checkIn(String nome, String cognome, String username, String email) {
+    public boolean checkIn(String nome, String cognome, String username, String email) throws SQLException {
 
         User us = new User(nome, cognome, username, email);
         UserDao ud = new UserDaoImpl();
@@ -65,26 +63,13 @@ public class Platform {
         } catch (SQLException e) {
             e.getErrorCode();
         }
+        //quando loggo carico anche carte utente in collectionOwn
+        CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
+        CollectionOwn collectionOwn;
+        collectionOwn = new CollectionOwn(us,co.create_collection(us));
         return logged;
     }
-    /**
-     * This method return cards of a specified user
-     * @param owner
-     * @return  Array of cards
-     * @exception SQLException
-     */
-     public ArrayList<Card> view_collection(User owner)
-     {
-         try {
-             CollectionOwnDao collectionOwnDao = new CollectionOwnDaoImpl();
-             return collectionOwnDao.view_collection(owner);
-         }
-         catch (SQLException e)
-         {
-             e.getErrorCode();
-         }
-         return null;
-     }
+
     //metodo per il login
     public User LogIn(String username,String pass) throws SQLException {
         UserDaoImpl userDao=new UserDaoImpl();
