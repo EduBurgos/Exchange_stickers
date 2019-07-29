@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="web/stylesheets/login.css">
     <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/login.css">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -71,7 +74,7 @@
                 <!--logIn form Start -->
                 <div id="login-link" class="tab-pane fade">
                     <h1>Welcome Back!</h1>
-                    <form  method="post" action="login.jsp">
+                    <form  method="post" action="../login">
                         <div class="field-wrap">
                             <label>
                                 Username

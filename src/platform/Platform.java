@@ -72,18 +72,18 @@ public class Platform {
 
     //metodo per il login
     public User LogIn(String username,String pass) throws SQLException {
-        UserDaoImpl userDao=new UserDaoImpl();
-        User logg=userDao.findByUsername(username);
-        String a=logg.getPass();
-        if(a.equals(pass))
-        {
-            return logg;
+        User logg = null;
+        try {
+            UserDaoImpl userDao = new UserDaoImpl();
+            logg = userDao.findByUsername(username);
+            String a = logg.getPass();
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
-        else
-        {
-            return null;
-        }
+        return logg;
     }
+
 
     /**
      * Method that generates the password when the user signs up to the platform
