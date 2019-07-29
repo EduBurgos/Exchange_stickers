@@ -1,5 +1,5 @@
 <%@ page import="collection.Card" %>
-<%@ page import="dao.CatalogueDaoImpl" %>
+<%@ page import="dao.CardsDaoImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 
@@ -98,7 +98,7 @@
                         <!--Immagine-->
                         <p class="card_price">
                             <p class="card_price">
-                        <% CatalogueDaoImpl allCatalog = new CatalogueDaoImpl();%>
+                        <% CardsDaoImpl allCatalog = new CardsDaoImpl();%>
                         <% for (Card i : allCatalog.findAll()) {%>
                         <h5><br><%=i.getNome()%><br></h5>
                         <%}%>
