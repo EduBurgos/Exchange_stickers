@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends AbstractServlet {
-    private String DEFAULT_ROUTE = "/views/login.jsp";
+    private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,6 +21,7 @@ public class LoginServlet extends AbstractServlet {
             User logged=confirmPassword(request);
             if(logged!=null)
             {
+                System.out.println(logged);
                 request.getSession().setAttribute("logged",logged);
                 forwardTo(request, response, DEFAULT_ROUTE);
             }
@@ -41,6 +42,7 @@ public class LoginServlet extends AbstractServlet {
     private User confirmPassword(HttpServletRequest request) throws SQLException {
         String name = request.getParameter("name");
         String pass= request.getParameter("password");
+        System.out.println(pass);
         Platform platform= Platform.getInstance();
         return platform.LogIn(name,pass);
     }

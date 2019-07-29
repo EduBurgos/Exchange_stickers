@@ -71,7 +71,7 @@
                 <!--logIn form Start -->
                 <div id="login-link" class="tab-pane fade">
                     <h1>Welcome Back!</h1>
-                    <form  method="post">
+                    <form  method="post" action="login.jsp">
                         <div class="field-wrap">
                             <label>
                                 Username
@@ -82,7 +82,7 @@
                             <label>
                                 Password<span class="req">*</span>
                             </label>
-                            <input type="password"required autocomplete="off" name="password" id=password"/>
+                            <input type="password" required autocomplete="off" name="password" id=password"/>
                         </div>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
                         <button class="button button-block"/>Log In</button>
