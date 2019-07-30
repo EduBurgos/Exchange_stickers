@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Platform {
+
     /** connection to MYSql*/
     private MYSQLConnection conn;
     private static Platform Platform_instance=null;
@@ -39,37 +40,14 @@ public class Platform {
     }
 
 
+
     /**
      * This method controls if the user is already registered to the platform
-     * @param nome
-     * @param cognome
      * @param username
-     * @param email
-     * @return  true if the user is found, false otherwise
+     * @param pass
+     * @return  user logged
      * @exception SQLException
      */
-    public boolean checkIn(String nome, String cognome, String username, String email) throws SQLException {
-
-        User us = new User(nome, cognome, username, email);
-        UserDao ud = new UserDaoImpl();
-        boolean logged = false;
-        try {
-            if (!(ud.checkByUser(us))) {
-                return logged;
-            } else {
-                ud.save(us);
-                logged = true;
-            }
-        } catch (SQLException e) {
-            e.getErrorCode();
-        }
-        //quando loggo carico anche carte utente in collectionOwn
-        CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
-        CollectionOwn collectionOwn;
-        collectionOwn = new CollectionOwn(us,co.create_collection(us));
-        return logged;
-    }
-
     //metodo per il login
     public User LogIn(String username,String pass) throws SQLException {
         User logg = null;
@@ -81,6 +59,10 @@ public class Platform {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        //quando loggo carico anche carte utente in collectionOwn
+        CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
+        CollectionOwn collectionOwn;
+        collectionOwn = new CollectionOwn(logg,co.create_collection(logg));
         return logg;
     }
 
@@ -149,10 +131,6 @@ public class Platform {
         return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
     }
 
-
-   /* public Card findCard(int IDCard){
-
-    }*/
 
     //metodo per aggiungere carta scegliendo da Catalogo tramite posizione
     //perchè string user? non è utente loggato?
