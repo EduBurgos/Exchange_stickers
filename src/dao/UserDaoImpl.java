@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class UserDaoImpl implements UserDao {
 
     /** Query used to add a new user*/
-    private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname,mail, Pass) VALUES (?,?,?,?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname,mail, Pass)"+"VALUES";
     /** Query used to read a single user */
     private static final String READ_QUERY = "SELECT * FROM users WHERE Username = ?";
     /** Query used to read all users */
@@ -44,12 +44,13 @@ public class UserDaoImpl implements UserDao {
         conn=null;
         try {
             conn=connector.createConnection();
-            preparedStatement = conn.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getUsername());
+            String query = CREATE_QUERY + "('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+user.getPass()+"')";
+            preparedStatement = conn.prepareStatement(query/*, Statement.RETURN_GENERATED_KEYS*/);
+            /*preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getNome());
             preparedStatement.setString(3, user.getCognome());
             preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getPass());
+            preparedStatement.setString(5, user.getPass());*/
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {

@@ -37,7 +37,7 @@
             <div class="tab-content">
                 <div id="signup-link" class="tab-pane fade show active">
                     <h1>Sign Up for Free</h1>
-                    <form action="../signUp" method="post">
+                    <form  method="post" action="../signUp">
                         <div class="top-row">
                             <div class="field-wrap">
                                 <label>

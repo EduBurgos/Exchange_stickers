@@ -62,7 +62,7 @@ public class SignUpServlet extends AbstractServlet {
         this.pass = pass;
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("FirstName");
         String lastName = request.getParameter("LastName");
         String username = request.getParameter("Username");
@@ -81,7 +81,6 @@ public class SignUpServlet extends AbstractServlet {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-
         return;
     }
 
