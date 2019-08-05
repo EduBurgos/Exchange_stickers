@@ -15,37 +15,21 @@ import java.sql.SQLException;
 public class SignUpServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+        try {
+                User saved=saveUser(request);
+                if(saved!=null)
+                {
+                    request.getSession().setAttribute("logged",saved);
+                    forwardTo(request, response, DEFAULT_ROUTE);
+                }
+            else{
+                forwardTo(request, response, INDEX_ROUTE);
+            }
 
-    /**dove imposta name, surname e Username ? **/
-    private String name;
-    private String surname;
-    private String userName;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return;
     }
@@ -57,6 +41,14 @@ public class SignUpServlet extends AbstractServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private User saveUser(HttpServletRequest request) throws SQLException {
+        String name = request.getParameter("name");
+        String pass= request.getParameter("password");
+        System.out.println(pass);
+        Platform platform= Platform.getInstance();
+        return platform.signUp();
     }
 
 

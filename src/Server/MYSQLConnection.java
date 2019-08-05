@@ -16,9 +16,8 @@ public class MYSQLConnection {
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con= DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/cardwebapplication","root","estefania93");
-//here sonoo is database name, root is username and password
-
+                        "jdbc:mysql://localhost:3306/cardwebapplication","root","abcd");
+                //here sonoo is database name, root is username and password
             } catch(SQLException e){
                 System.out.println(e);
             }

@@ -12,7 +12,7 @@ public class MySQLDAOFactory {
     /** username used for the operations on the DB */
     public static final String USER = "root";
     /** password used for the operations on the DB */
-    public static final String PASS = "estefania93";
+    public static final String PASS = "abcd";
 
     private static MySQLDAOFactory ourInstance = new MySQLDAOFactory();
 

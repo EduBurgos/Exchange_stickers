@@ -57,16 +57,17 @@ public class Platform {
             String a = logg.getPass();
             if(a.equals(pass))
             {
+                //quando loggo carico anche carte utente in collectionOwn
+                CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
+                CollectionOwn collectionOwn;
+                collectionOwn = new CollectionOwn(logg,co.create_collection(logg));
                 return logg;
             }
 
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        //quando loggo carico anche carte utente in collectionOwn
-        //CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
-        //CollectionOwn collectionOwn;
-        //collectionOwn = new CollectionOwn(logg,co.create_collection(logg));
+
         return null;
     }
 
@@ -166,6 +167,10 @@ public class Platform {
         }
         else
             System.err.println("utente non trovato");*/
+    }
+    public User signUp()
+    {
+        return null;
     }
 
 
