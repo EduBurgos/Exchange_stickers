@@ -35,73 +35,73 @@
 </head>
 <body>
 <!-------- NAVBAR------->
-<div class="container">
-    <nav class="navbar navbar-icon-top  navbar-default ">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><strong>Caporetto Team</strong></a>
+<!--<div class="container">-->
+<nav class="navbar navbar-icon-top  navbar-default ">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><strong>Caporetto Team</strong></a>
 
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only"></span></a></li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-refresh">
-                                <span class="badge badge-primary">5</span>
-                            </i>
-                            <strong>Exchange</strong>
-                        </a>
-                    </li>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only"></span></a></li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-refresh">
+                            <span class="badge badge-primary">5</span>
+                        </i>
+                        <strong>Exchange</strong>
+                    </a>
+                </li>
 
-                </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Cards">
-                        <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
-                    </div>
-                    <button type="submit" class="btn btn-success active">Search</button>
-                    <!------<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>------->
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-comment">
-                                <span class="badge badge-danger">11</span>
-                            </i>
-                            <strong> Chat </strong>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-question">
-                            </i>
-                            <strong> Help </strong>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                            <i class="fa fa-user-circle-o"></i>
-                            <strong> Account </strong> <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><strong>User Settings </strong></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">  <strong> Logout </strong> </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search Cards">
+                    <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
+                </div>
+                <button type="submit" class="btn btn-success active">Search</button>
+                <!------<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>------->
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-comment">
+                            <span class="badge badge-danger">11</span>
+                        </i>
+                        <strong> Chat </strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-question">
+                        </i>
+                        <strong> Help </strong>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                        <i class="fa fa-user-circle-o"></i>
+                        <strong> Account </strong> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><strong>User Settings </strong></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">  <strong> Logout </strong> </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 </div>
 
 <div class="cover-photo"></div>
