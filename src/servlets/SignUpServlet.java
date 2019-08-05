@@ -30,7 +30,6 @@ public class SignUpServlet extends AbstractServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return;
     }
 
@@ -45,10 +44,11 @@ public class SignUpServlet extends AbstractServlet {
 
     private User saveUser(HttpServletRequest request) throws SQLException {
         String name = request.getParameter("name");
-        String pass= request.getParameter("password");
-        System.out.println(pass);
+        String surname= request.getParameter("surname");
+        String mail= request.getParameter("mail");
+        String username= request.getParameter("username");
         Platform platform= Platform.getInstance();
-        return platform.signUp();
+        return platform.signUp(name,surname,mail,username);
     }
 
 

@@ -43,20 +43,27 @@
                                 <label>
                                     First Name<span class="req">*</span>
                                 </label>
-                                <input type="text" required autocomplete="on" />
+                                <input type="text" required autocomplete="on" name="name"/>
                             </div>
                             <div class="field-wrap">
                                 <label>
                                     Last Name<span class="req">*</span>
                                 </label>
-                                <input type="text" required autocomplete="on"/>
+                                <input type="text" required autocomplete="on" name="surname"/>
                             </div>
                         </div>
                         <div class="field-wrap">
                             <label>
                                 Username<span class="req">*</span>
                             </label>
-                            <input type="text" required autocomplete="on"/>
+                            <input type="text" required autocomplete="on" name="username"/>
+                        </div>
+                        <div class="field-wrap">
+
+                            <label>
+                                Mail<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="on" name="mail"/>
                         </div>
                         <button type="submit" class="button button-block"/>Get Started</button>
                     </form>

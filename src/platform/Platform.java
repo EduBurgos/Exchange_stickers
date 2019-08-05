@@ -168,7 +168,7 @@ public class Platform {
         else
             System.err.println("utente non trovato");*/
     }
-    public User signUp()
+    public User signUp(String name,String surname,String mail,String username)
     {
         return null;
     }
