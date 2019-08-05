@@ -1,112 +1,116 @@
 <%@ page import="collection.Card" %>
 <%@ page import="dao.CardsDaoImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
+<head>
 
-    <head>
+    <meta charset="UTF-8">
+    <title>Caporetto homepage</title>
 
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
-      <meta name="author" content="">
+    <!-- Custom styles for this template -->
+    <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../stylesheets/homepage.css">
+    <link rel="stylesheet" href="../stylesheets/navbar.css">
 
-      <title>Caporetto homepage</title>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+</head>
+<body>
+<!-------- NAVBAR------->
+<div class="container">
+    <nav class="navbar navbar-icon-top  navbar-default ">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><strong>Caporetto Team</strong></a>
 
-      <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="web/stylesheets/homepage.css">
-        <link rel="stylesheet" href="web/stylesheets/bootstrap-material-design.css">
-
-        <!-- jQuery CDN - Slim version (=without AJAX) -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                    $(this).toggleClass('active');
-                });
-            });
-        </script>
-
-
-    </head>
-
-    <body>
-    	 <div class="wrapper">
-            <!-- Sidebar Holder -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Caporetto Team</h3>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only">(current)</span></a></li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-refresh">
+                                <span class="badge badge-primary">5</span>
+                            </i>
+                            <strong>Exchange</strong>
+                        </a>
                     </li>
-                    <li class="#">
-                        <a href="#">Profile</a>
+
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search Cards">
+                        <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
+
+                    </div>
+
+                    <button type="submit" class="btn btn-success active">Search</button>
+                    <!------<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>------->
+
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-comment">
+                                <span class="badge badge-danger">11</span>
+                            </i>
+                            <strong> Chat </strong>
+                        </a>
                     </li>
                     <li>
-                        <a href="#">Exchange</a>
+                        <a href="#">
+                            <i class="fa fa-question">
+                            </i>
+                            <strong> Help </strong>
+                        </a>
                     </li>
-                    <li>
-                        <a href="#">Chat</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-user-circle-o"></i>
+                            <strong> Account </strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><strong>User Settings </strong></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">  <strong> Logout </strong> </a></li>
+                        </ul>
                     </li>
                 </ul>
-            </nav>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
 
-            <!-- Page Content Holder -->
-            <div id="content">
-
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-static-top">
-                    <div class="container-fluid">
-                        <button type="button" id="sidebarCollapse" class="navbar-btn">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-align-justify"></i>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav ml-auto">
-                                <li class="nav-item">
-    								<form class="form-inline mr-auto">
-    									<!--btn btn-outline-success btn-sm my-0-->
-    						        	<input class="input-group" type="text" placeholder="Search" aria-label="Search">
-    						        	<span></span><span></span>
-    						        		<button class="searchbtn" type="submit">
-    						        			Search
-    						        		</button>
-    						        </form>      
-    							</li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                 <!--Card box-->
-                <div class="card_box">
-                    <div class="card_des">
-                        <!--Immagine-->
-                        <p class="card_price">
-                            <p class="card_price">
-                        <% CardsDaoImpl allCatalog = new CardsDaoImpl();%>
+<!--Card box-->
+<div class="card_box">
+    <div class="card_des">
+        <!--Immagine-->
+        <p class="card_price">
+        <p class="card_price">
+            <% CardsDaoImpl allCatalog = new CardsDaoImpl();%>
                         <% for (Card i : allCatalog.findAll()) {%>
-                        <h5><br><%=i.getNome()%><br></h5>
-                        <%}%>
-                            </p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+        <h5><br><%=i.getNome()%><br></h5>
+        <%}%>
+        </p>
+        </p>
+    </div>
+</div>
+
+
+</body>
 </html>
