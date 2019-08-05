@@ -18,17 +18,17 @@ public class LoginServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            User logged=confirmPassword(request);
-            if(logged!=null)
-            {
-                System.out.println(logged);
-                request.getSession().setAttribute("logged",logged);
-                forwardTo(request, response, DEFAULT_ROUTE);
-                return;
-            }
-            else{
-                forwardTo(request, response, INDEX_ROUTE);
-            }
+                User logged=confirmPassword(request);
+                if(logged!=null)
+                {
+                    System.out.println(logged);
+                    request.getSession().setAttribute("logged",logged);
+                    forwardTo(request, response, DEFAULT_ROUTE);
+                    return;
+                }
+                else{
+                    forwardTo(request, response, INDEX_ROUTE);
+                }
 
         } catch (SQLException e) {
             e.printStackTrace();

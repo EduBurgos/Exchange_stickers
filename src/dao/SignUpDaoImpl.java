@@ -17,7 +17,7 @@ public class SignUpDaoImpl implements SignUpDao{
         int status = 0;
 
         try{
-            con = MYSQLConnection.getCon();
+            con = MYSQLConnection.getCon(); /** NON riconosce getCon() **/
             ps = con.prepareStatement("insert into user values (?,?,?)"); /**DA SISTEMARE CAMPI NON COMPATIVILI*/
 
             ps.setString(1, s.getName());
@@ -42,7 +42,7 @@ public class SignUpDaoImpl implements SignUpDao{
         try{
             con = MYSQLConnection.getCon();
             ps = con.prepareStatement("select * from user where Username = ?");     /**DA SISTEMARE CAMPI NON COMPATIBILI*/
-            ps.setString(1, Username);
+            ps.setString(1, userName);
 
             ResultSet rs = ps.executeQuery();
 

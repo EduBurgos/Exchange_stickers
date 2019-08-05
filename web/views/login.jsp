@@ -76,7 +76,7 @@
                             <label>
                                 Password<span class="req">*</span>
                             </label>
-                            <input type="password" required autocomplete="off" name="password" id="password"/>
+                            <input type="text" required autocomplete="off" name="password" id="password"/>
                         </div>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
                         <button class="button button-block"/>Log In</button>

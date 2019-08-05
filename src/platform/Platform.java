@@ -55,6 +55,10 @@ public class Platform {
             UserDaoImpl userDao = new UserDaoImpl();
             logg = userDao.findByUsername(username);
             String a = logg.getPass();
+            if(a.equals(pass))
+            {
+
+            }
 
         } catch (NullPointerException e) {
             e.printStackTrace();

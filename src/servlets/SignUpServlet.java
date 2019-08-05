@@ -15,6 +15,8 @@ import java.sql.SQLException;
 public class SignUpServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
+
+    /**dove imposta name, surname e Username ? **/
     private String name;
     private String surname;
     private String userName;
