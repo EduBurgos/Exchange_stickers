@@ -98,3 +98,12 @@
     background-image:url("http://www.lafabbricadeldivertimento.it/upload/1414006942_62_copertina_face_2014.jpg");
 
 }
+body {
+    width: 100%;
+    height:400px;
+    margin: auto;
+    background-image: url(../img/images/body-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

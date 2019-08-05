@@ -18,14 +18,14 @@ a {
 }
 
 /* ==== */
-.site-header {
+/*.site-header {
     height: 44px;
     width: 100%;
     border-bottom: 1px solid #E1e1e1;
-}
+}*/
 
 .cover-photo {
-    width: 980px;
+    width: 85%;
     height: 250px;
     margin: auto;
     background-color: #f5f5f5;
