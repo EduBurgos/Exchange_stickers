@@ -1,5 +1,6 @@
 package servlets;
 
+import dao.UserDaoImpl;
 import platform.Platform;
 import userSide.User;
 
@@ -20,6 +21,8 @@ public class SignUpServlet extends AbstractServlet {
     private String name;
     private String surname;
     private String userName;
+    private String email;
+    private String pass;
 
     public String getName() {
         return name;
@@ -45,7 +48,39 @@ public class SignUpServlet extends AbstractServlet {
         this.userName = userName;
     }
 
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+        String name = request.getParameter("FirstName");
+        String lastName = request.getParameter("LastName");
+        String username = request.getParameter("Username");
+        String email = request.getParameter("Email");
+        String password = request.getParameter("Password");
+
+        User user = new User(name, lastName, username, email);
+        UserDaoImpl x = new UserDaoImpl();
+
+        try {
+            boolean y = x.save(user);
+            if (y){
+                forwardTo(request, response, DEFAULT_ROUTE);
+                return;
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
 
         return;
     }
@@ -53,7 +88,7 @@ public class SignUpServlet extends AbstractServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
         try {
-            forwardTo(request, response, INDEX_ROUTE);
+            forwardTo(request, response, DEFAULT_ROUTE);
         } catch (IOException e) {
             e.printStackTrace();
         }

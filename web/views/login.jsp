@@ -37,26 +37,44 @@
             <div class="tab-content">
                 <div id="signup-link" class="tab-pane fade show active">
                     <h1>Sign Up for Free</h1>
-                    <form method="post">
+                    <form action="../signUp" method="post">
                         <div class="top-row">
                             <div class="field-wrap">
                                 <label>
                                     First Name<span class="req">*</span>
                                 </label>
-                                <input type="text" required autocomplete="on" />
+                                <input type="text" required autocomplete="on" name="FirstName"/>
                             </div>
                             <div class="field-wrap">
                                 <label>
                                     Last Name<span class="req">*</span>
                                 </label>
-                                <input type="text" required autocomplete="on"/>
+                                <input type="text" required autocomplete="on" name="LastName"/>
                             </div>
                         </div>
                         <div class="field-wrap">
                             <label>
                                 Username<span class="req">*</span>
                             </label>
-                            <input type="text" required autocomplete="on"/>
+                            <input type="text" required autocomplete="on" name="Username"/>
+                        </div>
+                        <div class="field-wrap">
+                            <label>
+                                Email<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="on" name="Email"/>
+                        </div>
+                        <div class="field-wrap">
+                            <label>
+                                Password<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="on" name="Password"/>
+                        </div>
+                        <div class="field-wrap">
+                            <label>
+                                Re-Type Password<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="on" name="ReType"/>
                         </div>
                         <button type="submit" class="button button-block"/>Get Started</button>
                     </form>
