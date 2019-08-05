@@ -87,7 +87,7 @@ INSERT INTO catalog VALUES(21, 'Hearthstone', 'Mago',2,'Comune','Servitore','Arc
 INSERT INTO catalog VALUES(22, 'Hearthstone', 'Mago',5,'Rara','Servitore','Collezionista Di Rarità','Ottieni +1/+1 quando peschi una carta');
 INSERT INTO catalog VALUES(23, 'Hearthstone', 'Mago',2,'Epica', 'Magia', 'Frammento Di Ghiaccio', 'Infligge 2 danni a un servitore. Se è Congelato pesca una carta');
 INSERT INTO catalog VALUES(24, 'Hearthstone', 'Mago',5,'Epica','Magia','Furia Del Drago','Mostra una Magia dal tuo mazzo.Infligge danni pari al suo costo a TUTTI i servitori');
-INSERT INTO catalog VALUES(25, 'Hearthstone', 'Mago',7,'Leggendaria','Magia','Galassia Portatile di Luna','Imposta a (1) il costo dei servitori nel tuo mazzo.');
+INSERT INTO catalog VALUES(25, 'Hearthstone', 'Mago',7,'Leggendaria','Magia','Galassia Portatile Di Luna','Imposta a (1) il costo dei servitori nel tuo mazzo.');
 INSERT INTO catalog VALUES(26, 'Hearthstone', 'Mago',3,'Epica','Magia','Immagine Scissa','Segreto: quando un tuo servitore viene attaccato, ne evoca una copia');
 INSERT INTO catalog VALUES(27, 'Hearthstone', 'Mago',4,'Rara','Servitore','Mago Anziano','Grido di Battaglia: +1 Danni Magici ai servitori adiacenti.');
 INSERT INTO catalog VALUES(28, 'Hearthstone', 'Mago',6,'Rara','Servitore','Meteorologa','Grido di Battaglia: infligge 1 danno a un nemico casuale per ogni altra carta nella tua mano.');
