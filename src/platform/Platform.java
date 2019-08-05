@@ -57,17 +57,17 @@ public class Platform {
             String a = logg.getPass();
             if(a.equals(pass))
             {
-
+                return logg;
             }
 
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
         //quando loggo carico anche carte utente in collectionOwn
-        CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
-        CollectionOwn collectionOwn;
-        collectionOwn = new CollectionOwn(logg,co.create_collection(logg));
-        return logg;
+        //CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
+        //CollectionOwn collectionOwn;
+        //collectionOwn = new CollectionOwn(logg,co.create_collection(logg));
+        return null;
     }
 
 

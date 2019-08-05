@@ -24,7 +24,6 @@ public class LoginServlet extends AbstractServlet {
                     System.out.println(logged);
                     request.getSession().setAttribute("logged",logged);
                     forwardTo(request, response, DEFAULT_ROUTE);
-                    return;
                 }
                 else{
                     forwardTo(request, response, INDEX_ROUTE);

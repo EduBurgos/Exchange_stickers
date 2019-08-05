@@ -1,4 +1,4 @@
-package dao;
+/*package dao;
 
 import Server.MYSQLConnection;
 import servlets.SignUpServlet;
@@ -11,18 +11,18 @@ public class SignUpDaoImpl implements SignUpDao{
 
 
     /** non utile, c'è già il metodo in user **/
-    static Connection con;
-    static PreparedStatement ps;    /**Prepare the Query*/
+    //static Connection con;
+    //static PreparedStatement ps;    /**Prepare the Query*/
 
-    @Override
+    /*@Override
     public int insertSignUpServlet(SignUpServlet s) {
         int status = 0;
 
         try{
-            con = MYSQLConnection.getInstance()); /** NON riconosce getCon() perchè è getIstance() **/
-            ps = con.prepareStatement("insert into user values (?,?,?)"); /**DA SISTEMARE CAMPI NON COMPATIVILI*/
+            con = MYSQLConnection.getInstance(); /** NON riconosce getCon() perchè è getIstance() **/
+    /*        ps = con.prepareStatement("insert into user values (?,?,?)"); /**DA SISTEMARE CAMPI NON COMPATIVILI*/
 
-            ps.setString(1, s.getName());
+      /*      ps.setString(1, s.getName());
             ps.setString(2, s.getSurname());
             ps.setString(3, s.getUserName());
 
@@ -43,9 +43,9 @@ public class SignUpDaoImpl implements SignUpDao{
 
         try{
             /** ma abbiamo già la query ps in user **/
-            con = MYSQLConnection.getInstance();
+        /*    con = MYSQLConnection.getInstance();
             ps = con.prepareStatement("select * from user where Username = ?");     /**DA SISTEMARE CAMPI NON COMPATIBILI*/
-            ps.setString(1, userName);
+         /*   ps.setString(1, userName);
 
             ResultSet rs = ps.executeQuery();
 
@@ -61,4 +61,4 @@ public class SignUpDaoImpl implements SignUpDao{
         }
         return null;
     }
-}
+}*/

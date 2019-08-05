@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-  response.sendRedirect("views/homepage.jsp");
+  response.sendRedirect("views/login.jsp");
 %>
 
 </body>
