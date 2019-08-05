@@ -1,3 +1,10 @@
+<%@ page import="dao.CollectionOwnDaoImpl" %>
+<%@ page import="dao.UserDaoImpl" %>
+<%@ page import="userSide.User" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="collection.Card" %>
+<%@ page import="java.util.ArrayList" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: Utente
@@ -131,126 +138,42 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="ultimoaggiornamento">
-
-
-                <ul class="image-grid col-1">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-2">
-                    <li></li>
-                </ul>
-
-                <!--
-                <div class="col-sm-4">
-                    <h3>Tab 1</h3>
-                    <p>olakjaj</p>
+                <% CollectionOwnDaoImpl collection1 = new CollectionOwnDaoImpl();%>
+                <% UserDaoImpl utente= new UserDaoImpl();%>
+                <% User u =utente.findByUsername("StellaTheBest");%>
+                <% ArrayList keyList = new ArrayList(collection1.create_collection(u).keySet());%>
+                <%     for (int i = keyList.size() - 1; i >= 0; i--) { %>
+                <% Card key = (Card)keyList.get(i); %>
+                <div class="col-lg-4 col-md-4 col-xs-12 thumb">
+                    <img src="../img/<%=key.getCategoria()%>/<%=(key.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
 
-                <div class="col-sm-4">
-                    <h3>Tab 1</h3>
-                    <p>olakjaj</p>
-                </div>
+                <%}%>
 
-                <div class="col-sm-4">
-                    <h3>Tab 1</h3>
-                    <p>olakjaj</p>
-                </div> -->
+
             </div>
             <div role="tabpanel" class="tab-pane" id="mycollection">
 
-                <ul class="image-grid col-1">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-2">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-3">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-4">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-5">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-6">
-                    <li></li>
-                </ul>
-                <!--
-                <div class="col-sm-6">
-                    <h3>Tab 2</h3>
-                    <p>olakjaj</p>
+                <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
+                <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(u)).entrySet()){%>
+                <div class="col-lg-4 col-md-4 col-xs-12 thumb">
+                    <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
-
-                <div class="col-sm-6">
-                    <h3>Tab 2</h3>
-                    <p>olakjaj</p>
-                </div>
-                -->
-
+                <%}%>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="exchangeables">
 
-                <ul class="image-grid col-1">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-2">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-3">
-                    <li></li>
-                </ul>
-                <ul class="image-grid col-4">
-                    <li></li>
-                </ul>
+
 
 
 
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-        <!-- Wil hyped X-->
-        <!--
-        <div class="unit user-hyped">
-            <h3><a href="http://lookbook.nu/user/17530-Willabelle-O">Ultimo aggiornamento</a> My collection<a href="#more-looks-url"></a></h3>
-            <p class="time">12 hours ago</p>
-
-            <ul class="image-grid col-1">
-                <li></li>
-            </ul>
-            <ul class="image-grid col-2">
-                <li></li>
-            </ul>
-            <ul class="image-grid col-3">
-                <li></li>
-            </ul>
-            <ul class="image-grid col-4">
-                <li></li>
-            </ul>
-            <ul class="image-grid col-5">
-                <li></li>
-            </ul>
-            <ul class="image-grid col-6">
-                <li></li>
-            </ul>
-
-            <a href="#more-looks-url" class="more">View more <i class="fa fa-angle-down"></i></a>
-            -->
     </div>
 
-    <!-- Carte scambiabili-->
 
-    </section>
     <section class="right-col">
 
     </section>

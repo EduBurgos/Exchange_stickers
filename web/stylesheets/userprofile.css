@@ -119,84 +119,20 @@ a {
     background-color: #EFEFEF;
 
 }
-.image-grid.col-1 li {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    height: 200px;
-    padding-bottom: 30%;
-    background-image: url("../img/Pokemon/Azumarill.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
+
+img.zoom {
+    width: 120%;
+    height: auto;
+    border-radius:5px;
+    object-fit:cover;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
 }
-.image-grid.col-2 li {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    height: 200px;
-    padding-bottom: 30%;
-    background-image: url("../img/Pokemon/Chimchar.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
-}
-.image-grid.col-3 li {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    height: 200px;
-    padding-bottom: 30%;
-    background-image: url("../img/Pokemon/Gligar.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
-}
-.image-grid.col-4 li {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    height: 200px;
-    padding-bottom: 30%;
-    background-image: url("../img/Pokemon/Dialga.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
-}
-.image-grid.col-5 li {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    height: 200px;
-    padding-bottom: 30%;
-    background-image: url("../img/Pokemon/Axew.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
-}
-.image-grid.col-6 li {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    height: 200px;
-    padding-bottom: 30%;
-    background-image: url("../img/Pokemon/Glaceon.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
-}
-.image-grid.col-1 li:nth-child(n) {
-    margin-right: 0;
-}
-.image-grid.col-2 li:nth-child(n) {
-    margin-right: 0;
-}
-.image-grid.col-3 li:nth-child(n) {
-    margin-right: 0;
-}
-.image-grid.col-4 li:nth-child(n) {
-    margin-right: 0;
-}
-.image-grid.col-5 li:nth-child(n) {
-    margin-right: 0;
-}
-.image-grid.col-6 li:nth-child(n) {
-    margin-right: 0;
-}
+
 
 .profile-nav {
     height: 46px;

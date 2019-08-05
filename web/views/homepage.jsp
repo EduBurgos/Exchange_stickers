@@ -1,5 +1,11 @@
 <%@ page import="collection.Card" %>
 <%@ page import="dao.CardsDaoImpl" %>
+<%@ page import="dao.UserDaoImpl" %>
+<%@ page import="userSide.User" %>
+<%@ page import="dao.CollectionOwnDao" %>
+<%@ page import="dao.CollectionOwnDaoImpl" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.sun.javafx.collections.MappingChange" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,21 +102,36 @@
     </nav>
 </div>
 
-<!--Card box-->
-<div class="card_box">
-    <div class="card_des">
-        <!--Immagine-->
-        <p class="card_price">
-        <p class="card_price">
-            <% CardsDaoImpl allCatalog = new CardsDaoImpl();%>
-                        <% for (Card i : allCatalog.findAll()) {%>
-        <h5><br><%=i.getNome()%><br></h5>
+<div class="container page-top">
+
+
+
+    <div class="row">
+
+
+        <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
+        <% UserDaoImpl allUsers = new UserDaoImpl();%>
+        <% for (User i : allUsers.findAll()) {%>
+        <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(i)).entrySet()){%>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+        </div>
         <%}%>
-        </p>
-        </p>
+
+
+
+        <%}%>
+
+
+
+
     </div>
 </div>
 
 
+</div>
+</div>
+
+</div>
 </body>
 </html>

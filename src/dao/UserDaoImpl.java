@@ -4,6 +4,7 @@ package dao;
 import userSide.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDaoImpl implements UserDao {
 
@@ -21,6 +22,9 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECKBYUSER_QUERY = "SELECT * FROM users WHERE Username = ?, NameUser = ?, Surname = ?, Mail = ?";
 
     private static final String PASSWORD_QUERY="SELECT Pass FROM users WHERE Username= ?";
+
+    /**query used to find all users in DB*/
+    private static final String FIND_ALL= "SELECT * FROM users";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -231,6 +235,49 @@ public class UserDaoImpl implements UserDao {
             }
         }
         return false;
+    }
+
+
+    /**
+     * Method that finds all users in the database
+     * @param
+     * @return ArrayList which contains users in DB
+     * @throws SQLException
+     * @throws Exception
+     */
+
+    public ArrayList<User> findAll() throws SQLException {
+        ArrayList<User> allUsers = new ArrayList<User>();
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(FIND_ALL);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                allUsers.add(new User((result.getString(2)) ,result.getString(3), result.getString(1), result.getString(4)));
+
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return allUsers;
     }
 
 
