@@ -94,7 +94,7 @@ INSERT INTO catalog VALUES(28, 'Hearthstone', 'Mago',6,'Rara','Servitore','Meteo
 INSERT INTO catalog VALUES(29, 'Hearthstone', 'Mago',10,'Leggendaria','Servitore','Kalecgos','La tua prima Magia ogni turno costa(0). Grido di Battaglia:Rinvieni una Magia.');
 INSERT INTO catalog VALUES(30, 'Hearthstone', 'Mago',6,'Rara','Magia','Tormenta','Infligge 2 danni ai servitori nemici e li Congela.');
 
-INSERT INTO catalog VALUES(31, 'Hearthstone', 'Sacerdote',2,'Comune','Servitore','Reclutatore del M.A.L.E.','Rantolo di Morte: mette un Lacchè nella tua mano.');
+INSERT INTO catalog VALUES(31, 'Hearthstone', 'Sacerdote',2,'Comune','Servitore','Reclutatore del MALE','Rantolo di Morte: mette un Lacchè nella tua mano.');
 INSERT INTO catalog VALUES(32, 'Hearthstone', 'Sacerdote',5,'Epica','Bestia', 'Falena Splendente','Grido di Battaglia: se il tuo mazzo ha solo carte a costo dispari, raddoppia la Salute degli altri tuoi servitori.');
 INSERT INTO catalog VALUES(33, 'Hearthstone', 'Sacerdote',3,'Epica','Magia','Incubo Vivido','Seleziona un tuo servitore. Ne evoca una copia con 1 Salute restante.');
 INSERT INTO catalog VALUES(34, 'Hearthstone', 'Sacerdote',5,'Rara','Magia','Isteria Di Massa','Costringe ogni servitore ad attaccare un altro servitore casuale.');
@@ -107,7 +107,7 @@ INSERT INTO catalog VALUES(40, 'Hearthstone', 'Sacerdote',2,'Comune','Magia','Se
 
 
 INSERT INTO catalog VALUES(41,'Hearthstone','Stregone',7,'Leggendaria','Magia','Arcicattivo Rafaam','Provocazione. Grido di Battaglia: sostituisce le carte nella tua mano e nel tuo mazzo con servitori Leggendari.');
-INSERT INTO catalog VALUES(42,'Hearthstone','Stregone',2,'Rara','Magia','Colpo Di scena','Mette la tua mano nel tuo mazzo. Pesca lo stesso numero di carte.');
+INSERT INTO catalog VALUES(42,'Hearthstone','Stregone',2,'Rara','Magia','Colpo Di Scena','Mette la tua mano nel tuo mazzo. Pesca lo stesso numero di carte.');
 INSERT INTO catalog VALUES(43,'Hearthstone','Stregone',2,'Epica','Magia','Fiorsangue','La prossima Magia che lanci in questo turno costa Salute invece di Mana');
 INSERT INTO catalog VALUES(44,'Hearthstone','Stregone',3,'Rara','Magia','Follia Incontrollata','Infligge 9 danni suddivisi casualmente tra tutti i personaggi.');
 INSERT INTO catalog VALUES(45,'Hearthstone','Stregone',1,'Rara','Magia','Grido','Scarta la tua carta con il costo più basso. Infligge 2 danni a TUTTI i servitori.');
@@ -301,7 +301,7 @@ INSERT INTO catalog VALUES(93,'Pokemon','Base',180,'Rara Holo EX','Incolore','Lu
                                                                  Burrasca Plasma  120
                                                                  Scarta un''Energia Plasma assegnata a questo Pokémon. Se non puoi scartare
                                                                  un''Energia Plasma, questo attacco non ha effetto.');
-INSERT INTO catalog VALUES(94,'Pokemon','Base',80,'Non Comune','Incolore','Farfetch''d','Tassa: Pesca due carte.
+INSERT INTO catalog VALUES(94,'Pokemon','Base',80,'Non Comune','Incolore','Farfetchd','Tassa: Pesca due carte.
                                                                          Sfondaoggetto   20+
                                                                          Prima di infliggere danni, scarta tutte le carte Oggetto Pokémon assegnate al Pokémon attivo del tuo avversario.
                                                                          Se scarti una carta Oggetto Pokémon in questo modo, questo attacco infligge 70 danni in più.');
@@ -389,7 +389,7 @@ INSERT INTO catalog VALUES(116,'Yu-Gi-Oh!','N/A',0,'Rapida','Magia','Circolo Sal
                                                                                          Aggiungi 1 mostro "Salamagna" dal tuo Deck alla tua mano.
                                                                                         Scegli come bersaglio 1 Mostro Link "Salamagna" che controlli che è stato Evocato Link utilizzando un mostro con il suo stesso nome come materiale; quel Mostro Link è immune agli effetti dei mostri in questo turno, eccetto i suoi stessi.
                                                                                         Puoi attivare solo 1 "Circolo Salamagna" per turno.');
-INSERT INTO catalog VALUES(117,'Yu-Gi-Oh!','Luce',4,'Comune','Mostro','Congegno DOro','[MACCHINA/EFFETTO]
+INSERT INTO catalog VALUES(117,'Yu-Gi-Oh!','Luce',4,'Comune','Mostro','Congegno D''Oro','[MACCHINA/EFFETTO]
                                                                                          Quando questa carta viene Evocata Normalmente o Specialmente: puoi Evocare Specialmente 1 mostro Macchina di Livello 4 dalla tua mano. Se questa carta viene distrutta in battaglia o dall''effetto di una carta:
                                                                                          puoi Evocare Specialmente 1 mostro "Congegno" di Livello 4 dal tuo Deck, eccetto "Congegno d''Oro". Puoi utilizzare solo 1 effetto di "Congegno d''Oro" per turno, e solo una volta in quel turno.');
 INSERT INTO catalog VALUES(118,'Yu-Gi-Oh!','Fuoco',3,'Comune','Mostro','Crociatia Reclusia','[INCANTATORE/EFFETTO]
@@ -450,7 +450,7 @@ INSERT INTO catalog VALUES(139,'Yu-Gi-Oh!','N/A',0,'Terreno','Magia','Mina Misti
                                                                                      se entrambi i giocatori controllano lo stesso numero di mostri: distruggi questa carta.');
 INSERT INTO catalog VALUES(140,'Yu-Gi-Oh!','N/A',0,'Normale','Magia','Nuovo Cast Artistamico','Rivela un qualsiasi numero di mostri "Artistamico" dalla tua mano e mischiali nel Deck, poi pesca carte pari al numero di carte che hai mischiato nel Deck +1.
                                                                                               Puoi attivare solo 1 "Nuovo Cast Artistamico" per turno.');
-INSERT INTO catalog VALUES(141,'Yu-Gi-Oh!','N/A',0,'Normale','Trappola','Oh Segna-Mostro-baum!','Offri come Tributo 2 o più Segna-Mostro con lo stesso Livello, poi scegli come bersaglio un numero di mostri nel tuo Cimitero con quello stesso Livello, fino al massimo al numero di Segna-Mostro offerti come Tributo; Evoca Specialmente quei bersagli.
+INSERT INTO catalog VALUES(141,'Yu-Gi-Oh!','N/A',0,'Normale','Trappola','Oh Segna-Mostro-Baum!','Offri come Tributo 2 o più Segna-Mostro con lo stesso Livello, poi scegli come bersaglio un numero di mostri nel tuo Cimitero con quello stesso Livello, fino al massimo al numero di Segna-Mostro offerti come Tributo; Evoca Specialmente quei bersagli.
                                                                                                  I loro effetti sono annullati. Distruggili durante la End Phase.');
 INSERT INTO catalog VALUES(142,'Yu-Gi-Oh!','Oscurità',10,'Ultra Rara','Mostro','Orichalcos Shunoros','[MACCHINA/EFFETTO]
                                                                                                       Questa carta non può essere Evocata Normalmente o Posizionata. Se un Mostro Normale che controlli viene distrutto in battaglia, puoi Evocare Specialmente questa carta dalla tua mano. Questa carta guadagna 1000 ATK per ogni mostro controllato dal tuo avversario.
