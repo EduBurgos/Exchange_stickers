@@ -262,9 +262,10 @@ a.article, a.article:hover {
  */
 
 img.zoom {
-    width: 85%;
-    height: auto;
+    width: 100%;
+    height: 450px;
     border-radius:5px;
+    display:inline-block;
     object-fit:cover;
     padding-top: 2px;
     padding-bottom: 2px;
