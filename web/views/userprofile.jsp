@@ -110,11 +110,13 @@
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
-        <h1>StellaTheBest</h1>
+        <% UserDaoImpl utente= new UserDaoImpl();%>
+        <% User u =utente.findByUsername("StellaTheBest");%>
+        <h1><%=u.getUsername()%></h1>
 
         <div class="meta">
-            <p><i class="name"></i> Name: Carlotta Verde </p>
-            <p><i class="email"></i> E-mail: carlottaverde@gmail.com </p>
+            <p><i class="name"></i>Name: <%=u.getNome()+" "+u.getCognome()%></p>
+            <p><i class="email"></i>E-mail: <%=u.getEmail()%></p>
         </div>
     </section>
     <div class="section center-col content">
@@ -132,19 +134,17 @@
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li>
             <li role="presentation"><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
-            <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li>
+            <!--   <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li> -->
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="ultimoaggiornamento">
                 <% CollectionOwnDaoImpl collection1 = new CollectionOwnDaoImpl();%>
-                <% UserDaoImpl utente= new UserDaoImpl();%>
-                <% User u =utente.findByUsername("StellaTheBest");%>
                 <% ArrayList keyList = new ArrayList(collection1.create_collection(u).keySet());%>
                 <%     for (int i = keyList.size() - 1; i >= 0; i--) { %>
                 <% Card key = (Card)keyList.get(i); %>
-                <div class="col-lg-4 col-md-4 col-xs-12 thumb">
+                <div class="col-lg-4 col-md-4 col-xs-5 thumb">
                     <img src="../img/<%=key.getCategoria()%>/<%=(key.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
 
@@ -154,21 +154,20 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="mycollection">
 
-                <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
-                <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(u)).entrySet()){%>
-                <div class="col-lg-4 col-md-4 col-xs-12 thumb">
+                <% for (Map.Entry<Card, Integer> entry : (collection1.create_collection(u)).entrySet()){%>
+                <div class="col-lg-4 col-md-4 col-xs-5 thumb">
                     <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}%>
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="exchangeables">
+            <!--      <div role="tabpanel" class="tab-pane" id="exchangeables">
 
 
 
 
 
-            </div>
+                  </div>-->
 
         </div>
     </div>

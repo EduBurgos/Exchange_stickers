@@ -110,7 +110,7 @@
         <% UserDaoImpl allUsers = new UserDaoImpl();%>
         <% for (User i : allUsers.findAll()) {%>
         <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(i)).entrySet()){%>
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+        <div class="col-lg-3 col-md-4 col-xs-5 thumb">
             <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
         </div>
         <%}%>
