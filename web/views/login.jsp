@@ -83,7 +83,7 @@
                 <!--logIn form Start -->
                 <div id="login-link" class="tab-pane fade">
                     <h1>Welcome Back!</h1>
-                    <form  method="post" action="../views/homepage.jsp">
+                    <form  method="post" action="../login">
                         <div class="field-wrap">
                             <label>
                                 Username

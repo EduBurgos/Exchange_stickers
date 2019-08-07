@@ -7,40 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/img/Hearthstone/ColpoDiscena.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/img/Hearthstone/GalassiaPortatilediLuna.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/progettoF19webApp_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/progettoF19webApp_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Hearthstone/CollezionistaDiRarita.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Hearthstone/Duello.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Hearthstone/LacchePosseduto.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Hearthstone/MaiArrendersi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Hearthstone/ReclutatoreDelMale.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Hearthstone/ReclutatoredelM.A.L.E..png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Hearthstone/SarcedoteDellaKabala.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Hearthstone/SacerdoteDellaKabala.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Pokemon/Kyurem Nero.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Pokemon/KyuremNero.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Pokemon/Tapu Koko.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Pokemon/TapuKoko.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Yu-Gi-Oh!/CyberDragojpg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Yu-Gi-Oh!/DissimulatoreDEffetto.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Yu-Gi-Oh!/LAgenteDellaForzaVenere.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Yu-Gi-Oh!/L'AgentedellaForza-Venere.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Yu-Gi-Oh!/OhSegnaMostroBaum.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/img/Yu-Gi-Oh!/fusione_mondo_parallelo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/stylesheets/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/stylesheets/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Hearthstone/ReclutatoreDelMale.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Hearthstone/SarcedoteDellaKabala.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Pokemon/Farfetchd.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Pokemon/Farfetch'd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Pokemon/Kyurem Nero.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Pokemon/Tapu Koko.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Yu-Gi-Oh!/CongegnoD''Oro.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Yu-Gi-Oh!/CongegnoDOro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/img/Yu-Gi-Oh!/OhSegna-Mostro-Baum!.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/Yu-Gi-Oh!/OhSegna-Mostro-baum!.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/stylesheets/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/stylesheets/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/stylesheets/userprofile.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/userprofile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/homepage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progettoF19webApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/progettoF19webApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlets/LoginServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,55 +45,51 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
+        <entry file="file://$PROJECT_DIR$/src/servlets/LoginServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="85" column="51" selection-start-line="85" selection-start-column="51" selection-end-line="85" selection-end-column="51" />
+            <state relative-caret-position="255">
+              <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/progetto.sql">
+        <entry file="file://$PROJECT_DIR$/src/servlets/AbstractServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="64" column="84" selection-start-line="64" selection-start-column="84" selection-end-line="64" selection-end-column="84" />
+            <state relative-caret-position="151">
+              <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlets/SignUpServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
+        <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/stylesheets/homepage.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="263" column="10" lean-forward="true" selection-start-line="263" selection-start-column="10" selection-end-line="263" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/stylesheets/navbar.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="80">
+              <caret line="85" column="57" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -157,7 +124,6 @@
         <option value="$PROJECT_DIR$/src/dao/CollectionOwnDao.java" />
         <option value="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" />
         <option value="$PROJECT_DIR$/web/stylesheets/login.css" />
-        <option value="$PROJECT_DIR$/src/servlets/LoginServlet.java" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/stylesheets/navbar.css" />
         <option value="$PROJECT_DIR$/src/dao/SignUpDaoImpl.java" />
@@ -166,12 +132,13 @@
         <option value="$PROJECT_DIR$/src/dao/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/dao/MySQLDAOFactory.java" />
         <option value="$PROJECT_DIR$/src/Server/MYSQLConnection.java" />
-        <option value="$PROJECT_DIR$/web/views/login.jsp" />
         <option value="$PROJECT_DIR$/src/platform/Platform.java" />
         <option value="$PROJECT_DIR$/src/servlets/SignUpServlet.java" />
         <option value="$PROJECT_DIR$/database/progetto.sql" />
         <option value="$PROJECT_DIR$/web/views/homepage.jsp" />
         <option value="$PROJECT_DIR$/web/stylesheets/homepage.css" />
+        <option value="$PROJECT_DIR$/src/servlets/LoginServlet.java" />
+        <option value="$PROJECT_DIR$/web/views/login.jsp" />
       </list>
     </option>
   </component>
@@ -198,52 +165,120 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="progettoF19webApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="progettoF19webApp" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="progettoF19webApp" type="462c0819:PsiDirectoryNode" />
+              <item name="servlets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="platform" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="servlets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19v17" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v17" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19_5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19_5" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,7 +327,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 8.5.42" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.42" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="12" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.22" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.22" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="12" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/progettoF19webApp_war_exploded" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -561,7 +596,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82206000" />
+    <option name="totallyTimeSpent" value="83467000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -573,10 +608,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="637" y="0" width="736" height="735" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.4837278" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.33020133" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -587,7 +622,7 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4651163" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46380696" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49798658" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -707,7 +742,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/dao/CardsDaoImpl.java</url>
           <line>225</line>
-          <properties class="dao.CardsDaoImpl" method="findAll">
+          <properties class="dao.CardsDaoImpl">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="4" />
@@ -734,10 +769,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/mysql-connector-java-5.1.46.jar!/com/mysql/jdbc/StringUtils.class" />
-    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/mysql-connector-java-5.1.46.jar!/com/mysql/jdbc/Driver.class" />
-    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/mysql-connector-java-5.1.46.jar!/com/mysql/jdbc/AbandonedConnectionCleanupThread.class" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4ec65aae-0914-44fe-b5e3-9e158f937cb5/console.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d2491db3-7132-45dc-ac93-5bb687d02469/console.sql" />
     <entry file="file://$PROJECT_DIR$/src/userSide/Trattativa.java" />
     <entry file="file://$PROJECT_DIR$/progettoF19webApp.iml">
@@ -776,7 +807,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlets/HomePageServlet.java" />
     <entry file="file://$PROJECT_DIR$/src/dao/TrattativaDaoImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/servlets/AbstractServlet.java" />
+    <entry file="file://$PROJECT_DIR$/src/servlets/AbstractServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/bootstrap-3.3.7/css/bootstrap.css" />
     <entry file="file://$PROJECT_DIR$/web/bootstrap-3.3.7/js/npm.js" />
     <entry file="file://$PROJECT_DIR$/src/dao/CardsDao.java">
@@ -840,12 +877,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlets/LoginServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="43" selection-start-line="43" selection-end-line="50" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -873,13 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="85" column="51" selection-start-line="85" selection-start-column="51" selection-end-line="85" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/SignUpDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -895,13 +922,6 @@
             <element signature="e#1632#1633#0" expanded="true" />
             <element signature="e#1659#1660#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlets/SignUpServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -962,17 +982,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
+    <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
+        <state relative-caret-position="318">
+          <caret line="173" column="10" selection-start-line="173" selection-start-column="10" selection-end-line="173" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
+    <entry file="file://$PROJECT_DIR$/.idea/sqldialects.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
+        <state relative-caret-position="318">
+          <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlets/SignUpServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlets/LoginServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="85" column="57" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
         </state>
       </provider>
     </entry>
