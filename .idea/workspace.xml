@@ -7,15 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/progetto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/progetto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/MYSQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/MYSQLConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/MySQLDAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/MySQLDAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/stylesheets/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/stylesheets/userprofile.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/userprofile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dao/MySQLDAOFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+            <state relative-caret-position="255">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -83,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server/MYSQLConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+            <state relative-caret-position="272">
+              <caret line="18" column="85" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
               <folding>
                 <element signature="e#259#260#0" expanded="true" />
                 <element signature="e#293#294#0" expanded="true" />
@@ -93,7 +85,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="192">
@@ -486,7 +478,7 @@
       <workItem from="1565014879014" duration="1032000" />
       <workItem from="1565016824779" duration="1844000" />
       <workItem from="1565114798589" duration="2625000" />
-      <workItem from="1565175142233" duration="893000" />
+      <workItem from="1565175142233" duration="2031000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -537,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565034004356</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Modifiche a pagine homepage.jsp e userprofile.jsp">
+      <created>1565176250455</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1565176250456</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -573,7 +572,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84360000" />
+    <option name="totallyTimeSpent" value="85498000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -588,7 +587,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.32980332" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32980332" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -611,7 +610,7 @@
       <window_info anchor="bottom" id="Messages" order="11" weight="0.049099836" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3297587" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49798658" weight="0.32841823" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49798658" visible="true" weight="0.32733223" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -711,7 +710,8 @@
     <MESSAGE value="dubbi" />
     <MESSAGE value="Aggiunto navbar principale,nuovi file nel package bootstrap-3-3.7, modifica su hompage.jps,homepage.css, userprofile.jsp" />
     <MESSAGE value="Iniziato ad impostare signUp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Iniziato ad impostare signUp" />
+    <MESSAGE value="Modifiche a pagine homepage.jsp e userprofile.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifiche a pagine homepage.jsp e userprofile.jsp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -977,17 +977,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/MySQLDAOFactory.java">
+    <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        <state relative-caret-position="192">
+          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/MYSQLConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        <state relative-caret-position="272">
+          <caret line="18" column="85" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
           <folding>
             <element signature="e#259#260#0" expanded="true" />
             <element signature="e#293#294#0" expanded="true" />
@@ -995,10 +995,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
+    <entry file="file://$PROJECT_DIR$/src/dao/MySQLDAOFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
