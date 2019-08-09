@@ -83,8 +83,6 @@ public class SignUpServlet extends AbstractServlet {
         }
         return;
     }
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
         try {
             forwardTo(request, response, DEFAULT_ROUTE);
@@ -92,6 +90,4 @@ public class SignUpServlet extends AbstractServlet {
             e.printStackTrace();
         }
     }
-
-
 }

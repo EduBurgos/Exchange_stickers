@@ -1,5 +1,6 @@
 package servlets;
 
+import collection.CollectionOwn;
 import platform.Platform;
 import userSide.User;
 
@@ -18,7 +19,7 @@ public class LoginServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-                User logged=confirmPassword(request);
+                CollectionOwn logged=confirmPassword(request);
                 if(logged!=null)
                 {
                     System.out.println(logged);
@@ -40,9 +41,7 @@ public class LoginServlet extends AbstractServlet {
         forwardTo(request, response, INDEX_ROUTE);
     }
 
-
-
-    private User confirmPassword(HttpServletRequest request) throws SQLException {
+    private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
         String name = request.getParameter("name");
         String pass= request.getParameter("password");
         System.out.println(pass);
