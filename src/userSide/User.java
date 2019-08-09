@@ -1,9 +1,9 @@
 package userSide;
 
 import collection.Card;
-import dao.UserDaoImpl;
 
-import java.sql.SQLException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -46,10 +46,6 @@ public class User {
         this.username = username;
         this.email=email;
         this.carte=null;
-    }
-    public User()
-    {
-        return;
     }
 
 
@@ -96,11 +92,6 @@ public class User {
     public ArrayList<Card> getCarte() {
         return carte;
     }
-    public User finByUsername(String username) throws SQLException
-    {
-        UserDaoImpl userDao = new UserDaoImpl();
-        return userDao.findByUsername(username);
-    }
 
     public void setCarte(ArrayList<Card> carte) {
         this.carte = carte;
@@ -122,7 +113,7 @@ public class User {
      * @return true if the card has been added, false if not
      */
     public boolean addCard(Card c){ ;
-       return  this.carte.add(c);
+        return  this.carte.add(c);
     }
 
     /**
@@ -164,7 +155,7 @@ public class User {
      */
     public void removeCard( Card  c ){
 
-       carte.remove(c);
+        carte.remove(c);
     }
 
 
@@ -186,7 +177,7 @@ public class User {
 
     public boolean checkHoldingCard(String cardName){      //controllo tramite nome della carta
         for (Card i: this.carte
-             ) {
+        ) {
             if(i.getNome().equals(cardName)){
                 return true;
             }
@@ -201,12 +192,23 @@ public class User {
 
     public boolean checkHoldingCard(int id){    //controllo tramite id della carta
         for (Card i : this.carte
-             ) {
+        ) {
             if(i.getId()== id){
                 return true;
             }
         }
         return false;
+    }
+
+    public String passToHash(String p) throws NoSuchAlgorithmException  {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(p.getBytes());
+        byte[] digest = md.digest();
+        //String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
+
+        //assertThat(myHash.equals(hash)).isTrue();
+        System.out.println(digest.toString());
+        return "asd";
     }
 
 

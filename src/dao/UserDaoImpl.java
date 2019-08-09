@@ -1,17 +1,14 @@
 package dao;
 
 
-import collection.CollectionOwn;
 import userSide.User;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class UserDaoImpl implements UserDao {
 
     /** Query used to add a new user*/
-    private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname,mail, Pass)"+"VALUES";
+    private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
     /** Query used to read a single user */
     private static final String READ_QUERY = "SELECT * FROM users WHERE Username = ?";
     /** Query used to read all users */
@@ -24,6 +21,8 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECKBYUSER_QUERY = "SELECT * FROM users WHERE Username = ?, NameUser = ?, Surname = ?, Mail = ?";
 
     private static final String PASSWORD_QUERY="SELECT Pass FROM users WHERE Username= ?";
+
+    // private static final String  CHECK_UNIQ = "SELECT COUNT(Username) FROM users WHERE Username = ?";       //Verifica lesistenza del USERNAME del DB.
 
     /**query used to find all users in DB*/
     private static final String FIND_ALL= "SELECT * FROM users";
@@ -41,18 +40,22 @@ public class UserDaoImpl implements UserDao {
      * @throws Exception
      */
     @Override
-    public boolean save(User user) throws SQLException {
-
+    public boolean save(User user, String pass){
         conn=null;
         try {
             conn=connector.createConnection();
-            String query = CREATE_QUERY + "('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+user.getPass()+"')";
-            preparedStatement = conn.prepareStatement(query/*, Statement.RETURN_GENERATED_KEYS*/);
+
+            String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass+"')";
+            preparedStatement = conn.prepareStatement(query /*,Statement.RETURN_GENERATED_KEYS*/);
+
             /*preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getNome());
             preparedStatement.setString(3, user.getCognome());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPass());*/
+
+
+
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {
@@ -283,8 +286,53 @@ public class UserDaoImpl implements UserDao {
         return allUsers;
     }
 
+    public boolean checkUnique(User user){
+        conn=null;
 
+        try {
+            conn=connector.createConnection();
 
+            System.out.println(user.getUsername());
+            String check = "SELECT COUNT(Username) FROM users WHERE Username=\"" + user.getUsername() + "\";";
 
+            System.out.println("asdf");
+            Statement s = conn.createStatement();
+            System.out.println("exce");
+            result = s.executeQuery(check);
+
+            System.out.println("getresult");
+            result.next();
+
+            //System.out.println(result.getInt("count(Username)"));
+
+            int countUser = result.getInt("count(Username)");
+
+            if(countUser == 0){
+                return true;
+            }else{
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return false;
+    }
 
 }
