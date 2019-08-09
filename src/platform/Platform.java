@@ -50,16 +50,17 @@ public class Platform {
      */
     //metodo per il login
     public CollectionOwn LogIn(String username,String pass) throws SQLException {
-        User logg = new User();
+        User logg = null;
 
         try {
-            logg=logg.finByUsername(username);
+            UserDao userDao=new UserDaoImpl();
+            logg=userDao.findByUsername(username);
             String a = logg.getPass();
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                CollectionOwn collectionOwn=new CollectionOwn();
-                collectionOwn=new CollectionOwn(logg,collectionOwn.readCollection(logg));
+                CollectionOwnDao collectionOwnDao=new CollectionOwnDaoImpl();
+                CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.create_collection(logg));
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
