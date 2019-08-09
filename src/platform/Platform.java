@@ -147,7 +147,7 @@ public class Platform {
         else
             System.err.println("utente non trovato");*/
     }
-    public boolean insertIntoCollection(CollectionOwn collectionOwn,Card card,int quantity)
+    public boolean insertIntoCollection(CollectionOwn collectionOwn,Card card,int quantity) throws SQLException
     {
         return collectionOwn.insert(card,quantity);
     }
