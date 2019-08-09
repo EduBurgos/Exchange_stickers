@@ -21,6 +21,10 @@ public class CollectionOwn {
         this.owner = owner;
         this.cardsOwn = cardsOwn;
     }
+    public CollectionOwn()
+    {
+        this.cardsOwn=new TreeMap<>();
+    }
 
     public User getOwner() {
         return owner;
@@ -46,5 +50,10 @@ public class CollectionOwn {
         cardsOwn.put(card,quantity);
         CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
         return collectionOwnDao.insert(card,owner,quantity);
+    }
+    public TreeMap<Card, Integer> readCollection (User user) throws SQLException
+    {
+        CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
+        return collectionOwnDao.create_collection(user);
     }
 }

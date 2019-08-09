@@ -1,7 +1,9 @@
 package userSide;
 
 import collection.Card;
+import dao.UserDaoImpl;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +46,10 @@ public class User {
         this.username = username;
         this.email=email;
         this.carte=null;
+    }
+    public User()
+    {
+        return;
     }
 
 
@@ -89,6 +95,11 @@ public class User {
 
     public ArrayList<Card> getCarte() {
         return carte;
+    }
+    public User finByUsername(String username) throws SQLException
+    {
+        UserDaoImpl userDao = new UserDaoImpl();
+        return userDao.findByUsername(username);
     }
 
     public void setCarte(ArrayList<Card> carte) {

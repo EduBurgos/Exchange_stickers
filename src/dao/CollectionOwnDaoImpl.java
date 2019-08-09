@@ -13,6 +13,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      */
     private static final String VIEW_COLLECTION_QUERY = "SELECT catalog.*, collections.Quantity FROM collections, catalog WHERE collections.Username=? And catalog.ID=collections.IDCard";
     private static final String INSERT_QUERY = "INSERT INTO collections (Username, IDCard, Quantity)"+"VALUES";
+    private static final String UPDATE_QUERY = "";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -20,7 +21,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     ResultSet result = null;
 
     @Override
-    public boolean insert(Card card,User user,int quantity) throws SQLException {
+    public boolean insert(Card card,User user,int quantity) {
         conn = null;
         try {
             conn = connector.createConnection();
@@ -56,7 +57,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
     @Override
-    public boolean update() throws SQLException {
+    public boolean update(){
+
         return false;
     }
 
