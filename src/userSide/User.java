@@ -2,6 +2,8 @@ package userSide;
 
 import collection.Card;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -111,7 +113,7 @@ public class User {
      * @return true if the card has been added, false if not
      */
     public boolean addCard(Card c){ ;
-       return  this.carte.add(c);
+        return  this.carte.add(c);
     }
 
     /**
@@ -153,7 +155,7 @@ public class User {
      */
     public void removeCard( Card  c ){
 
-       carte.remove(c);
+        carte.remove(c);
     }
 
 
@@ -175,7 +177,7 @@ public class User {
 
     public boolean checkHoldingCard(String cardName){      //controllo tramite nome della carta
         for (Card i: this.carte
-             ) {
+        ) {
             if(i.getNome().equals(cardName)){
                 return true;
             }
@@ -190,12 +192,23 @@ public class User {
 
     public boolean checkHoldingCard(int id){    //controllo tramite id della carta
         for (Card i : this.carte
-             ) {
+        ) {
             if(i.getId()== id){
                 return true;
             }
         }
         return false;
+    }
+
+    public String passToHash(String p) throws NoSuchAlgorithmException  {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(p.getBytes());
+        byte[] digest = md.digest();
+        //String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
+
+        //assertThat(myHash.equals(hash)).isTrue();
+        System.out.println(digest.toString());
+        return "asd";
     }
 
 

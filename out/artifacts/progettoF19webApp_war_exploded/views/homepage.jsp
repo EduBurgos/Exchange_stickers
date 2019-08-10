@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="../stylesheets/homepage.css">
     <link rel="stylesheet" href="../stylesheets/navbar.css">
 
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -79,77 +85,56 @@
                             <strong> Help </strong>
                         </a>
                     </li>
-                    <li>
-                        <a href="../views/userprofile.jsp">
-                            <i class="fa fa-user-circle-o">
-                            </i>
-                            <strong> Account </strong>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-user-circle-o"></i>
+                            <strong> Account </strong> <span class="caret"></span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-log-out">
-                            </i>
-                            <strong> Logout </strong>
-                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><strong>User Settings </strong></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">  <strong> Logout </strong> </a></li>
+                        </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-</div><!------END NAVBAR------->
+</div>
 
-<!-----SCROLL-TO-TOP------>
-<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-upload" ></span></button>
-<!------END SCROLL-TO-TOP------->
+<div class="container page-top">
 
-        <div class="container page-top">
-                <div class="row">
-                    <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
-                    <% UserDaoImpl allUsers = new UserDaoImpl();%>
-                    <% for (User i : allUsers.findAll()) {%>
-                    <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(i)).entrySet()){%>
-                    <div class="col-lg-3 col-md-4 col-xs-5 thumb">
-                    <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    </div>
-                    <%}%><!-----end second for---->
-                    <%}%><!-----end first for---->
-                </div> <!-----END ROW---->
-        </div><!----- container page-top----->
+    <div class="row">
+
+        <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
+        <% UserDaoImpl allUsers = new UserDaoImpl();%>
+        <% for (User i : allUsers.findAll()) {%>
+        <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(i)).entrySet()){%>
+        <div class="col-lg-3 col-md-4 col-xs-5 thumb">
+            <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+        </div>
+        <%}%>
+
+
+
+
+        <%}%>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
 
 
 </div>
 </div>
 
 </div>
-
-<!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-----SCRIPT OF THE SCROLL TO TOP-------->
-<script>
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("myBtn").style.display = "block";
-        } else {
-            document.getElementById("myBtn").style.display = "none";
-        }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.documentElement.scrollTop = 0;
-    }
-</script>
-
-
-
 </body>
-
 </html>

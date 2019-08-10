@@ -15,14 +15,14 @@ import userSide.User;
 import java.io.IOException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Platform {
 
     /** connection to MYSql*/
     private MYSQLConnection conn;
     private static Platform Platform_instance=null;
+
 
 
     private Platform() {
@@ -45,51 +45,30 @@ public class Platform {
      * This method controls if the user is already registered to the platform
      * @param username
      * @param pass
-     * @return  user logged
+     * @return  CollectionOwn logged
      * @exception SQLException
      */
     //metodo per il login
-    public User LogIn(String username,String pass) throws SQLException {
+    public CollectionOwn LogIn(String username,String pass) throws SQLException {
         User logg = null;
+
         try {
-            UserDaoImpl userDao = new UserDaoImpl();
-            logg = userDao.findByUsername(username);
+            UserDao userDao=new UserDaoImpl();
+            logg=userDao.findByUsername(username);
             String a = logg.getPass();
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                CollectionOwnDaoImpl co=new CollectionOwnDaoImpl();
-                CollectionOwn collectionOwn;
-                collectionOwn = new CollectionOwn(logg,co.create_collection(logg));
-                return logg;
+                CollectionOwnDao collectionOwnDao=new CollectionOwnDaoImpl();
+                CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.create_collection(logg));
+                return collectionOwn;
             }
-
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
         return null;
     }
-
-
-    /**
-     * Method that generates the password when the user signs up to the platform
-     * @return user's password
-     */
-
-    public String generaPass()
-    {
-        Random rnd= new Random();
-        char[] arr=new char[7];
-        for (int i=0;i<7;i++)
-        {
-            int n=rnd.nextInt(21);
-            arr[i]=(char)(n<10 ? '0'+7:'a'+n-10);
-        }
-        return new String(arr);
-    }
-
-
 
 
     //metodo controllo usernames
@@ -168,10 +147,11 @@ public class Platform {
         else
             System.err.println("utente non trovato");*/
     }
-    public User signUp(String name,String surname,String mail,String username)
+    public boolean insertIntoCollection(CollectionOwn collectionOwn,Card card,int quantity) throws SQLException
     {
-        return null;
+        return collectionOwn.insert(card,quantity);
     }
+
 
 
 }

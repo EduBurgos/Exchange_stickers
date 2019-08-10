@@ -31,14 +31,14 @@ public class MySQLDAOFactory {
             //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
             //Class.forName(DRIVER);
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //Class.forName("com.mysql.jdbc.Driver").newInstance();
 
             //Driver driver = (Driver) driver_class.newInstance();
             //DriverManager.registerDriver(driver);
 
 
-            //conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cardwebapp?useSSL=false&user=root&password=abcd");
-            conn = DriverManager.getConnection(DBURL, USER, PASS);
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cardwebapplication?useSSL=false&user=root&password=abcd");
+            //conn = DriverManager.getConnection(DBURL, USER, PASS);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -48,11 +48,11 @@ public class MySQLDAOFactory {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
-        }*/ catch (IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
-        }
+        }*/
         return conn;
     }
 }
