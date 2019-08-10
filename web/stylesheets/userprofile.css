@@ -39,24 +39,21 @@ a {
 .body {
 
     width: 1140px;
+    height: 1000px;
     margin: 0 auto;
     z-index: 4;
     position: relative;
-
+    background-color: beige;
 }
-
-.left-col, .right-col {
+.left-col {
     width: 226px;
     float: left;
-    min-height: 600px;
-    position: relative;
-}
-
-.left-col {
+    height: auto;
     position: relative;
     top: -150px;
+    bottom: 0px;
     right: 0px;
-    background-color: white;
+
 }
 
 .center-col {
@@ -64,8 +61,8 @@ a {
     position: relative;
     right: 0px;
     width: 913px;
-    height: 400px;
-    background-color: white;
+    height: auto;
+
 }
 
 /** .right-col {

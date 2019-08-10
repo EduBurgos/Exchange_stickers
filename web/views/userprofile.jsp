@@ -52,7 +52,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only"></span></a></li>
+                <li><a href="../views/homepage.jsp"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only"></span></a></li>
                 <li>
                     <a href="#">
                         <i class="fa fa-refresh">
@@ -87,21 +87,24 @@
                         <strong> Help </strong>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                        <i class="fa fa-user-circle-o"></i>
-                        <strong> Account </strong> <span class="caret"></span>
+                <li>
+                    <a href="../views/userprofile.jsp">
+                        <i class="fa fa-user-circle-o">
+                        </i>
+                        <strong> Account </strong>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><strong>User Settings </strong></a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">  <strong> Logout </strong> </a></li>
-                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-log-out">
+                        </i>
+                        <strong> Logout </strong>
+                    </a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-</nav>
+</nav><!------END NAVBAR------->
 </div>
 
 <div class="cover-photo"></div>
@@ -172,10 +175,6 @@
         </div>
     </div>
 
-
-    <section class="right-col">
-
-    </section>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
