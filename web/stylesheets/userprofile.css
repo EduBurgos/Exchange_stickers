@@ -120,8 +120,8 @@ a {
 }
 
 img.zoom {
-    width: 85%;
-    height: 358px;
+    width: 90%;
+    height: 150px;
     border-radius:5px;
     object-fit:cover;
     display: inline-block;

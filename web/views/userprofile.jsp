@@ -4,6 +4,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="collection.Card" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="collection.CollectionOwn" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -113,8 +114,9 @@
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
-        <% UserDaoImpl utente= new UserDaoImpl();%>
-        <% User u =utente.findByUsername("StellaTheBest");%>
+        <%CollectionOwn c=(CollectionOwn)request.getSession().getAttribute("logged"); %>
+        <% User u= c.getOwner();%>
+
         <h1><%=u.getUsername()%></h1>
 
         <div class="meta">
@@ -147,7 +149,7 @@
                 <% ArrayList keyList = new ArrayList(collection1.create_collection(u).keySet());%>
                 <%     for (int i = keyList.size() - 1; i >= 0; i--) { %>
                 <% Card key = (Card)keyList.get(i); %>
-                <div class="col-lg-4 col-md-4 col-xs-5 thumb">
+                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                     <img src="../img/<%=key.getCategoria()%>/<%=(key.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
 
@@ -156,12 +158,14 @@
 
             </div>
             <div role="tabpanel" class="tab-pane" id="mycollection">
-
-                <% for (Map.Entry<Card, Integer> entry : (collection1.create_collection(u)).entrySet()){%>
-                <div class="col-lg-4 col-md-4 col-xs-5 thumb">
+                <%for(Map.Entry<Card, Integer> entry:    c.getCardsOwn().entrySet()){%>
+                <%for( int i=0; i<entry.getValue(); i++){ %>
+                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                     <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}%>
+                <%}%>
+
             </div>
 
             <!--      <div role="tabpanel" class="tab-pane" id="exchangeables">
