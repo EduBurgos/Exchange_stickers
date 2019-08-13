@@ -3,22 +3,23 @@ package collection;
 /** Class that represents a card
  * Decorator pattern is used
  */
-public class Card extends AbstractCard {
+public class Card extends AbstractCard implements Comparable {
 
     /**
-     *  Constructor of card
-     * @param id Card's unique id
-     * @param categoria category of the card
-     * @param classe class of the card
-     * @param livello level of the card
-     * @param rarità rarity of the card
-     * @param tipo type of the card
-     * @param nome name of the card
+     * Constructor of card
+     *
+     * @param id          Card's unique id
+     * @param categoria   category of the card
+     * @param classe      class of the card
+     * @param livello     level of the card
+     * @param rarità      rarity of the card
+     * @param tipo        type of the card
+     * @param nome        name of the card
      * @param descrizione description of the card
      */
     public Card(int id, String categoria, String classe, int livello, String rarità, String tipo, String nome, String descrizione) {
         this.id = id;
-        this.categoria=categoria;
+        this.categoria = categoria;
         this.classe = classe;
         this.livello = livello;
         this.rarità = rarità;
@@ -30,13 +31,14 @@ public class Card extends AbstractCard {
     public int getId() {
         return id;
     }
+
     public String getCategoria() {
         return categoria;
     }
+
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
 
 
     public void setId(int id) {
@@ -102,16 +104,34 @@ public class Card extends AbstractCard {
 
     /**
      * Override toString method
+     *
      * @return the description of the card
      */
-    public String toString()
-    {
-        return categoria+" "+classe+" "+livello+" "+rarità+" "+tipo+" "+nome+" "+descrizione+"\n";
+    public String toString() {
+        return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione + "\n";
     }
 
-    //@Override
-    //public Boolean setNewOwner(User oldUser, User newUser) {
-      //  return null;
-    //}
+    @Override
+    public int compareTo(Object o) {
+        if ((o != null) && (o instanceof Card)) {
+            Card c = (Card) o;
+            if (this.getId() > c.getId()) {
+                return 1;
+            } else if (this.getId() < c.getId()) {
+                return -1;
+            } else
+                return 0;
+
+
+        }
+        return -1;
+    }
+
+        //@Override
+        //public Boolean setNewOwner(User oldUser, User newUser) {
+        //  return null;
+        //}
+
 }
+
 

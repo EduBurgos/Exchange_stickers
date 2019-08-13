@@ -137,28 +137,16 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li>
+        <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
             <li role="presentation"><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
             <!--   <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li> -->
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="ultimoaggiornamento">
-                <% CollectionOwnDaoImpl collection1 = new CollectionOwnDaoImpl();%>
-                <% ArrayList keyList = new ArrayList(collection1.create_collection(u).keySet());%>
-                <%     for (int i = keyList.size() - 1; i >= 0; i--) { %>
-                <% Card key = (Card)keyList.get(i); %>
-                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <img src="../img/<%=key.getCategoria()%>/<%=(key.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                </div>
 
-                <%}%>
-
-
-            </div>
-            <div role="tabpanel" class="tab-pane" id="mycollection">
-                <%for(Map.Entry<Card, Integer> entry:    c.getCardsOwn().entrySet()){%>
+            <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
+                <%for(Map.Entry<Card, Integer> entry: c.getCardsOwn().entrySet()){%>
                 <%for( int i=0; i<entry.getValue(); i++){ %>
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                     <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
