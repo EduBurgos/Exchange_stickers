@@ -7,13 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/views/navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/MySQLDAOFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/MySQLDAOFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +42,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/userSide/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
+            <state relative-caret-position="3128">
               <caret line="214" column="1" selection-start-line="214" selection-start-column="1" selection-end-line="214" selection-end-column="1" />
             </state>
           </provider>
@@ -57,28 +51,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+            <state relative-caret-position="340">
+              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/views/navbar.jsp">
+        <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+            <state relative-caret-position="68">
+              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/progettoF19webApp.iml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -126,8 +116,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="451" />
-    <option name="y" value="2" />
+    <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -143,28 +132,6 @@
             <path>
               <item name="Progetto-F19v18" type="b2602c69:ProjectViewProjectNode" />
               <item name="Progetto-F19v18" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="platform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v18" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19v18" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -182,7 +149,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Progetto-M18-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/UML" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -423,7 +390,10 @@
       <workItem from="1565856086826" duration="18040000" />
       <workItem from="1566034256165" duration="53000" />
       <workItem from="1566160987802" duration="23000" />
-      <workItem from="1566161234564" duration="2635000" />
+      <workItem from="1566161234564" duration="2774000" />
+      <workItem from="1566235696409" duration="42000" />
+      <workItem from="1566235814137" duration="71000" />
+      <workItem from="1566236048082" duration="994000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -516,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565704205981</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="creata pagina navbar">
+      <created>1566209802834</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1566209802834</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -552,7 +529,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39807000" />
+    <option name="totallyTimeSpent" value="41053000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -564,9 +541,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="0" width="697" height="735" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3260212" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.70800626" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -577,7 +554,7 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.43698853" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43698853" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49798658" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -687,7 +664,8 @@
     <MESSAGE value="Registrazione finita, e controlo username." />
     <MESSAGE value="modifiche del homepage( modifica navbar e style) ed userprofile" />
     <MESSAGE value="changes in userprofile.jsp e homepage.jsp" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes in userprofile.jsp e homepage.jsp" />
+    <MESSAGE value="creata pagina navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="creata pagina navbar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -893,13 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/userSide/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="214" column="1" selection-start-line="214" selection-start-column="1" selection-end-line="214" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/platform/Platform.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2414">
@@ -921,19 +892,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/userSide/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3128">
+          <caret line="214" column="1" selection-start-line="214" selection-start-column="1" selection-end-line="214" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        <state relative-caret-position="340">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/progettoF19webApp.iml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
