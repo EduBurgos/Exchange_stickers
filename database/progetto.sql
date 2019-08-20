@@ -512,6 +512,7 @@ INSERT INTO collections VALUES(IDCardColl ,30 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,45 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,19 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,15 ,5 ,false);
+INSERT INTO collections VALUES(IDCardColl ,5 ,5 ,false);
 
 /*insert into exchange values (id_trans, 1, "0000000000000000000\1", "0000000000000000000\1", false)*/
 
