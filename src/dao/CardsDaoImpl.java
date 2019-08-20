@@ -199,7 +199,7 @@ public class CardsDaoImpl implements CardsDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             if (result.next() && result != null) {
-                card = new Card(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+                card = new Card(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8), result.getInt(9));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -232,7 +232,7 @@ public ArrayList<Card> findAll() throws SQLException {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {
-                    allCards.add(new Card(result.getInt(1),result.getString(2),result.getString(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8)));
+                    allCards.add(new Card(result.getInt(1),result.getString(2),result.getString(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8), result.getInt(9)));
 
             }
         }catch (SQLException e) {
