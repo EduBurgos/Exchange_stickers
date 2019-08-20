@@ -12,8 +12,8 @@ import java.util.TreeMap;
 
 public interface CollectionOwnDao {
     //CRUD
-    TreeMap<Card,Integer> create_collection(User owner) throws SQLException;
-    boolean insert(Card card,User user,int quantity) throws SQLException;
+    ArrayList<Card> getCollentionOwn(User user);
+    //boolean insert(Card card,User user,int quantity) throws SQLException;
     boolean update() throws SQLException;
     boolean delete() throws SQLException;
 
