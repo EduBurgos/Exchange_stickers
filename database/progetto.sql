@@ -1,66 +1,45 @@
 CREATE TABLE catalog(
-ID  NUMERIC(6) PRIMARY KEY,
-Category VARCHAR(20) NOT NULL,
-Class VARCHAR(25) NOT NULL, 
-Lvl NUMERIC(3) NOT NULL,
-Rarity VARCHAR(15) NOT NULL,
-CardType VARCHAR(20),
-CardName VARCHAR(100) NOT NULL,
+ID int PRIMARY KEY,
+Category VARCHAR(32) NOT NULL,
+Class VARCHAR(32) NOT NULL,
+Lvl NUMERIC(8) NOT NULL,
+Rarity VARCHAR(16) NOT NULL,
+CardType VARCHAR(32),
+CardName VARCHAR(128) NOT NULL,
 CardDescription VARCHAR(10000) NOT NULL,
 unique(Class, Rarity, CardName, CardType)
 );
 
 
-
 CREATE TABLE users(
-Username VARCHAR(20) PRIMARY KEY,
-NameUser VARCHAR(15) NOT NULL,
-Surname VARCHAR(20) NOT NULL,
-Mail VARCHAR(55) NOT NULL,
-Pass VARCHAR(20) NOT NULL,
-Unique(Mail)
+    ID INT NOT NULL auto_increment,
+    Username VARCHAR(32) NOT NULL ,
+    NameUser VARCHAR(32) NOT NULL,
+    Surname VARCHAR(32) NOT NULL,
+    Mail VARCHAR(64) NOT NULL,
+    Pass VARCHAR(64) NOT NULL,
+    PRIMARY KEY (ID)
 );
+
 CREATE TABLE collections(
-                            Username VARCHAR(20),
-                            IDCard NUMERIC(6),
-                            Quantity INTEGER NOT NULL,
-                            PRIMARY KEY(Username, IDCard),
-                            FOREIGN KEY (Username) REFERENCES Users(Username),
-                            FOREIGN KEY (IDCard) REFERENCES Catalog(ID)
+    IDCardColl INT not null auto_increment,
+    ID_Card int,
+    ID_User int,
+    In_Market boolean,
+    primary key (IDCardColl),
+    FOREIGN KEY (ID_User) REFERENCES Users(ID),
+    FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 
-CREATE TABLE CardsExchanges(
-                               ID NUMERIC(10) PRIMARY KEY,
-                               Offerer VARCHAR(20) NOT NULL,
-                               Receiver VARCHAR(20) NOT NULL,
-                               Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
-                               CardOffered VARCHAR(1000) NOT NULL,
-                               CardCounterOffered VARCHAR(1000) NOT NULL,
-                               FOREIGN KEY (Offerer) REFERENCES Users(Username),
-                               FOREIGN KEY (Receiver) REFERENCES Users(Username)
+create table exchange(
+                         id_trans INT not null auto_increment,
+                         id_user int,
+                         id_card_owm varbinary(20),
+                         id_card_wanted varbinary(20),
+                         trans_comp boolean,
+                         primary key (id_trans)
 );
 
-CREATE TABLE SCAMBIODIRETTO(
-                               ID NUMERIC(10) PRIMARY KEY,
-                               Date Date,
-                               Offerer VARCHAR(20) NOT NULL,
-                               Receiver VARCHAR(20) NOT NULL,
-                               Status NUMERIC(1) NOT NULL,       /* 0 se non ha ancora risposto, 1 se ha rifiutato, 2 se ha accettato */
-                               CardOffered VARCHAR(1000) NOT NULL,
-                               CardCounterOffered VARCHAR(1000) NOT NULL,
-                               FOREIGN KEY (Offerer) REFERENCES Users(Username),
-                               FOREIGN KEY (Receiver) REFERENCES Users(Username)
-);
-
-CREATE TABLE PROPOSTASCAMBIO(
-                                ID NUMERIC(10) PRIMARY KEY,
-                                Date Date,
-                                Offerer VARCHAR(20) NOT NULL,
-                                Status VARCHAR(20) NOT NULL,
-                                CardOffered VARCHAR(1000) NOT NULL,
-                                CardCounterOffered VARCHAR(1000) NOT NULL,
-                                FOREIGN KEY (Offerer) REFERENCES Users(Username)
-);
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto Della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');
 INSERT INTO catalog VALUES(2,'Hearthstone','Druido',3,'Comune','Magia','Benedizione Degli Antichi','Magia Gemella. +1/+1 ai tuoi servitori.');
 INSERT INTO catalog VALUES(3,'Hearthstone','Druido',5,'Epica','Bestia','Cervo Di Cristallo','Assalto. Grido di Battaglia: se hai rigenerato 5 Salute in questa partita, evoca una copia di se stesso.');
@@ -81,7 +60,6 @@ INSERT INTO catalog VALUES(17,'Hearthstone','Paladino',1,'Comune','Magia','Mai A
 INSERT INTO catalog VALUES(18,'Hearthstone','Paladino',10,'Leggendaria','Drago','Nozari','Grido di Battaglia: rigenera la Salute di entrambi gli eroi al massimo.');
 INSERT INTO catalog VALUES(19,'Hearthstone','Paladino',1,'Comune','Magia','Ritorsione', 'Segreto: quando un tuo servitore muore fornisce +3/+2 a un servitore casuale');
 INSERT INTO catalog VALUES(20,'Hearthstone','Paladino',1,'Epica','Magia','Saggezza Nascosta','Segreto: pesca 2 carte dopo che l avversario ha giocato 3 carte in un turno');
-
 
 INSERT INTO catalog VALUES(21, 'Hearthstone', 'Mago',2,'Comune','Servitore','Arcanologa','Grido di Battaglia:pesca un Segreto dal tuo mazzo.');
 INSERT INTO catalog VALUES(22, 'Hearthstone', 'Mago',5,'Rara','Servitore','Collezionista Di Rarità','Ottieni +1/+1 quando peschi una carta');
@@ -104,7 +82,6 @@ INSERT INTO catalog VALUES(37, 'Hearthstone', 'Sacerdote',8,'Leggendaria','Servi
 INSERT INTO catalog VALUES(38, 'Hearthstone', 'Sacerdote',5,'Epica','Servitore','Ricercatrice Incauta','I servitori con Rantolo di Morte che giochi costano (3) in meno, ma muiono alla fine del turno');
 INSERT INTO catalog VALUES(39, 'Hearthstone', 'Sacerdote',3,'Comune','Servitore', 'Sacerdote Della Kabala','Grido di Battaglia: +3 salute a un tuo servitore.');
 INSERT INTO catalog VALUES(40, 'Hearthstone', 'Sacerdote',2,'Comune','Magia','Seduta Spiritica','Seleziona un servitore. Ne mette una copia nella tua mano.');
-
 
 INSERT INTO catalog VALUES(41,'Hearthstone','Stregone',7,'Leggendaria','Magia','Arcicattivo Rafaam','Provocazione. Grido di Battaglia: sostituisce le carte nella tua mano e nel tuo mazzo con servitori Leggendari.');
 INSERT INTO catalog VALUES(42,'Hearthstone','Stregone',2,'Rara','Magia','Colpo Di scena','Mette la tua mano nel tuo mazzo. Pesca lo stesso numero di carte.');
@@ -485,117 +462,58 @@ INSERT INTO catalog VALUES(155,'Yu-Gi-Oh!','Luce',0,'Rara','Mostro','Venere Sple
                                                                                         L''attivazione e gli effetti delle Carte Magia/Trappola attivate sul tuo Terreno non possono essere annullate.');
 
 
-INSERT INTO users VALUES('MRossi','Marco', 'Rossi', 'marcorossi@hotmail.it','motogp');
-INSERT INTO users VALUES('StellaTheBest', 'Carlotta', 'Verde', 'carlottaverde@gmail.com', 'fiorellino');
-INSERT INTO users VALUES('Aquaman', 'Luca', 'Prato', 'lucca1997@hotmail.com', 'Starwars');
-INSERT INTO users VALUES('GretaMancini', 'Greta', 'Mancini', 'gretamancini@gmail.it', 'torredipisa');
-INSERT INTO users VALUES('Fabiolina', 'Fabiana', 'Bianchi', 'fabiolina50@yahoo.it','natale12' );
-INSERT INTO users VALUES('Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', 'ferrarirossa');
-INSERT INTO users VALUES('AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', 'biscottialcacao');
-INSERT INTO users VALUES('SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
-INSERT INTO users VALUES('EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
-INSERT INTO users VALUES('Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
+INSERT INTO users VALUES(ID, 'Obe','Edu', 'Bur', 'edu@hotmail.it','1234');
+INSERT INTO users VALUES(ID, 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
+INSERT INTO users VALUES(ID, 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
+INSERT INTO users VALUES(ID, 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');
+INSERT INTO users VALUES(ID, 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234' );
+INSERT INTO users VALUES(ID, 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', '1234');
+INSERT INTO users VALUES(ID, 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234');
+INSERT INTO users VALUES(ID, 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
+INSERT INTO users VALUES(ID, 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
+INSERT INTO users VALUES(ID, 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
 
+/*Obe*/
+INSERT INTO collections VALUES(IDCardColl ,1 ,1 ,false);
+INSERT INTO collections VALUES(IDCardColl ,2 ,1 ,false);
+INSERT INTO collections VALUES(IDCardColl ,3 ,1 ,false);
+INSERT INTO collections VALUES(IDCardColl ,4 ,1 ,false);
+INSERT INTO collections VALUES(IDCardColl ,5 ,1 ,false);
+INSERT INTO collections VALUES(IDCardColl ,5 ,1 ,false);
 
-/*table Exchanges e CardExchanges da non prendere in considerazione*/
-/*
-CREATE TABLE Exchanges(
-ID NUMERIC(10) PRIMARY KEY,
-Offerer VARCHAR(20) NOT NULL,
-Receiver VARCHAR(20) NOT NULL,
-FOREIGN KEY (Offerer) REFERENCES Users(Username),
-FOREIGN KEY (Receiver) REFERENCES Users(Username)
-);
+/*Sau*/
+INSERT INTO collections VALUES(IDCardColl ,6 ,2 ,false);
+INSERT INTO collections VALUES(IDCardColl ,7 ,2 ,false);
+INSERT INTO collections VALUES(IDCardColl ,8 ,2 ,false);
+INSERT INTO collections VALUES(IDCardColl ,9 ,2 ,false);
+INSERT INTO collections VALUES(IDCardColl ,9 ,2 ,false);
+INSERT INTO collections VALUES(IDCardColl ,10 ,2 ,false);
 
-CREATE TABLE CardExchange(
-ID NUMERIC(10) NOT NULL,
-IDOffer NUMERIC(6),
-IDCounteroffer NUMERIC(6),
-FOREIGN KEY (ID)  REFERENCES Exchanges(ID),
-FOREIGN KEY (IDOffer) REFERENCES Catalog(ID),
-FOREIGN KEY (IDCounteroffer) REFERENCES Catalog(ID)
-);
-*/
+/*Zay*/
+INSERT INTO collections VALUES(IDCardColl ,10 ,3 ,false);
+INSERT INTO collections VALUES(IDCardColl ,11 ,3 ,false);
+INSERT INTO collections VALUES(IDCardColl ,11 ,3 ,false);
+INSERT INTO collections VALUES(IDCardColl ,12 ,3 ,false);
+INSERT INTO collections VALUES(IDCardColl ,13 ,3 ,false);
+INSERT INTO collections VALUES(IDCardColl ,14 ,3 ,false);
 
-INSERT INTO collections VALUES('MRossi',22,1);
-INSERT INTO collections VALUES('MRossi',54,1);
-INSERT INTO collections VALUES('MRossi',100,1);
-INSERT INTO collections VALUES('MRossi',111,1);
-INSERT INTO collections VALUES('MRossi',112,1);
-INSERT INTO collections VALUES('MRossi',150,1);
+/*elge*/
+INSERT INTO collections VALUES(IDCardColl ,14 ,4 ,false);
+INSERT INTO collections VALUES(IDCardColl ,14 ,4 ,false);
+INSERT INTO collections VALUES(IDCardColl ,50 ,4 ,false);
+INSERT INTO collections VALUES(IDCardColl ,55 ,4 ,false);
+INSERT INTO collections VALUES(IDCardColl ,33 ,4 ,false);
+INSERT INTO collections VALUES(IDCardColl ,20 ,4 ,false);
 
-INSERT INTO collections VALUES('StellaTheBest',50,1);
-INSERT INTO collections VALUES('StellaTheBest',51,1);
-INSERT INTO collections VALUES('StellaTheBest',60,1);
-INSERT INTO collections VALUES('StellaTheBest',62,1);
-INSERT INTO collections VALUES('StellaTheBest',80,1);
+/*Pol*/
+INSERT INTO collections VALUES(IDCardColl ,100 ,5 ,false);
+INSERT INTO collections VALUES(IDCardColl ,90 ,5 ,false);
+INSERT INTO collections VALUES(IDCardColl ,30 ,5 ,false);
+INSERT INTO collections VALUES(IDCardColl ,45 ,5 ,false);
+INSERT INTO collections VALUES(IDCardColl ,19 ,5 ,false);
+INSERT INTO collections VALUES(IDCardColl ,15 ,5 ,false);
 
-INSERT INTO collections VALUES('Aquaman',2,1);
-INSERT INTO collections VALUES('Aquaman',10,1);
-INSERT INTO collections VALUES('Aquaman',70,1);
-INSERT INTO collections VALUES('Aquaman',110,1);
-INSERT INTO collections VALUES('Aquaman',133,1);
+/*insert into exchange values (id_trans, 1, "0000000000000000000\1", "0000000000000000000\1", false)*/
 
-INSERT INTO collections VALUES('GretaMancini',13,1);
-INSERT INTO collections VALUES('GretaMancini',23,1);
-INSERT INTO collections VALUES('GretaMancini',150,1);
-INSERT INTO collections VALUES('GretaMancini',152,1);
-INSERT INTO collections VALUES('GretaMancini',155,1);
+/*INSERT INTO CardsExchanges VALUES(1,'MRossi', 'StellaTheBest', 0,22, 50);*/
 
-INSERT INTO collections VALUES('Fabiolina',1,1);
-INSERT INTO collections VALUES('Fabiolina',80,1);
-INSERT INTO collections VALUES('Fabiolina',89,1);
-INSERT INTO collections VALUES('Fabiolina',90,1);
-INSERT INTO collections VALUES('Fabiolina',112,1);
-
-INSERT INTO collections VALUES('Lorenzo1995',1,1);
-INSERT INTO collections VALUES('Lorenzo1995',12,1);
-INSERT INTO collections VALUES('Lorenzo1995',41,1);
-INSERT INTO collections VALUES('Lorenzo1995',47,1);
-INSERT INTO collections VALUES('Lorenzo1995',51,1);
-
-INSERT INTO collections VALUES('AntoCere',21,1);
-INSERT INTO collections VALUES('AntoCere',25,1);
-INSERT INTO collections VALUES('AntoCere',76,1);
-INSERT INTO collections VALUES('AntoCere',110,1);
-INSERT INTO collections VALUES('AntoCere',121,1);
-
-INSERT INTO collections VALUES('SerenaBeuci',10,1);
-INSERT INTO collections VALUES('SerenaBeuci',60,1);
-INSERT INTO collections VALUES('SerenaBeuci',62,1);
-INSERT INTO collections VALUES('SerenaBeuci',90,1);
-INSERT INTO collections VALUES('SerenaBeuci',92,1);
-
-INSERT INTO collections VALUES('EmanueliStefano',6,1);
-INSERT INTO collections VALUES('EmanueliStefano',8,1);
-INSERT INTO collections VALUES('EmanueliStefano',116,1);
-INSERT INTO collections VALUES('EmanueliStefano',120,1);
-INSERT INTO collections VALUES('EmanueliStefano',136,1);
-
-INSERT INTO collections VALUES('Fra1999',36,1);
-INSERT INTO collections VALUES('Fra1999',38,1);
-INSERT INTO collections VALUES('Fra1999',46,1);
-INSERT INTO collections VALUES('Fra1999',86,1);
-INSERT INTO collections VALUES('Fra1999',93,1);
-INSERT INTO collections VALUES('Fra1999',102,1);
-
-
-
-INSERT INTO CardsExchanges VALUES(1,'MRossi', 'StellaTheBest', 0,22, 50);
-/*INSERT INTO CardExchange VALUES(1, 1, 2);
-INSERT INTO CardExchange(ID, IDCounteroffer) VALUES(1,3);
-  */
-
-
-/*CREATE TABLE Exchanges(
-IDExchange NUMERIC(10) PRIMARY KEY,
-Offerer VARCHAR(20),
-Receiver VARCHAR(20),
-Offer NUMERIC(6),
-Counteroffer NUMERIC(6),
-/*PRIMARY KEY(Offerer, Receiver, Offer, Counteroffer),
-FOREIGN KEY (Offerer) REFERENCES Users(Username),
-FOREIGN KEY (Receiver) REFERENCES Users(Username),
-FOREIGN KEY (Offer) REFERENCES Catalog(ID),
-FOREIGN KEY (Counteroffer) REFERENCES Catalog(ID)
-);*/
