@@ -59,8 +59,8 @@ public class Platform {
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                CollectionOwnDao collectionOwnDao=new CollectionOwnDaoImpl();
-                CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.create_collection(logg));
+                CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
+                CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.getCollentionOwn(logg));
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
@@ -147,10 +147,10 @@ public class Platform {
         else
             System.err.println("utente non trovato");*/
     }
-    public boolean insertIntoCollection(CollectionOwn collectionOwn,Card card,int quantity) throws SQLException
+    /*public boolean insertIntoCollection(CollectionOwn collectionOwn,Card card,int quantity) throws SQLException
     {
         return collectionOwn.insert(card,quantity);
-    }
+    }*/
 
 
 

@@ -14,10 +14,10 @@ import java.util.TreeMap;
  */
 public class CollectionOwn {
     private User owner;
-    private TreeMap<Card,Integer> cardsOwn;
+    private ArrayList<Card> cardsOwn;
 
 
-    public CollectionOwn(User owner, TreeMap<Card,Integer> cardsOwn) {
+    public CollectionOwn(User owner, ArrayList<Card> cardsOwn) {
         this.owner = owner;
         this.cardsOwn = cardsOwn;
     }
@@ -28,13 +28,13 @@ public class CollectionOwn {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    public Map<Card, Integer> getCardsOwn() {
+    public ArrayList<Card> getCardsOwn() {
         return cardsOwn;
     }
-    public void setCardsOwn(TreeMap<Card,Integer> cardsOwn) {
+    public void setCardsOwn(ArrayList<Card> cardsOwn) {
         this.cardsOwn = cardsOwn;
     }
-    public int getlastQt()
+    /*public int getlastQt()
     {
         return cardsOwn.lastEntry().getValue();
     }
@@ -46,5 +46,5 @@ public class CollectionOwn {
         cardsOwn.put(card,quantity);
         CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
         return collectionOwnDao.insert(card,owner,quantity);
-    }
+    }*/
 }
