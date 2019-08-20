@@ -1,32 +1,37 @@
 package dao;
 
 import collection.Card;
-import collection.CollectionOwn;
 import userSide.User;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class CollectionOwnDaoImpl implements CollectionOwnDao {
     /**
      * query used to select an exchange in DB
      */
-    private static final String VIEW_COLLECTION_QUERY = "SELECT catalog.*, collections.Quantity FROM collections, catalog WHERE collections.Username=? And catalog.ID=collections.IDCard";
-    private static final String INSERT_QUERY = "INSERT INTO collections (Username, IDCard, Quantity)"+"VALUES";
-    private static final String UPDATE_QUERY = "";
+    private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?)";
+
+    private static final String INSERT_QUERY = "INSERT INTO collections (IDCardColl, ID_Card, ID_User, In_Market)"+"VALUES";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
 
-    @Override
-    public boolean insert(Card card,User user,int quantity) {
+
+    public boolean insert(int id_card_coll, User user, Card card, boolean in_market) {
         conn = null;
         try {
             conn = connector.createConnection();
-            String query = INSERT_QUERY + "('"+user.getUsername()+"', '"+card.getId()+"', '"+quantity+"')";
-            preparedStatement = conn.prepareStatement(query);
+            System.out.println("query2");
+            String query2 = INSERT_QUERY + "("+id_card_coll+", "+user.getUsername()+", "+card.getId()+", "+in_market+")";
+            System.out.println("preparestament");
+            preparedStatement = conn.prepareStatement(query2);
+            System.out.println("execute");
             preparedStatement.execute();
             return true;
         }
@@ -56,9 +61,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     }
 
-    @Override
-    public boolean update(){
 
+    @Override
+    public boolean update() throws SQLException {
         return false;
     }
 
@@ -68,43 +73,44 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
     @Override
-    public synchronized TreeMap<Card,Integer> create_collection (User user) throws SQLException {
-        conn = null;
+    public ArrayList<Card> getCollentionOwn(User user){
+        System.out.println("esto iniziando getCollectionOwn");
+        ArrayList<Card> c = new ArrayList<Card>();
+        //String listaCarte = VIEW_COLLECTION_QUERY;
+        user.getUsername();
         try {
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(VIEW_COLLECTION_QUERY, Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement = conn.prepareStatement(VIEW_COLLECTION_QUERY);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            TreeMap<Card,Integer> cards=new TreeMap<>();
+            System.out.println("Colectionownimp before the while");
+
+            System.out.println("este es result "+result.toString());
+
             while (result.next() && result != null) {
-               Card card=new Card(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getString(5),result.getString(6),result.getString(7),result.getString(8));
-               //to do: farla diventare mappa con quantità
-               cards.put(card,result.getInt(9));
+                System.out.println("imprime "+result.getInt("ID"));
+                System.out.println("into while");
+                Card card=new Card(result.getInt("ID"),
+                        result.getString("Category"),
+                        result.getString("Class"),
+                        result.getInt("Lvl"),
+                        result.getString("Rarity"),
+                        result.getString("CardType"),
+                        result.getString("CardName"),
+                        result.getString("CardDescription"),
+                        result.getInt("IDCardColl"));
+                System.out.println("prima de add");
+                c.add(card);
+                System.out.println("dopo add");
+                //to do: farla diventare mappa con quantità
+                //cards.put(card,result.getInt(9));
+                System.out.printf("lista de carte dentro while "+card.getNome());
             }
-             return cards;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                assert result != null;
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
+            return c;
+        }catch (SQLException e){
+            return null;
         }
-        return null;
     }
 }
-
-
