@@ -17,7 +17,7 @@ public class Card extends AbstractCard implements Comparable {
      * @param nome        name of the card
      * @param descrizione description of the card
      */
-    public Card(int id, String categoria, String classe, int livello, String rarità, String tipo, String nome, String descrizione) {
+    public Card(int id, String categoria, String classe, int livello, String rarità, String tipo, String nome, String descrizione, int idColl) {
         this.id = id;
         this.categoria = categoria;
         this.classe = classe;
@@ -26,6 +26,7 @@ public class Card extends AbstractCard implements Comparable {
         this.tipo = tipo;
         this.nome = nome;
         this.descrizione = descrizione;
+        this.idColl = idColl;
     }
 
     public int getId() {
@@ -93,6 +94,13 @@ public class Card extends AbstractCard implements Comparable {
         this.descrizione = descrizione;
     }
 
+    public int getIdColl(){
+        return idColl;
+    }
+
+    public void setIdColl(int idColl){
+        this.idColl = idColl;
+    }
     /*    @Override
             public Boolean setNewOwner(User oldUser, User newUser) {
                 if(this.Owner.equals(oldUser)){ //controllo che la carta appartenga al vecchio propietario
@@ -108,7 +116,7 @@ public class Card extends AbstractCard implements Comparable {
      * @return the description of the card
      */
     public String toString() {
-        return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione + "\n";
+        return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione + idColl+"\n";
     }
 
     @Override

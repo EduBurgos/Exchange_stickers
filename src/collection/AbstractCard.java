@@ -13,6 +13,7 @@ public abstract class AbstractCard implements Cards {
     protected String tipo;
     protected String nome;
     protected String descrizione;
+    protected int idColl;
 
 
 }

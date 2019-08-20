@@ -34,7 +34,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         int[] card_wanted = new int[5];
 
         for(int i=0; i<5; i++){
-            card_own[i] = cardown.get(i).getidColl();
+            card_own[i] = cardown.get(i).getIdColl();
             card_wanted[i] = cardwanted.get(i).getId();
         }
 
@@ -75,8 +75,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         String options ="(";
 
         for (Card c: cards){
-            if (c.getidColl() == 0) break;
-            options = options+c.getidColl()+",";
+            if (c.getIdColl() == 0) break;
+            options = options+c.getIdColl()+",";
         }
         options = options.substring(0, options.length()-1);
         options = options+");";
