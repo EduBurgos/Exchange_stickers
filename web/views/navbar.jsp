@@ -1,9 +1,5 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Utente
-  Date: 19/08/2019
-  Time: 12:02
-  To change this template use File | Settings | File Templates.
+  PRINCIPAL NAVBAR.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -12,6 +8,7 @@
     <meta charset="UTF-8">
     <!-- Custom styles for this template -->
     <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../stylesheets/navbar.css">
 
 </head>
@@ -28,13 +25,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>Caporetto Team</strong></a>
+                <a class="navbar-brand"id="logo"></a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only">(current)</span></a></li>
+                    <li><a href="../views/homepage.jsp"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only">(current)</span></a></li>
                     <li>
                         <a href="#">
                             <i class="fa fa-refresh">
@@ -47,7 +44,7 @@
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Cards">
+                        <input type="text" class="form-control" placeholder="Search Cards, Users...">
                         <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
 
                     </div>
@@ -59,32 +56,27 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#">
-                            <i class="fa fa-comment">
-                                <span class="badge badge-danger">11</span>
-                            </i>
-                            <strong> Chat </strong>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
                             <i class="fa fa-question">
                             </i>
                             <strong> Help </strong>
                         </a>
                     </li>
-                    <li>
-                        <a href="../views/userprofile.jsp">
-                            <i class="fa fa-user-circle-o">
-                            </i>
-                            <strong> Account </strong>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <i class="fa fa-user-circle-o"></i>
+                            <strong> Account </strong> <span class="caret"></span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-log-out">
-                            </i>
-                            <strong> Logout </strong>
-                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="../views/userprofile.jsp" ><strong> Profile</strong></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="../views/login.jsp">
+                                <i class="glyphicon glyphicon-log-out">
+                                </i>
+                                <strong> Logout </strong>
+                            </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
