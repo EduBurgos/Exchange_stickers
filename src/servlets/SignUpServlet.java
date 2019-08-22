@@ -63,29 +63,23 @@ public class SignUpServlet extends AbstractServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String name = request.getParameter("FirstName");
         String lastName = request.getParameter("LastName");
         String username = request.getParameter("Username");
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
-
-        User user = new User(name, lastName, username, email);
-        UserDaoImpl userTemp = new UserDaoImpl();
-
-
-        if(userTemp.checkUnique(user)){
-            try {
-                boolean succ = userTemp.save(user, password);         /**User salvato correttamente*/
-                if (succ){
-                    forwardTo(request, response, INDEX_ROUTE);
-                    return;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        String retype= request.getParameter("ReType");
+        Platform platform = Platform.getInstance();
+        try{
+            if (platform.SignUp(name, lastName, username, email, password, retype)) {
+                forwardTo(request, response, INDEX_ROUTE);
             }
-
-        }else {
-            forwardTo(request, response, INDEX_ROUTE);
+            else {
+                forwardTo(request, response, INDEX_ROUTE);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
         }
 
         return;

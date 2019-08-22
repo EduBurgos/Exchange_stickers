@@ -70,6 +70,30 @@ public class Platform {
         return null;
     }
 
+    /**
+     * Method used to sign up a new user
+     * @param name of new user
+     * @param lastName of new user
+     * @param username of new user
+     * @param email of new user
+     * @param password of new user
+     * @return  true if the user is registered false if the registration fails
+     * @throws SQLException
+     */
+    public boolean SignUp(String name, String lastName, String username, String email, String password,String retype) throws SQLException {
+          User reg = new User(name, lastName, username, email);
+          UserDaoImpl userTemp = new UserDaoImpl();
+          try{
+            if (userTemp.checkUnique(reg) && password.equals(retype)) {
+                boolean succ = userTemp.save(reg, password);         /**User salvato correttamente*/
+                return succ;
+            }
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+            return false;
+    }
 
     //metodo controllo usernames
     public Boolean checkUsername(User user){
