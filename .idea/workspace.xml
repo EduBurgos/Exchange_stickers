@@ -8,22 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/MySQLDAOFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/MySQLDAOFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/TrattativaDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/TrattativaDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/CollectionOwn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/CollectionOwn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/TrattativaDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/TrattativaDaoImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/Platform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userSide/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/userSide/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/homepage.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -333,7 +317,8 @@
       <workItem from="1566487058556" duration="4039000" />
       <workItem from="1566494957850" duration="3944000" />
       <workItem from="1566502912604" duration="5197000" />
-      <workItem from="1566647458435" duration="6866000" />
+      <workItem from="1566647458435" duration="7390000" />
+      <workItem from="1566663298925" duration="1028000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -433,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566209802834</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Refattorizazione finita, da sistemare userprofile ripete le carte in poseso 21 volte...">
+      <created>1566655008696</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1566655008697</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -523,7 +515,8 @@
     <MESSAGE value="modifiche del homepage( modifica navbar e style) ed userprofile" />
     <MESSAGE value="changes in userprofile.jsp e homepage.jsp" />
     <MESSAGE value="creata pagina navbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="creata pagina navbar" />
+    <MESSAGE value="Refattorizazione finita, da sistemare userprofile ripete le carte in poseso 21 volte..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refattorizazione finita, da sistemare userprofile ripete le carte in poseso 21 volte..." />
   </component>
   <component name="masterDetails">
     <states>
