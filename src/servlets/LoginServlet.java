@@ -44,6 +44,7 @@ public class LoginServlet extends AbstractServlet {
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
         String name = request.getParameter("name");
         String pass= request.getParameter("password");
+        System.out.println(name);
         System.out.println(pass);
         Platform platform= Platform.getInstance();
         return platform.LogIn(name,pass);

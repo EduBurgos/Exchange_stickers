@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 /** Class that represents the collection owned by the user
  * @see User
- * @see Map<Card,Integer>
+ * @see Card
  */
 public class CollectionOwn {
     private User owner;

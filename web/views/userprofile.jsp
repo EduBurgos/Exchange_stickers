@@ -43,8 +43,8 @@
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
-        <%CollectionOwn c=(CollectionOwn)request.getSession().getAttribute("logged"); %>
-        <% User u= c.getOwner();%>
+        <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
+        <% User u = c.getOwner();%>
 
         <h1><%=u.getUsername()%></h1>
 
@@ -75,10 +75,10 @@
         <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
-                <%for(Map.Entry<Card, Integer> entry: c.getCardsOwn().entrySet()){%>
-                <%for( int i=0; i<entry.getValue(); i++){ %>
+                <%for(Card entry : c.getCardsOwn()){%>
+                <%for( int i=0; i<entry.getIdColl(); i++){ %>
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}%>
                 <%}%>
@@ -86,9 +86,6 @@
             </div>
 
             <!--      <div role="tabpanel" class="tab-pane" id="exchangeables">
-
-
-
 
 
                   </div>-->

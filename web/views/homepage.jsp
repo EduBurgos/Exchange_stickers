@@ -27,12 +27,10 @@
                     <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
                     <% UserDaoImpl allUsers = new UserDaoImpl();%>
                     <% for (User u : allUsers.findAll()) {%>
-                    <% for (Map.Entry<Card, Integer> entry : (collection.create_collection(u)).entrySet()){%>
-                    <%for( int i=0; i<entry.getValue(); i++){ %>
+                    <% for (Card entry : (collection.getCollentionOwn(u))){%>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <img src="../img/<%=entry.getKey().getCategoria()%>/<%=(entry.getKey().getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                     </div>
-                    <%}%>
                     <%}%>
                     <%}%>
                 </div> <!-----END ROW---->

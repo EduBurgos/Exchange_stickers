@@ -53,11 +53,16 @@ public class Platform {
         User logg = null;
 
         try {
-            UserDao userDao=new UserDaoImpl();
-            logg=userDao.findByUsername(username);
+            UserDao userDao = new UserDaoImpl();
+            logg = userDao.findByUsername(username);
+            System.out.println("Stampo logg "+logg);
+
             String a = logg.getPass();
+            System.out.println("Stampo a "+a);
+
             if(a.equals(pass))
             {
+                System.out.println("Sono dentro il if controllo pass platform");
                 //quando loggo carico anche carte utente in collectionOwn
                 CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
                 CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.getCollentionOwn(logg));

@@ -1,6 +1,7 @@
 package dao;
 
 
+import collection.Card;
 import userSide.User;
 import java.sql.*;
 import java.util.ArrayList;
@@ -99,8 +100,11 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             if (result.next() && result != null) {
-                user = new User(result.getString(2), result.getString(3), result.getString(1), result.getString(4));
-                user.setPass(result.getString(5));
+                user = new User(result.getString("NameUser"),
+                        result.getString("Surname"),
+                        result.getString("Username"),
+                        result.getString("mail"));
+                user.setPass(result.getString("Pass"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -261,7 +265,10 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {
-                allUsers.add(new User((result.getString(2)) ,result.getString(3), result.getString(1), result.getString(4)));
+                allUsers.add(new User((result.getString("NameUser")),
+                        result.getString("Surname"),
+                        result.getString("Username"),
+                        result.getString("Mail")));
 
             }
         }catch (SQLException e) {
@@ -333,6 +340,43 @@ public class UserDaoImpl implements UserDao {
             }
         }
         return false;
+    }
+
+    private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?)";
+
+
+    public ArrayList<Card> getCollentionOwn(User user){
+
+        ArrayList<Card> c = new ArrayList<Card>();
+        String listaCarte = VIEW_COLLECTION_QUERY;
+        user.getUsername();
+        try {
+            conn = connector.createConnection();
+
+            preparedStatement = conn.prepareStatement(listaCarte);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card card=new Card(result.getInt("ID"),
+                        result.getString("Category"),
+                        result.getString("Class"),
+                        result.getInt("Lvl"),
+                        result.getString("Rarity"),
+                        result.getString("CardType"),
+                        result.getString("CardName"),
+                        result.getString("CardDescription"),
+                        result.getInt("IDCardColl"));
+                c.add(card);
+                //to do: farla diventare mappa con quantità
+                //cards.put(card,result.getInt(9));
+                System.out.printf("c");
+            }
+            return c;
+        }catch (SQLException e){
+
+        }
+        return getCollentionOwn(user);
     }
 
 }
