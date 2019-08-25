@@ -184,11 +184,15 @@
 <head>
     <title>Exchange</title>
 
-    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+    <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="../stylesheets/exchange.css">
+
 </head>
 <body>
+    <jsp:include page="navbar.jsp"/>
+
 <div id="tot">
+
     <div id="left"><div class="rightbox"></div>
         <div>
             <hr class="mt-2 mb-5">
