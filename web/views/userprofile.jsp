@@ -64,23 +64,14 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
         <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
-            <li role="presentation"><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
-            <!--   <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li> -->
+            <form action="../homepage" method="get"  name="mycollection" onclick="clearform();">
+                <li  onclick="mycollection.submit();" role="presentation"><a href="userprofile.jsp" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
+                <!--   <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li> -->
+            </form>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <% ArrayList<Card> cards= (ArrayList<Card>) request.getSession().getAttribute("search"); %>
-            <% if (cards!=null) {%>
-            <div role="tabpanel" class="tab-pane fade in active" id="myresearch">
-                <%for(Card entry : cards){%>
-                <div class="col-lg-2 col-md-2 col-xs-2 col-2 thumb">
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                </div>
-                <%}
-                %>
-            </div>
-            <% } else {%>
                 <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
                     <%for(Card entry : c.getCardsOwn()){%>
                     <div class="col-lg-2 col-md-2 col-xs-2 col-2 thumb">
@@ -90,7 +81,6 @@
                     %>
 
                 </div>
-            <% } %>
             <!--      <div role="tabpanel" class="tab-pane" id="exchangeables">
 
 
@@ -108,6 +98,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    function clearform() {
+        $("#search_frm")[0].reset();
+    }
+</script>
 
 </body>
 </html>
