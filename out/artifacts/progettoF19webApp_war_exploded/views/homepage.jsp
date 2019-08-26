@@ -20,8 +20,9 @@
 </head>
 <body>
 <!-------- NAVBAR------->
+<div class="row">
        <jsp:include page="navbar.jsp"/>
-
+<div>
        <!--------CARD COLLECTION -------->
         <div class="container page-top">
                 <div class="row">

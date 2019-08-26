@@ -46,7 +46,7 @@ public class HomePageServlet extends AbstractServlet {
         request.getAttribute("logged");
         // TODO: AGGIUNGERE ECCEZIONE CARTA NON TROVATA
         Platform platform= Platform.getInstance();
-        platform.searcIntoCollection((CollectionOwn)request.getSession().getAttribute("logged"),toSearch);
+        request.getSession().setAttribute("search",platform.searcIntoCollection((CollectionOwn)request.getSession().getAttribute("logged"),toSearch));
         response.sendRedirect(request.getContextPath()+PROFILE_ROUTE);
     }
 }

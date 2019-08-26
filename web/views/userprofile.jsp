@@ -5,6 +5,7 @@
 <%@ page import="collection.Card" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="collection.CollectionOwn" %>
+<%@ page import="java.util.concurrent.CancellationException" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -69,17 +70,27 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-
-            <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
-                <%for(Card entry : c.getCardsOwn()){%>
-                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+            <% ArrayList<Card> cards= (ArrayList<Card>) request.getSession().getAttribute("search"); %>
+            <% if (cards!=null) {%>
+            <div role="tabpanel" class="tab-pane fade in active" id="myresearch">
+                <%for(Card entry : cards){%>
+                <div class="col-lg-2 col-md-2 col-xs-2 col-2 thumb">
                     <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}
                 %>
-
             </div>
+            <% } else {%>
+                <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
+                    <%for(Card entry : c.getCardsOwn()){%>
+                    <div class="col-lg-2 col-md-2 col-xs-2 col-2 thumb">
+                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    </div>
+                    <%}
+                    %>
 
+                </div>
+            <% } %>
             <!--      <div role="tabpanel" class="tab-pane" id="exchangeables">
 
 

@@ -15,7 +15,7 @@
 <body>
 <!-------- NAVBAR------->
 <div class="container">
-    <nav class="navbar navbar-icon-top  navbar-default  navbar-fixed-top ">
+    <nav class="navbar navbar-icon-top  navbar-default  navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -106,6 +106,6 @@
         document.documentElement.scrollTop = 0;
     }
 </script>
-<script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../bootstrap-3.3.7/js/bootstrap.js"></script>
 </body>
 </html>
