@@ -15,7 +15,8 @@ import java.io.IOException;
 
 @WebServlet(name = "servlets.HomePageServlet", urlPatterns = "/homepage")
 public class HomePageServlet extends AbstractServlet {
-    private String DEFAULT_ROUTE = "/views/homepage.jsp\"";
+    private String DEFAULT_ROUTE = "/views/homepage.jsp";
+    private String PROFILE_ROUTE = "/views/userprofile.jsp";
 
     /**
      * Method to handle the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
@@ -43,9 +44,9 @@ public class HomePageServlet extends AbstractServlet {
         String toSearch = request.getParameter("search");
         System.out.println(toSearch);
         request.getAttribute("logged");
+        // TODO: AGGIUNGERE ECCEZIONE CARTA NON TROVATA
         Platform platform= Platform.getInstance();
-        platform.searcIntoCollection((CollectionOwn)request.getAttribute("logged"),toSearch);
-
-        forwardTo(request, response, DEFAULT_ROUTE);
+        platform.searcIntoCollection((CollectionOwn)request.getSession().getAttribute("logged"),toSearch);
+        response.sendRedirect(request.getContextPath()+PROFILE_ROUTE);
     }
 }
