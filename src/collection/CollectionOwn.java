@@ -34,6 +34,17 @@ public class CollectionOwn {
     public void setCardsOwn(ArrayList<Card> cardsOwn) {
         this.cardsOwn = cardsOwn;
     }
+    public ArrayList<Card> searchCard(String search)
+    {
+        ArrayList<Card> result=new ArrayList<>();
+        for (Card c:cardsOwn) {
+            if(c.getNome().contains(search))
+            {
+                result.add(c);
+            }
+        }
+        return result;
+    }
     /*public int getlastQt()
     {
         return cardsOwn.lastEntry().getValue();

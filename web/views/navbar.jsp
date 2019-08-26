@@ -42,9 +42,9 @@
                     </li>
 
                 </ul>
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left" action="../homepage" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Cards, Users...">
+                        <input type="text" class="form-control" placeholder="Search Cards, Users..." name="search" id="search">
                         <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
 
                     </div>

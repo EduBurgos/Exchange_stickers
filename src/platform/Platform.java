@@ -160,7 +160,11 @@ public class Platform {
             System.err.println("Carta non trovata nel catalogo.\nImpossibile aggiungere carta.");
         }*/
     }
+    public ArrayList<Card> searcIntoCollection(CollectionOwn collectionOwn,String toSearch)
+    {
 
+        return collectionOwn.searchCard(toSearch);
+    }
 
     // metodo per rimuovere carta dell'utente
     public void removeCard(User user, Card card){

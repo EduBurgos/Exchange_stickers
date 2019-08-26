@@ -1,5 +1,7 @@
 package servlets;
 
+import collection.CollectionOwn;
+import platform.Platform;
 import servlets.AbstractServlet;
 
 import javax.servlet.*;
@@ -13,7 +15,7 @@ import java.io.IOException;
 
 @WebServlet(name = "servlets.HomePageServlet", urlPatterns = "/homepage")
 public class HomePageServlet extends AbstractServlet {
-    private String DEFAULT_ROUTE = "../homepage.jsp";
+    private String DEFAULT_ROUTE = "/views/homepage.jsp\"";
 
     /**
      * Method to handle the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
@@ -37,6 +39,13 @@ public class HomePageServlet extends AbstractServlet {
      * @throws IOException Exception coming from an I/O error
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //richiesta
+        String toSearch = request.getParameter("search");
+        System.out.println(toSearch);
+        request.getAttribute("logged");
+        Platform platform= Platform.getInstance();
+        platform.searcIntoCollection((CollectionOwn)request.getAttribute("logged"),toSearch);
+
         forwardTo(request, response, DEFAULT_ROUTE);
     }
 }
