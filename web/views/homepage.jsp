@@ -19,6 +19,7 @@
 
 </head>
 <body>
+<!-------- NAVBAR------->
        <jsp:include page="navbar.jsp"/>
 
        <!--------CARD COLLECTION -------->
