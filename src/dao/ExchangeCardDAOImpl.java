@@ -26,6 +26,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     private static final String delete_exchange = "delete from exchange where id_trans = ?";
 
+    private static final String view_catalog = "select * from catalog";
+
     @Override
     public void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException {
         conn = null;
@@ -235,6 +237,35 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
+
+    public void view_catalog(){
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(view_catalog);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+    }
+
+
 
 
 

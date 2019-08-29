@@ -31,13 +31,21 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="../views/homepage.jsp"><i class="fa fa-home"></i><strong> Home </strong><span class="sr-only">(current)</span></a></li>
+                    <li><a href="../views/homepage.jsp">
+                        <i class="fa fa-home"></i>
+                        <strong> Home </strong>
+                        <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <!-- EXCHANGE -->
+
                     <li>
-                        <a href="#">
+                        <a href="../views/exchange.jsp">
                             <i class="fa fa-refresh">
                                 <span class="badge badge-primary">5</span>
                             </i>
                             <strong>Exchange</strong>
+                            <span class="sr-only">(current)</span>
                         </a>
                     </li>
 
@@ -46,8 +54,9 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search Cards, Users..." name="search" id="search">
                         <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
-
                     </div>
+
+
 
                     <button type="submit" class="btn btn-success active">Search</button>
                     <!------<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>------->

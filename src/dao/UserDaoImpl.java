@@ -302,12 +302,8 @@ public class UserDaoImpl implements UserDao {
             System.out.println(user.getUsername());
             String check = "SELECT COUNT(Username) FROM users WHERE Username=\"" + user.getUsername() + "\";";
 
-            System.out.println("asdf");
             Statement s = conn.createStatement();
-            System.out.println("exce");
             result = s.executeQuery(check);
-
-            System.out.println("getresult");
             result.next();
 
             //System.out.println(result.getInt("count(Username)"));

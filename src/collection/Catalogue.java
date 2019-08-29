@@ -4,8 +4,15 @@ package collection;
 
 
 
+import dao.MySQLDAOFactory;
+import userSide.User;
+
 import java.io.IOException;
 import java.io.Reader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -15,8 +22,9 @@ public class Catalogue
     //to do: lista di carte
     //proposte: aggiungi invia segnalazione per add carta non in catalogo
 
-    private ArrayList<Card> carte;
+    private static final String view_catalog_query = "select * from catalog";
 
+    private ArrayList<Card> carte;
     public Catalogue() {
         this.carte = new ArrayList<Card>();
     }
