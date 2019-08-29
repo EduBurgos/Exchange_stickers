@@ -9,7 +9,7 @@ public class QueryTest {
         public void findAll(){
             CardsDaoImpl x = new CardsDaoImpl();
             try{
-                x.findAll();
+                x.findAllGeneric();
             } catch(SQLException e){
                 e.printStackTrace();
             }

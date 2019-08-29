@@ -199,7 +199,15 @@ public class CardsDaoImpl implements CardsDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             if (result.next() && result != null) {
-                card = new Card(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8), result.getInt(9));
+                card = new Card(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getInt(4),
+                        result.getString(5),
+                        result.getString(6),
+                        result.getString(7),
+                        result.getString(8),
+                        result.getInt(9));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -223,7 +231,7 @@ public class CardsDaoImpl implements CardsDao {
         return card;
     }
 
-public ArrayList<Card> findAll() throws SQLException {
+public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
         conn = null;
         try {
@@ -232,7 +240,15 @@ public ArrayList<Card> findAll() throws SQLException {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {
-                    allCards.add(new Card(result.getInt(1),result.getString(2),result.getString(3), result.getInt(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8), result.getInt(9)));
+                    allCards.add(new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"),
+                            0));
 
             }
         }catch (SQLException e) {

@@ -9,6 +9,7 @@
 <%@ page import="collection.CollectionOwn" %>
 <%@ page import="collection.Catalogue" %>
 <%@ page import="userSide.Exchange" %>
+<%@ page import="dao.CardsDaoImpl" %>
 
 <html>
 <head>
@@ -43,14 +44,11 @@
         <div class="rightbox">
             <div style="overflow: auto; width: 100%; height: 100%">
 
-                <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
-                <% UserDaoImpl allUsers = new UserDaoImpl();%>
-                <% for (User u : allUsers.findAll()) {%>
-                <% for (Card entry : (collection.getCollentionOwn(u))){%>
+                <% CardsDaoImpl allCards = new CardsDaoImpl();%>
+                <% for (Card u : allCards.findAllGeneric()) {%>
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <img src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
-                <%}%>
                 <%}%>
 
             </div>
