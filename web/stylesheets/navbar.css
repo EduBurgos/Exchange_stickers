@@ -21,7 +21,11 @@
 
 
 .navbar-icon-top{
-    bottom: 530px;
+    bottom: 85%;
+}
+
+#bs-example-navbar-collapse-1{
+    background-image: url("../img/images/nav1.jpg");
 }
 
 .navbar-icon-top .navbar-nav>li>a>.fa, .navbar-icon-top .navbar-nav>li>a>.glyphicon {
