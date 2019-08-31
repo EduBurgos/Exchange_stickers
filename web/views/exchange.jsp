@@ -12,7 +12,9 @@
 <%@ page import="dao.CardsDaoImpl" %>
 
 <html>
-<head>
+<
+
+head>
     <title>Exchange</title>
     <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
@@ -47,18 +49,18 @@
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <img src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}%>
-
+                $('img').click(function () {
+                $(this).addClass('selected');
+                });
             </div>
         </div>
-
-<div id="start">
-    <button type="button" class="btn" id="startbutton">Basic</button>
-</div>
-
-</div>
+    </div>
+    <div id="start" >
+        <button type="Submit" class="btn" id="startbutton" >AVVIA TRATTATIVA</button>
+    </div>
 
 </body>
 </html>

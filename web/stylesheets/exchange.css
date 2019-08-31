@@ -1,8 +1,8 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-img.zoom {
-    width: 100%;
-    height: 400px;
+img.zoom, #catalogImages {
+    width: 125%;
+    height: 50%;
     border-radius:5px;
     display:inline-block;
     object-fit:cover;
@@ -49,11 +49,15 @@ img.zoom {
     display: flex;
     width: 100%;
     height: 10%;
+    float: right;
 }
 
 #startbutton{
-    background-color: #6f42c1;
-    position: center;
+    font-palette: light;
+    background-color: #34ce57;
+    text-align: center;
+    margin:0 auto;
+
 }
 #navbar{
     width: 100%;
