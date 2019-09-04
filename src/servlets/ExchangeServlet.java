@@ -21,6 +21,11 @@ public class ExchangeServlet extends AbstractServlet {
     // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         forwardTo(request, response, DEFAULT_ROUTE);
+        //prendere gli di delle carte da scambiare
+        //scrivere su db trattativa
+
+        //reindirizzamento su homepage
+
     }
 
     /**
