@@ -77,9 +77,7 @@
             <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
                 <%for(Card entry : c.getCardsOwn()){%>
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <button>
                     <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    </button>
                 </div>
                 <%}
                 %>

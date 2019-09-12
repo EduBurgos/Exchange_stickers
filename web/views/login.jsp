@@ -1,3 +1,5 @@
+<%@ page import="collection.Card" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,19 +66,23 @@
                             </label>
                             <input type="text" required autocomplete="on" name="Email"/>
                         </div>
+
                         <div class="field-wrap">
                             <label>
                                 Password<span class="req">*</span>
                             </label>
                             <input type="text" required autocomplete="on" name="Password"/>
                         </div>
+
                         <div class="field-wrap">
                             <label>
                                 Re-Type Password<span class="req">*</span>
                             </label>
                             <input type="text" required autocomplete="on" name="ReType"/>
                         </div>
+
                         <button type="submit" class="button button-block"/>Get Started</button>
+
                     </form>
                 </div><!--sign up -->
 

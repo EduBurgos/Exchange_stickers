@@ -6,16 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
+    <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="metodi per dare carte al user finiti, maca la parte front....">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/Catalogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/Catalogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/stylesheets/exchange.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/exchange.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/exchange.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/exchange.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/navbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/CollectionOwnDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionOwnDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,7 +72,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/UML" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../F19-TEST" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -331,6 +328,7 @@
       <workItem from="1566766192477" duration="7423000" />
       <workItem from="1566806628739" duration="16543000" />
       <workItem from="1567106231368" duration="589000" />
+      <workItem from="1568272017097" duration="4893000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -536,7 +534,8 @@
     <MESSAGE value="creata pagina navbar" />
     <MESSAGE value="Refattorizazione finita, da sistemare userprofile ripete le carte in poseso 21 volte..." />
     <MESSAGE value="Userprofile sistemato." />
-    <option name="LAST_COMMIT_MESSAGE" value="Userprofile sistemato." />
+    <MESSAGE value="metodi per dare carte al user finiti, maca la parte front...." />
+    <option name="LAST_COMMIT_MESSAGE" value="metodi per dare carte al user finiti, maca la parte front...." />
   </component>
   <component name="masterDetails">
     <states>
