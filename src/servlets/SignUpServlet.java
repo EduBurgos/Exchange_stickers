@@ -1,5 +1,7 @@
 package servlets;
 
+import dao.CollectionOwnDao;
+import dao.CollectionOwnDaoImpl;
 import dao.UserDaoImpl;
 import platform.Platform;
 import userSide.User;
@@ -74,6 +76,14 @@ public class SignUpServlet extends AbstractServlet {
         try{
             if (platform.SignUp(name, lastName, username, email, password, retype)) {
                 forwardTo(request, response, INDEX_ROUTE);
+
+                /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
+                User u = new User(name, lastName, username, email);
+                CollectionOwnDao carte = new CollectionOwnDaoImpl();
+                for(int i = 0; i<6; i++) {
+                    carte.createRandomCard(u);
+                }
+
             }
             else {
                 forwardTo(request, response, INDEX_ROUTE);
