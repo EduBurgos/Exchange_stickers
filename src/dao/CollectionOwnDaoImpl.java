@@ -17,6 +17,10 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String INSERT_QUERY = "INSERT INTO collections (IDCardColl, ID_Card, ID_User, In_Market)"+"VALUES";
 
+    private static final String new_randow_card_for_new_user ="insert into collections values (IDCardColl, (select id from catalog order by rand() limit 1), (select id from users where username =?) ,false)";
+
+    private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?) order by IDCardColl desc limit 1";
+
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
     PreparedStatement preparedStatement = null;
@@ -27,11 +31,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         conn = null;
         try {
             conn = connector.createConnection();
-            System.out.println("query2");
             String query2 = INSERT_QUERY + "("+id_card_coll+", "+user.getUsername()+", "+card.getId()+", "+in_market+")";
-            System.out.println("preparestament");
             preparedStatement = conn.prepareStatement(query2);
-            System.out.println("execute");
             preparedStatement.execute();
             return true;
         }
@@ -74,7 +75,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     @Override
     public ArrayList<Card> getCollentionOwn(User user){
-        System.out.println("esto iniziando getCollectionOwn");
         ArrayList<Card> c = new ArrayList<Card>();
         //String listaCarte = VIEW_COLLECTION_QUERY;
         user.getUsername();
@@ -85,13 +85,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            System.out.println("Colectionownimp before the while");
-
-            System.out.println("este es result "+result.toString());
 
             while (result.next() && result != null) {
-                System.out.println("imprime "+result.getInt("ID"));
-                System.out.println("into while");
                 Card card=new Card(result.getInt("ID"),
                         result.getString("Category"),
                         result.getString("Class"),
@@ -101,16 +96,66 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                         result.getString("CardName"),
                         result.getString("CardDescription"),
                         result.getInt("IDCardColl"));
-                System.out.println("prima de add");
                 c.add(card);
-                System.out.println("dopo add");
                 //to do: farla diventare mappa con quantità
                 //cards.put(card,result.getInt(9));
-                System.out.printf("lista de carte dentro while "+card.getNome());
             }
             return c;
         }catch (SQLException e){
             return null;
         }
     }
+
+    @Override
+    public Card createRandomCard(User user){
+        try{
+            Card card;
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(new_randow_card_for_new_user);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+            card = get_last_card(user);
+            return card;
+        }catch (SQLException e){
+            System.out.println(e.toString());
+            return null;
+        }
+
+    }
+
+    @Override
+    public  Card get_last_card(User user){
+        try {
+            conn = connector.createConnection();
+
+            preparedStatement = conn.prepareStatement(get_last_card_sachet);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+
+            Card card=new Card(result.getInt("ID"),
+                    result.getString("Category"),
+                    result.getString("Class"),
+                    result.getInt("Lvl"),
+                    result.getString("Rarity"),
+                    result.getString("CardType"),
+                    result.getString("CardName"),
+                    result.getString("CardDescription"),
+                    result.getInt("IDCardColl"));
+            return card;
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
+    @Override
+    public ArrayList<Card> openSachet(User user){
+        ArrayList<Card> c = new ArrayList<Card>();
+
+        for(int i=0; i<6; i++){
+            c.add(createRandomCard(user));
+        }
+        return c;
+    }
+
 }

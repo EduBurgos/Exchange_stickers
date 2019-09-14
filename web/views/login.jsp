@@ -1,3 +1,8 @@
+<%@ page import="collection.Card" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.CollectionOwnDaoImpl" %>
+<%@ page import="dao.UserDaoImpl" %>
+<%@ page import="userSide.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,36 +52,47 @@
                             </div>
                             <div class="field-wrap">
                                 <label>
-                                    Last Name<span class="req">*</span>
+                                    Last Name<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 </label>
                                 <input type="text" required autocomplete="on" name="LastName"/>
                             </div>
                         </div>
                         <div class="field-wrap">
                             <label>
-                                Username<span class="req">*</span>
+                                Username<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </label>
                             <input type="text" required autocomplete="on" name="Username"/>
                         </div>
                         <div class="field-wrap">
                             <label>
-                                Email<span class="req">*</span>
+                                Email<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                             </label>
                             <input type="text" required autocomplete="on" name="Email"/>
                         </div>
+
                         <div class="field-wrap">
                             <label>
-                                Password<span class="req">*</span>
+                                Password<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                             </label>
-                            <input type="text" required autocomplete="on" name="Password"/>
+                            <input type="password" required autocomplete="off" name="Password"/>
+
                         </div>
+
                         <div class="field-wrap">
                             <label>
                                 Re-Type Password<span class="req">*</span>
                             </label>
-                            <input type="text" required autocomplete="on" name="ReType"/>
+                            <input type="password" required autocomplete="off" name="ReType"/>
                         </div>
+
                         <button type="submit" class="button button-block"/>Get Started</button>
+
+                        <%if (request.getParameter("Get Started") != null){
+
+                        }%>
+
+
+
                     </form>
                 </div><!--sign up -->
 
