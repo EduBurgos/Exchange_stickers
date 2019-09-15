@@ -6,10 +6,8 @@ package platform;//singleton pattern
 import Server.MYSQLConnection;
 import collection.Card;
 import collection.CollectionOwn;
-import dao.CollectionOwnDao;
-import dao.CollectionOwnDaoImpl;
-import dao.UserDao;
-import dao.UserDaoImpl;
+import dao.*;
+import userSide.Exchange;
 import userSide.User;
 
 import java.io.IOException;
@@ -183,6 +181,29 @@ public class Platform {
     {
         return collectionOwn.insert(card,quantity);
     }*/
+    //TODO sistemare commento con parametri giusti
+    /**
+     * Method used to insert an exchange record
+     * @return  true if the exchange is registered false if the registration fails
+     * @throws SQLException
+     */
+    public void setExchange(int idTrans, int idUser, int[] idCardOwn, int[] idCardWanted, boolean transComp) throws SQLException {
+        Exchange exchange = new Exchange(idTrans, idUser, idCardOwn, idCardWanted, transComp);
+        ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
+        UserDaoImpl userDaoImpl = new UserDaoImpl();
+        User user = userDaoImpl.findById(idUser);
+        ArrayList<Card> ownedCards = new ArrayList<Card>();
+        ArrayList<Card> wantedCards = new ArrayList<Card>();
+
+        CardsDaoImpl cardsDaoImpl = new CardsDaoImpl();
+        for(int i=0; i<idCardOwn.length; i++){
+            ownedCards.add(cardsDaoImpl.findByID(idCardOwn[i]));
+        }
+        for(int i=0; i<idCardWanted.length; i++){
+            ownedCards.add(cardsDaoImpl.findByID(idCardWanted[i]));
+        }
+        exchangeCardDAO.create(user, ownedCards, wantedCards);
+    }
 
 
 
