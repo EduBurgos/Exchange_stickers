@@ -1,5 +1,7 @@
 package servlets;
 
+import platform.Platform;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +22,18 @@ public class ExchangeServlet extends AbstractServlet {
 
     // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        forwardTo(request, response, DEFAULT_ROUTE);
-        //prendere gli di delle carte da scambiare
-        //scrivere su db trattativa
 
+        //prendere gli id delle carte da scambiare
+        String username = request.getParameter("username");
+        //TODO request.getParameter per le carte da dare e da ricevere
+        Platform platform= Platform.getInstance();
+        //platform.setExchange();
         //reindirizzamento su homepage
-
+        forwardTo(request, response, DEFAULT_ROUTE);
     }
 
     /**
      * Method to handle the HTTP get request; in this case is possible to reach welcome.jsp either from doGet or doPost
-     * method
      * @param request is the HTTP request
      * @param response is the HTTP response
      * @throws ServletException Exception coming from the servlet itself
