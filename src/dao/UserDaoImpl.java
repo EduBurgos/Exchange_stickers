@@ -23,6 +23,8 @@ public class UserDaoImpl implements UserDao {
 
     private static final String PASSWORD_QUERY="SELECT Pass FROM users WHERE Username= ?";
 
+    private static final String FIND_BY_ID_QUERY = "SELECT * FROM users WHERE ID = ?";
+
     // private static final String  CHECK_UNIQ = "SELECT COUNT(Username) FROM users WHERE Username = ?";       //Verifica lesistenza del USERNAME del DB.
 
     /**query used to find all users in DB*/
@@ -375,4 +377,41 @@ public class UserDaoImpl implements UserDao {
         return getCollentionOwn(user);
     }
 
+    public User findById(int id) throws SQLException {
+        User user = null;
+        conn = null;
+        try {
+            conn=connector.createConnection();
+            preparedStatement = conn.prepareStatement(FIND_BY_ID_QUERY);
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            if (result.next() && result != null) {
+                user = new User(result.getString("NameUser"),
+                        result.getString("Surname"),
+                        result.getString("Username"),
+                        result.getString("mail"));
+                user.setPass(result.getString("Pass"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return user;
+    }
 }
