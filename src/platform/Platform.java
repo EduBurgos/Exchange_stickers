@@ -205,6 +205,18 @@ public class Platform {
         exchangeCardDAO.create(user, ownedCards, wantedCards);
     }
 
+    /**
+     * Method used to accept an exchange
+     * @throws SQLException
+     */
+    public boolean acceptExchange() {
+        //controllo se carte richieste ci sono
+        //controllo se carte volute sono in possesso di chi a settato l'offerta
+        //try catch di un metodo private che svolge i settaggi delle nuova carte, in modo da bloccare entrambe le transazioni qualora qualcosa non andasse bene
+        //if che restituisce true se ha passato i controlli e ha fatto l'update su db
+        return false;
+    }
+
 
 
 }

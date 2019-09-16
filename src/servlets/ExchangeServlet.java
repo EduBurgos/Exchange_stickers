@@ -28,7 +28,7 @@ public class ExchangeServlet extends AbstractServlet {
         //TODO request.getParameter per le carte da dare e da ricevere
         Platform platform= Platform.getInstance();
         //platform.setExchange();
-        //reindirizzamento su homepage
+        //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
         forwardTo(request, response, DEFAULT_ROUTE);
     }
 
