@@ -34,7 +34,6 @@ head>
 
         <div class="leftbox">
                 <div style="overflow: auto; width: 100%; height: 100%">
-
                         <%for(Card entry : c.getCardsOwn()){%>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                                 <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
@@ -45,7 +44,6 @@ head>
 
         <div class="rightbox">
             <div style="overflow: auto; width: 100%; height: 100%">
-
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -58,6 +56,7 @@ head>
             </div>
         </div>
     </div>
+
     <div id="start" >
         <button type="Submit" class="btn" id="startbutton" >AVVIA TRATTATIVA</button>
     </div>

@@ -19,7 +19,7 @@ public class LoginServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-                CollectionOwn logged=confirmPassword(request);
+                CollectionOwn logged = confirmPassword(request);
                 if(logged!=null)
                 {
                     request.getSession().setAttribute("logged",logged);
@@ -43,7 +43,7 @@ public class LoginServlet extends AbstractServlet {
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
         String name = request.getParameter("name");
         String pass= request.getParameter("password");
-        Platform platform= Platform.getInstance();
+        Platform platform = Platform.getInstance();
         return platform.LogIn(name,pass);
     }
 }

@@ -86,15 +86,19 @@
             <!-- QUESTO PERMETTE SAPEAR LE CARTE ALTRUI-->
 
             <div role="tabpanel" class="tab-pane" id="exchangeables">
-                <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
-                <% UserDaoImpl allUsers = new UserDaoImpl();%>
-                <% for (User user : allUsers.findAll()) {%>
-                <% for (Card entry : (collection.getCollentionOwn(user))){%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+
+                <label for="fname">Nickname</label>
+                <input type="text" id="fname" name="firstname" placeholder="Insert Nickname">
+                <input type="submit" value="Search">
+                <div class="leftbox">
+                    <div style="overflow: auto; width: 100%; height: 100%">
+                            <%for(Card entry : c.getCardsOwn()){%>
+                        <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                            <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        </div>
+<%}%>
+                    </div>
                 </div>
-                <%}%>
-                <%}%>
             </div>
 
         </div>

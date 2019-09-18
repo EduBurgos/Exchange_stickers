@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlets/SignUpServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlets/SignUpServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views/exchange.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/exchange.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +44,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,6 +60,9 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1PnHNxlvwFzDiZfc4Dks8qAQV0u" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql.8&#10;mysql" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -329,7 +333,8 @@
       <workItem from="1568381918558" duration="4026000" />
       <workItem from="1568398444611" duration="1581000" />
       <workItem from="1568564978488" duration="67000" />
-      <workItem from="1568800237453" duration="234000" />
+      <workItem from="1568800237453" duration="2521000" />
+      <workItem from="1568806564226" duration="5852000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -457,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568368341747</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="implementzione snitch card !! per i curiosi, da finire">
+      <created>1568800732847</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1568800732851</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -551,7 +563,8 @@
     <MESSAGE value="Userprofile sistemato." />
     <MESSAGE value="metodi per dare carte al user finiti, maca la parte front...." />
     <MESSAGE value="genera carte alla registrazione finita." />
-    <option name="LAST_COMMIT_MESSAGE" value="genera carte alla registrazione finita." />
+    <MESSAGE value="implementzione snitch card !! per i curiosi, da finire" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementzione snitch card !! per i curiosi, da finire" />
   </component>
   <component name="masterDetails">
     <states>
