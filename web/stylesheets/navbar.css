@@ -26,6 +26,8 @@
 
 #bs-example-navbar-collapse-1{
     background-image: url("../img/images/nav1.jpg");
+    background-size: cover;
+    width:100%;
 }
 
 .navbar-icon-top .navbar-nav>li>a>.fa, .navbar-icon-top .navbar-nav>li>a>.glyphicon {
@@ -126,7 +128,7 @@ nav.navbar ul li a:after {
     content: '.';
     color: transparent;
     background: lightcyan;
-    visibility: none;
+    visibility: hidden;
     opacity: 0;
     z-index: -1;
 }
