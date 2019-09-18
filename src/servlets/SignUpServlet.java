@@ -79,9 +79,9 @@ public class SignUpServlet extends AbstractServlet {
 
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
                 User u = new User(name, lastName, username, email);
-                CollectionOwnDao carte = new CollectionOwnDaoImpl();
+                CollectionOwnDao cart = new CollectionOwnDaoImpl();
                 for(int i = 0; i<6; i++) {
-                    carte.createRandomCard(u);
+                    cart.createRandomCard(u);
                 }
 
             }

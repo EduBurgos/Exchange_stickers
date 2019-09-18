@@ -68,7 +68,7 @@
         <ul class="nav nav-tabs" role="tablist">
         <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
             <li role="presentation"><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
-            <!--   <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">Exchangeables</a></li> -->
+            <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -83,10 +83,19 @@
                 %>
             </div>
 
-            <!--      <div role="tabpanel" class="tab-pane" id="exchangeables">
+            <!-- QUESTO PERMETTE SAPEAR LE CARTE ALTRUI-->
 
-
-                  </div>-->
+            <div role="tabpanel" class="tab-pane" id="exchangeables">
+                <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
+                <% UserDaoImpl allUsers = new UserDaoImpl();%>
+                <% for (User user : allUsers.findAll()) {%>
+                <% for (Card entry : (collection.getCollentionOwn(user))){%>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                </div>
+                <%}%>
+                <%}%>
+            </div>
 
         </div>
     </div>
