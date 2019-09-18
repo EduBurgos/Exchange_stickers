@@ -21,6 +21,19 @@ CREATE TABLE users(
     PRIMARY KEY (ID)
 );
 
+
+/* tabella users con boolean gifted
+CREATE TABLE users(
+                      ID INT NOT NULL auto_increment,
+                      Username VARCHAR(32) NOT NULL ,
+                      NameUser VARCHAR(32) NOT NULL,
+                      Surname VARCHAR(32) NOT NULL,
+                      Mail VARCHAR(64) NOT NULL,
+                      Pass VARCHAR(64) NOT NULL,
+                      gifted boolean,
+                      PRIMARY KEY (ID)
+);*/
+
 CREATE TABLE collections(
     IDCardColl INT not null auto_increment,
     ID_Card int,
@@ -473,6 +486,29 @@ INSERT INTO users VALUES(ID, 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmai
 INSERT INTO users VALUES(ID, 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
 INSERT INTO users VALUES(ID, 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
 
+/*inserimento utenti con boolean gifted*/
+/*
+INSERT INTO users VALUES(ID, 'Obe','Edu', 'Bur', 'edu@hotmail.it','1234',false);
+INSERT INTO users VALUES(ID, 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234',false);
+INSERT INTO users VALUES(ID, 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234',false);
+INSERT INTO users VALUES(ID, 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234',false);
+INSERT INTO users VALUES(ID, 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234',false );
+INSERT INTO users VALUES(ID, 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', '1234',false);
+INSERT INTO users VALUES(ID, 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234',false);
+INSERT INTO users VALUES(ID, 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho',false);
+INSERT INTO users VALUES(ID, 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde',false);
+INSERT INTO users VALUES(ID, 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22',false);
+*/
+
+/*inserimento evento per settare gifted a false una volta ogni giorno*/
+/*SET GLOBAL event_scheduler = 1;
+
+CREATE EVENT cancelGifted
+    ON SCHEDULE  EVERY 1 DAY
+    DO
+    update users
+    set gifted= false;
+*/
 /*Obe*/
 INSERT INTO collections VALUES(IDCardColl ,1 ,1 ,false);
 INSERT INTO collections VALUES(IDCardColl ,2 ,1 ,false);
