@@ -21,12 +21,7 @@ public class Platform {
     private MYSQLConnection conn;
     private static Platform Platform_instance=null;
 
-
-
-    private Platform() {
-        this.conn= MYSQLConnection.getInstance();
-
-    }
+    private Platform() { this.conn= MYSQLConnection.getInstance(); }
 
     public static Platform getInstance()
     {
@@ -38,7 +33,6 @@ public class Platform {
     }
 
 
-
     /**
      * This method controls if the user is already registered to the platform
      * @param username
@@ -46,6 +40,7 @@ public class Platform {
      * @return  CollectionOwn logged
      * @exception SQLException
      */
+
     //metodo per il login
     public CollectionOwn LogIn(String username,String pass) throws SQLException {
         User logg = null;
@@ -53,14 +48,9 @@ public class Platform {
         try {
             UserDao userDao = new UserDaoImpl();
             logg = userDao.findByUsername(username);
-            System.out.println("Stampo logg "+logg);
-
             String a = logg.getPass();
-            System.out.println("Stampo a "+a);
-
             if(a.equals(pass))
             {
-                System.out.println("Sono dentro il if controllo pass platform");
                 //quando loggo carico anche carte utente in collectionOwn
                 CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
                 CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.getCollentionOwn(logg));
@@ -218,5 +208,24 @@ public class Platform {
     }
 
 
+    /**Metodo curiosita carte di altri user*/
+    public CollectionOwn SnitchCards(String username) throws SQLException{
+        User nick = null;
+        try {
+            UserDao userDao = new UserDaoImpl();
+            nick = userDao.findByUsername(username);
+
+            if(nick != null)
+            {
+                //quando loggo carico anche carte utente in collectionOwn
+                CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
+                CollectionOwn collectionOwn = new CollectionOwn(nick, collectionOwnDao.getCollentionOwn(nick));
+                return collectionOwn;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

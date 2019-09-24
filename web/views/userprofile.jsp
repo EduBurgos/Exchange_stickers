@@ -85,19 +85,16 @@
 
             <!-- QUESTO PERMETTE SAPEAR LE CARTE ALTRUI-->
 
-            <div role="tabpanel" class="tab-pane" id="exchangeables">
+                <div role="tabpanel" class="tab-pane" id="exchangeables">
 
-                <label for="fname">Nickname</label>
-                <input type="text" id="fname" name="firstname" placeholder="Insert Nickname">
-                <input type="submit" value="Search">
-                <div class="leftbox">
-                    <div style="overflow: auto; width: 100%; height: 100%">
-                            <%for(Card entry : c.getCardsOwn()){%>
-                        <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                            <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                        </div>
-<%}%>
-                    </div>
+                    <form method="post" action= "../userprofile">
+
+                        <label for="nickname">Nickname</label>
+                        <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">
+                        <!--TASTO CERCA-->
+                        <input type="submit" value="Search">
+                    </form>
+
                 </div>
             </div>
 
