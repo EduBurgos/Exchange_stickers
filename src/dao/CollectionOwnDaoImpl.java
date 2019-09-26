@@ -3,6 +3,7 @@ package dao;
 import collection.Card;
 import userSide.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     private static final String new_randow_card_for_new_user ="insert into collections values (IDCardColl, (select id from catalog order by rand() limit 1), (select id from users where username =?) ,false)";
 
     private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?) order by IDCardColl desc limit 1";
+
+    private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -156,6 +159,20 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             c.add(createRandomCard(user));
         }
         return c;
+    }
+
+    //metodo per controllare che possegga le carte inseritegli
+    public boolean hasCards(int userID, ArrayList<Card> cards){
+
+        try {
+            conn = connector.createConnection();
+            //TODO fare in modo che vengo eseguito per ogni carta dell' arraylist, meglio prendere tutte le carte con una query e operare poi con un ciclo
+            preparedStatement = conn.prepareStatement(HAS_CARDS_QUERY);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
