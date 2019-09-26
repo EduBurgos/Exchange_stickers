@@ -41,10 +41,11 @@
     </div>
 
         <div class="rightbox">
+            <script>var chosenCardsArray = [1]</script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(chosenCardsArray, <%=u.getId()%>)">
                     <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}%>
@@ -56,6 +57,7 @@
         <button type="Submit" class="btn" id="startbutton" >AVVIA TRATTATIVA</button>
     </div>
     <div class="prova">
+
         <% for (Card u : allCards.findAllGeneric()) {%>
         <div class="cont">
             <img src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="cards">
@@ -63,6 +65,17 @@
         <%}%>
     </div>
 <script>
+
+    function chooseCards(array, card){
+        if(array.includes(card) == true){
+            removeFromArray(array, card);
+            alert("a card is just removed, array:"+array);
+        } else{
+            addToArray(array, card);
+            alert("a card is just added, array:"+array);
+        }
+
+    }
     // method to add an element selected to array, we will use it to create the arrays to pass to servlet(one for cards to send and the other to receive)
     function addToArray(array, card){
         array.push(card);
