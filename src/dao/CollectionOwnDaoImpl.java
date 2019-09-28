@@ -3,7 +3,7 @@ package dao;
 import collection.Card;
 import userSide.User;
 
-import javax.jws.soap.SOAPBinding;
+//import javax.jws.soap.SOAPBinding;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;

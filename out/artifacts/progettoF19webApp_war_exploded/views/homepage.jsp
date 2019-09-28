@@ -1,10 +1,11 @@
 <%@ page import="collection.Card" %>
-<%@ page import="dao.CardsDaoImpl" %>
-<%@ page import="dao.UserDaoImpl" %>
 <%@ page import="userSide.User" %>
-<%@ page import="dao.CollectionOwnDao" %>
-<%@ page import="dao.CollectionOwnDaoImpl" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="dao.*" %>
+<%@ page import="userSide.Exchange" %>
+<%@ page import="platform.Platform" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="collection.CollectionOwn" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -19,21 +20,35 @@
 
 </head>
 <body>
+
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
-       <!--------CARD COLLECTION -------->
+
+       <!--------MERCATO -------->
         <div class="container page-top">
                 <div class="row">
-                    <% CollectionOwnDaoImpl collection = new CollectionOwnDaoImpl();%>
-                    <% UserDaoImpl allUsers = new UserDaoImpl();%>
-                    <% for (User u : allUsers.findAll()) {%>
-                    <% for (Card entry : (collection.getCollentionOwn(u))){%>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    </div>
-                    <%}%>
-                    <%}%>
+
+<!-- INIZIO COMENTO
+                    <%// Platform market1 = Platform.getInstance(); %>
+                <h6><%// market1.toString(); %></h6>
+                    <%// ArrayList<Exchange>  market = market1.getExchange();  %>
+                    <%// for (Exchange x : market) {%>
+                    <%// System.out.printf("<td>"+x.getId_user()+"<td>");%>
+                    <%// } %>
+      FINE COMENTO-->
+
+                    <%ArrayList<Exchange> ec = (ArrayList<Exchange>) request.getSession().getAttribute("market");%>
+
+                    <% if(ec == null){%>
+                       <script>alert("DIO BAO BAO")</script>
+                   <%} %>
+
+                    <% ExchangeCardDAOImpl market = new ExchangeCardDAOImpl(); %>
+
+
+
                 </div> <!-----END ROW---->
+
         </div><!----- container page-top----->
 
 

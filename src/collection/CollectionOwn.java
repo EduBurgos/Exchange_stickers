@@ -34,10 +34,10 @@ public class CollectionOwn {
     public void setCardsOwn(ArrayList<Card> cardsOwn) {
         this.cardsOwn = cardsOwn;
     }
+
     public ArrayList<Card> searchCard(String search)
     {
         ArrayList<Card> result=new ArrayList<>();
-        System.out.println("asda");
         for (Card c:cardsOwn) {
             if(c.getNome().contains(search))
             {

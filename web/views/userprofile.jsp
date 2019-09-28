@@ -67,7 +67,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
         <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
-            <li role="presentation"><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
+            <li role="presentation" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
             <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
         </ul>
 
@@ -87,7 +87,7 @@
 
                 <div role="tabpanel" class="tab-pane" id="exchangeables">
 
-                    <form method="post" action= "../userprofile">
+                    <form method="get" action= "../userprofile">
 
                         <label for="nickname">Nickname</label>
                         <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">

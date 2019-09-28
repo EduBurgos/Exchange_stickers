@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
@@ -181,9 +182,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             ArrayList<Exchange> allExchange = new ArrayList<>();
 
             while (result.next() && result != null) {
-                int[] cardown = toInts(result.getBytes("id_card_onw"));
+                int[] cardown = toInts(result.getBytes("id_card_owm"));
                 int[] cardwanted = toInts(result.getBytes("id_card_wanted"));
                 allExchange.add(new Exchange(result.getInt("id_trans"), result.getInt("id_user"), cardown, cardwanted, false));
+                System.out.println("cardown = "+ Arrays.toString(cardown));
+                System.out.println("cardwanted = "+ Arrays.toString(cardwanted));
             }
             return allExchange;
 
@@ -205,8 +208,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             } catch (Exception cse) {
                 cse.printStackTrace();
             }
-            return null;
         }
+        return null;
     }
 
     @Override
