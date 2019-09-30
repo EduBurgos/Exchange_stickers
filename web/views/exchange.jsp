@@ -41,7 +41,7 @@
     </div>
 
         <div class="rightbox">
-            <script>var chosenCardsArray = [1]</script>
+            <script>var chosenCardsArray = []</script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
@@ -68,9 +68,11 @@
 
     function chooseCards(array, card){
         if(array.includes(card) == true){
+            document.getElementById(card).style.filter = "opacity(100%)";
             removeFromArray(array, card);
             alert("a card is just removed, array:"+array);
         } else{
+            document.getElementById(card).style.filter = "opacity(40%)";
             addToArray(array, card);
             alert("a card is just added, array:"+array);
         }
