@@ -4,6 +4,7 @@ import collection.CollectionOwn;
 import platform.Platform;
 import userSide.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,15 +18,17 @@ public class LoginServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
                 CollectionOwn logged = confirmPassword(request);
                 if(logged!=null)
                 {
+                    request.getSession().setAttribute("errorMessage", null);
                     request.getSession().setAttribute("logged",logged);
                     response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
                 }
                 else{
+
+                    request.getSession().setAttribute("errorMessage", "Invalid user or password.Try again.");
                     forwardTo(request, response, INDEX_ROUTE);
                 }
 
