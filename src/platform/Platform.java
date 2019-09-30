@@ -228,4 +228,24 @@ public class Platform {
         return null;
     }
 
+    /**Metodo che prende tutte le trattative*/
+    public ArrayList<Exchange> getExchange() throws SQLException{
+        try{
+            ExchangeCardDAOImpl market = new ExchangeCardDAOImpl();
+            for (Exchange x : market.getAllExchange()
+                 ) {
+                System.out.println("inizio stampa exchange: ");
+                System.out.println(x.getId_user());
+                System.out.println(x.getId_trans());
+                System.out.println(x.getId_card_owm());
+                System.out.println(x.getId_card_wanted());
+                System.out.println(x.isTrans_comp());
+            }
+            return market.getAllExchange();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

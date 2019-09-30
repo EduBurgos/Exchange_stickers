@@ -61,6 +61,18 @@ create table exchange(
                          primary key (id_trans)
 );
 
+create table CardsExchanges(
+                        Id numeric(10),
+                        Offered varchar(20) not null ,
+                        Receiver varchar(20) not null ,
+                        Status numeric(1) not null ,
+                        CardOffered varchar(1000) not null ,
+                        CardCounterOffered varchar(1000) not null ,
+                        primary key (Id),
+                        foreign key (Offered) references users(username),
+                        foreign key (Receiver) references users(username)
+);
+
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto Della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');
 INSERT INTO catalog VALUES(2,'Hearthstone','Druido',3,'Comune','Magia','Benedizione Degli Antichi','Magia Gemella. +1/+1 ai tuoi servitori.');
 INSERT INTO catalog VALUES(3,'Hearthstone','Druido',5,'Epica','Bestia','Cervo Di Cristallo','Assalto. Grido di Battaglia: se hai rigenerato 5 Salute in questa partita, evoca una copia di se stesso.');
@@ -537,7 +549,7 @@ INSERT INTO collections VALUES(IDCardColl ,19 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,15 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,5 ,5 ,false);
 
-/*insert into exchange values (id_trans, 1, "0000000000000000000\1", "0000000000000000000\1", false)*/
+insert into exchange values (id_trans, 1, "0000000000000000000\1", "0000000000000000000\1", false);
 
-/*INSERT INTO CardsExchanges VALUES(1,'MRossi', 'StellaTheBest', 0,22, 50);*/
+INSERT INTO CardsExchanges VALUES(1, 1, 2, 0, 1, 7);
 

@@ -3,6 +3,7 @@ package servlets;
 import collection.CollectionOwn;
 import dao.CollectionOwnDaoImpl;
 import platform.Platform;
+import userSide.Exchange;
 import userSide.User;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 @WebServlet(name = "ProfileServlet", urlPatterns = "/userprofile")
@@ -21,14 +23,22 @@ public class ProfileServlet extends AbstractServlet{
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        forwardTo(request, response, INDEX_ROUTE);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try{
             CollectionOwn nickname = confirmNickname(request);
+            ArrayList<Exchange> lista_market = Platform.getInstance().getExchange();
+
             if(nickname != null){
-                request.getSession().setAttribute("Nickname",nickname);
+                request.getSession().setAttribute("logged",nickname);
+                request.getSession().setAttribute("market", lista_market);
                 response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
             }
             else{
-                forwardTo(request, response, INDEX_ROUTE);
+                forwardTo(request, response, DEFAULT_ROUTE);
             }
 
         } catch (SQLException e) {
@@ -36,16 +46,10 @@ public class ProfileServlet extends AbstractServlet{
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        forwardTo(request, response, INDEX_ROUTE);
-
-    }
-
     private CollectionOwn confirmNickname(HttpServletRequest request) throws SQLException {
         String nickname = request.getParameter("Nickname");
         Platform platform = Platform.getInstance();
         return platform.SnitchCards(nickname);
     }
-
 
 }

@@ -3,6 +3,7 @@
 <%@ page import="dao.CollectionOwnDaoImpl" %>
 <%@ page import="dao.UserDaoImpl" %>
 <%@ page import="userSide.User" %>
+<%@ page import="static javax.swing.text.html.CSS.getAttribute" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,7 +114,15 @@
                             <input type="password" required autocomplete="off" name="password" id="password"/>
                         </div>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <button class="button button-block"/>Log In</button>
+                        <button class="button button-block" />Log In</button>
+
+                        <% if(request.getSession().getAttribute("errorMessage")!=null){ %>
+                        <h3><%=request.getSession().getAttribute("errorMessage") %></h3>
+                        <%}%>
+
+
+
+
                     </form>
                 </div>
             </div> <!--log in -->
