@@ -32,6 +32,8 @@ CREATE TABLE accesses(
 
 );
 
+
+
 /*Inserimento evento che cancella contenuto tabella accesses una volta al giorno*/
 SET GLOBAL event_scheduler = 1;
 
@@ -44,33 +46,34 @@ CREATE EVENT cancelGifted
 
 CREATE TABLE collections(
     IDCardColl INT not null auto_increment,
-    ID_Card int,
-    ID_User int,
+    ID_Card int not null ,
+    ID_User int not null ,
     In_Market boolean,
-    primary key (IDCardColl),
+    primary key (ID_Card,ID_User),
     FOREIGN KEY (ID_User) REFERENCES Users(ID),
     FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 
-create table exchange(
+create table exchanges(
                          id_trans INT not null auto_increment,
                          id_user int,
-                         id_card_owm varbinary(20),
-                         id_card_wanted varbinary(20),
                          trans_comp boolean,
                          primary key (id_trans)
 );
 
-create table CardsExchanges(
-                        Id numeric(10),
-                        Offered varchar(20) not null ,
-                        Receiver varchar(20) not null ,
-                        Status numeric(1) not null ,
-                        CardOffered varchar(1000) not null ,
-                        CardCounterOffered varchar(1000) not null ,
-                        primary key (Id),
-                        foreign key (Offered) references users(username),
-                        foreign key (Receiver) references users(username)
+create table Cards_own(
+                        Id_trans INT not null,
+                        cardId  int,
+                        primary key (Id_trans,cardId),
+                        foreign key (cardId) references collections(ID_Card),
+                        foreign key(Id_trans) references exchanges(id_trans)
+);
+create table Cards_wanted(
+                          Id_trans INT not null,
+                          cardId  int,
+                          primary key (Id_trans,cardId),
+                          foreign key (cardId) references collections(ID_Card),
+                          foreign key(Id_trans) references exchanges(id_trans)
 );
 
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto Della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');
@@ -549,7 +552,4 @@ INSERT INTO collections VALUES(IDCardColl ,19 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,15 ,5 ,false);
 INSERT INTO collections VALUES(IDCardColl ,5 ,5 ,false);
 
-insert into exchange values (id_trans, 1, "0000000000000000000\1", "0000000000000000000\1", false);
-
-INSERT INTO CardsExchanges VALUES(1, 1, 2, 0, 1, 7);
 
