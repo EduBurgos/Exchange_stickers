@@ -1,25 +1,5 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-.badge-default {
-    background-color: #777;
-}
-.badge-primary {
-    background-color: #337ab7;
-}
-.badge-success {
-    background-color: #5cb85c;
-}
-.badge-info {
-    background-color: #5bc0de;
-}
-.badge-warning {
-    background-color: #f0ad4e;
-}
-.badge-danger {
-    background-color: #d9534f;
-}
-
-
 .navbar-icon-top{
     bottom: 85%;
 }
@@ -162,7 +142,10 @@ body {
     background-repeat: repeat;
     background-size: cover;
 }
-#logo{
+.navbar-brand{
+    color: black;
+}
+/*#logo{
     margin-right: 5px;
     margin-left: 5px;
     padding-right: 70px;
@@ -173,7 +156,9 @@ body {
     background-position: bottom;
     background-image: url(../img/images/logo.png);
 
-}
+}*/
+
+
 
 /*---------------------------------------------------
     SCROLL TO-TOP STYLE
