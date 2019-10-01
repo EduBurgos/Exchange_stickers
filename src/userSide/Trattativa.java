@@ -9,34 +9,23 @@ public class Trattativa {
     private User offerer, receiver;
     private ArrayList<Card> cardoffer;
     private ArrayList<Card> counterOffer;
-    private String status;
+    private boolean ended; //false se in corso , true se è conclusa
 
-    public Trattativa(User offerer, User receiver, ArrayList<Card> cardOffer, ArrayList<Card> counterOffer, String status) {
+    public Trattativa(User offerer, User receiver, ArrayList<Card> cardOffer, ArrayList<Card> counterOffer) {
         this.offerer = offerer;
         this.receiver = receiver;
         this.cardoffer = cardOffer;
         this.counterOffer = counterOffer;
-        this.status=status;
+        this.ended=false;
+    }
+    public Trattativa(User offerer, ArrayList<Card> cardOffer, ArrayList<Card> counterOffer) {
+        this.offerer = offerer;
+        this.receiver = null;
+        this.cardoffer = cardOffer;
+        this.counterOffer = counterOffer;
+        this.ended=true;
     }
 
-
-    //metodo per trasformare una collection di card in una string di id divisa da dei trattini
-
-    public String fromArraylistToString(ArrayList<Card> lista) {
-        String idString = null;
-        for (Card i : lista
-        ) {
-            idString.concat(String.valueOf(i.getId()));
-            idString.concat("-");
-        }
-        //questo if rimuove l'ultimo trattino
-        if (idString != null && idString.length() > 0 && idString.charAt(idString.length() - 1) == 'x') {
-            idString = idString.substring(0, idString.length() - 1);
-        }
-        return idString;
-    }
-
-    //TODO fare metodo per passar da stringa a collezione
 
     public User getOfferer() {
         return offerer;
@@ -70,11 +59,11 @@ public class Trattativa {
         this.counterOffer = counterOffer;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean getStatus() {
+        return ended;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(boolean ended) {
+        this.ended = ended;
     }
 }

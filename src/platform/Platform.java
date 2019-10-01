@@ -77,7 +77,7 @@ public class Platform {
           User reg = new User(name, lastName, username, email);
           UserDaoImpl userTemp = new UserDaoImpl();
           try{
-            if (userTemp.checkUnique(reg) && password.equals(retype)) {
+            if (userTemp.checkUnique(reg) && password.equals(retype) && checkEmail(email)) {
                 boolean succ = userTemp.save(reg, password);         /**User salvato correttamente*/
                 return succ;
             }

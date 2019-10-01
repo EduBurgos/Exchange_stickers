@@ -28,7 +28,7 @@ public class LoginServlet extends AbstractServlet {
                 }
                 else{
 
-                    request.getSession().setAttribute("errorMessage", "Invalid user or password.Try again.");
+                    request.getSession().setAttribute("errorMessage", "Invalid user or password.Please try again.");
                     forwardTo(request, response, INDEX_ROUTE);
                 }
 

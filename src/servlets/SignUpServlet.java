@@ -72,9 +72,11 @@ public class SignUpServlet extends AbstractServlet {
         String email = request.getParameter("Email");
         String password = request.getParameter("Password");
         String retype= request.getParameter("ReType");
+        request.getSession().setAttribute("message", null);
         Platform platform = Platform.getInstance();
         try{
             if (platform.SignUp(name, lastName, username, email, password, retype)) {
+                request.getSession().setAttribute("message", "You have successfully signed up!");
                 forwardTo(request, response, INDEX_ROUTE);
 
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
@@ -86,6 +88,7 @@ public class SignUpServlet extends AbstractServlet {
 
             }
             else {
+                request.getSession().setAttribute("message", "Something went wrong!");
                 forwardTo(request, response, INDEX_ROUTE);
             }
         } catch(SQLException e){
