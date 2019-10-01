@@ -17,7 +17,7 @@ CREATE TABLE users(
     NameUser VARCHAR(32) NOT NULL,
     Surname VARCHAR(32) NOT NULL,
     Mail VARCHAR(64) NOT NULL,
-    Pass VARCHAR(64) NOT NULL,
+    pass VARCHAR(64) NOT NULL,
     PRIMARY KEY (ID)
 );
 

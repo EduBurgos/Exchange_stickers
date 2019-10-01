@@ -3,8 +3,11 @@ package dao;
 
 import collection.Card;
 import userSide.User;
+
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
+import java.security.*;
 
 public class UserDaoImpl implements UserDao {
 
@@ -48,7 +51,7 @@ public class UserDaoImpl implements UserDao {
         try {
             conn=connector.createConnection();
 
-            String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass+"')";
+            String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass.getBytes(StandardCharsets.UTF_8)+"')";
             preparedStatement = conn.prepareStatement(query /*,Statement.RETURN_GENERATED_KEYS*/);
 
             /*preparedStatement.setString(1, user.getUsername());
@@ -82,6 +85,7 @@ public class UserDaoImpl implements UserDao {
         }
         return false;
     }
+
 
     /**
      * Method that finds if the user is present in the database entering username

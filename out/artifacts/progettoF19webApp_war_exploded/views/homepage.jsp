@@ -28,7 +28,7 @@
         <div class="container page-top">
                 <div class="row">
 
-<!-- INIZIO COMENTO
+<!-- INIZIO COMENTO IMPLEMENTAZIONE 1 MARKET
                     <%// Platform market1 = Platform.getInstance(); %>
                 <h6><%// market1.toString(); %></h6>
                     <%// ArrayList<Exchange>  market = market1.getExchange();  %>
@@ -37,14 +37,23 @@
                     <%// } %>
       FINE COMENTO-->
 
-                    <%ArrayList<Exchange> ec = (ArrayList<Exchange>) request.getSession().getAttribute("market");%>
+                    <!-- INIZIO COMENTO IMPLEMENTAZIONE 2 MARKET
 
-                    <% if(ec == null){%>
+                    <%// ArrayList<Exchange> ec = (ArrayList<Exchange>) request.getSession().getAttribute("market");%>
+                    <%// if(ec == null){%>
                        <script>alert("DIO BAO BAO")</script>
-                   <%} %>
-
-                    <% ExchangeCardDAOImpl market = new ExchangeCardDAOImpl(); %>
-
+                   <%//} %>
+                    <%// ExchangeCardDAOImpl market = new ExchangeCardDAOImpl(); %>
+                    <%// for(Exchange x : ec) {
+                        /*System.out.println("inizio stampa exchange: ");
+                        System.out.println(x.getId_user());
+                        System.out.println(x.getId_trans());
+                        System.out.println(x.getId_card_owm());
+                        System.out.println(x.getId_card_wanted());
+                        System.out.println(x.isTrans_comp());
+                    }*/
+                    %>
+FINE COMENTO-->
 
 
                 </div> <!-----END ROW---->
