@@ -92,7 +92,9 @@
 
                         }%>
 
-
+                        <% if(request.getSession().getAttribute("message")!=null){ %>
+                        <h3><%=request.getSession().getAttribute("message") %></h3>
+                        <%}%>
 
                     </form>
                 </div><!--sign up -->
