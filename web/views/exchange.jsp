@@ -27,13 +27,14 @@
     <jsp:include page="navbar.jsp"/>
 
 <div id="tot">
-
+    <form action="../exchange"  method="POST">
     <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
 
         <div class="leftbox">
+            <script>var CardsToGiveArray = []</script>
                 <div style="overflow: auto; width: 100%; height: 100%">
                         <%for(Card entry : c.getCardsOwn()){%>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>)">
                                 <img id="catlogim" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                     </div>
                         <%}%>
@@ -41,31 +42,23 @@
     </div>
 
         <div class="rightbox">
-            <script>var chosenCardsArray = []</script>
+            <script>var CardsToTakeArray = []</script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(chosenCardsArray, <%=u.getId()%>)">
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%>)">
                     <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                 </div>
                 <%}%>
             </div>
         </div>
     </div>
-
     <div id="start" >
-        <button type="Submit" class="btn" id="startbutton" >AVVIA TRATTATIVA</button>
+            <button  type="Submit" class="btn" id="startbutton" >AVVIA TRATTATIVA</button>
     </div>
-    <div class="prova">
+    </form>
 
-        <% for (Card u : allCards.findAllGeneric()) {%>
-        <div class="cont">
-            <img src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="cards">
-        </div>
-        <%}%>
-    </div>
 <script>
-
     function chooseCards(array, card){
         if(array.includes(card) == true){
             document.getElementById(card).style.filter = "opacity(100%)";
