@@ -22,7 +22,7 @@ it is included in each page of the application -->
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ><strong>CAPORETTO TEAM!</strong></a>
+                <a class="navbar-brand" ><strong>Caporetto Team!</strong></a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,12 +63,8 @@ it is included in each page of the application -->
                         <ul class="dropdown-menu">
                             <li><a href="../views/userprofile.jsp" ><strong> Profile</strong></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="../views/login.jsp">
-                                <i class="glyphicon glyphicon-log-out">
-                                </i>
-                                <strong> Logout </strong>
-                            </a>
-                            </li>
+                            <li><a href="../views/login.jsp"><i class="glyphicon glyphicon-log-out"></i><strong> Logout </strong></a></li>
+                        </ul>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
