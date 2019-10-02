@@ -1,6 +1,7 @@
 package dao;
 
 import collection.Card;
+import com.mysql.jdbc.Statement;
 import userSide.Exchange;
 import userSide.User;
 
@@ -17,7 +18,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
 
-    private static final String insert_query = "insert into exchange values (id_trans, (select id from users where Username = ?), ?, ?, false)";
+    private static final String insert_transaction_query = "insert into exchange values (id_trans, (select id from users where Username = ?), false)";
+    private static final String insert_cardown_query = "insert into cards_own values (?,?)";
+    private static final String insert_cardWanted_query = "insert into cards_wanted values (?,?)";
+
     private static final String remove_card_buyer = "update collections set id_user = (select ID from users where Username = ? ) where IDCardColl in ";
     private static final String remove_card_seller = "update collections set In_Market = false, id_user = (select ID_User from exchange where id_trans = ?) where IDCardColl in ";
     private static final String flag_complete ="update exchange set trans_comp = true where id_trans = ? ";
@@ -33,23 +37,32 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     public void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException {
         conn = null;
 
-        int[] card_own = new int[5];
-        int[] card_wanted = new int[5];
-
-        for(int i=0; i<5; i++){
-            card_own[i] = cardown.get(i).getIdColl();
-            card_wanted[i] = cardwanted.get(i).getId();
-        }
 
         try {
             conn = connector.createConnection();
 
-            preparedStatement = conn.prepareStatement(insert_query);
+            preparedStatement = conn.prepareStatement(insert_transaction_query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, new String(tobytes(card_own)));          /**Convert bytes to string*/
-            preparedStatement.setString(3, new String((tobytes(card_wanted))));
-
             preparedStatement.execute();
+
+            ResultSet rs=preparedStatement.getGeneratedKeys();
+
+            if (rs.next())
+            {
+                for (Card c: cardwanted) {
+                    preparedStatement=conn.prepareStatement(insert_cardown_query);
+                    preparedStatement.setInt(1,rs.getInt(1));
+                    preparedStatement.setInt(1,c.getId());
+                    preparedStatement.execute();
+                }
+                for ( Card c: cardown) {
+                    preparedStatement=conn.prepareStatement(insert_cardWanted_query);
+                    preparedStatement.setInt(1,rs.getInt(1));
+                    preparedStatement.setInt(1,c.getId());
+                    preparedStatement.execute();
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
