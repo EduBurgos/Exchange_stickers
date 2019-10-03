@@ -1,15 +1,16 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-.navbar-icon-top{
-    bottom: 85%;
-}
+
 
 #bs-example-navbar-collapse-1{
-    background-image: url("../img/images/nav1.jpg");
+    /* background-image: url("../img/images/nav1.jpg");*/
     background-size: cover;
     width:100%;
-}
 
+}
+.navbar-default .navbar-nav>li>a{
+    color:black;
+}
 .navbar-icon-top .navbar-nav>li>a>.fa, .navbar-icon-top .navbar-nav>li>a>.glyphicon {
     position: relative;
     width: 36px;
@@ -17,27 +18,18 @@
     color: black;
 
 }
-.navbar-icon-top .navbar-nav>li>a>.fa>.badge, .navbar-icon-top .navbar-nav>li>a>.glyphicon>.badge {
-    position: absolute;
-    right: 0;
-    font-family: sans-serif;
-}
+
 .navbar-icon-top .navbar-nav>li>a>.fa {
     top: 3px;
     line-height: 12px;
 
 }
-.navbar-icon-top .navbar-nav>li>a>.fa>.badge {
-    top: -10px;
 
-}
 .navbar-icon-top .navbar-nav>li>a>.glyphicon {
     top: 6px;
     line-height: 6px;
 }
-.navbar-icon-top .navbar-nav>li>a>.glyphicon>.badge {
-    top: -16px;
-}
+
 
 @media (min-width: 768px) {
     .navbar-icon-top .navbar-brand {
@@ -49,6 +41,7 @@
         margin-top: 25px;
         margin-bottom: 25px;
 
+
     }
     .navbar-icon-top .navbar-btn, .navbar-icon-top .navbar-form {
         margin-top: 18px;
@@ -56,6 +49,10 @@
 
 
 
+    }
+
+    .dropdown-menu>li>a{
+        color: black;
     }
     .navbar-icon-top .navbar-nav>li>a {
         text-align: center;
@@ -75,10 +72,7 @@
 
 
     }
-    .navbar-icon-top .navbar-nav>li>a>.fa>.badge, .navbar-icon-top .navbar-nav>li>a>.glyphicon>.badge {
-        top: -7px;
 
-    }
 }
 /*HOVER NAVBAR*/
 nav ul li a,
@@ -119,20 +113,16 @@ nav.navbar ul li a:hover:after {
 }
 /*END HOVER NAVBAR*/
 
-.navbar,.dropdown-menu {
+.navbar {
     background-repeat: no-repeat;
     background-size: cover;
     background-image:url(../img/images/nav1.jpg);
 }
 
+.dropdown-menu{
+    background-color: 	#2F4F4F;
 
-/*.dropdown-menu{
-    text-align: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image:url(../img/images/nav1.jpg);
-}*/
-
+}
 body {
     padding-top: 70px;
     width: 100%;
@@ -145,7 +135,7 @@ body {
 .navbar-brand{
     color: black;
 }
-/*#logo{
+#logo{
     margin-right: 5px;
     margin-left: 5px;
     padding-right: 70px;
@@ -156,9 +146,54 @@ body {
     background-position: bottom;
     background-image: url(../img/images/logo.png);
 
-}*/
+}
+/*---------------------------------------------------
+    SEARCH FILTER STYLE
+-----------------------------------------------------*/
 
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 6px 20px;
 
+}
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -1px;
+}
+.btn-group .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+    color: black;
+}
+.form-group .form-control:last-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 300px;
+        margin-top: 5%;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 300px;
+
+    }
+}
 
 /*---------------------------------------------------
     SCROLL TO-TOP STYLE

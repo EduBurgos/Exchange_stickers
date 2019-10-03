@@ -17,8 +17,7 @@ public class Exchange {
         this.id_user = id_user;
         this.id_card_owm = id_card_owm;
         this.id_card_wanted = id_card_wanted;
-        //TODO ask edu what's this one
-        //this.id_user_offerta=null;
+        this.id_user_offerta= 0;
         this.trans_comp=false;
     }
     public Exchange(int id_trans, int id_user, int[] id_card_owm, int[] id_card_wanted, boolean trans_comp,int id_user_offerta) {
