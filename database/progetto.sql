@@ -27,7 +27,7 @@ CREATE TABLE accesses(
 
                       ID_User int NOT NULL ,
                       gifted boolean,
-                      PRIAMARY KEY (ID_User),
+                      PRIMARY KEY (ID_User),
                       FOREIGN KEY (ID_User) REFERENCES users(ID)
 
 );

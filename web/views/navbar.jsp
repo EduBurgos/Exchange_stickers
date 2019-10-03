@@ -22,7 +22,8 @@ it is included in each page of the application -->
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ><strong>Caporetto Team!</strong></a>
+                <!--a class="navbar-brand" ><strong>Caporetto Team!</strong></a>-->
+                <a class="navbar-brand"id="logo"></a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,16 +38,45 @@ it is included in each page of the application -->
                     </li>
 
                 </ul>
-                <form class="navbar-form navbar-left" action="../homepage" method="get" name="search-frm" id="search_frm">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Cards">
-                        <!------  <input class="form-control mr-sm-2" type="text" placeholder="Search Cards "> -------->
-
+                <!---SEARCH WITH FILTERS--->
+                <div class="row1">
+                    <div class="col-sm-3">
+                        <div class="input-group" id="adv-search">
+                            <input type="text" class="form-control" placeholder="Search Card..." />
+                            <div class="input-group-btn">
+                                <div class="btn-group" role="group">
+                                    <div class="dropdown dropdown-lg">
+                                        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ><span class="glyphicon glyphicon-filter" >&nbsp;</span><span class="caret" >&nbsp;</span></button>
+                                        <div class="dropdown-menu dropdown-menu-right" role="menu" id="menuS">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label >Category</label>
+                                                    <select class="form-control">
+                                                        <option value="0" selected>------------></option>
+                                                        <option value="1">Hearthstone</option>
+                                                        <option value="2">Pokemon</option>
+                                                        <option value="3">Yu-Gi-Oh!</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> Card Class</label>
+                                                    <input class="form-control" type="text" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Card Type</label>
+                                                    <input class="form-control" type="text" />
+                                                </div>
+                                                <button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <button id="searchBtn1" type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span> </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div> <!--- END SEARCH WITH FILTERS--->
 
-                    <button type="submit" class="btn btn-success active">Search</button>
-
-                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#">
@@ -60,7 +90,7 @@ it is included in each page of the application -->
                             <i class="fa fa-user-circle-o"></i>
                             <strong> Account </strong> <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="menuP">
                             <li><a href="../views/userprofile.jsp" ><strong> Profile</strong></a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="../views/login.jsp"><i class="glyphicon glyphicon-log-out"></i><strong> Logout </strong></a></li>
@@ -96,6 +126,10 @@ it is included in each page of the application -->
         document.documentElement.scrollTop = 0;
     }
 </script>
+
+<!-----SCRIPT OF THE SEARCH WITH FILTERS----->
+
+
 
 </body>
 </html>
