@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @WebServlet(name = "servlets.HomePageServlet", urlPatterns = "/exchange")
@@ -26,8 +27,11 @@ public class ExchangeServlet extends AbstractServlet {
 
         //prendere gli id delle carte da scambiare
         try {
-            String cardsToTake[] = request.getParameterValues("CardsToTakeArray");
-            String cardsToGive[] = request.getParameterValues("CardsToGiveArray");
+            String[] cardsToTake = request.getParameterValues("cardsToTake");
+            /*for(int i=0; i<cardsToTake.length; i++){
+                System.out.println(cardsToTake[i]);
+            }*/
+            String cardsToGive[] = request.getParameterValues("cardsToGive");
             System.out.println(Arrays.toString(cardsToTake));
             System.out.println(Arrays.toString(cardsToGive));
 

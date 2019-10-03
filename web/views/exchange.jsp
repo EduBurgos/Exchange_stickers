@@ -27,34 +27,38 @@
     <jsp:include page="navbar.jsp"/>
 
 <div id="tot">
-    <form action="../exchange"  method="POST">
+    <form action="../exchange"  method="POST" id="myForm">
     <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
 
         <div class="leftbox">
-            <script>var CardsToGiveArray = []</script>
+            <script>var CardsToGiveArray = new Array()</script>
                 <div style="overflow: auto; width: 100%; height: 100%">
                         <%for(Card entry : c.getCardsOwn()){%>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>)">
+                        <input onclick="" value="<%=entry.getId()%>">
                                 <img id="catlogim" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        </input>
                     </div>
                         <%}%>
             </div>
     </div>
 
         <div class="rightbox">
-            <script>var CardsToTakeArray = []</script>
+            <script>var CardsToTakeArray = new Array()</script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%>)">
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> )">
+                    <input onclick="" value="<%=u.getId()%>">
                     <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    </input>
                 </div>
                 <%}%>
             </div>
         </div>
     </div>
     <div id="start" >
-            <button  type="Submit" class="btn" id="startbutton" >AVVIA TRATTATIVA</button>
+            <button  type="Submit" class="btn" id="startbutton" onclick="startExchange(CardsToGiveArray, CardsToTakeArray)">AVVIA TRATTATIVA</button>
     </div>
     </form>
 
@@ -80,7 +84,24 @@
         var pos = array.indexOf(card);
         array.splice(pos, 1);
     }
+    
+    function startExchange(array1, array2) {
+        array1.forEach(addValue1ToArray);
+        array2.forEach(addValue2ToArray);
+        document.getElementById("myForm").submit();
+    }
 
+    function addValue1ToArray(item, index, arr) {
+        arr[index] = item.setAttribute("name=\"cardToGive\"");
+    }
+
+    function addValue2ToArray(item, index, arr) {
+        arr[index] = item.setAttribute("name=\"cardToTake\"");
+    }
+
+    function addAttr(x) {
+        document.getElementById("")
+    }
 
 
 </script>
