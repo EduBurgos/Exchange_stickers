@@ -6,9 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="exangeCardDao create modifica">
+    <list default="true" id="a10015e2-887d-4816-8a46-37947bddc57e" name="Default Changelist" comment="delete query + on cascade&#10;&#10;TO DO :&#10;TRANSACTION ON CREATE AND DELETE QUERY">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/progetto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/progetto.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,12 +69,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="29" column="91" selection-start-line="29" selection-start-column="91" selection-end-line="29" selection-end-column="91" />
+            <state relative-caret-position="282">
+              <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
               <folding>
+                <element signature="method#create#0;class#ExchangeCardDAOImpl#0" />
                 <element signature="method#marketExchange#0;class#ExchangeCardDAOImpl#0" />
                 <element signature="method#getExchange#0;class#ExchangeCardDAOImpl#0" />
                 <element signature="method#getAllExchange#0;class#ExchangeCardDAOImpl#0" />
+                <element signature="method#delete#0;class#ExchangeCardDAOImpl#0" />
+                <element signature="method#view_catalog#0;class#ExchangeCardDAOImpl#0" />
               </folding>
             </state>
           </provider>
@@ -533,7 +535,7 @@
       <workItem from="1570004897429" duration="5426000" />
       <workItem from="1570046515741" duration="206000" />
       <workItem from="1570116234311" duration="3209000" />
-      <workItem from="1570182847818" duration="1627000" />
+      <workItem from="1570182847818" duration="2183000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -703,11 +705,18 @@
       <option name="project" value="LOCAL" />
       <updated>1570120670027</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="delete query + on cascade&#10;&#10;TO DO :&#10;TRANSACTION ON CREATE AND DELETE QUERY">
+      <created>1570184629077</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1570184629078</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11550000" />
+    <option name="totallyTimeSpent" value="12106000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -722,7 +731,7 @@
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29127517" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29127517" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -743,7 +752,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="14" weight="0.3297587" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -827,7 +836,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Revisione database" />
     <MESSAGE value="added mapp to CollectionOwn" />
     <MESSAGE value="modifiche userprofile" />
     <MESSAGE value="Verifica funzionamento userprofile" />
@@ -852,14 +860,15 @@
     <MESSAGE value="cambio db" />
     <MESSAGE value="exangeCardDao create modifica" />
     <MESSAGE value="exchangeDao getEx metodo + query modificate" />
-    <option name="LAST_COMMIT_MESSAGE" value="exchangeDao getEx metodo + query modificate" />
+    <MESSAGE value="delete query + on cascade&#10;&#10;TO DO :&#10;TRANSACTION ON CREATE AND DELETE QUERY" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete query + on cascade&#10;&#10;TO DO :&#10;TRANSACTION ON CREATE AND DELETE QUERY" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java</url>
-          <line>35</line>
+          <line>36</line>
           <properties class="dao.ExchangeCardDAOImpl" method="create">
             <option name="EMULATED" value="true" />
           </properties>
@@ -867,7 +876,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java</url>
-          <line>145</line>
+          <line>146</line>
           <properties class="dao.ExchangeCardDAOImpl" method="getExchange">
             <option name="EMULATED" value="true" />
           </properties>
@@ -984,12 +993,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="29" column="91" selection-start-line="29" selection-start-column="91" selection-end-line="29" selection-end-column="91" />
+        <state relative-caret-position="282">
+          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
           <folding>
+            <element signature="method#create#0;class#ExchangeCardDAOImpl#0" />
             <element signature="method#marketExchange#0;class#ExchangeCardDAOImpl#0" />
             <element signature="method#getExchange#0;class#ExchangeCardDAOImpl#0" />
             <element signature="method#getAllExchange#0;class#ExchangeCardDAOImpl#0" />
+            <element signature="method#delete#0;class#ExchangeCardDAOImpl#0" />
+            <element signature="method#view_catalog#0;class#ExchangeCardDAOImpl#0" />
           </folding>
         </state>
       </provider>

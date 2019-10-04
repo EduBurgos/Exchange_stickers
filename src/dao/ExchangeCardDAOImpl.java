@@ -27,10 +27,13 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String get_cardWanted="select card_wanted.cardId as card_wanted from card_wanted where Id_trans=?";
     private static final String get_all_exchange ="select * from exchanges";
 
-    private static final String delete_exchange = "delete from exchanges where id_trans = ?";
+    private static final String delete_exchange = "start transaction;" +
+                                                        "delete from exchanges where id_trans=?" +
+                                                    "rollback;" +
+                                                    "commit;";
 
 
-    private static final String view_catalog = "select * from catalog";
+    //private static final String view_catalog = "select * from catalog";
 
     @Override
     public void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException {
@@ -193,7 +196,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
     }
 
-    /**Retrun all Exchanges*/
+    /**Retrun all Exchanges da rifare
     @Override
     public ArrayList<Exchange> getAllExchange() throws SQLException {
         conn=null;
@@ -206,8 +209,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             ArrayList<Exchange> allExchange = new ArrayList<>();
 
             while (result.next() && result != null) {
-                int[] cardown = toInts(result.getBytes("id_card_owm"));
-                int[] cardwanted = toInts(result.getBytes("id_card_wanted"));
+
+
                 allExchange.add(new Exchange(result.getInt("id_trans"), result.getInt("id_user"), cardown, cardwanted, false));
                 System.out.println("cardown = "+ Arrays.toString(cardown));
                 System.out.println("cardwanted = "+ Arrays.toString(cardwanted));
@@ -234,7 +237,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
         return null;
-    }
+    } */
 
     @Override
     public void delete(int id_trans) throws SQLException {
@@ -265,7 +268,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
     }
 
-    public void view_catalog(){
+    @Override
+    public ArrayList<Exchange> getAllExchange() throws SQLException {
+        return null;
+    }
+
+    /*public void view_catalog(){
         conn = null;
         try {
             conn = connector.createConnection();
@@ -290,40 +298,5 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cse.printStackTrace();
             }
         }
-    }
-
-
-
-
-
-    /**
-     * Combert int to bytes
-     */
-    private byte[] tobytes(int[] cardsId) {
-        byte[] joined_bytes = new byte[20]; // 5 ints
-        for (int i = 0; i < 5; i++) {
-            int c = cardsId[i];
-            for (int j = 0; j < 4; j++) {
-                joined_bytes[j + 4 * i] = (byte) c;
-                c = c >> 8;
-            }
-        }
-        return joined_bytes;
-    }
-
-    /**
-     * Combert bytes to int
-     */
-    private int[] toInts(byte[] cardsBlob) {
-        int[] cardIds = new int[5];
-        for (int i = 0; i < 5; i++) {
-            int itemp = 0;
-            for (int j = 0; j < 4; j++) {
-                itemp = itemp << 8;
-                itemp += cardsBlob[3 - j + 4 * i] & 0xFF;
-            }
-            cardIds[i] = itemp;
-        }
-        return cardIds;
-    }
+    }*/
 }
