@@ -56,24 +56,26 @@ CREATE TABLE collections(
 
 create table exchanges(
                          id_trans INT not null auto_increment,
-                         id_user int,
+                         id_user int not null ,
                          trans_comp boolean,
                          primary key (id_trans)
 );
 
 create table Cards_own(
                         Id_trans INT not null,
-                        cardId  int,
+                        cardId  int not null ,
                         primary key (Id_trans,cardId),
                         foreign key (cardId) references collections(ID_Card),
                         foreign key(Id_trans) references exchanges(id_trans)
+                        ON DELETE CASCADE
 );
 create table Cards_wanted(
                           Id_trans INT not null,
-                          cardId  int,
+                          cardId  int not null ,
                           primary key (Id_trans,cardId),
                           foreign key (cardId) references collections(ID_Card),
                           foreign key(Id_trans) references exchanges(id_trans)
+                          ON DELETE cascade
 );
 
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto Della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');

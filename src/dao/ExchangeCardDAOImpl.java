@@ -29,6 +29,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     private static final String delete_exchange = "delete from exchanges where id_trans = ?";
 
+
     private static final String view_catalog = "select * from catalog";
 
     @Override
