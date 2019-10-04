@@ -87,8 +87,8 @@ public class SignUpServlet extends AbstractServlet {
                 }
 
             }
-            else {
-                request.getSession().setAttribute("message", "Something went wrong!");
+            else{
+                request.getSession().setAttribute("message", "Sign up failed!");
                 forwardTo(request, response, INDEX_ROUTE);
             }
         } catch(SQLException e){

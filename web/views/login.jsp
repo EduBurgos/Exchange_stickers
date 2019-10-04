@@ -68,14 +68,15 @@
                             <label>
                                 Email<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                             </label>
-                            <input type="text" required autocomplete="on" name="Email"/>
+                            <input type="text" required autocomplete="on" name="Email" id="email" onkeydown="validate(this.value);"/>
+                            <span id='emailmessage'></span>
                         </div>
 
                         <div class="field-wrap">
                             <label>
                                 Password<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
                             </label>
-                            <input type="password" required autocomplete="off" name="Password"/>
+                            <input type="password" required autocomplete="off" name="Password" id="newpassword" onkeyup='check();' />
 
                         </div>
 
@@ -83,7 +84,8 @@
                             <label>
                                 Re-Type Password<span class="req">*</span>
                             </label>
-                            <input type="password" required autocomplete="off" name="ReType"/>
+                            <input type="password" required autocomplete="off" name="ReType" id="confirm_password"  onkeyup='check();'/>
+                            <span id='message'></span>
                         </div>
 
                         <button type="submit" class="button button-block"/>Get Started</button>
@@ -91,6 +93,38 @@
                         <%if (request.getParameter("Get Started") != null){
 
                         }%>
+
+                        <script>
+                            var check = function() {
+                                if (document.getElementById('newpassword').value!=document.getElementById('confirm_password').value) {
+                                    document.getElementById('message').style.color = 'red';
+                                    document.getElementById('message').style.fontWeight= 'bold';
+                                    document.getElementById('message').innerHTML = 'not matching';
+                                }
+                                else{
+                                    document.getElementById('message').innerHTML = '';
+                                }
+                            };
+
+
+
+                            var regex = /^([A-z0-9.+_-]+)*@([A-z0-9._-]+\.)+([A-z]{2,6})$/;
+                            var emailMessage= document.getElementById("emailmessage");
+                            function validate(email){
+                                if(!regex.test(email))
+                                {
+                                    emailMessage.innerHTML	= "Not a valid email";
+                                    emailMessage.style.color = "red";
+                                    emailMessage.style.fontWeight= 'bold';
+                                }
+                                else
+                                {
+                                    emailMessage.innerHTML	= "";
+
+                                }
+                            }
+                        </script>
+
 
                         <% if(request.getSession().getAttribute("message")!=null){ %>
                         <h3><%=request.getSession().getAttribute("message") %></h3>
