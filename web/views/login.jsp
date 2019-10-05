@@ -88,7 +88,7 @@
                             <span id='message'></span>
                         </div>
 
-                        <button type="submit" class="button button-block"/>Get Started</button>
+                        <button type="submit" class="button button-block" id="startedButton"/>Get Started</button>
 
                         <%if (request.getParameter("Get Started") != null){
 
@@ -96,16 +96,18 @@
 
                         <script>
                             var check = function() {
+                                var message=document.getElementById('message');
                                 if (document.getElementById('newpassword').value!=document.getElementById('confirm_password').value) {
-                                    document.getElementById('message').style.color = 'red';
-                                    document.getElementById('message').style.fontWeight= 'bold';
-                                    document.getElementById('message').innerHTML = 'not matching';
+                                    message.style.color = 'red';
+                                    message.style.fontWeight= 'bold';
+                                    message.innerHTML = 'not matching';
+                                    document.getElementById('startedButton').disabled=true;
                                 }
                                 else{
-                                    document.getElementById('message').innerHTML = '';
+                                  message.innerHTML = '';
+                                  document.getElementById('startedButton').disabled=false;
                                 }
                             };
-
 
 
                             var regex = /^([A-z0-9.+_-]+)*@([A-z0-9._-]+\.)+([A-z]{2,6})$/;
@@ -113,16 +115,18 @@
                             function validate(email){
                                 if(!regex.test(email))
                                 {
-                                    emailMessage.innerHTML	= "Not a valid email";
+                                    emailMessage.innerHTML	= "not a valid email";
                                     emailMessage.style.color = "red";
                                     emailMessage.style.fontWeight= 'bold';
+                                    document.getElementById('startedButton').disabled=true;
                                 }
                                 else
                                 {
                                     emailMessage.innerHTML	= "";
-
+                                    document.getElementById('startedButton').disabled=false;
                                 }
                             }
+
                         </script>
 
 
