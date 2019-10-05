@@ -206,8 +206,7 @@ public class CardsDaoImpl implements CardsDao {
                         result.getString(5),
                         result.getString(6),
                         result.getString(7),
-                        result.getString(8),
-                        result.getInt(9));
+                        result.getString(8));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -247,8 +246,7 @@ public ArrayList<Card> findAllGeneric() throws SQLException {
                             result.getString("Rarity"),
                             result.getString("CardType"),
                             result.getString("CardName"),
-                            result.getString("CardDescription"),
-                            0));
+                            result.getString("CardDescription")));
 
             }
         }catch (SQLException e) {

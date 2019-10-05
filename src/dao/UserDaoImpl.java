@@ -367,8 +367,7 @@ public class UserDaoImpl implements UserDao {
                         result.getString("Rarity"),
                         result.getString("CardType"),
                         result.getString("CardName"),
-                        result.getString("CardDescription"),
-                        result.getInt("IDCardColl"));
+                        result.getString("CardDescription"));
                 c.add(card);
                 //to do: farla diventare mappa con quantità
                 //cards.put(card,result.getInt(9));

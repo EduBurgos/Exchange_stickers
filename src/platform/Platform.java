@@ -178,7 +178,7 @@ public class Platform {
      * @throws SQLException
      */
     public void setExchange(int idTrans, int idUser, int[] idCardOwn, int[] idCardWanted, boolean transComp) throws SQLException {
-        Exchange exchange = new Exchange(idTrans, idUser, idCardOwn, idCardWanted, transComp);
+        Exchange exchange = new Exchange(idTrans, idUser, idCardOwn, idCardWanted);
         ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
         UserDaoImpl userDaoImpl = new UserDaoImpl();
         User user = userDaoImpl.findById(idUser);

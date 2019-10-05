@@ -87,21 +87,19 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     }
 
     @Override
-    public boolean marketExchange(Exchange exchangeCard, User user, ArrayList<Card> cards) {
+    public boolean marketExchange(Exchange exchangeCard, User user, ArrayList<Card> cardsmarket) {
+        return false;
+    }
+
+
+    /* public boolean marketExchange(Exchange exchangeCard, User user, ArrayList<Card> cards) {
         conn = null;
 
-        String options ="(";
 
-        for (Card c: cards){
-            if (c.getIdColl() == 0) break;
-            options = options+c.getIdColl()+",";
-        }
-        options = options.substring(0, options.length()-1);
-        options = options+");";
 
         String query1 = remove_card_buyer+options;
 
-        /**c is int because we interting only idcardcoll*/
+
         for (int c: exchangeCard.getId_card_owm()){
             if (c == 0) break;
             options = options+c+",";
@@ -142,7 +140,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
         return false;
-    }
+    } */
 
     /**Retrun a exchange*/
     @Override
@@ -173,7 +171,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cardwanted[counter] = result.getInt("card_wanted");
                 counter++;
             }
-            return new Exchange(id_trans, result.getInt("id_user"), cardown, cardwanted, result.getBoolean("trans_comp"));
+            return new Exchange(id_trans, result.getInt("id_user"), cardown,cardwanted, result.getBoolean("trans_comp"),result.getInt("id_user_offer"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

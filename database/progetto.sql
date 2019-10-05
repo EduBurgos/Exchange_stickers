@@ -12,23 +12,22 @@ unique(Class, Rarity, CardName, CardType)
 
 
 CREATE TABLE users(
-    ID INT NOT NULL auto_increment,
     Username VARCHAR(32) NOT NULL ,
     NameUser VARCHAR(32) NOT NULL,
     Surname VARCHAR(32) NOT NULL,
     Mail VARCHAR(64) NOT NULL,
     pass VARCHAR(64) NOT NULL,
-    PRIMARY KEY (ID)
+    PRIMARY KEY (Username)
 );
 
 
 
 CREATE TABLE accesses(
 
-                      ID_User int NOT NULL ,
+                      Username int NOT NULL ,
                       gifted boolean,
-                      PRIMARY KEY (ID_User),
-                      FOREIGN KEY (ID_User) REFERENCES users(ID)
+                      PRIMARY KEY (Username),
+                      FOREIGN KEY (Username) REFERENCES users(Username)
 
 );
 
@@ -45,20 +44,23 @@ CREATE EVENT cancelGifted
         accesses;
 
 CREATE TABLE collections(
-    IDCardColl INT not null auto_increment,
     ID_Card int not null ,
-    ID_User int not null ,
+    USERNAME VARCHAR(32) not null ,
     In_Market boolean,
-    primary key (ID_Card,ID_User),
-    FOREIGN KEY (ID_User) REFERENCES Users(ID),
+    primary key (ID_Card,USERNAME),
+    FOREIGN KEY (USERNAME) REFERENCES Users(Username),
     FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 
 create table exchanges(
                          id_trans INT not null auto_increment,
-                         id_user int not null ,
+                         username VARCHAR(32) NOT NULL ,
+                         username_offer VARCHAR(32) NOT NULL ,
                          trans_comp boolean,
-                         primary key (id_trans)
+                         primary key (id_trans),
+                         foreign key(username) references users(username),
+                         foreign key(username_offer) references users(username)
+
 );
 
 create table Cards_own(
@@ -500,58 +502,54 @@ INSERT INTO catalog VALUES(155,'Yu-Gi-Oh!','Luce',0,'Rara','Mostro','Venere Sple
                                                                                         L''attivazione e gli effetti delle Carte Magia/Trappola attivate sul tuo Terreno non possono essere annullate.');
 
 
-INSERT INTO users VALUES(ID, 'Obe','Edu', 'Bur', 'edu@hotmail.it','1234');
-INSERT INTO users VALUES(ID, 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
-INSERT INTO users VALUES(ID, 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
-INSERT INTO users VALUES(ID, 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');
-INSERT INTO users VALUES(ID, 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234' );
-INSERT INTO users VALUES(ID, 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', '1234');
-INSERT INTO users VALUES(ID, 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234');
-INSERT INTO users VALUES(ID, 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
-INSERT INTO users VALUES(ID, 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
-INSERT INTO users VALUES(ID, 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
+INSERT INTO users VALUES('Obe','Edu', 'Bur', 'edu@hotmail.it','1234');
+INSERT INTO users VALUES( 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
+INSERT INTO users VALUES( 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
+INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');
+INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234' );
+INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', '1234');
+INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234');
+INSERT INTO users VALUES( 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
+INSERT INTO users VALUES( 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
+INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
 
 
 
 /*Obe*/
-INSERT INTO collections VALUES(IDCardColl ,1 ,1 ,false);
-INSERT INTO collections VALUES(IDCardColl ,2 ,1 ,false);
-INSERT INTO collections VALUES(IDCardColl ,3 ,1 ,false);
-INSERT INTO collections VALUES(IDCardColl ,4 ,1 ,false);
-INSERT INTO collections VALUES(IDCardColl ,5 ,1 ,false);
-INSERT INTO collections VALUES(IDCardColl ,5 ,1 ,false);
+INSERT INTO collections VALUES(1 ,'Obe',false);
+INSERT INTO collections VALUES(2 ,'Obe' ,false);
+INSERT INTO collections VALUES(3 ,'Obe',false);
+INSERT INTO collections VALUES(4 ,'Obe',false);
+INSERT INTO collections VALUES(5 ,'Obe',false);
 
 /*Sau*/
-INSERT INTO collections VALUES(IDCardColl ,6 ,2 ,false);
-INSERT INTO collections VALUES(IDCardColl ,7 ,2 ,false);
-INSERT INTO collections VALUES(IDCardColl ,8 ,2 ,false);
-INSERT INTO collections VALUES(IDCardColl ,9 ,2 ,false);
-INSERT INTO collections VALUES(IDCardColl ,9 ,2 ,false);
-INSERT INTO collections VALUES(IDCardColl ,10 ,2 ,false);
+INSERT INTO collections VALUES(6 ,'Sau',false);
+INSERT INTO collections VALUES(7 ,'Sau',false);
+INSERT INTO collections VALUES(8 ,'Sau',false);
+INSERT INTO collections VALUES(9 ,'Sau',false);
+INSERT INTO collections VALUES(10 ,'Sau',false);
 
 /*Zay*/
-INSERT INTO collections VALUES(IDCardColl ,10 ,3 ,false);
-INSERT INTO collections VALUES(IDCardColl ,11 ,3 ,false);
-INSERT INTO collections VALUES(IDCardColl ,11 ,3 ,false);
-INSERT INTO collections VALUES(IDCardColl ,12 ,3 ,false);
-INSERT INTO collections VALUES(IDCardColl ,13 ,3 ,false);
-INSERT INTO collections VALUES(IDCardColl ,14 ,3 ,false);
+INSERT INTO collections VALUES(10 ,'Zay',false);
+INSERT INTO collections VALUES(11 ,'Zay',false);
+INSERT INTO collections VALUES(12 ,'Zay',false);
+INSERT INTO collections VALUES(13 ,'Zay',false);
+INSERT INTO collections VALUES(14 ,'Zay',false);
 
 /*elge*/
-INSERT INTO collections VALUES(IDCardColl ,14 ,4 ,false);
-INSERT INTO collections VALUES(IDCardColl ,14 ,4 ,false);
-INSERT INTO collections VALUES(IDCardColl ,50 ,4 ,false);
-INSERT INTO collections VALUES(IDCardColl ,55 ,4 ,false);
-INSERT INTO collections VALUES(IDCardColl ,33 ,4 ,false);
-INSERT INTO collections VALUES(IDCardColl ,20 ,4 ,false);
+INSERT INTO collections VALUES(14 ,'elge',false);
+INSERT INTO collections VALUES(50 ,'elge',false);
+INSERT INTO collections VALUES(55 ,'elge',false);
+INSERT INTO collections VALUES(33 ,'elge',false);
+INSERT INTO collections VALUES(20 ,'elge',false);
 
 /*Pol*/
-INSERT INTO collections VALUES(IDCardColl ,100 ,5 ,false);
-INSERT INTO collections VALUES(IDCardColl ,90 ,5 ,false);
-INSERT INTO collections VALUES(IDCardColl ,30 ,5 ,false);
-INSERT INTO collections VALUES(IDCardColl ,45 ,5 ,false);
-INSERT INTO collections VALUES(IDCardColl ,19 ,5 ,false);
-INSERT INTO collections VALUES(IDCardColl ,15 ,5 ,false);
-INSERT INTO collections VALUES(IDCardColl ,5 ,5 ,false);
+INSERT INTO collections VALUES(100 ,'Pol',false);
+INSERT INTO collections VALUES(90 ,'Pol',false);
+INSERT INTO collections VALUES(30 ,'Pol',false);
+INSERT INTO collections VALUES(45 ,'Pol',false);
+INSERT INTO collections VALUES(19 ,'Pol',false);
+INSERT INTO collections VALUES(15 ,'Pol',false);
+INSERT INTO collections VALUES(5 ,'Pol',false);
 
 
