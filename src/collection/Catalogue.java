@@ -1,9 +1,5 @@
 package collection;
 
-
-
-
-
 import dao.MySQLDAOFactory;
 import userSide.User;
 
@@ -32,6 +28,7 @@ public class Catalogue
     public ArrayList<Card> getCarte() {
         return carte;
     }
+
 
     /** Given the ID card the card is added to collection
      * @see Card
