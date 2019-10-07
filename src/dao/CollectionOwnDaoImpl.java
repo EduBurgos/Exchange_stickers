@@ -14,7 +14,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     /**
      * query used to select an exchange in DB
      */
-    private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) Username = ?)";
+    private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) AND Username = ?";
 
     private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username, In_Market)"+"VALUES";
 
