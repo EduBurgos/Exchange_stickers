@@ -19,7 +19,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String insert_cardown_query = "insert into cards_own values (?,?)";
     private static final String insert_cardWanted_query = "insert into cards_wanted values (?,?)";
 
-    private static final String remove_card_buyer = "update collections set id_user = (select ID from users where Username = ? ) where IDCardColl in ";
+    private static final String  switchpeople = "update collections username = ? WHERE idCard=?";
     private static final String remove_card_seller = "update collections set In_Market = false, id_user = (select ID_User from exchange where id_trans = ?) where IDCardColl in ";
     private static final String flag_complete ="update exchanges set trans_comp = true where id_trans = ? ";
 
@@ -92,23 +92,29 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     }
 
 
-    /* public boolean marketExchange(Exchange exchangeCard, User user, ArrayList<Card> cards) {
+    /* public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
 
 
 
         String query1 = remove_card_buyer+options;
-
-
-        for (int c: exchangeCard.getId_card_owm()){
+        for (String c: exchangeCard.getUsername()){
             if (c == 0) break;
             options = options+c+",";
         }
         options = options.substring(0, options.length()-1);
         options = options+");";
+        for (String c: exchangeCard.getUsername_offerente()){
+            if (c == 0) break;
+            options = options+c+",";
+        }
+        options2 = options2.substring(0, options2.length()-1);
+        options2= options2+");";
+        String query2 = remove_card_buyer+options2;
 
-        String query2 = remove_card_seller+options;
+
         String query3 = flag_complete;
+
 
         String queryComplete = query1+query2+query3;
         try{
@@ -171,7 +177,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cardwanted[counter] = result.getInt("card_wanted");
                 counter++;
             }
-            return new Exchange(id_trans, result.getInt("id_user"), cardown,cardwanted, result.getBoolean("trans_comp"),result.getInt("id_user_offer"));
+            return new Exchange(id_trans, result.getString("username"), cardown,cardwanted, result.getBoolean("trans_comp"),result.getString("username_offer"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
