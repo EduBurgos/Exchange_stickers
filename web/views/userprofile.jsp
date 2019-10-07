@@ -83,7 +83,7 @@
                 %>
             </div>
 
-            <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI
+            <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
 
                 <div role="tabpanel" class="tab-pane" id="exchangeables">
 
@@ -91,11 +91,11 @@
 
                         <label for="nickname">Nickname</label>
                         <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">
-                        --><!--TASTO CERCA
+                        <!--TASTO CERCA -->
                         <input type="submit" value="Search">
                     </form>
 
-                </div> -->
+                </div>
             </div>
 
         </div>
