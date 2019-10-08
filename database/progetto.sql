@@ -1,34 +1,33 @@
 CREATE TABLE catalog(
-ID int PRIMARY KEY,
-Category VARCHAR(32) NOT NULL,
-Class VARCHAR(32) NOT NULL,
-Lvl NUMERIC(8) NOT NULL,
-Rarity VARCHAR(16) NOT NULL,
-CardType VARCHAR(32),
-CardName VARCHAR(128) NOT NULL,
-CardDescription VARCHAR(10000) NOT NULL,
-unique(Class, Rarity, CardName, CardType)
+                        ID int PRIMARY KEY,
+                        Category VARCHAR(32) NOT NULL,
+                        Class VARCHAR(32) NOT NULL,
+                        Lvl NUMERIC(8) NOT NULL,
+                        Rarity VARCHAR(16) NOT NULL,
+                        CardType VARCHAR(32),
+                        CardName VARCHAR(128) NOT NULL,
+                        CardDescription VARCHAR(10000) NOT NULL,
+                        unique(Class, Rarity, CardName, CardType)
 );
 
 
 CREATE TABLE users(
-    ID INT NOT NULL auto_increment,
-    Username VARCHAR(32) NOT NULL ,
-    NameUser VARCHAR(32) NOT NULL,
-    Surname VARCHAR(32) NOT NULL,
-    Mail VARCHAR(64) NOT NULL,
-    pass VARCHAR(64) NOT NULL,
-    PRIMARY KEY (ID)
+                      Username VARCHAR(32) NOT NULL ,
+                      NameUser VARCHAR(32) NOT NULL,
+                      Surname VARCHAR(32) NOT NULL,
+                      Mail VARCHAR(64) NOT NULL,
+                      pass VARCHAR(64) NOT NULL,
+                      PRIMARY KEY (Username)
 );
 
 
 
 CREATE TABLE accesses(
 
-                      ID_User int NOT NULL ,
-                      gifted boolean,
-                      PRIMARY KEY (ID_User),
-                      FOREIGN KEY (ID_User) REFERENCES users(ID)
+                         Username VARCHAR(32) NOT NULL ,
+                         gifted boolean,
+                         PRIMARY KEY (Username),
+                         FOREIGN KEY (Username) REFERENCES users(Username)
 
 );
 
@@ -45,37 +44,40 @@ CREATE EVENT cancelGifted
         accesses;
 
 CREATE TABLE collections(
-    IDCardColl INT not null auto_increment,
-    ID_Card int not null ,
-    ID_User int not null ,
-    In_Market boolean,
-    primary key (ID_Card,ID_User),
-    FOREIGN KEY (ID_User) REFERENCES Users(ID),
-    FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
+                            ID_Card int not null ,
+                            USERNAME VARCHAR(32) not null ,
+                            In_Market boolean,
+                            primary key (ID_Card,USERNAME),
+                            FOREIGN KEY (USERNAME) REFERENCES Users(Username),
+                            FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 
 create table exchanges(
-                         id_trans INT not null auto_increment,
-                         id_user int not null ,
-                         trans_comp boolean,
-                         primary key (id_trans)
+                          id_trans INT not null auto_increment,
+                          username VARCHAR(32) NOT NULL ,
+                          username_offer VARCHAR(32) NOT NULL ,
+                          trans_comp boolean,
+                          primary key (id_trans),
+                          foreign key(username) references users(username),
+                          foreign key(username_offer) references users(username)
+
 );
 
 create table Cards_own(
-                        Id_trans INT not null,
-                        cardId  int not null ,
-                        primary key (Id_trans,cardId),
-                        foreign key (cardId) references collections(ID_Card),
-                        foreign key(Id_trans) references exchanges(id_trans)
-                        ON DELETE CASCADE
-);
-create table Cards_wanted(
                           Id_trans INT not null,
                           cardId  int not null ,
                           primary key (Id_trans,cardId),
                           foreign key (cardId) references collections(ID_Card),
                           foreign key(Id_trans) references exchanges(id_trans)
-                          ON DELETE cascade
+                              ON DELETE CASCADE
+);
+create table Cards_wanted(
+                             Id_trans INT not null,
+                             cardId  int not null ,
+                             primary key (Id_trans,cardId),
+                             foreign key (cardId) references collections(ID_Card),
+                             foreign key(Id_trans) references exchanges(id_trans)
+                                 ON DELETE cascade
 );
 
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto Della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');
@@ -500,26 +502,54 @@ INSERT INTO catalog VALUES(155,'Yu-Gi-Oh!','Luce',0,'Rara','Mostro','Venere Sple
                                                                                         L''attivazione e gli effetti delle Carte Magia/Trappola attivate sul tuo Terreno non possono essere annullate.');
 
 
-INSERT INTO users VALUES(ID, 'Obe','Edu', 'Bur', 'edu@hotmail.it','1234');  'GGkhr8q6bhBg1V0ZjUJyrg=='
-INSERT INTO users VALUES(ID, 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
-INSERT INTO users VALUES(ID, 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
-INSERT INTO users VALUES(ID, 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');
-INSERT INTO users VALUES(ID, 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234' );
-INSERT INTO users VALUES(ID, 'Lucy', 'Fede', 'Capu', 'lucy@gmail.com', '1234');
-INSERT INTO users VALUES(ID, 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234');
-INSERT INTO users VALUES(ID, 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
-INSERT INTO users VALUES(ID, 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
-INSERT INTO users VALUES(ID, 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
+INSERT INTO users VALUES('Obe','Edu', 'Bur', 'edu@hotmail.it','1234');
+INSERT INTO users VALUES( 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
+INSERT INTO users VALUES( 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
+INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');
+INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234' );
+INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', '1234');
+INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234');
+INSERT INTO users VALUES( 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
+INSERT INTO users VALUES( 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
+INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
 
 
 
 /*Obe*/
-INSERT INTO collections VALUES(IDCardColl ,1 ,1 ,false);
+INSERT INTO collections VALUES(1 ,'Obe',false);
+INSERT INTO collections VALUES(2 ,'Obe' ,false);
+INSERT INTO collections VALUES(3 ,'Obe',false);
+INSERT INTO collections VALUES(4 ,'Obe',false);
+INSERT INTO collections VALUES(5 ,'Obe',false);
 
+/*Sau*/
+INSERT INTO collections VALUES(6 ,'Sau',false);
+INSERT INTO collections VALUES(7 ,'Sau',false);
+INSERT INTO collections VALUES(8 ,'Sau',false);
+INSERT INTO collections VALUES(9 ,'Sau',false);
+INSERT INTO collections VALUES(10 ,'Sau',false);
 
+/*Zay*/
+INSERT INTO collections VALUES(10 ,'Zay',false);
+INSERT INTO collections VALUES(11 ,'Zay',false);
+INSERT INTO collections VALUES(12 ,'Zay',false);
+INSERT INTO collections VALUES(13 ,'Zay',false);
+INSERT INTO collections VALUES(14 ,'Zay',false);
 
+/*elge*/
+INSERT INTO collections VALUES(14 ,'elge',false);
+INSERT INTO collections VALUES(50 ,'elge',false);
+INSERT INTO collections VALUES(55 ,'elge',false);
+INSERT INTO collections VALUES(33 ,'elge',false);
+INSERT INTO collections VALUES(20 ,'elge',false);
 
-
-
+/*Pol*/
+INSERT INTO collections VALUES(100 ,'Pol',false);
+INSERT INTO collections VALUES(90 ,'Pol',false);
+INSERT INTO collections VALUES(30 ,'Pol',false);
+INSERT INTO collections VALUES(45 ,'Pol',false);
+INSERT INTO collections VALUES(19 ,'Pol',false);
+INSERT INTO collections VALUES(15 ,'Pol',false);
+INSERT INTO collections VALUES(5 ,'Pol',false);
 
 
