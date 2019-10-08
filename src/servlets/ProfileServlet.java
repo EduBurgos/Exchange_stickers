@@ -31,9 +31,10 @@ public class ProfileServlet extends AbstractServlet{
         try{
             CollectionOwn nickname = confirmNickname(request);
             ArrayList<Exchange> lista_market = Platform.getInstance().getExchange();
+            request.getSession().setAttribute("snitched",null);
 
             if(nickname != null){
-                request.getSession().setAttribute("logged",nickname);
+                request.getSession().setAttribute("snitched",nickname);
                 request.getSession().setAttribute("market", lista_market);
                 response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
             }
