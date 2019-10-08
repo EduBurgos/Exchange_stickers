@@ -77,18 +77,18 @@ public class SignUpServlet extends AbstractServlet {
         try{
             if (platform.SignUp(name, lastName, username, email, password, retype)) {
                 request.getSession().setAttribute("message", "You have successfully signed up!");
-                forwardTo(request, response, INDEX_ROUTE);
-
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
+                //passare da platform
                 User u = new User(name, lastName, username, email);
                 CollectionOwnDao cart = new CollectionOwnDaoImpl();
                 for(int i = 0; i<6; i++) {
                     cart.createRandomCard(u);
                 }
+                forwardTo(request, response, INDEX_ROUTE);
 
             }
             else{
-                request.getSession().setAttribute("message", "Sign up failed!");
+                request.getSession().setAttribute("message", "User already signed up");
                 forwardTo(request, response, INDEX_ROUTE);
             }
         } catch(SQLException e){

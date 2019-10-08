@@ -31,28 +31,38 @@
     <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
 
         <div class="leftbox">
-            <script>var CardsToGiveArray = new Array()</script>
+            <script>
+                var CardsToGiveArray = new Array();
+                var toGive = "cardsToGive";
+            </script>
                 <div style="overflow: auto; width: 100%; height: 100%">
                         <%for(Card entry : c.getCardsOwn()){%>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>)">
+
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)">
                         <input onclick="" value="<%=entry.getId()%>">
                                 <img id="catlogim" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                         </input>
                     </div>
+
                         <%}%>
             </div>
     </div>
 
         <div class="rightbox">
-            <script>var CardsToTakeArray = new Array()</script>
+            <script>
+                var CardsToTakeArray = new Array();
+                var toTake = "cardsToTake";
+            </script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> )">
+
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick=" chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
                     <input onclick="" value="<%=u.getId()%>">
                     <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                     </input>
                 </div>
+
                 <%}%>
             </div>
         </div>
@@ -63,26 +73,28 @@
     </form>
 
 <script>
-    function chooseCards(array, card){
+    function chooseCards(array, card, value){
         if(array.includes(card) == true){
             document.getElementById(card).style.filter = "opacity(100%)";
             removeFromArray(array, card);
             alert("a card is just removed, array:"+array);
         } else{
             document.getElementById(card).style.filter = "opacity(40%)";
-            addToArray(array, card);
+            addToArray(array, card, value);
             alert("a card is just added, array:"+array);
         }
 
     }
     // method to add an element selected to array, we will use it to create the arrays to pass to servlet(one for cards to send and the other to receive)
-    function addToArray(array, card){
+    function addToArray(array, card, value){
         array.push(card);
+        addAttr(value);
     }
 
     function removeFromArray(array, card){
         var pos = array.indexOf(card);
         array.splice(pos, 1);
+        addAttr("");
     }
     
     function startExchange(array1, array2) {
@@ -100,9 +112,13 @@
     }
 
     function addAttr(x) {
-        document.getElementById("")
+        var me = document.currentScript;
+        me.setAttribute("name", x);
     }
 
+    function passToTheDarkSide(){
+        document.getElementById(card).style.filter = "opacity(100%)";
+    }
 
 </script>
 </body>

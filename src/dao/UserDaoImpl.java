@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     private static final String PASSWORD_QUERY="SELECT Pass FROM users WHERE Username= ?";
 
-    private static final String FIND_BY_ID_QUERY = "SELECT * FROM users WHERE ID = ?";
+    private static final String FIND_BY_USERNAME_QUERY = "SELECT * FROM users WHERE username = ?";
 
     // private static final String  CHECK_UNIQ = "SELECT COUNT(Username) FROM users WHERE Username = ?";       //Verifica lesistenza del USERNAME del DB.
 
@@ -84,54 +84,6 @@ public class UserDaoImpl implements UserDao {
             }
         }
         return false;
-    }
-
-
-    /**
-     * Method that finds if the user is present in the database entering username
-     * @param username username of the user we want to know if they are signed up
-     * @return true if the user has been found, false if not
-     * @throws SQLException
-     * @throws Exception
-     */
-
-    @Override
-    public User findByUsername(String username) throws SQLException {
-        User user = null;
-        conn = null;
-        try {
-            conn=connector.createConnection();
-            preparedStatement = conn.prepareStatement(READ_QUERY);
-            preparedStatement.setString(1,username);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            if (result.next() && result != null) {
-                user = new User(result.getString("NameUser"),
-                        result.getString("Surname"),
-                        result.getString("Username"),
-                        result.getString("mail"));
-                user.setPass(result.getString("Pass"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return user;
     }
 
     /**
@@ -367,8 +319,7 @@ public class UserDaoImpl implements UserDao {
                         result.getString("Rarity"),
                         result.getString("CardType"),
                         result.getString("CardName"),
-                        result.getString("CardDescription"),
-                        result.getInt("IDCardColl"));
+                        result.getString("CardDescription"));
                 c.add(card);
                 //to do: farla diventare mappa con quantità
                 //cards.put(card,result.getInt(9));
@@ -381,13 +332,13 @@ public class UserDaoImpl implements UserDao {
         return getCollentionOwn(user);
     }
 
-    public User findById(int id) throws SQLException {
+    public User findByUsername(String username) throws SQLException {
         User user = null;
         conn = null;
         try {
             conn=connector.createConnection();
-            preparedStatement = conn.prepareStatement(FIND_BY_ID_QUERY);
-            preparedStatement.setInt(1,id);
+            preparedStatement = conn.prepareStatement(FIND_BY_USERNAME_QUERY);
+            preparedStatement.setString(1,username);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             if (result.next() && result != null) {

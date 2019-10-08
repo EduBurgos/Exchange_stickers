@@ -14,13 +14,13 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     /**
      * query used to select an exchange in DB
      */
-    private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?)";
+    private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) AND Username = ?";
 
-    private static final String INSERT_QUERY = "INSERT INTO collections (IDCardColl, ID_Card, ID_User, In_Market)"+"VALUES";
+    private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username, In_Market)"+"VALUES";
 
-    private static final String new_randow_card_for_new_user ="insert into collections values (IDCardColl, (select id from catalog order by rand() limit 1), (select id from users where username =?) ,false)";
+    private static final String new_randow_card_for_new_user ="insert into collections values (IDCardColl, (select id from catalog order by rand() limit 1), username = ?,false)";
 
-    private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?) order by IDCardColl desc limit 1";
+    private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE  Username = ? order by IDCardColl desc limit 1";
 
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
@@ -30,11 +30,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     ResultSet result = null;
 
 
-    public boolean insert(int id_card_coll, User user, Card card, boolean in_market) {
+    public boolean insert(User user, Card card, boolean in_market) {
         conn = null;
         try {
             conn = connector.createConnection();
-            String query2 = INSERT_QUERY + "("+id_card_coll+", "+user.getUsername()+", "+card.getId()+", "+in_market+")";
+            String query2 = INSERT_QUERY + "("+user.getUsername()+", "+card.getId()+", "+in_market+")";
             preparedStatement = conn.prepareStatement(query2);
             preparedStatement.execute();
             return true;
@@ -97,8 +97,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                         result.getString("Rarity"),
                         result.getString("CardType"),
                         result.getString("CardName"),
-                        result.getString("CardDescription"),
-                        result.getInt("IDCardColl"));
+                        result.getString("CardDescription"));
                 c.add(card);
                 //to do: farla diventare mappa con quantità
                 //cards.put(card,result.getInt(9));
@@ -143,8 +142,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                     result.getString("Rarity"),
                     result.getString("CardType"),
                     result.getString("CardName"),
-                    result.getString("CardDescription"),
-                    result.getInt("IDCardColl"));
+                    result.getString("CardDescription"));
             return card;
         }catch (SQLException e){
             return null;
