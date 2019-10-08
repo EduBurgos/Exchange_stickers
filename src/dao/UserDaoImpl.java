@@ -7,9 +7,10 @@ import userSide.User;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
-import java.security.*;
 
 public class UserDaoImpl implements UserDao {
+
+
 
     /** Query used to add a new user*/
     private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
@@ -51,7 +52,7 @@ public class UserDaoImpl implements UserDao {
         try {
             conn=connector.createConnection();
 
-            String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass.getBytes(StandardCharsets.UTF_8)+"')";
+            String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass+"')";
             preparedStatement = conn.prepareStatement(query /*,Statement.RETURN_GENERATED_KEYS*/);
 
             /*preparedStatement.setString(1, user.getUsername());

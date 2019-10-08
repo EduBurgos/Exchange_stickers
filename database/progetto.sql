@@ -1,33 +1,33 @@
 CREATE TABLE catalog(
-ID int PRIMARY KEY,
-Category VARCHAR(32) NOT NULL,
-Class VARCHAR(32) NOT NULL,
-Lvl NUMERIC(8) NOT NULL,
-Rarity VARCHAR(16) NOT NULL,
-CardType VARCHAR(32),
-CardName VARCHAR(128) NOT NULL,
-CardDescription VARCHAR(10000) NOT NULL,
-unique(Class, Rarity, CardName, CardType)
+                        ID int PRIMARY KEY,
+                        Category VARCHAR(32) NOT NULL,
+                        Class VARCHAR(32) NOT NULL,
+                        Lvl NUMERIC(8) NOT NULL,
+                        Rarity VARCHAR(16) NOT NULL,
+                        CardType VARCHAR(32),
+                        CardName VARCHAR(128) NOT NULL,
+                        CardDescription VARCHAR(10000) NOT NULL,
+                        unique(Class, Rarity, CardName, CardType)
 );
 
 
 CREATE TABLE users(
-    Username VARCHAR(32) NOT NULL ,
-    NameUser VARCHAR(32) NOT NULL,
-    Surname VARCHAR(32) NOT NULL,
-    Mail VARCHAR(64) NOT NULL,
-    pass VARCHAR(64) NOT NULL,
-    PRIMARY KEY (Username)
+                      Username VARCHAR(32) NOT NULL ,
+                      NameUser VARCHAR(32) NOT NULL,
+                      Surname VARCHAR(32) NOT NULL,
+                      Mail VARCHAR(64) NOT NULL,
+                      pass VARCHAR(64) NOT NULL,
+                      PRIMARY KEY (Username)
 );
 
 
 
 CREATE TABLE accesses(
 
-                      Username int NOT NULL ,
-                      gifted boolean,
-                      PRIMARY KEY (Username),
-                      FOREIGN KEY (Username) REFERENCES users(Username)
+                         Username VARCHAR(32) NOT NULL ,
+                         gifted boolean,
+                         PRIMARY KEY (Username),
+                         FOREIGN KEY (Username) REFERENCES users(Username)
 
 );
 
@@ -44,40 +44,40 @@ CREATE EVENT cancelGifted
         accesses;
 
 CREATE TABLE collections(
-    ID_Card int not null ,
-    USERNAME VARCHAR(32) not null ,
-    In_Market boolean,
-    primary key (ID_Card,USERNAME),
-    FOREIGN KEY (USERNAME) REFERENCES Users(Username),
-    FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
+                            ID_Card int not null ,
+                            USERNAME VARCHAR(32) not null ,
+                            In_Market boolean,
+                            primary key (ID_Card,USERNAME),
+                            FOREIGN KEY (USERNAME) REFERENCES Users(Username),
+                            FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 
 create table exchanges(
-                         id_trans INT not null auto_increment,
-                         username VARCHAR(32) NOT NULL ,
-                         username_offer VARCHAR(32) NOT NULL ,
-                         trans_comp boolean,
-                         primary key (id_trans),
-                         foreign key(username) references users(username),
-                         foreign key(username_offer) references users(username)
+                          id_trans INT not null auto_increment,
+                          username VARCHAR(32) NOT NULL ,
+                          username_offer VARCHAR(32) NOT NULL ,
+                          trans_comp boolean,
+                          primary key (id_trans),
+                          foreign key(username) references users(username),
+                          foreign key(username_offer) references users(username)
 
 );
 
 create table Cards_own(
-                        Id_trans INT not null,
-                        cardId  int not null ,
-                        primary key (Id_trans,cardId),
-                        foreign key (cardId) references collections(ID_Card),
-                        foreign key(Id_trans) references exchanges(id_trans)
-                        ON DELETE CASCADE
-);
-create table Cards_wanted(
                           Id_trans INT not null,
                           cardId  int not null ,
                           primary key (Id_trans,cardId),
                           foreign key (cardId) references collections(ID_Card),
                           foreign key(Id_trans) references exchanges(id_trans)
-                          ON DELETE cascade
+                              ON DELETE CASCADE
+);
+create table Cards_wanted(
+                             Id_trans INT not null,
+                             cardId  int not null ,
+                             primary key (Id_trans,cardId),
+                             foreign key (cardId) references collections(ID_Card),
+                             foreign key(Id_trans) references exchanges(id_trans)
+                                 ON DELETE cascade
 );
 
 Insert into catalog VALUES(1,'Hearthstone','Druido',8,'Rara','Magia','Aiuto Della Foresta','Magia Gemella. Evoca cinque Treant 2/2.');

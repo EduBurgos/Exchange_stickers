@@ -38,7 +38,7 @@ public class ProfileServlet extends AbstractServlet{
                 response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
             }
             else{
-                forwardTo(request, response, DEFAULT_ROUTE);
+                forwardTo(request, response, INDEXPROFILE_ROUTE);
             }
 
         } catch (SQLException e) {

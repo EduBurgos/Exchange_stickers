@@ -18,6 +18,9 @@ public class LoginServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        final String secretkey = "Khaledmerda";
+
         try {
                 CollectionOwn logged = confirmPassword(request);
                 if(logged!=null)
@@ -44,8 +47,11 @@ public class LoginServlet extends AbstractServlet {
     }
 
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
+        final String secretkey = "Khaledmerda";
+
         String name = request.getParameter("name");
-        String pass= request.getParameter("password");
+        String pass = Platform.encrypt(request.getParameter("password"), secretkey);
+        //String pass= request.getParameter("password");
         Platform platform = Platform.getInstance();
         return platform.LogIn(name,pass);
     }
