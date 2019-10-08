@@ -500,7 +500,7 @@ INSERT INTO catalog VALUES(155,'Yu-Gi-Oh!','Luce',0,'Rara','Mostro','Venere Sple
                                                                                         L''attivazione e gli effetti delle Carte Magia/Trappola attivate sul tuo Terreno non possono essere annullate.');
 
 
-INSERT INTO users VALUES(ID, 'Obe','Edu', 'Bur', 'edu@hotmail.it','1234');
+INSERT INTO users VALUES(ID, 'Obe','Edu', 'Bur', 'edu@hotmail.it','1234');  'GGkhr8q6bhBg1V0ZjUJyrg=='
 INSERT INTO users VALUES(ID, 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
 INSERT INTO users VALUES(ID, 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
 INSERT INTO users VALUES(ID, 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');

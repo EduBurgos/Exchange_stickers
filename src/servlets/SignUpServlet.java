@@ -85,10 +85,12 @@ public class SignUpServlet extends AbstractServlet {
         try{
             if (platform.SignUp(name, lastName, username, email, password, retype)) {
                 request.getSession().setAttribute("message", "You have successfully signed up!");
+
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
                 //passare da platform
                 User u = new User(name, lastName, username, email);
                 CollectionOwnDao cart = new CollectionOwnDaoImpl();
+
                 for(int i = 0; i<6; i++) {
                     cart.createRandomCard(u);
                 }

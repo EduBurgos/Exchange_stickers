@@ -259,7 +259,6 @@ public class Platform {
     }
 
     /**METODO PASSWORD*/
-
     private static SecretKeySpec secretKey;
     private static byte[] key;
 
@@ -296,7 +295,7 @@ public class Platform {
         }
         return null;
     }
-
+    /**Metodo decryp*/
     public static String decrypt(String strToDecrypt, String secret)
     {
         try
