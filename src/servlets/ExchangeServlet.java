@@ -27,18 +27,21 @@ public class ExchangeServlet extends AbstractServlet {
 
         //prendere gli id delle carte da scambiare
         try {
-            String[] cardsToTake = request.getParameterValues("ToTake");
+            String[] cardsToTake = request.getParameterValues("cardsToTake");
+            for (int i=0; i<cardsToTake.length;i++){
+                System.out.println(cardsToTake[i]);
+            }
             /*for(int i=0; i<cardsToTake.length; i++){
                 System.out.println(cardsToTake[i]);
             }*/
-            String cardsToGive[] = request.getParameterValues("ToGive");
+            String cardsToGive[] = request.getParameterValues("cardsToGive");
             System.out.println(Arrays.toString(cardsToTake));
             System.out.println(Arrays.toString(cardsToGive));
 
 
             String username = request.getParameter("username");
-            //TODO request.getParameter per le carte da dare e da ricevere
             Platform platform = Platform.getInstance();
+            //TODO lavorare con i vettori per attuare lo scambio
             //platform.setExchange();
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
