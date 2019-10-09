@@ -43,7 +43,10 @@
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
-        <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
+        <% CollectionOwn c; %>
+        <% if(request.getSession().getAttribute("snitched")!=null){ %>
+        <% c= (CollectionOwn)request.getSession().getAttribute("snitched");} else{ %>
+        <% c= (CollectionOwn)request.getSession().getAttribute("logged");} %>
         <% User u = c.getOwner();%>
 
         <h1><%=u.getUsername()%></h1>
