@@ -19,22 +19,28 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String insert_cardown_query = "insert into cards_own values (?,?)";
     private static final String insert_cardWanted_query = "insert into cards_wanted values (?,?)";
 
-    private static final String  switchpeople = "update collections username = ? WHERE idCard=?";
-    private static final String remove_card_seller = "update collections set In_Market = false, id_user = (select ID_User from exchange where id_trans = ?) where IDCardColl in ";
-    private static final String flag_complete ="update exchanges set trans_comp = true where id_trans = ? ";
+    private static final String switchpeople = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
+                                                 "SET AUTOCOMMIT=0;" +
+                                                    "start TRANSACTION;" +
+                                                        "select * from collections where ID_Card=? AND USERNAME=?;" +
+                                                        " update collections" +
+                                                            "SET  USERNAME=? WHERE ID_CARD=? AND USERNAME=?;" +
+                                                    "commit;";
+    private static final String flag_complete ="start TRANSACTION;" +
+                                                    "    select * from exchanges where id_trans=?;" +
+                                                    "    update exchanges" +
+                                                    "SET  USERNAME_Offer=? , trans_comp =? WHERE id_trans=?;" +
+                                                "commit; ";
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?";
     private static final String get_cardWanted="select card_wanted.cardId as card_wanted from card_wanted where Id_trans=?";
     private static final String get_all_exchange ="select * from exchanges";
 
-    private static final String delete_exchange = "start transaction;" +
+    private static final String delete_exchange = "SET AUTOOMMIT=0" +
+                                                    "start transaction;" +
                                                         "delete from exchanges where id_trans=?" +
-                                                    "rollback;" +
                                                     "commit;";
-
-
     //private static final String view_catalog = "select * from catalog";
-
     @Override
     public void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException {
         conn = null;
@@ -87,66 +93,47 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     }
 
     @Override
-    public boolean marketExchange(Exchange exchangeCard, User user, ArrayList<Card> cardsmarket) {
-        return false;
-    }
-
-
-    /* public boolean marketExchange(Exchange exchangeCard) {
+    public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
-
-
-
-        String query1 = remove_card_buyer+options;
-        for (String c: exchangeCard.getUsername()){
-            if (c == 0) break;
-            options = options+c+",";
-        }
-        options = options.substring(0, options.length()-1);
-        options = options+");";
-        for (String c: exchangeCard.getUsername_offerente()){
-            if (c == 0) break;
-            options = options+c+",";
-        }
-        options2 = options2.substring(0, options2.length()-1);
-        options2= options2+");";
-        String query2 = remove_card_buyer+options2;
-
-
-        String query3 = flag_complete;
-
-
-        String queryComplete = query1+query2+query3;
-        try{
+        try {
+            //setto flag completato = 1 per evitare che latri utenti accettino lo stesso scambio
             conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(flag_complete);
+            preparedStatement.setInt(1,exchangeCard.getId_trans());
+            preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+            preparedStatement.setInt(3,exchangeCard.getId_trans());
 
-            preparedStatement = conn.prepareStatement(queryComplete);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setInt(2, exchangeCard.getId_trans());
-            preparedStatement.setInt(3, exchangeCard.getId_trans());
+            preparedStatement.execute();
 
-            int done = preparedStatement.executeUpdate();      //metodo che restituisce il create/modificate/cancellate di righe interessate dalla query
-            if (done != 0) {
-                return true;
-            } else {
-                return false;
+            //da al mio utente le carte che vuole
+            for (int i: exchangeCard.getId_card_wanted()) {
+                preparedStatement = conn.prepareStatement(switchpeople);
+                preparedStatement.setInt(1,i);
+                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.setString(3,exchangeCard.getId_user());
+                preparedStatement.setInt(4,i);
+                preparedStatement.setString(5,exchangeCard.getUsername_offerente());
+                preparedStatement.execute();
             }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
+            //da all'offerente le carte vendute
+            for (int i: exchangeCard.getId_card_owm()) {
+                preparedStatement = conn.prepareStatement(switchpeople);
+                preparedStatement.setInt(1,i);
+                preparedStatement.setString(2,exchangeCard.getId_user());
+                preparedStatement.setString(3,exchangeCard.getUsername_offerente());
+                preparedStatement.setInt(4,i);
+                preparedStatement.setString(5,exchangeCard.getId_user());
+                preparedStatement.execute();
             }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
+
         }
-        return false;
-    } */
+        catch (SQLException e)
+        {
+
+        }
+            return false;
+
+    }
 
     /**Retrun a exchange*/
     @Override
