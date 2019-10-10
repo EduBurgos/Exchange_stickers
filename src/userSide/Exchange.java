@@ -12,7 +12,7 @@ public class Exchange {
     private int[] id_card_wanted;
     private boolean trans_comp; //true se completata altrimenti false
 
-    public Exchange(int id_trans, String username, int[] id_card_owm, int[] id_card_wanted) {
+    public Exchange(String username, int[] id_card_owm, int[] id_card_wanted) {
         this.id_trans = id_trans;
         this.username = username;
         this.id_card_owm = id_card_owm;
