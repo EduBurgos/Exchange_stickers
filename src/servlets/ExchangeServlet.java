@@ -1,5 +1,7 @@
 package servlets;
 
+import collection.Card;
+import dao.CardsDaoImpl;
 import platform.Platform;
 
 import javax.servlet.ServletException;
@@ -38,11 +40,24 @@ public class ExchangeServlet extends AbstractServlet {
             System.out.println(Arrays.toString(cardsToTake));
             System.out.println(Arrays.toString(cardsToGive));
 
+            int[] intArrayToGive = new int[cardsToGive.length];
+            int[] intArrayToTake = new int[cardsToTake.length];
+            //passo da array di stringhe ad array di interi
+            for (int i=0; i<cardsToGive.length;i++){
+                intArrayToGive[i] = Integer.parseInt(cardsToGive[i]);
+            }
+            for (int i=0; i<cardsToTake.length;i++){
+                intArrayToTake[i] = Integer.parseInt(cardsToTake[i]);
+            }
+
 
             String username = request.getParameter("username");
             Platform platform = Platform.getInstance();
+            //TODO come valorizziamo idtrans
+
+
             //TODO lavorare con i vettori per attuare lo scambio
-            //platform.setExchange();
+            platform.setExchange(username, intArrayToGive, intArrayToTake);
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
         } catch (Exception e) {
