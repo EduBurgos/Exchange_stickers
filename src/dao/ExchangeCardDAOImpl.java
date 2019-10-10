@@ -1,6 +1,7 @@
 package dao;
 
 import collection.Card;
+import collection.CollectionOwn;
 import com.mysql.jdbc.Statement;
 import userSide.Exchange;
 import userSide.User;
@@ -95,18 +96,28 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
+        //cancello carte presenti in entrambe le liste perchè è inutile scambaire due carte uguali
+        for (int i :exchangeCard.getId_card_owm()) {
+            for (int k: exchangeCard.getId_card_wanted()) {
+                if(i==k)
+                {
+                    exchangeCard.getId_card_wanted()[i]=0;
+                    exchangeCard.getId_card_owm()[i]=0;
+                }
+            }
+        }
         try {
-            //setto flag completato = 1 per evitare che latri utenti accettino lo stesso scambio
+            //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
             conn = connector.createConnection();
             preparedStatement = conn.prepareStatement(flag_complete);
             preparedStatement.setInt(1,exchangeCard.getId_trans());
             preparedStatement.setString(2,exchangeCard.getUsername_offerente());
             preparedStatement.setInt(3,exchangeCard.getId_trans());
-
             preparedStatement.execute();
 
             //da al mio utente le carte che vuole
             for (int i: exchangeCard.getId_card_wanted()) {
+                //se è già nella collezione incremento la quantità
                 preparedStatement = conn.prepareStatement(switchpeople);
                 preparedStatement.setInt(1,i);
                 preparedStatement.setString(2,exchangeCard.getUsername_offerente());
@@ -263,31 +274,4 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     public ArrayList<Exchange> getAllExchange() throws SQLException {
         return null;
     }
-
-    /*public void view_catalog(){
-        conn = null;
-        try {
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(view_catalog);
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-    }*/
 }
