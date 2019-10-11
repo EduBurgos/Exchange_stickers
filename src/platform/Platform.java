@@ -187,8 +187,8 @@ public class Platform {
      * @return  true if the exchange is registered false if the registration fails
      * @throws SQLException
      */
-    public void setExchange(int idTrans, String Username, int[] idCardOwn, int[] idCardWanted) throws SQLException {
-        Exchange exchange = new Exchange(idTrans, Username, idCardOwn, idCardWanted);
+    public void setExchange(String Username, int[] idCardOwn, int[] idCardWanted) throws SQLException {
+        //Exchange exchange = new Exchange(Username, idCardOwn, idCardWanted);
         ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
         UserDaoImpl userDaoImpl = new UserDaoImpl();
         User user = userDaoImpl.findByUsername(Username);

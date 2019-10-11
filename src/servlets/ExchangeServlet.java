@@ -1,5 +1,7 @@
 package servlets;
 
+import collection.Card;
+import dao.CardsDaoImpl;
 import platform.Platform;
 
 import javax.servlet.ServletException;
@@ -27,19 +29,35 @@ public class ExchangeServlet extends AbstractServlet {
 
         //prendere gli id delle carte da scambiare
         try {
-            String[] cardsToTake = request.getParameterValues("ToTake");
+            String[] cardsToTake = request.getParameterValues("cardsToTake");
+            for (int i=0; i<cardsToTake.length;i++){
+                System.out.println(cardsToTake[i]);
+            }
             /*for(int i=0; i<cardsToTake.length; i++){
                 System.out.println(cardsToTake[i]);
             }*/
-            String cardsToGive[] = request.getParameterValues("ToGive");
+            String cardsToGive[] = request.getParameterValues("cardsToGive");
             System.out.println(Arrays.toString(cardsToTake));
             System.out.println(Arrays.toString(cardsToGive));
 
+            int[] intArrayToGive = new int[cardsToGive.length];
+            int[] intArrayToTake = new int[cardsToTake.length];
+            //passo da array di stringhe ad array di interi
+            for (int i=0; i<cardsToGive.length;i++){
+                intArrayToGive[i] = Integer.parseInt(cardsToGive[i]);
+            }
+            for (int i=0; i<cardsToTake.length;i++){
+                intArrayToTake[i] = Integer.parseInt(cardsToTake[i]);
+            }
+
 
             String username = request.getParameter("username");
-            //TODO request.getParameter per le carte da dare e da ricevere
             Platform platform = Platform.getInstance();
-            //platform.setExchange();
+            //TODO come valorizziamo idtrans
+
+
+            //TODO lavorare con i vettori per attuare lo scambio
+            platform.setExchange(username, intArrayToGive, intArrayToTake);
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
         } catch (Exception e) {

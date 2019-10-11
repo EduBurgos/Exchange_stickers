@@ -18,9 +18,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username, In_Market)"+"VALUES";
 
-    private static final String new_randow_card_for_new_user ="insert into collections values (IDCardColl, (select id from catalog order by rand() limit 1), username = ?,false)";
+    private static final String new_randow_card_for_new_user ="insert into collections values (select id from catalog order by rand() limit 1), username = ?,false)";
 
-    private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE  Username = ? order by IDCardColl desc limit 1";
+    private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE  Username = ? order by IDCard desc limit 1";
 
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 

@@ -12,7 +12,7 @@ public interface ExchangeCardDAO {
     /*The public is redundant*/
      void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException;
 
-     boolean marketExchange(Exchange exchangeCard, User user, ArrayList<Card> cardsmarket);
+     boolean marketExchange(Exchange exchangeCard) ;
 
      Exchange getExchange(int id_trans) throws SQLException;
 

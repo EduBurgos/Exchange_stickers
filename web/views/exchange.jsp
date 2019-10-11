@@ -38,8 +38,8 @@
                 <div style="overflow: auto; width: 100%; height: 100%">
                         <%for(Card entry : c.getCardsOwn()){%>
 
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)">
-                        <input onclick="" value="<%=entry.getId()%>">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)" >
+                        <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
                                 <img id="catlogim" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                         </input>
                     </div>
@@ -57,8 +57,8 @@
                 <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                 <% for (Card u : allCards.findAllGeneric()) {%>
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick=" chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
-                    <input onclick="" value="<%=u.getId()%>">
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
+                    <input onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
                     <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                     </input>
                 </div>
@@ -74,32 +74,33 @@
 
 <script>
     function chooseCards(array, card, value){
+        var id = card + "input";
+        var me = document.getElementById(id);
+
         if(array.includes(card) == true){
             document.getElementById(card).style.filter = "opacity(100%)";
             removeFromArray(array, card);
+            me.setAttribute("name", "");
             alert("a card is just removed, array:"+array);
         } else{
             document.getElementById(card).style.filter = "opacity(40%)";
-            addToArray(array, card, value);
+            addToArray(array, card);
+            me.setAttribute("name", value);
             alert("a card is just added, array:"+array);
         }
 
     }
     // method to add an element selected to array, we will use it to create the arrays to pass to servlet(one for cards to send and the other to receive)
-    function addToArray(array, card, value){
+    function addToArray(array, card){
         array.push(card);
-        addAttr(value);
     }
 
     function removeFromArray(array, card){
         var pos = array.indexOf(card);
         array.splice(pos, 1);
-        addAttr("");
     }
     
     function startExchange(array1, array2) {
-        array1.forEach(addValue1ToArray);
-        array2.forEach(addValue2ToArray);
         document.getElementById("myForm").submit();
     }
 
@@ -119,7 +120,20 @@
     function passToTheDarkSide(){
         document.getElementById(card).style.filter = "opacity(100%)";
     }
+    function selDeselCards(array, action){
+        var me = document.currentScript;
+        var value = me.getAttribute("value");
+        if(array.includes(value) == true){
+            me.removeAttribute("name");
+            removeFromArray(array, value);
+            alert("a card is just removed, array:"+array);
+        } else{
+            me.setAttribute("name", action);
+            addToArray(array, value, action);
+            alert("a card is just added, array:"+array);
+        }
 
+    }
 </script>
 </body>
 </html>
