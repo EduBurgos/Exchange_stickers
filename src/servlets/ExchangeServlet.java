@@ -1,6 +1,7 @@
 package servlets;
 
 import collection.Card;
+import collection.CollectionOwn;
 import dao.CardsDaoImpl;
 import platform.Platform;
 
@@ -50,11 +51,11 @@ public class ExchangeServlet extends AbstractServlet {
                 intArrayToTake[i] = Integer.parseInt(cardsToTake[i]);
             }
 
+            CollectionOwn collectionOwn=(CollectionOwn) request.getSession().getAttribute("logged");
 
-            String username = request.getParameter("username");
+            String username=collectionOwn.getOwner().getUsername();
             Platform platform = Platform.getInstance();
             //TODO come valorizziamo idtrans
-
 
             //TODO lavorare con i vettori per attuare lo scambio
             platform.setExchange(username, intArrayToGive, intArrayToTake);

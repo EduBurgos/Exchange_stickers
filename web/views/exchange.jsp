@@ -68,7 +68,7 @@
         </div>
     </div>
     <div id="start" >
-            <button  type="Submit" class="btn" id="startbutton" onclick="startExchange(CardsToGiveArray, CardsToTakeArray)">AVVIA TRATTATIVA</button>
+            <button  type="Submit" class="btn" id="startbutton">AVVIA TRATTATIVA</button>
     </div>
     </form>
 

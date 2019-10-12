@@ -101,7 +101,7 @@ public class Card extends AbstractCard implements Comparable {
      * @return the description of the card
      */
     public String toString() {
-        return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione + idColl+"\n";
+        return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione +"\n";
     }
 
     @Override

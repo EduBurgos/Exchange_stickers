@@ -16,8 +16,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
 
-    private static final String insert_transaction_query = "insert into exchanges values (id_trans, (select id from users where Username = ?), false)";
-    private static final String insert_cardown_query = "insert into cards_own values (?,?)";
+    private static final String insert_transaction_query = "INSERT INTO exchanges (username) VALUES (?)";
+    private static final String insert_cardown_query = "insert into cards_own(id_trans,cardId) values (?,?)";
     private static final String insert_cardWanted_query = "insert into cards_wanted values (?,?)";
 
     private static final String switchpeople = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
@@ -56,18 +56,18 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
             ResultSet rs=preparedStatement.getGeneratedKeys();
 
-            if (rs.next())
+            if (rs.next() && rs!=null)
             {
-                for (Card c: cardwanted) {
+                for (Card c: cardown) {
                     preparedStatement=conn.prepareStatement(insert_cardown_query);
                     preparedStatement.setInt(1,rs.getInt(1));
-                    preparedStatement.setInt(1,c.getId());
+                    preparedStatement.setInt(2,c.getId());
                     preparedStatement.execute();
                 }
-                for ( Card c: cardown) {
+                for ( Card d: cardwanted) {
                     preparedStatement=conn.prepareStatement(insert_cardWanted_query);
                     preparedStatement.setInt(1,rs.getInt(1));
-                    preparedStatement.setInt(1,c.getId());
+                    preparedStatement.setInt(2,d.getId());
                     preparedStatement.execute();
                 }
             }

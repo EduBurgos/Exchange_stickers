@@ -46,6 +46,17 @@ public class CollectionOwn {
         }
         return result;
     }
+
+    public  boolean searchCardById(int id)
+    {
+        for (Card c:cardsOwn) {
+            if(c.getId()==id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     /*public int getlastQt()
     {
         return cardsOwn.lastEntry().getValue();

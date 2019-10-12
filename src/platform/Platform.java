@@ -200,7 +200,7 @@ public class Platform {
             ownedCards.add(cardsDaoImpl.findByID(idCardOwn[i]));
         }
         for(int i=0; i<idCardWanted.length; i++){
-            ownedCards.add(cardsDaoImpl.findByID(idCardWanted[i]));
+            wantedCards.add(cardsDaoImpl.findByID(idCardWanted[i]));
         }
         exchangeCardDAO.create(user, ownedCards, wantedCards);
     }
