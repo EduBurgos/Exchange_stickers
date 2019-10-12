@@ -55,8 +55,8 @@ CREATE TABLE collections(
 create table exchanges(
                           id_trans INT not null auto_increment,
                           username VARCHAR(32) NOT NULL ,
-                          username_offer VARCHAR(32) NOT NULL ,
-                          trans_comp boolean,
+                          username_offer VARCHAR(32) DEFAULT NULL,
+                          trans_comp boolean DEFAULT TRUE,
                           primary key (id_trans),
                           foreign key(username) references users(username),
                           foreign key(username_offer) references users(username)
