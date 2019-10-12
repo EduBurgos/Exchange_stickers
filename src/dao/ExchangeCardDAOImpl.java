@@ -34,7 +34,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                                                 "commit; ";
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?";
-    private static final String get_cardWanted="select card_wanted.cardId as card_wanted from card_wanted where Id_trans=?";
+    private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?";
     private static final String get_all_exchange ="select * from exchanges";
 
     private static final String delete_exchange = "SET AUTOOMMIT=0" +
@@ -162,7 +162,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             int counter=0;
 
             while (result.next()) {
-                cardown[counter] = result.getInt("card_own");
+                cardown[counter] = result.getInt("cardId");
                 counter++;
 
             }
@@ -172,7 +172,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             result = preparedStatement.getResultSet();
             counter=0;
             while (result.next()) {
-                cardwanted[counter] = result.getInt("card_wanted");
+                cardwanted[counter] = result.getInt("cardId");
                 counter++;
             }
             return new Exchange(id_trans, result.getString("username"), cardown,cardwanted, result.getBoolean("trans_comp"),result.getString("username_offer"));
