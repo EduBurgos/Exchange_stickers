@@ -77,25 +77,25 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
-            <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
-                <%for(Card entry : c.getCardsOwn()){%>
-                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                </div>
-                <%}
-                %>
+            <div role="tabpanel" class="tab-pane fade in active" id="mycollection" onclick="back();">
+                    <%for(Card entry : c.getCardsOwn()){%>
+                    <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    </div>
+                    <%}
+                    %>
             </div>
 
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
 
                 <div role="tabpanel" class="tab-pane" id="exchangeables">
 
-                    <form method="get" action= "../userprofile">
+                    <form  method="get" action= "../userprofile">
 
                         <label for="nickname">Nickname</label>
                         <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">
                         <!--TASTO CERCA -->
-                        <input type="submit" value="Search">
+                        <input type="submit" value="Search" id="prova">
                     </form>
 
                 </div>
@@ -106,6 +106,13 @@
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    back()
+    {
+        document.removeAttribute("Nickname");
+        document.getElementById("prova").submit();
+    }
+</script>
 
 </body>
 </html>
