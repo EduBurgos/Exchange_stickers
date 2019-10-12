@@ -6,12 +6,16 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04e8c0f5-ef17-430f-8b97-0f7ee6046a94" name="Default Changelist" comment="">
+    <list default="true" id="04e8c0f5-ef17-430f-8b97-0f7ee6046a94" name="Default Changelist" comment="inserimento metodi per i filtri di ricerca in classe CardDaoImpl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/progetto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/progetto.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/AbstractServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/AbstractServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/CollectionOwn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/CollectionOwn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collection/Catalogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/Catalogue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/CardsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CardsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,45 +48,53 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/platform/Platform.java">
+        <entry file="file://$PROJECT_DIR$/src/dao/CardsDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3183">
-              <caret line="61" column="30" lean-forward="true" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
+            <state relative-caret-position="17">
+              <caret line="307" lean-forward="true" selection-start-line="307" selection-end-line="307" />
               <folding>
-                <element signature="e#5987#5993#0" expanded="true" />
-                <element signature="e#6048#6054#0" expanded="true" />
+                <element signature="e#9717#9723#0" expanded="true" />
+                <element signature="e#11247#11253#0" expanded="true" />
+                <element signature="e#12865#12871#0" expanded="true" />
+                <element signature="e#14453#14459#0" expanded="true" />
+                <element signature="e#8412#8418#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlets/SignUpServlet.java">
+        <entry file="file://$PROJECT_DIR$/src/dao/CardsDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="91" column="23" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
-              <folding>
-                <element signature="e#1564#1565#0" expanded="true" />
-                <element signature="e#1596#1597#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="529">
+              <caret line="175" column="26" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/progetto.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="453">
+              <caret line="554" selection-start-line="554" selection-end-line="554" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/collection/Catalogue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="119" column="66" selection-start-line="119" selection-start-column="66" selection-end-line="119" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+            <state relative-caret-position="85">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -106,11 +118,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/progetto.sql" />
         <option value="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/dao/ExchangeCardDAO.java" />
         <option value="$PROJECT_DIR$/src/collection/CollectionOwn.java" />
         <option value="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/collection/Catalogue.java" />
+        <option value="$PROJECT_DIR$/src/dao/CardsDao.java" />
+        <option value="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" />
+        <option value="$PROJECT_DIR$/database/progetto.sql" />
       </list>
     </option>
   </component>
@@ -141,42 +156,35 @@
         <subPane>
           <expand>
             <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19v23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19v23" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19v23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19v23" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19v23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19v23" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19v23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19v23" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="collection" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19v23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19v23" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="platform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19_v8" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-F19_v8" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="servlets" type="462c0819:PsiDirectoryNode" />
+              <item name="Progetto-F19v23" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progetto-F19v23" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -502,6 +510,8 @@
       <workItem from="1570653986616" duration="234000" />
       <workItem from="1570695746727" duration="10000" />
       <workItem from="1570718293775" duration="6603000" />
+      <workItem from="1570791408996" duration="357000" />
+      <workItem from="1570791806911" duration="2178000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -735,7 +745,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13118000" />
+    <option name="totallyTimeSpent" value="16828000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -747,10 +757,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22751679" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25869894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -761,7 +771,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3297587" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -769,11 +779,11 @@
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3297587" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" visible="true" weight="0.3297587" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.3297587" />
+      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49932885" visible="true" weight="0.3297587" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.3289689" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49932885" weight="0.3297587" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -784,6 +794,41 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21208054" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Web" order="6" side_tool="true" />
+      <window_info id="Image Layers" order="7" />
+      <window_info id="Learn" order="8" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3297587" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32841823" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" visible="true" weight="0.3297587" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.3297587" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24966443" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -822,7 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dubbi" />
     <MESSAGE value="Aggiunto navbar principale,nuovi file nel package bootstrap-3-3.7, modifica su hompage.jps,homepage.css, userprofile.jsp" />
     <MESSAGE value="Iniziato ad impostare signUp" />
     <MESSAGE value="Modifiche a pagine homepage.jsp e userprofile.jsp" />
@@ -847,7 +891,8 @@
     <MESSAGE value="profilo sistemato" />
     <MESSAGE value="DB" />
     <MESSAGE value="marketExchangesMethod" />
-    <option name="LAST_COMMIT_MESSAGE" value="marketExchangesMethod" />
+    <MESSAGE value="inserimento metodi per i filtri di ricerca in classe CardDaoImpl" />
+    <option name="LAST_COMMIT_MESSAGE" value="inserimento metodi per i filtri di ricerca in classe CardDaoImpl" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -880,28 +925,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/progetto.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/platform/Platform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3183">
-          <caret line="61" column="30" lean-forward="true" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding>
-            <element signature="e#5987#5993#0" expanded="true" />
-            <element signature="e#6048#6054#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,16 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="75" column="21" lean-forward="true" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
-          <folding>
-            <element signature="method#insert#0;class#CollectionOwnDaoImpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/servlets/SignUpServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -939,10 +956,104 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/userSide/Exchange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/userSide/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlets/ExchangeServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="77" column="7" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/platform/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="224" column="29" selection-start-line="224" selection-start-column="29" selection-end-line="224" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="16" column="158" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="158" />
+          <folding>
+            <element signature="method#insert#0;class#CollectionOwnDaoImpl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="119" column="66" selection-start-line="119" selection-start-column="66" selection-end-line="119" selection-end-column="66" />
+        <state relative-caret-position="529">
+          <caret line="175" column="26" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/CardsDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/progetto.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="554" selection-start-line="554" selection-end-line="554" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/CardsDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="307" lean-forward="true" selection-start-line="307" selection-end-line="307" />
+          <folding>
+            <element signature="e#9717#9723#0" expanded="true" />
+            <element signature="e#11247#11253#0" expanded="true" />
+            <element signature="e#12865#12871#0" expanded="true" />
+            <element signature="e#14453#14459#0" expanded="true" />
+            <element signature="e#8412#8418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/collection/Catalogue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>

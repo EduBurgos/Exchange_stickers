@@ -13,21 +13,29 @@ public class CardsDaoImpl implements CardsDao {
 
     //esplicitazione query
     /**query used to insert a new card in DB*/
-    private static final String INSERT_QUERY = "INSERT INTO catalog (ID, Category,Class,Lvl,Rarity,CardType,CardName,CardDescription) VALUES (?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_QUERY = "INSERT INTO catalog (ID, Category,Class,Lvl,Rarity,CardType,CardName,CardDescription) VALUES (?,?,?,?,?,?,?,?)";
     /**query used to delete a card in DB*/
     private static final String DELETE_QUERY = "DELETE FROM catalog WHERE ID = ?";
     /** query used to update a card in DB*/
     private static final String UPDATE_QUERY = "UPDATE catalog SET ID=? , Category=? , Class=? , Lvl=?, Rarity=?,CardType=?, CardName=?, CardDescription=?) WHERE ID = ?";
-    /**query used to find cards by category in DB*/
-    private static final String FIND_BY_CATEGORY = "SELECT * FROM catalog WHERE Category = ?";
-    /**query used to find cards by their name in DB*/
-    private static final String FIND_BY_NAME = "SELECT * FROM catalog WHERE CardName = ?";
-    /**query used to find a card ny its ID in DB*/
+    // private static final String FIND_BY_CATEGORY = "SELECT * FROM catalog WHERE Category = ?";
+    private static final String FIND_BY_CATEGORY = "SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.Category=?";
+    /*** query used to find cards by their name in DB*/
+    // private static final String FIND_BY_NAME = "SELECT * FROM catalog WHERE CardName = ?";
+    private static final String FIND_BY_NAME = "SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.CardName=?";
+    /*** query used to find a card ny its ID in DB*/
     private static final String FIND_BY_ID = "SELECT * FROM catalog WHERE ID = ?";
-    /**query used to find cards by class in DB*/
-    private static final String FIND_BY_CLASS = "SELECT * FROM catalog WHERE Class = ?";
-    /**query used to find all cards in DB*/
-    private static final String FIND_ALL= "SELECT * FROM catalog";
+    /*** query used to find cards by class in DB*/
+    // private static final String FIND_BY_CLASS = "SELECT * FROM catalog WHERE Class = ?";
+    private static final String FIND_BY_CLASS = "SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.Class=?";
+    private static final String FIND_BY_TYPE = "SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.CardType=?";
+
+    /*** query used to find all cards in DB*/
+    private static final String FIND_ALL = "SELECT * FROM catalog";
+    private static final String FIND_BY_CATEGORY_AND_CLASS="SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.Category=? AND c.Class=?";
+    private static final String FIND_BY_CATEGORY_AND_TYPE="SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE  c.Category=? AND c.CardType=?";
+    private static final String FIND_BY_CATEGORY_CLASS_AND_TYPE="SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.Category=? AND c.Class=? AND c.CardType=?";
+    private static final String FIND_BY_CLASS_AND_TYPE="SELECT c.* FROM Cards_own as co inner catalogo as c on(co.cardId=c.ID) WHERE c.Class=? AND c.CardType=?";
 
 
 
@@ -230,7 +238,192 @@ public class CardsDaoImpl implements CardsDao {
         return card;
     }
 
-public ArrayList<Card> findAllGeneric() throws SQLException {
+    @Override
+    /** Metodo per trovare le carte solo con il nome*/
+    public ArrayList<Card> findByName(String cardName) throws SQLException {
+        ArrayList<Card> list_cards = new ArrayList<Card>();
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(FIND_BY_NAME);
+            preparedStatement.setString(1, cardName);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card card = new Card(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getInt(4),
+                        result.getString(5),
+                        result.getString(6),
+                        result.getString(7),
+                        result.getString(8));
+
+                list_cards.add(card);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list_cards;
+    }
+
+    public ArrayList<Card> findByCategory(String cardCategory) throws SQLException {
+        ArrayList<Card> list_cards = new ArrayList<Card>();
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(FIND_BY_CATEGORY);
+            preparedStatement.setString(1, cardCategory);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card card = new Card(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getInt(4),
+                        result.getString(5),
+                        result.getString(6),
+                        result.getString(7),
+                        result.getString(8));
+
+                list_cards.add(card);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list_cards;
+    }
+
+    /**
+     * Metodo per la ricerca con la classe della carta
+     **/
+    @Override
+    public ArrayList<Card> findByClass(String cardClass) throws SQLException {
+        ArrayList<Card> list_cards = new ArrayList<Card>();
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(FIND_BY_CLASS);
+            preparedStatement.setString(1, cardClass);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card card = new Card(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getInt(4),
+                        result.getString(5),
+                        result.getString(6),
+                        result.getString(7),
+                        result.getString(8));
+
+                list_cards.add(card);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list_cards;
+    }
+
+    /**Metodo per ricerca secondo tipo di carta*/
+    @Override
+    public ArrayList<Card> findByType(String cardType) throws SQLException {
+        ArrayList<Card> list_cards = new ArrayList<Card>();
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(FIND_BY_TYPE);
+            preparedStatement.setString(1, cardType);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card card = new Card(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getInt(4),
+                        result.getString(5),
+                        result.getString(6),
+                        result.getString(7),
+                        result.getString(8));
+
+                list_cards.add(card);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list_cards;
+    }
+
+
+    public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
         conn = null;
         try {
@@ -271,19 +464,5 @@ public ArrayList<Card> findAllGeneric() throws SQLException {
         return allCards;
     }
 
-    @Override
-    public List<Card> findByClass(String cardClass) throws SQLException {
-        return null;
-    }
 
-    @Override
-    public Card findByName(String cardName) throws SQLException {
-        return null;
-    }
-
-
-    @Override
-    public List<Card> findByType() throws SQLException {
-        return null;
-    }
 }

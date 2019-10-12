@@ -20,6 +20,7 @@ public class Catalogue
 
     private static final String view_catalog_query = "select * from catalog";
 
+
     private ArrayList<Card> carte;
     public Catalogue() {
         this.carte = new ArrayList<Card>();
