@@ -152,7 +152,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         conn = null;
         try {
             conn = connector.createConnection();
-
             preparedStatement = conn.prepareStatement(get_exchange);
             preparedStatement.setInt(1, id_trans);
             preparedStatement.execute();
