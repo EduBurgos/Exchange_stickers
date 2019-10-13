@@ -68,50 +68,58 @@
         -->
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-        <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
-            <li role="presentation" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
-            <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
-        </ul>
-
-        <!-- Tab panes -->
+        <div class="row">
+            <div class="col-10 col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                <ul class="nav nav-tabs" role="tablist">
+                <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
+                    <li role="presentation" class="active" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="mycollectionTab">My Collection</a></li>
+                    <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
+                </ul>
+            </div>
+            <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
+                <button type="button" class="btn btn-default btn-lg" onclick="cleaAttr()">
+                    <span class="glyphicon glyphicon-home" ></span>
+                </button>
+            </div>
+        </div>
+                <!-- Tab panes -->
         <div class="tab-content">
 
-            <div role="tabpanel" class="tab-pane fade in active" id="mycollection" onclick="back();">
-                    <%for(Card entry : c.getCardsOwn()){%>
-                    <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
+                            <%for(Card entry : c.getCardsOwn()){%>
+                            <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                                <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                            </div>
+                            <%}
+                            %>
                     </div>
-                    <%}
-                    %>
-            </div>
 
-            <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
+                    <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
 
-                <div role="tabpanel" class="tab-pane" id="exchangeables">
+                        <div role="tabpanel" class="tab-pane" id="exchangeables">
 
-                    <form  method="get" action= "../userprofile">
+                            <form  method="get" action= "../userprofile">
 
-                        <label for="nickname">Nickname</label>
-                        <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">
-                        <!--TASTO CERCA -->
-                        <input type="submit" value="Search" id="prova">
-                    </form>
+                                <label for="nickname">Nickname</label>
+                                <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">
+                                <!--TASTO CERCA -->
+                                <input type="submit" value="Search">
+                            </form>
 
+                        </div>
                 </div>
-            </div>
 
-        </div>
     </div>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-    back()
+    function cleaAttr()
     {
-        document.removeAttribute("Nickname");
-        document.getElementById("prova").submit();
+        <% request.getSession().removeAttribute("snitched"); %>
+        location.reload();
     }
+
 </script>
 
 </body>

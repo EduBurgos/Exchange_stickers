@@ -91,7 +91,7 @@ it is included in each page of the application -->
                             <strong> Account </strong> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" id="menuP">
-                            <li><a href="../views/userprofile.jsp" ><strong> Profile</strong></a></li>
+                            <li><a href=" ../views/userprofile.jsp" ><strong> Profile</strong></a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="../views/login.jsp"><i class="glyphicon glyphicon-log-out"></i><strong> Logout </strong></a></li>
                         </ul>
@@ -124,6 +124,11 @@ it is included in each page of the application -->
     // When the user clicks on the button, scroll to the top of the document
     function topFunction() {
         document.documentElement.scrollTop = 0;
+    }
+    function cleaAttr()
+    {
+        <% request.getSession().removeAttribute("snitched"); %>
+        location.href(" ../views/userprofile.jsp").load;
     }
 </script>
 
