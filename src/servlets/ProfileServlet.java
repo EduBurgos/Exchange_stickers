@@ -35,14 +35,21 @@ public class ProfileServlet extends AbstractServlet{
 
             if(nickname != null){
                 request.getSession().setAttribute("snitched",nickname);
-                request.getSession().setAttribute("market", lista_market);
                 response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
             }
             else{
                 forwardTo(request, response, INDEXPROFILE_ROUTE);
             }
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (ServletException e)
+        {
+            e.printStackTrace();
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
