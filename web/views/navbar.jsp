@@ -1,3 +1,4 @@
+<%@ page import="dao.CardsDao" %>
 <!-- NAVIGATION BAR : this page contains the top navigation bar with links to Home, Reservations and Catalogue ;
 it is included in each page of the application -->
 
@@ -39,10 +40,12 @@ it is included in each page of the application -->
 
                 </ul>
                 <!---SEARCH WITH FILTERS--->
-                <div class="row1">
+                <div
+                    class="row1">
                     <div class="col-sm-3">
                         <div class="input-group" id="adv-search">
                             <input type="text" class="form-control" placeholder="Search Card..." />
+
                             <div class="input-group-btn">
                                 <div class="btn-group" role="group">
                                     <div class="dropdown dropdown-lg">
@@ -66,11 +69,11 @@ it is included in each page of the application -->
                                                     <label>Card Type</label>
                                                     <input class="form-control" type="text" />
                                                 </div>
-                                                <button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button>
+                                              <a href="Searchpage.jsp" ><button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button></a>
                                             </form>
                                         </div>
                                     </div>
-                                    <button id="searchBtn1" type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span> </button>
+                                    <a href="Searchpage.jsp" ><button id="searchBtn1" type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span> </button></a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +96,9 @@ it is included in each page of the application -->
                         <ul class="dropdown-menu" id="menuP">
                             <li><a href=" ../views/userprofile.jsp" ><strong> Profile</strong></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="../views/login.jsp"><i class="glyphicon glyphicon-log-out"></i><strong> Logout </strong></a></li>
+                            <form method="post" action="../logout">
+                                <li><button type="submit" class="btn btn-primary-outline"> <i class="glyphicon glyphicon-log-out"></i><strong> Logout </strong></button></li>
+                            </form>
                         </ul>
                 </ul>
             </div><!-- /.navbar-collapse -->
