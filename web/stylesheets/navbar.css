@@ -220,3 +220,8 @@ body {
     background-color: #555;
 }
 
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: transparent;
+    color:black;
+}
