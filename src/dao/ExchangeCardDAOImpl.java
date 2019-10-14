@@ -18,7 +18,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     private static final String insert_transaction_query = "INSERT INTO exchanges (username) VALUES (?)";
     private static final String insert_cardown_query = "insert into cards_own(id_trans,cardId) values (?,?)";
-    private static final String insert_cardWanted_query = "insert into cards_wanted values (?,?)";
+    private static final String insert_cardWanted_query = "insert into cards_wanted(id_trans,cardId) values (?,?)";
 
     private static final String switchpeople = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
                                                  "SET AUTOCOMMIT=0;" +

@@ -28,15 +28,15 @@
 
 <div id="tot">
     <form action="../exchange"  method="POST" id="myForm">
-    <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
+        <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
 
-        <div class="leftbox">
-            <script>
-                var CardsToGiveArray = new Array();
-                var toGive = "cardsToGive";
-            </script>
+            <div class="leftbox">
+                <script>
+                    var CardsToGiveArray = new Array();
+                    var toGive = "cardsToGive";
+                </script>
                 <div style="overflow: auto; width: 100%; height: 100%">
-                        <%for(Card entry : c.getCardsOwn()){%>
+                    <%for(Card entry : c.getCardsOwn()){%>
 
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)" >
                         <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
@@ -45,33 +45,33 @@
                     </div>
 
                         <%}%>
-            </div>
-    </div>
-
-        <div class="rightbox">
-            <script>
-                var CardsToTakeArray = new Array();
-                var toTake = "cardsToTake";
-            </script>
-            <div style="overflow: auto; width: 100%; height: 100%">
-                <% CardsDaoImpl allCards = new CardsDaoImpl();%>
-                <% for (Card u : allCards.findAllGeneric()) {%>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
-                    <input onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
-                    <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    </input>
                 </div>
-
-                <%}%>
             </div>
-        </div>
-    </div>
-    <div id="start" >
-            <button  type="Submit" class="btn" id="startbutton">AVVIA TRATTATIVA</button>
-    </div>
-    </form>
 
+            <div class="rightbox">
+                <script>
+                    var CardsToTakeArray = new Array();
+                    var toTake = "cardsToTake";
+                </script>
+                <div style="overflow: auto; width: 100%; height: 100%">
+                    <% CardsDaoImpl allCards = new CardsDaoImpl();%>
+                    <% for (Card u : allCards.findAllGeneric()) {%>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
+                        <input onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
+                            <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        </input>
+                    </div>
+
+                    <%}%>
+                </div>
+            </div>
+
+        <div id="start" >
+            <button  type="Submit" class="btn" id="startbutton">AVVIA TRATTATIVA</button>
+        </div>
+    </form>
+</div>
 <script>
     function chooseCards(array, card, value){
         var id = card + "input";
