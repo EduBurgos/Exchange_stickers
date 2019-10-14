@@ -30,7 +30,7 @@ public class ProfileServlet extends AbstractServlet{
 
         try{
             CollectionOwn nickname = confirmNickname(request);
-            ArrayList<Exchange> lista_market = Platform.getInstance().getExchange();
+            //ArrayList<Exchange> lista_market = Platform.getInstance().getExchange();
             request.getSession().setAttribute("snitched",null);
 
             if(nickname != null){
