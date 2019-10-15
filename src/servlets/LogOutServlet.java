@@ -19,4 +19,8 @@ public class LogOutServlet extends AbstractServlet  {
 
 
     }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        forwardTo(request, response, INDEX_ROUTE);
+    }
 }
