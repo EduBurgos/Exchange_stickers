@@ -33,8 +33,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                                                     "SET  USERNAME_Offer=? , trans_comp =? WHERE id_trans=?;" +
                                                 "commit; ";
 
-    private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?";
-    private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?";
+    private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? AND trans_comp=0";
+    private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? AND trans_comp=0";
     private static final String get_all_exchange ="select * from exchanges";
 
     private static final String delete_exchange = "SET AUTOOMMIT=0" +
@@ -197,26 +197,59 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
     }
 
-    /**Retrun all Exchanges da rifare
+    /**Return all exchanges */
     @Override
     public ArrayList<Exchange> getAllExchange() throws SQLException {
         conn=null;
+        ArrayList<Exchange> allExchange = new ArrayList<>();
         try {
+            int i=1;
+            int counter=0;
+            int[]cardown=new int[5];
+            int[] cardwanted=new int[5];
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(get_all_exchange);
+            preparedStatement = conn.prepareStatement(get_exchange);
+            preparedStatement.setInt(1, i);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while(result!=null && result.next()) {
+                result.previous();
+            while(result.next()){
+                cardown[counter] = result.getInt("cardId");
+                counter++;
+
+            }
+
+            counter=0;
+            preparedStatement = conn.prepareStatement(get_cardWanted);
+            preparedStatement.setInt(1, i);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
 
-            ArrayList<Exchange> allExchange = new ArrayList<>();
+                while (result.next()) {
+                    cardwanted[counter] = result.getInt("cardId");
+                    counter++;
 
-            while (result.next() && result != null) {
+                }
+                preparedStatement = conn.prepareStatement(get_cardWanted);
+                preparedStatement.setInt(1, i);
+                preparedStatement.execute();
+                result = preparedStatement.getResultSet();
+                while (result.next() && result != null) {
+                    allExchange.add(new Exchange(result.getInt("id_trans"), result.getString("username"), cardown, cardwanted, false, result.getString("username_offer")));
+                    System.out.println("cardown = " + Arrays.toString(cardown));
+                    System.out.println("cardwanted = " + Arrays.toString(cardwanted));
+                }
+                i++;
+                preparedStatement = conn.prepareStatement(get_exchange);
+                preparedStatement.setInt(1, i);
+                preparedStatement.execute();
+                result = preparedStatement.getResultSet();
+                counter=0;
+                cardown=new int[5];
+                cardwanted=new int[5];
 
-
-                allExchange.add(new Exchange(result.getInt("id_trans"), result.getInt("id_user"), cardown, cardwanted, false));
-                System.out.println("cardown = "+ Arrays.toString(cardown));
-                System.out.println("cardwanted = "+ Arrays.toString(cardwanted));
             }
-            return allExchange;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -237,8 +270,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cse.printStackTrace();
             }
         }
-        return null;
-    } */
+        return allExchange;
+    }
 
     @Override
     public void delete(int id_trans) throws SQLException {
@@ -269,8 +302,5 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
     }
 
-    @Override
-    public ArrayList<Exchange> getAllExchange() throws SQLException {
-        return null;
-    }
+
 }
