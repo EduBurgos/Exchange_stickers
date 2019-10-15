@@ -26,8 +26,9 @@
     <!-------- NAVBAR------->
     <jsp:include page="navbar.jsp"/>
 
-<div id="tot">
+
     <form action="../exchange"  method="POST" id="myForm">
+        <div id="tot">
         <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
 
             <div class="leftbox">
@@ -58,7 +59,7 @@
                     <% for (Card u : allCards.findAllGeneric()) {%>
 
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
-                        <input onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
+                        <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
                             <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                         </input>
                     </div>
@@ -66,12 +67,13 @@
                     <%}%>
                 </div>
             </div>
-
+        </div>
         <div id="start" >
             <button  type="Submit" class="btn" id="startbutton">AVVIA TRATTATIVA</button>
         </div>
+
     </form>
-</div>
+
 <script>
     function chooseCards(array, card, value){
         var id = card + "input";
@@ -104,33 +106,17 @@
         document.getElementById("myForm").submit();
     }
 
-    function addValue1ToArray(item, index, arr) {
-        arr[index] = item.setAttribute("name=\"cardToGive\"");
-    }
-
-    function addValue2ToArray(item, index, arr) {
-        arr[index] = item.setAttribute("name=\"cardToTake\"");
-    }
-
-    function addAttr(x) {
-        var me = document.currentScript;
-        me.setAttribute("name", x);
-    }
-
-    function passToTheDarkSide(){
-        document.getElementById(card).style.filter = "opacity(100%)";
-    }
     function selDeselCards(array, action){
         var me = document.currentScript;
         var value = me.getAttribute("value");
         if(array.includes(value) == true){
             me.removeAttribute("name");
-            removeFromArray(array, value);
-            alert("a card is just removed, array:"+array);
+            //removeFromArray(array, value);
+            //alert("a card is just removed, array:"+array);
         } else{
             me.setAttribute("name", action);
-            addToArray(array, value, action);
-            alert("a card is just added, array:"+array);
+            //addToArray(array, value, action);
+            //alert("a card is just added, array:"+array);
         }
 
     }
