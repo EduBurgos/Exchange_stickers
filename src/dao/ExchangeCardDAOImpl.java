@@ -54,19 +54,19 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.execute();
 
-            ResultSet rs=preparedStatement.getGeneratedKeys();
+            result=preparedStatement.getGeneratedKeys();
 
-            if (rs.next() && rs!=null)
+            if (result.next() && result!=null)
             {
                 for (Card c: cardown) {
                     preparedStatement=conn.prepareStatement(insert_cardown_query);
-                    preparedStatement.setInt(1,rs.getInt(1));
+                    preparedStatement.setInt(1,result.getInt(1));
                     preparedStatement.setInt(2,c.getId());
                     preparedStatement.execute();
                 }
                 for ( Card d: cardwanted) {
                     preparedStatement=conn.prepareStatement(insert_cardWanted_query);
-                    preparedStatement.setInt(1,rs.getInt(1));
+                    preparedStatement.setInt(1,result.getInt(1));
                     preparedStatement.setInt(2,d.getId());
                     preparedStatement.execute();
                 }
