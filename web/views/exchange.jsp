@@ -74,6 +74,12 @@
 
     </form>
 
+    <div id="cardsToGive">
+
+    </div>
+    <div id="cardsToTake">
+
+    </div>
 <script>
     function chooseCards(array, card, value){
         var id = card + "input";
@@ -89,6 +95,7 @@
             addToArray(array, card);
             me.setAttribute("name", value);
             alert("a card is just added, array:"+array);
+            showPicture("catalogImages", "cardsToGive");
         }
 
     }
@@ -111,14 +118,24 @@
         var value = me.getAttribute("value");
         if(array.includes(value) == true){
             me.removeAttribute("name");
-            //removeFromArray(array, value);
+            removeFromArray(array, value);
             //alert("a card is just removed, array:"+array);
         } else{
             me.setAttribute("name", action);
-            //addToArray(array, value, action);
+            addToArray(array, value, action);
             //alert("a card is just added, array:"+array);
         }
 
+    }
+
+
+    function showPicture(id, where) {
+        var img = document.getElementById(id);
+        var cln = img.cloneNode(true);
+        var src = document.getElementById(where);
+        src.appendChild(cln);
+        document.body.appendChild(cln);
+        //src.appendChild(img);
     }
 </script>
 </body>
