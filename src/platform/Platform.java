@@ -239,7 +239,7 @@ public class Platform {
     }
 
     /**Metodo che prende tutte le trattative*/
-    public ArrayList<Exchange> getExchange() throws SQLException{
+  /*  public ArrayList<Exchange> getExchange() throws SQLException{
         try{
             ExchangeCardDAOImpl market = new ExchangeCardDAOImpl();
             for (Exchange x : market.getAllExchange()
@@ -256,7 +256,17 @@ public class Platform {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
+
+  public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
+      try {
+          ExchangeCardDAO ex = new ExchangeCardDAOImpl();
+          return  ex.getAllExchange(user);
+      }catch(NullPointerException e){
+          e.printStackTrace();
+      }
+      return null;
+  }
 
     /**METODO PASSWORD*/
     private static SecretKeySpec secretKey;
