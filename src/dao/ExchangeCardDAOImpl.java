@@ -33,8 +33,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                                                     "SET  USERNAME_Offer=? , trans_comp =? WHERE id_trans=?;" +
                                                 "commit; ";
 
-    private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? AND trans_comp=0";
-    private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? AND trans_comp=0";
+    private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
+    private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select * from exchanges";
 
     private static final String delete_exchange = "SET AUTOOMMIT=0" +
@@ -197,9 +197,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
     }
 
-    /**Return all exchanges */
+    /**Return all available exchanges */
     @Override
-    public ArrayList<Exchange> getAllExchange() throws SQLException {
+    public ArrayList<Exchange> getAllExchange(User user) throws SQLException {
         conn=null;
         ArrayList<Exchange> allExchange = new ArrayList<>();
         try {
@@ -210,39 +210,45 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             conn = connector.createConnection();
             preparedStatement = conn.prepareStatement(get_exchange);
             preparedStatement.setInt(1, i);
+           // preparedStatement.setString(2, user.getUsername());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while(result!=null && result.next()) {
+                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
                 result.previous();
-            while(result.next()){
-                cardown[counter] = result.getInt("cardId");
-                counter++;
+                    while (result.next()) {
+                        cardown[counter] = result.getInt("cardId");
+                        counter++;
 
-            }
+                    }
 
-            counter=0;
-            preparedStatement = conn.prepareStatement(get_cardWanted);
-            preparedStatement.setInt(1, i);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
+                    counter = 0;
+                    preparedStatement = conn.prepareStatement(get_cardWanted);
+                    preparedStatement.setInt(1, i);
+                    // preparedStatement.setString(2, user.getUsername());
+                    preparedStatement.execute();
+                    result = preparedStatement.getResultSet();
 
-                while (result.next()) {
-                    cardwanted[counter] = result.getInt("cardId");
-                    counter++;
+                    while (result.next()) {
+                        cardwanted[counter] = result.getInt("cardId");
+                        counter++;
 
-                }
-                preparedStatement = conn.prepareStatement(get_cardWanted);
-                preparedStatement.setInt(1, i);
-                preparedStatement.execute();
-                result = preparedStatement.getResultSet();
-                while (result.next() && result != null) {
-                    allExchange.add(new Exchange(result.getInt("id_trans"), result.getString("username"), cardown, cardwanted, false, result.getString("username_offer")));
-                    System.out.println("cardown = " + Arrays.toString(cardown));
-                    System.out.println("cardwanted = " + Arrays.toString(cardwanted));
+                    }
+                    preparedStatement = conn.prepareStatement(get_cardWanted);
+                    preparedStatement.setInt(1, i);
+                    //  preparedStatement.setString(2, user.getUsername());
+                    preparedStatement.execute();
+                    result = preparedStatement.getResultSet();
+                    while (result.next() && result != null) {
+                        allExchange.add(new Exchange(result.getInt("id_trans"), result.getString("username"), cardown, cardwanted, false, result.getString("username_offer")));
+                        System.out.println("cardown = " + Arrays.toString(cardown));
+                        System.out.println("cardwanted = " + Arrays.toString(cardwanted));
+                    }
                 }
                 i++;
                 preparedStatement = conn.prepareStatement(get_exchange);
                 preparedStatement.setInt(1, i);
+              //  preparedStatement.setString(2, user.getUsername());
                 preparedStatement.execute();
                 result = preparedStatement.getResultSet();
                 counter=0;

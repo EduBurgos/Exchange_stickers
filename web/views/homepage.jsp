@@ -29,25 +29,52 @@
 
        <!--------MERCATO -------->
         <div class="container page-top">
-            <div class="col-lg-3 ">
+
+
+            <% ExchangeCardDAO e=new ExchangeCardDAOImpl();   %>
+            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
+            <% ArrayList<Exchange> ex=e.getAllExchange(u);   %>
+
+                <%for(int i=0;i<ex.size();i++){%>
+                <div class="col-lg-3 ">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                   <li data-target="#carousel-example-generic" data-slide-t
+                       ù
+                       o="2"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
+                    <%int il=0;%>
+                    <% for(int id:ex.get(i).getId_card_owm())   {  %>
+                    <%if(id!=0 && il==0){%>
+                    <%il++;%>
                     <div class="item active">
-                        <img src="../img/Pokemon/Axew.png" alt="...">
+                        <%CardsDao c= new CardsDaoImpl();    %>
+                        <%Card card=c.findByID(id);    %>
+                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                         <div class="carousel-caption">
                             <button type="button" class="btn btn-default" data-toggle="popover" title="Popover title" data-placement="bottom" data-content="<img src='../img/Pokemon/Axew.png'/> yhhhygy">Mostra</button>
 
                         </div>
                     </div>
+                    <%}else if(id!=0 && il!=0){%>
                     <div class="item">
+                        <%CardsDao c= new CardsDaoImpl();    %>
+                        <%Card card=c.findByID(id);    %>
+                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        <div class="carousel-caption">
+                            <button type="button" class="btn btn-default" data-toggle="popover" title="Popover title" data-placement="bottom" data-content="<img src='../img/Pokemon/Axew.png'/> yhhhygy">Mostra</button>
+
+                        </div>
+                    </div>
+                    <%}%>
+                    <%}%>
+                  <!--  <div class="item">
                         <img src="../img/Pokemon/Axew.png" alt="...">
                         <div class="carousel-caption">
                             <button type="button" class="btn btn-default" onclick="show()">Mostra</button>
@@ -55,7 +82,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     ...
                 </div>
 
@@ -68,13 +95,14 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
-            </div>
+                </div>
+                 </div>
+                <%}%>
 
-            <% //ExchangeCardDAO e=new ExchangeCardDAOImpl();   %>
-            <%// CardsDao c= new CardsDaoImpl();%>
 
-            <% // Exchange ex=e.getExchange(1);   %>
+
+
+
 
       <!--     <div class="col-lg-3 ">
             <div id="carousel-example-generic1" class="carousel slide" data-ride="carousel">-->

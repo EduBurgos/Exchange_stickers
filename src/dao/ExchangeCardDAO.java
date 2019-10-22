@@ -20,6 +20,6 @@ public interface ExchangeCardDAO {
 
      void delete(int id_trans) throws SQLException;
 
-     ArrayList<Exchange> getAllExchange() throws SQLException;
+     ArrayList<Exchange> getAllExchange(User user) throws SQLException;
 
 }
