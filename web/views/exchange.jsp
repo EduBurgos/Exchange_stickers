@@ -41,7 +41,7 @@
 
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)" >
                         <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
-                                <img id="catlogim" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                                <img id="<%=entry.getId() + "cardsToGive"%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
                         </input>
                     </div>
 
@@ -58,9 +58,9 @@
                     <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                     <% for (Card u : allCards.findAllGeneric()) {%>
 
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=u.getId()%>" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
                         <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
-                            <img id="catalogImages" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                            <img id="<%=u.getId() + "cardsToTake"%>" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
                         </input>
                     </div>
 
@@ -82,16 +82,17 @@
     </div>
 <script>
     function chooseCards(array, card, value){
-        var id = card + "input";
+        var id = card.toString() + "input";
+        var idImg = card.toString() + value;
         var me = document.getElementById(id);
 
         if(array.includes(card) == true){
-            document.getElementById(card).style.filter = "opacity(100%)";
+            document.getElementById(idImg).style.filter = "opacity(100%)";
             removeFromArray(array, card);
             me.setAttribute("name", "");
             alert("a card is just removed, array:"+array);
         } else{
-            document.getElementById(card).style.filter = "opacity(40%)";
+            document.getElementById(idImg).style.filter = "opacity(40%)";
             addToArray(array, card);
             me.setAttribute("name", value);
             alert("a card is just added, array:"+array);
@@ -99,6 +100,33 @@
         }
 
     }
+
+    function showPicture(id, where) {
+        var img = document.getElementById(id);
+        var cln = img.cloneNode(true);
+        var src = document.getElementById(where);
+        src.appendChild(cln);
+        document.body.appendChild(cln);
+        //src.appendChild(img);
+    }
+
+
+    function selDeselCards(array, action) {
+        var me = document.currentScript;
+        var value = me.getAttribute("value");
+        if (array.includes(value) == true) {
+            me.removeAttribute("name");
+            removeFromArray(array, value);
+            //alert("a card is just removed, array:"+array);
+        } else {
+            me.setAttribute("name", action);
+            addToArray(array, value, action);
+            //alert("a card is just added, array:"+array);
+        }
+
+    }
+
+
     // method to add an element selected to array, we will use it to create the arrays to pass to servlet(one for cards to send and the other to receive)
     function addToArray(array, card){
         array.push(card);
@@ -113,30 +141,7 @@
         document.getElementById("myForm").submit();
     }
 
-    function selDeselCards(array, action){
-        var me = document.currentScript;
-        var value = me.getAttribute("value");
-        if(array.includes(value) == true){
-            me.removeAttribute("name");
-            removeFromArray(array, value);
-            //alert("a card is just removed, array:"+array);
-        } else{
-            me.setAttribute("name", action);
-            addToArray(array, value, action);
-            //alert("a card is just added, array:"+array);
-        }
 
-    }
-
-
-    function showPicture(id, where) {
-        var img = document.getElementById(id);
-        var cln = img.cloneNode(true);
-        var src = document.getElementById(where);
-        src.appendChild(cln);
-        document.body.appendChild(cln);
-        //src.appendChild(img);
-    }
 </script>
 </body>
 </html>

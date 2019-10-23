@@ -9,8 +9,7 @@
     height: 50px;
 
 }
-
-#catalogImages, #catlogim{
+.catalogImages, .catlogim{
     width: 125%;
     height: 50%;
     border-radius:5px;
