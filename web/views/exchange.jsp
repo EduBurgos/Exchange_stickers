@@ -58,7 +58,7 @@
                     <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                     <% for (Card u : allCards.findAllGeneric()) {%>
 
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)" id="<%=u.getId() + "div"%>">
                         <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
                             <img id="<%=u.getId() + "cardsToTake"%>" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
                         </input>
@@ -74,11 +74,13 @@
 
     </form>
 
-    <div id="cardsToGive">
-
-    </div>
-    <div id="cardsToTake">
-
+    <div id="recap">
+        <div  id="cardsToGiveRecap">
+            <h1>DIV RECAP DA DARE</h1>
+        </div>
+        <div id="cardsToTakeRecap">
+            <h1>DIV RECAP DA PRENDERE</h1>
+        </div>
     </div>
 <script>
     function chooseCards(array, card, value){
@@ -96,17 +98,18 @@
             addToArray(array, card);
             me.setAttribute("name", value);
             alert("a card is just added, array:"+array);
-            showPicture("catalogImages", "cardsToGive");
+            showPicture(idImg, value);
         }
 
     }
 
     function showPicture(id, where) {
+        var idWhereToAdd = where.toString().concat("Recap");
         var img = document.getElementById(id);
         var cln = img.cloneNode(true);
-        var src = document.getElementById(where);
-        src.appendChild(cln);
-        document.body.appendChild(cln);
+        var src = document.getElementById(idWhereToAdd);
+        document.getElementById(idWhereToAdd).appendChild(cln);
+        //document.body.appendChild(cln);
         //src.appendChild(img);
     }
 
