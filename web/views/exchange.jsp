@@ -39,7 +39,7 @@
                 <div style="overflow: auto; width: 100%; height: 100%">
                     <%for(Card entry : c.getCardsOwn()){%>
 
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId()%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)" >
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)" >
                         <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
                                 <img id="<%=entry.getId() + "cardsToGive"%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
                         </input>
@@ -58,7 +58,7 @@
                     <% CardsDaoImpl allCards = new CardsDaoImpl();%>
                     <% for (Card u : allCards.findAllGeneric()) {%>
 
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)" id="<%=u.getId() + "div"%>">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)" id="<%=u.getId() + "divToTake"%>">
                         <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
                             <img id="<%=u.getId() + "cardsToTake"%>" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
                         </input>
@@ -85,7 +85,7 @@
 
 <script>
     function chooseCards(array, card, value){
-        var id = card.toString() + "input";
+        var id = card.toString().concat("input");
         var idImg = card.toString() + value;
         var me = document.getElementById(id);
 
@@ -95,21 +95,26 @@
             me.setAttribute("name", "");
             alert("a card is just removed, array:"+array);
         } else{
+            showPicture(idImg, value);
             document.getElementById(idImg).style.filter = "opacity(40%)";
             addToArray(array, card);
             me.setAttribute("name", value);
             alert("a card is just added, array:"+array);
-            showPicture(idImg, value);
         }
 
     }
 
     function showPicture(id, where) {
         var idWhereToAdd = where.toString().concat("Recap");
+        var idDiv = id.replace(where, "divToTake");
+        console.log(idDiv);
+        var divCard = document.getElementById(idDiv);
+        var divCln = divCard.cloneNode(true);
         var img = document.getElementById(id);
-        var cln = img.cloneNode(true);
+        var imgCln = img.cloneNode(true);
         var src = document.getElementById(idWhereToAdd);
-        document.getElementById(idWhereToAdd).appendChild(cln);
+        src.appendChild(divCln);
+        //document.getElementById(idWhereToAdd).appendChild(imgCln);
         //document.body.appendChild(cln);
         //src.appendChild(img);
     }
