@@ -68,23 +68,14 @@
                 </div>
             </div>
         </div>
-
-        <!-------QUI INIZIO LE MIE 2 BOX CHE MOSTRANO LE CARTE DA SCAMBIARE---------------------------------------------------------------------------------------------------->
-        <div class="bottonleftbox">
-            <div id="recap">
-                <div  id="cardsToGiveRecap">
-                    <h1>DIV RECAP DA DARE</h1>
-                </div>
-        </div>
-
-            <diV class="bottonrightbox">
-                <div id="cardsToTakeRecap">
-                    <h1>DIV RECAP DA PRENDERE</h1>
-                </div>
+        <div id="recap">
+            <div  id="cardsToGiveRecap">
+                <h1>DIV RECAP DA DARE</h1>
+            </div>
+            <div id="cardsToTakeRecap">
+                <h1>DIV RECAP DA PRENDERE</h1>
             </div>
         </div>
-
-        <!-------QUI DOVREBBE FINIRE------------------------------------------------------------------------------------------------->
         <div id="start" >
             <button  type="Submit" class="btn" id="startbutton">AVVIA TRATTATIVA</button>
         </div>
