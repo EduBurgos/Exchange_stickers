@@ -70,11 +70,20 @@
         -->
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
-            <li role="presentation" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="tab">My Collection</a></li>
-            <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
-        </ul>
+        <div class="row">
+            <div class="col-10 col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                <ul class="nav nav-tabs" role="tablist">
+                    <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
+                    <li role="presentation" class="active" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="mycollectionTab">My Collection</a></li>
+                    <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
+                </ul>
+            </div>
+            <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
+                <button type="button" class="btn btn-default btn-lg" onclick="cleaAttr()">
+                    <span class="glyphicon glyphicon-home" ></span>
+                </button>
+            </div>
+        </div>
 
         <!-- Tab panes -->
         <div class="tab-content">
@@ -108,7 +117,13 @@
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+<script>
+    function cleaAttr()
+    {
+        <% request.getSession().removeAttribute("snitch"); %>
+        location.reload();
+    }
+</script>
 
 </body>
 </html>
