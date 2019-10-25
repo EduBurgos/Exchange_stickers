@@ -46,7 +46,6 @@
         <% CollectionOwn c; %>
         <% if(request.getSession().getAttribute("snitch")!=null){ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("snitch");}
-
         else{ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("logged");} %>
         <% User u = c.getOwner();%>
