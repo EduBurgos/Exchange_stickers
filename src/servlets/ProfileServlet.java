@@ -31,10 +31,10 @@ public class ProfileServlet extends AbstractServlet{
         try{
             CollectionOwn nickname = confirmNickname(request);
             //ArrayList<Exchange> lista_market = Platform.getInstance().getExchange();
-            request.getSession().setAttribute("snitched",null);
+            request.getSession().setAttribute("snitch",null);
 
             if(nickname != null){
-                request.getSession().setAttribute("snitched",nickname);
+                request.getSession().setAttribute("snitch",nickname);
                 response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
             }
             else{

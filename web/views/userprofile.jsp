@@ -44,8 +44,9 @@
             <div class="inner"></div>
         </div>
         <% CollectionOwn c; %>
-        <% if(request.getSession().getAttribute("snitched")!=null){ %>
-        <% c= (CollectionOwn)request.getSession().getAttribute("snitched");}
+        <% if(request.getSession().getAttribute("snitch")!=null){ %>
+        <% c= (CollectionOwn)request.getSession().getAttribute("snitch");}
+
         else{ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("logged");} %>
         <% User u = c.getOwner();%>
@@ -78,7 +79,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
-            <div role="tabpanel" class="tab-pane fade in active" id="mycollection" onclick="back();">
+            <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
                 <%for(Card entry : c.getCardsOwn()){%>
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                     <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
@@ -96,7 +97,7 @@
                     <label for="nickname">Nickname</label>
                     <input type="text" id="nickname" name="Nickname" placeholder="Insert Nickname">
                     <!--TASTO CERCA -->
-                    <input type="submit" value="Search" id="prova">
+                    <input type="submit" value="Search" >
                 </form>
 
             </div>
