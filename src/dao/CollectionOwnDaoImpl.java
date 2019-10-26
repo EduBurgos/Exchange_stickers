@@ -77,8 +77,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
     @Override
-    public ArrayList<Card> getCollentionOwn(User user){
-        ArrayList<Card> c = new ArrayList<Card>();
+    public Map<Card,Integer> getCollentionOwn(User user){
+        Map<Card,Integer> c=new HashMap<>();
         //String listaCarte = VIEW_COLLECTION_QUERY;
         user.getUsername();
         try {
@@ -98,9 +98,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                         result.getString("CardType"),
                         result.getString("CardName"),
                         result.getString("CardDescription"));
-                c.add(card);
+                        c.put(card,result.getInt("quantity"));
                 //to do: farla diventare mappa con quantità
-                //cards.put(card,result.getInt(9));
             }
             return c;
         }catch (SQLException e){

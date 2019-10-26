@@ -5,6 +5,7 @@ import userSide.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,10 +15,10 @@ import java.util.TreeMap;
  */
 public class CollectionOwn {
     private User owner;
-    private ArrayList<Card> cardsOwn;
+    private Map<Card,Integer> cardsOwn;
 
 
-    public CollectionOwn(User owner, ArrayList<Card> cardsOwn) {
+    public CollectionOwn(User owner, Map<Card,Integer> cardsOwn) {
         this.owner = owner;
         this.cardsOwn = cardsOwn;
     }
@@ -28,20 +29,20 @@ public class CollectionOwn {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    public ArrayList<Card> getCardsOwn() {
+    public Map<Card, Integer> getCardsOwn() {
         return cardsOwn;
     }
-    public void setCardsOwn(ArrayList<Card> cardsOwn) {
+    public void setCardsOwn(Map cardsOwn) {
         this.cardsOwn = cardsOwn;
     }
 
-    public ArrayList<Card> searchCard(String search)
+    public Map<Card,Integer> searchCard(String search)
     {
-        ArrayList<Card> result=new ArrayList<>();
-        for (Card c:cardsOwn) {
+        Map<Card,Integer> result=new HashMap<>();
+        for (Card c:cardsOwn.keySet()) {
             if(c.getNome().contains(search))
             {
-                result.add(c);
+                result.put(c,cardsOwn.get(c));
             }
         }
         return result;
@@ -49,7 +50,7 @@ public class CollectionOwn {
 
     public  boolean searchCardById(int id)
     {
-        for (Card c:cardsOwn) {
+        for (Card c:cardsOwn.keySet()) {
             if(c.getId()==id)
             {
                 return true;
