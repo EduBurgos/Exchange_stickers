@@ -47,6 +47,7 @@ CREATE TABLE collections(
                             ID_Card int not null ,
                             USERNAME VARCHAR(32) not null ,
                             In_Market boolean,
+                            quantity int not null DEFAULT 1,
                             primary key (ID_Card,USERNAME),
                             FOREIGN KEY (USERNAME) REFERENCES Users(Username),
                             FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
@@ -56,7 +57,7 @@ create table exchanges(
                           id_trans INT not null auto_increment,
                           username VARCHAR(32) NOT NULL ,
                           username_offer VARCHAR(32) DEFAULT NULL,
-                          trans_comp boolean DEFAULT TRUE,
+                          trans_comp boolean DEFAULT FALSE,
                           primary key (id_trans),
                           foreign key(username) references users(username),
                           foreign key(username_offer) references users(username)
