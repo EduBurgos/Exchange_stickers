@@ -88,9 +88,12 @@
         <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
-                <%for(Card entry : c.getCardsOwn()){%>
+                <%for(Card entry : c.getCardsOwn().keySet()){%>
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
+                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <%}
+                    %>
                 </div>
                 <%}
                 %>
