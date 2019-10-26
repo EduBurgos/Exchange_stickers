@@ -37,8 +37,8 @@
                     var toGive = "cardsToGive";
                 </script>
                 <div style="overflow: auto; width: 100%; height: 100%">
-                    <%for(Card entry : c.getCardsOwn()){%>
-
+                    <%for(Card entry : c.getCardsOwn().keySet()){%>
+                        <%for(int i =0; i<c.getCardsOwn().get(entry); i++){%>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"%>" onclick="chooseCards(CardsToGiveArray, <%=entry.getId()%>, toGive)" >
                         <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
                                 <img id="<%=entry.getId() + "cardsToGive"%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
@@ -46,6 +46,7 @@
                     </div>
 
                         <%}%>
+                    <%}%>
                 </div>
             </div>
 
