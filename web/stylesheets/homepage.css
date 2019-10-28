@@ -29,10 +29,8 @@ img.zoom {
 }
 
 .carousel {
-    width:250px;
-    height:325px;
-   /* overflow-x:scroll;
-    overflow-y:scroll;*/
+    width: 250px;
+    height: 325px;
 }
 .item {
     text-align: center;
@@ -49,4 +47,34 @@ img.zoom {
 
 #save {
     visibility:hidden;
+}
+
+
+.class1 {
+    transition:max-height 1s;
+    height:275px;
+    width:170px;
+   overflow-x:scroll;
+    overflow-y:scroll;
+
+}
+
+.img-little{
+    width:90%;
+   height:275px;
+   /* overflow-x:scroll;
+    overflow-y:scroll;*/
+}
+
+.off {
+    display: none;
+}
+
+::-webkit-scrollbar
+{
+    width:0px;
+}
+::-webkit-scrollbar-track-piece
+{
+    background-color:transparent;
 }

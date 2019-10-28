@@ -42,9 +42,7 @@
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                   <li data-target="#carousel-example-generic" data-slide-t
-                       ù
-                       o="2"></li>
+                   <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
@@ -58,8 +56,15 @@
                         <%Card card=c.findByID(id);    %>
                         <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                         <div class="carousel-caption">
-                            <button type="button" class="btn btn-default" data-toggle="popover" title="Popover title" data-placement="bottom" data-content="<img src='../img/Pokemon/Axew.png'/> yhhhygy">Mostra</button>
-
+                            <button  onclick="showCards()">Show Cards Wanted</button>
+                            <div class="class1" style="max-height: 275px;">
+                                <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
+                                <%if(idWanted!=0){%>
+                                <%card=c.findByID(idWanted);    %>
+                                <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
+                                <%}%>
+                                <%}%>
+                            </div>
                         </div>
                     </div>
                     <%}else if(id!=0 && il!=0){%>
@@ -68,8 +73,15 @@
                         <%Card card=c.findByID(id);    %>
                         <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                         <div class="carousel-caption">
-                            <button type="button" class="btn btn-default" data-toggle="popover" title="Popover title" data-placement="bottom" data-content="<img src='../img/Pokemon/Axew.png'/> yhhhygy">Mostra</button>
-
+                            <button onclick="showCards()">Show Cards Wanted</button>
+                            <div class="class1">
+                           <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
+                            <%if(idWanted!=0){%>
+                            <%card=c.findByID(idWanted);    %>
+                                <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
+                            <%} %>
+                            <%}%>
+                            </div>
                         </div>
                     </div>
                     <%}%>
@@ -245,9 +257,7 @@ FINE COMENTO-->
 <!--<script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>-->
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
 <script>
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
+
 
 
     function show() {
@@ -258,6 +268,36 @@ FINE COMENTO-->
             images[i].src = images[i].getAttribute('data-src');
         }
     }
+
+    var op=0;
+    function showCards() {
+        document.getElementsByClassName("class1")[0].style.maxHeight = "200px";
+        var images = document.querySelectorAll(".class1 > img");
+        for(var i = 0; i < images.length; i++)
+        {
+            images[i].src = images[i].getAttribute('data-src');
+            images[i].classList.toggle('off');
+        }
+        showOpacity();
+
+    }
+
+function showOpacity(){
+    var imagesactive = document.querySelectorAll(".item > img");
+    if(imagesactive[0].style.opacity==='1') {
+        for (var i = 0; i < imagesactive.length; i++) {
+            imagesactive[i].style.opacity = '0.3';
+
+        }
+        op=1;
+    }else{
+        for (var i = 0; i < imagesactive.length; i++) {
+            imagesactive[i].style.opacity = '1';
+
+        }
+        op=0;
+    }
+}
 
 
     jQuery(function(){
