@@ -78,7 +78,35 @@
             </div>
         </div>
         <div id="start" >
-            <button  type="Submit" class="btn" id="startbutton">AVVIA TRATTATIVA</button>
+            <script>
+                    if (CardsToTakeArray.length > 5 || CardsToGiveArray.length > 5 || CardsToTakeArray == null || CardsToGiveArray == null) {
+                        document.body.innerHTML += "<div id=\"start\" ><button type=\"submit\" class=\"btn\" id=\"startbutton\" disabled>AVVIA TRATTATIVA</button></div>";
+                    } else{
+                        document.body.innerHTML += "<div id=\"start\" ><button type=\"submit\" class=\"btn\" id=\"startbutton\" onclick='startChange(CardsToGiveArray, CardsToTakeArray)'>AVVIA TRATTATIVA</button></div>";
+                    }
+                        //var startButton = document.getElementById('startbutton');
+                        //startButton.setAttribute('id', 'startbutton');
+                        //startButton.disabled = false;
+                        //startButton.setAttribute('disabled', '');
+
+
+
+
+
+
+
+                /* if (5>array1.length && 5>array2){
+                    var startButton = document.createElement('button');
+                    startButton.setAttribute('id', 'startbutton')
+                    startButton.setAttribute('disabled', 'true');
+                } else {
+                    var startButton = document.createElement('button');
+                    startButton.setAttribute('id', 'startbutton')
+                    var startButton = document.getElementById('startbutton');
+                    startButton.setAttribute('disabled', 'false');
+                } */
+            </script>
+
         </div>
 
     </form>
@@ -91,6 +119,7 @@
         var me = document.getElementById(id);
 
         if(array.includes(card) == true){
+            removePicture(idImg, value);
             document.getElementById(idImg).style.filter = "opacity(100%)";
             removeFromArray(array, card);
             me.setAttribute("name", "");
@@ -108,16 +137,31 @@
     function showPicture(id, where) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
+        var idDivCopy = idDiv.concat("Copy");
         console.log(idDiv);
         var divCard = document.getElementById(idDiv);
         var divCln = divCard.cloneNode(true);
         var img = document.getElementById(id);
         var imgCln = img.cloneNode(true);
         var src = document.getElementById(idWhereToAdd);
+        divCln.setAttribute("id", idDivCopy)
         src.appendChild(divCln);
-        //document.getElementById(idWhereToAdd).appendChild(imgCln);
-        //document.body.appendChild(cln);
-        //src.appendChild(img);
+    }
+    
+    function removePicture(id, where) {
+        var idWhereToAdd = where.toString().concat("Recap");
+        var idDiv = id.replace(where, "divToTake");
+        var idDivCopy = idDiv.concat("Copy");
+        var imgToRemove = document.getElementById(idDivCopy);
+        console.log(idDiv);
+        console.log(idDivCopy);
+        var divCard = document.getElementById(idDiv);
+        var divCln = divCard.cloneNode(true);
+        var img = document.getElementById(id);
+        var imgCln = img.cloneNode(true);
+        var src = document.getElementById(idWhereToAdd);
+        var elem = document.getElementById(idDivCopy);
+        return elem.parentNode.removeChild(elem);
     }
 
 
@@ -146,11 +190,16 @@
         var pos = array.indexOf(card);
         array.splice(pos, 1);
     }
-    
-    function startExchange(array1, array2) {
+
+function startChange(array1, array2) {
+    if (array1.length > 5 || array2.length > 5 ) {
+        alert("non puoi selezionare più di 5 carte");
+    } else if(array1.length == 0 || array2.length ==0 ){
+        alert("devi selezionare almeno una carta");
+    } else{
         document.getElementById("myForm").submit();
     }
-
+}
 
 </script>
 </body>
