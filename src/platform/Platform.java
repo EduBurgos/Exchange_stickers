@@ -206,6 +206,31 @@ public class Platform {
     }
 
     /**
+     * Method used to accept exchanges
+     * @param Username of the user logged
+     * @param id_card of exchange
+     * @return true if the exchange is successful, false otherwise
+     * @throws SQLException
+     */
+
+    public boolean marketExchange(String Username,int id_card) throws SQLException{
+        try {
+            ExchangeCardDAOImpl exchange = new ExchangeCardDAOImpl();
+            Exchange e = exchange.getExchange(id_card);
+            UserDaoImpl userDaoImpl = new UserDaoImpl();
+
+            if (!e.isTrans_comp() && !e.getId_user().equals(Username)) {
+                exchange.marketExchange(e);
+                return true;
+            } else {
+                return false;
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    /**
      * Method used to accept an exchange
      * @throws SQLException
      */

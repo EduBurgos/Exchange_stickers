@@ -3,6 +3,7 @@ package servlets;
 import collection.CollectionOwn;
 import platform.Platform;
 import servlets.AbstractServlet;
+import userSide.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -29,7 +30,18 @@ public class HomePageServlet extends AbstractServlet {
 
     // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        forwardTo(request, response, DEFAULT_ROUTE);
+        try {
+            boolean resultExchange = marketExchange(request);
+            if (resultExchange) {
+                response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
+            } else {
+                forwardTo(request, response, DEFAULT_ROUTE);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -66,4 +78,15 @@ public class HomePageServlet extends AbstractServlet {
 
 
     }
+
+    private boolean marketExchange(HttpServletRequest request) throws SQLException {
+
+        User user= ((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();
+        String username=user.getUsername();
+        String id=(String)request.getParameter("btn");
+        int idExchange =Integer.parseInt(id);
+        Platform platform = Platform.getInstance();
+        return platform.marketExchange(username,idExchange);
+    }
+
 }
