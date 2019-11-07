@@ -283,6 +283,142 @@ public class Platform {
         return null;
     }*/
 
+    /**.........................METODI PER CERCARE NELLA PROPRIA COLLEZIONE**/
+    /**Metodo Per trovare Carta nel proprio profilo*/
+    public Card findByName(String username, String nameCard) throws SQLException{
+        User account=null;
+        try{
+            UserDao user= new UserDaoImpl();
+            account=user.findByUsername(username);
+            if(account!=null){
+                CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
+                Card answer=collectionOwnDao.findByName(account,nameCard);
+                return answer;
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return  null;
+    }
+    /**Metodo per trovare carte della stessa categoria nel profilo */
+
+    public ArrayList<Card>findByCategory(String username, String categoryCard) throws SQLException{
+        ArrayList<Card> list= new ArrayList<Card>();
+        User account=null;
+        try{
+            UserDao user=new UserDaoImpl();
+            account= user.findByUsername(username);
+            if(account!=null){
+                CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
+                list=collectionOwnDao.findByCategory(account,categoryCard);
+                return list;
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**Metodo per trovare carte della stessa classe nel profilo */
+
+    public ArrayList<Card>findByClass(String username, String classCard) throws SQLException{
+        ArrayList<Card> list= new ArrayList<Card>();
+        User account=null;
+        try{
+            UserDao user=new UserDaoImpl();
+            account= user.findByUsername(username);
+            if(account!=null){
+                CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
+                list=collectionOwnDao.findByClass(account,classCard);
+                return list;
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**Metodo per trovare carte della stesso tipo nel profilo */
+
+    public ArrayList<Card>findByType(String username, String typeCard) throws SQLException{
+        ArrayList<Card> list= new ArrayList<Card>();
+        User account=null;
+        try{
+            UserDao user=new UserDaoImpl();
+            account= user.findByUsername(username);
+            if(account!=null){
+                CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
+                list=collectionOwnDao.findByType(account,typeCard);
+                return list;
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+/**..........................FINE METODI DI RICERCA NELLA PROPRIA COLLEZIONE.....................**/
+
+/**...........................METODI DI RICERCA NELLE TRATTATIVE...................**/
+    /**metodo di ricerca usando solo  il nome della carta*/
+
+    public ArrayList<Exchange> findTByNameCard(User user, String nameCard) throws SQLException{
+        ArrayList<Exchange> answer= new ArrayList<Exchange>();
+        try{
+            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
+            answer=ex.findTByNameCard(user,nameCard);
+            return answer;
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /** Metodo di ricerca usando solo la categoria della carta*/
+
+    public ArrayList<Exchange> findTByCategoryCard(User user, String category) throws SQLException{
+        ArrayList<Exchange> answer= new ArrayList<Exchange>();
+        try{
+            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
+            answer=ex.findTByNameCard(user,category);
+            return answer;
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /** Metodo di ricerca usando solo la classe della carta*/
+
+    public ArrayList<Exchange> findTByClassCard(User user, String classCard) throws SQLException{
+        ArrayList<Exchange> answer= new ArrayList<Exchange>();
+        try{
+            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
+            answer=ex.findTByNameCard(user,classCard);
+            return answer;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /** Metodo di ricerca usando solo il tipo della carta*/
+    public ArrayList<Exchange> findTByTypeCard(User user, String typeCard) throws SQLException{
+        ArrayList<Exchange> answer= new ArrayList<Exchange>();
+        try{
+            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
+            answer=ex.findTByNameCard(user,typeCard);
+            return answer;
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /** ..........FINE METODI DI RICERCA IN TRATTATIVE.....**/
+
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
           ExchangeCardDAO ex = new ExchangeCardDAOImpl();

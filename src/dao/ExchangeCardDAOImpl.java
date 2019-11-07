@@ -9,6 +9,8 @@ import userSide.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
@@ -42,6 +44,14 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                                                         "delete from exchanges where id_trans=?" +
                                                     "commit;";
     //private static final String view_catalog = "select * from catalog";
+    // query trova trattativa secondo nome della carta
+    private static final String SEARCH_BY_NAME_CARD="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardName=?";
+    private static final String SEARCH_BY_CATEGORY="exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Category=? ";
+    private static final String SEARCH_BY_CLASS=" exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Class=?";
+    private static final String SEARCH_BY_TYPE="exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardType=?";
+
+
+
     @Override
     public void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException {
         conn = null;
@@ -307,6 +317,189 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
+
+    /**..............METODI PER CERCARE LE TRATATTIVE**/
+    /**Metodo che mi trova tratativa/e secondo il nome della carta*/
+    public ArrayList<Exchange>findTByNameCard(User user, String nameCard) throws SQLException{
+        conn=null;
+        Exchange ex=null;
+        ArrayList<Exchange> answer= new ArrayList<>();
+        try{
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEARCH_BY_NAME_CARD);
+            preparedStatement.setString(1, nameCard);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while(result!=null && result.next()) {
+                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
+                    result.previous();
+                    while (result.next()) {
+                        ex=getExchange(result.getInt("id_trans"));
+                        answer.add(ex);
+                    }
+                }
+            }
+
+            return answer;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    /**Metodo che mi trova tratativa/e secondo la categoria*/
+    public ArrayList<Exchange>findTByCategory(User user, String category) throws SQLException{
+        conn=null;
+        Exchange ex=null;
+        ArrayList<Exchange> answer= new ArrayList<>();
+        try{
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEARCH_BY_CATEGORY);
+            preparedStatement.setString(1, category);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while(result!=null && result.next()) {
+                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
+                    result.previous();
+                    while (result.next()) {
+                        ex=getExchange(result.getInt("id_trans"));
+                        answer.add(ex);
+                    }
+                }
+            }
+
+            return answer;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    /**Metodo che mi trova tratativa/e secondo la classe della carta*/
+    public ArrayList<Exchange>findTByClassCard(User user, String classCard) throws SQLException{
+        conn=null;
+        Exchange ex=null;
+        ArrayList<Exchange> answer= new ArrayList<>();
+        try{
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEARCH_BY_CLASS);
+            preparedStatement.setString(1, classCard);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while(result!=null && result.next()) {
+                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
+                    result.previous();
+                    while (result.next()) {
+                        ex=getExchange(result.getInt("id_trans"));
+                        answer.add(ex);
+                    }
+                }
+            }
+
+            return answer;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    /**Metodo che mi trova tratativa/e secondo il tipo della carta*/
+    public ArrayList<Exchange>findTByTypeCard(User user, String typeCard) throws SQLException{
+        conn=null;
+        Exchange ex=null;
+        ArrayList<Exchange> answer= new ArrayList<>();
+        try{
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEARCH_BY_TYPE);
+            preparedStatement.setString(1, typeCard);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while(result!=null && result.next()) {
+                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
+                    result.previous();
+                    while (result.next()) {
+                        ex=getExchange(result.getInt("id_trans"));
+                        answer.add(ex);
+                    }
+                }
+            }
+
+            return answer;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+/**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
 
 
 }

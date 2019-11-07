@@ -49,7 +49,7 @@ CREATE TABLE collections(
                             In_Market boolean,
                             quantity int not null DEFAULT 1,
                             primary key (ID_Card,USERNAME),
-                            FOREIGN KEY (USERNAME) REFERENCES Users(Username),
+                             FOREIGN KEY (USERNAME) REFERENCES Users(Username),
                             FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 

@@ -24,6 +24,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
+    private static final String SEARCH_BY_CARDNAME= "select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=?";
+    private static final String SEARCH_BY_CATEGORY="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Category=?";
+    private static final String SEARCH_BY_CLASS="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Class=?";
+    private static final String SEARCH_BY_TYPE="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardType=?";
+
+
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
     PreparedStatement preparedStatement = null;
@@ -148,6 +154,128 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         }
     }
 
+
+/**.....................................METODI DI RICERCA.................................**/
+    /** Metodo per trovare una determinata carta nella mia collezione*/
+
+    public Card findByName(User user, String name){
+
+        user.getUsername();
+        try {
+
+            conn = connector.createConnection();
+
+            preparedStatement = conn.prepareStatement(SEARCH_BY_CARDNAME);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,name);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            Card answer=new Card(result.getInt("ID"),
+                    result.getString("Category"),
+                    result.getString("Class"),
+                    result.getInt("Lvl"),
+                    result.getString("Rarity"),
+                    result.getString("CardType"),
+                    result.getString("CardName"),
+                    result.getString("CardDescription"));
+
+            return answer;
+        }catch (SQLException e){
+            return null;
+        }
+
+    }
+
+    /**Metodo per trovare delle carte della mia collezione che abbiano in comune la stessa categoria */
+    public ArrayList<Card> findByCategory(User user, String category){
+        ArrayList<Card> list= new ArrayList<Card>();
+        user.getUsername();
+        try {
+
+            conn = connector.createConnection();
+
+            preparedStatement = conn.prepareStatement(SEARCH_BY_CATEGORY);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,category);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card answer = new Card(result.getInt("ID"),
+                        result.getString("Category"),
+                        result.getString("Class"),
+                        result.getInt("Lvl"),
+                        result.getString("Rarity"),
+                        result.getString("CardType"),
+                        result.getString("CardName"),
+                        result.getString("CardDescription"));
+                list.add(answer);
+            }
+            return list;
+        }catch (SQLException e){
+            return null;
+        }
+
+    }
+    /**Metodo per trovare delle carte nella mia collezione che abbiano in comune la stessa classe*/
+
+    public ArrayList<Card> findByClass(User user, String classCard){
+        ArrayList<Card> list= new ArrayList<Card>();
+        user.getUsername();
+        try {
+
+            conn = connector.createConnection();
+
+            preparedStatement = conn.prepareStatement(SEARCH_BY_CLASS);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,classCard);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card answer = new Card(result.getInt("ID"),
+                        result.getString("Category"),
+                        result.getString("Class"),
+                        result.getInt("Lvl"),
+                        result.getString("Rarity"),
+                        result.getString("CardType"),
+                        result.getString("CardName"),
+                        result.getString("CardDescription"));
+                list.add(answer);
+            }
+            return list;
+        }catch (SQLException e){
+            return null;
+        }
+    }
+    /**Metodo che mi trova le carte nella mia collezione che abbiano in comune lo stesso tipo*/
+    public ArrayList<Card> findByType(User user, String typeCard){
+        ArrayList<Card> list= new ArrayList<Card>();
+        user.getUsername();
+        try {
+
+            conn = connector.createConnection();
+
+            preparedStatement = conn.prepareStatement(SEARCH_BY_TYPE);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,typeCard);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                Card answer = new Card(result.getInt("ID"),
+                        result.getString("Category"),
+                        result.getString("Class"),
+                        result.getInt("Lvl"),
+                        result.getString("Rarity"),
+                        result.getString("CardType"),
+                        result.getString("CardName"),
+                        result.getString("CardDescription"));
+                list.add(answer);
+            }
+            return list;
+        }catch (SQLException e){
+            return null;
+        }
+    }
+    /**......................FINE METODI DI RICERCA..................................**/
     @Override
     public ArrayList<Card> openSachet(User user){
         ArrayList<Card> c = new ArrayList<Card>();
