@@ -37,9 +37,10 @@ public class ExchangeServlet extends AbstractServlet {
             /*for(int i=0; i<cardsToTake.length; i++){
                 System.out.println(cardsToTake[i]);
             }*/
+
             String cardsToGive[] = request.getParameterValues("cardsToGive");
-            System.out.println(Arrays.toString(cardsToTake));
-            System.out.println(Arrays.toString(cardsToGive));
+            System.out.println("carte da prendere "+ Arrays.toString(cardsToTake));
+            System.out.println("carte da dare "+ Arrays.toString(cardsToGive));
 
             int[] intArrayToGive = new int[cardsToGive.length];
             int[] intArrayToTake = new int[cardsToTake.length];
@@ -55,14 +56,12 @@ public class ExchangeServlet extends AbstractServlet {
 
             String username=collectionOwn.getOwner().getUsername();
             Platform platform = Platform.getInstance();
-            //TODO come valorizziamo idtrans
-
-            //TODO lavorare con i vettori per attuare lo scambio
             platform.setExchange(username, intArrayToGive, intArrayToTake);
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect(request.getContextPath()+"/views/exchange.jsp");
         }
     }
 
