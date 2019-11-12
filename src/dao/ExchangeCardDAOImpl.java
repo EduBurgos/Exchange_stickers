@@ -1,16 +1,14 @@
 package dao;
 
 import collection.Card;
+import collection.Cards;
 import collection.CollectionOwn;
 import com.mysql.jdbc.Statement;
 import userSide.Exchange;
 import userSide.User;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
@@ -37,7 +35,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
     private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
-    private static final String get_all_exchange ="select * from exchanges";
+    private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=?)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp='0'";
 
     private static final String delete_exchange = "SET AUTOOMMIT=0" +
                                                     "start transaction;" +
@@ -211,63 +209,64 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     @Override
     public ArrayList<Exchange> getAllExchange(User user) throws SQLException {
         conn=null;
+        int CardOCounter=0;
+        int CardWCounter=0;
+        int[] cardown = new int[5];
+        int[] cardwanted = new int[5];
         ArrayList<Exchange> allExchange = new ArrayList<>();
         try {
-            int i=1;
-            int counter=0;
-            int[]cardown=new int[5];
-            int[] cardwanted=new int[5];
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(get_exchange);
-            preparedStatement.setInt(1, i);
-           // preparedStatement.setString(2, user.getUsername());
+            preparedStatement = conn.prepareStatement(get_all_exchange);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getUsername());
+            // preparedStatement.setString(2, user.getUsername());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            while(result!=null && result.next()) {
-                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
-                result.previous();
-                    while (result.next()) {
-                        cardown[counter] = result.getInt("cardId");
-                        counter++;
+            int id_trans=0;
+            String username_offer;
+            if(result!=null && result.next()) {
+                id_trans = result.getInt(1);
+                cardown[CardOCounter] = result.getInt("own");
+                cardwanted[CardWCounter] = result.getInt("want");
+                CardOCounter++;
+                CardWCounter++;
+            }
+            while (result != null) {
+                username_offer=result.getString("username_offer");
+                while (result.getInt(1) == id_trans) {
+                    if (!checkCard(cardown, result.getInt("own"))) {
+                        cardown[CardOCounter] = result.getInt("own");
+                        CardOCounter=addCard(result.getInt("oqt"), cardown, result.getInt("own"),CardOCounter+1);
 
                     }
-
-                    counter = 0;
-                    preparedStatement = conn.prepareStatement(get_cardWanted);
-                    preparedStatement.setInt(1, i);
-                    // preparedStatement.setString(2, user.getUsername());
-                    preparedStatement.execute();
-                    result = preparedStatement.getResultSet();
-
-                    while (result.next()) {
-                        cardwanted[counter] = result.getInt("cardId");
-                        counter++;
-
+                    if (!checkCard(cardwanted, result.getInt("want"))) {
+                        cardwanted[CardWCounter] = result.getInt("want");
+                        CardWCounter=addCard(result.getInt("wqt"), cardown, result.getInt("want"),CardWCounter+1);
                     }
-                    preparedStatement = conn.prepareStatement(get_cardWanted);
-                    preparedStatement.setInt(1, i);
-                    //  preparedStatement.setString(2, user.getUsername());
-                    preparedStatement.execute();
-                    result = preparedStatement.getResultSet();
-                    while (result.next() && result != null) {
-                        allExchange.add(new Exchange(result.getInt("id_trans"), result.getString("username"), cardown, cardwanted, false, result.getString("username_offer")));
-                        System.out.println("cardown = " + Arrays.toString(cardown));
-                        System.out.println("cardwanted = " + Arrays.toString(cardwanted));
+                    if(result.next()==false)
+                    {
+                        result=null;
+                        break;
                     }
                 }
-                i++;
-                preparedStatement = conn.prepareStatement(get_exchange);
-                preparedStatement.setInt(1, i);
-              //  preparedStatement.setString(2, user.getUsername());
-                preparedStatement.execute();
-                result = preparedStatement.getResultSet();
-                counter=0;
-                cardown=new int[5];
-                cardwanted=new int[5];
-
+                allExchange.add(new Exchange(id_trans,"Obe", cardown, cardwanted, false,username_offer));
+                System.out.println("cardown = " + Arrays.toString(cardown));
+                System.out.println("cardwanted = " + Arrays.toString(cardwanted));
+                if(result==null)
+                {
+                    break;
+                }
+                else
+                {
+                    result.next();
+                    id_trans = result.getInt("id_trans");
+                }
+                cardown=null;
+                cardwanted=null;
             }
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -288,7 +287,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return allExchange;
     }
-
     @Override
     public void delete(int id_trans) throws SQLException {
         conn = null;
@@ -498,7 +496,27 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return null;
     }
-
+    public boolean checkCard(int [] cards,int toSearch)
+    {
+        //metodo che controlla se elemento è già presente nell'array
+            for (int i=0; i<cards.length; i++)
+                if (cards[i]==toSearch)
+                    return true;
+            return false;
+        }
+        public int addCard(int quantity, int[] cardsArray,int card,int counter)
+        {
+            if(quantity>1)
+            {
+               while (quantity!=1)
+                {
+                    cardsArray[counter]=card;
+                    quantity--;
+                    counter++;
+                }
+            }
+            return counter;
+        }
 /**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
 
 
