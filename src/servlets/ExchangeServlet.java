@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@WebServlet(name = "servlets.HomePageServlet", urlPatterns = "/exchange")
+@WebServlet(name = "servlets.ExchangeServlet", urlPatterns = "/exchange")
 public class ExchangeServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
