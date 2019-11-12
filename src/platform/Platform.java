@@ -205,6 +205,13 @@ public class Platform {
         exchangeCardDAO.create(user, ownedCards, wantedCards);
     }
 
+    public void getAllExchanges(String username) throws SQLException{
+        ExchangeCardDAOImpl allExchangesDao= new ExchangeCardDAOImpl();
+        UserDaoImpl userDao= new UserDaoImpl();
+        User user= userDao.findByUsername(username);
+        allExchangesDao.getAllExchange(user);
+    }
+
     /**
      * Method used to accept exchanges
      * @param Username of the user logged

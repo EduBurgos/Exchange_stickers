@@ -31,11 +31,12 @@
         <div class="container page-top">
 
 
-            <% ExchangeCardDAO e=new ExchangeCardDAOImpl();   %>
-            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
-            <% ArrayList<Exchange> ex=e.getAllExchange(u);   %>
 
+            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
+            <% Platform platform=Platform.getInstance();   %>
+            <%ArrayList<Exchange> ex= platform.getAllExchanges(u);%>
                 <%for(int i=0;i<ex.size();i++){%>
+                <%int idtrans= ex.get(i).getId_trans();     %>
                 <div class="col-lg-3 ">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -64,6 +65,9 @@
                                 <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
                                 <%}%>
                                 <%}%>
+                                <form  method="post" action="../homepage">
+                                    <input type="submit" name="btn"  value="<%=idtrans%>"/>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -81,6 +85,9 @@
                                 <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
                             <%} %>
                             <%}%>
+                                <form  method="post" action="../homepage">
+                                    <input type="submit" name="btn"  value="<%=idtrans%>"/>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -311,10 +318,7 @@ function showOpacity(){
     var mostra = document.getElementById("mostra");
     var save = document.getElementById("save");
 
-    mostra.onclick = function() {
-        save.style.visibility = "visible";
 
-    }
 
 </script>
 </body>

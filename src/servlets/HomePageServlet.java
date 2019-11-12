@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * Class that handles requests between web pages(catalogue.jsp, confirmPage.jsp, navbar.jsp, reservationState.jsp).
  */
 
-@WebServlet(name = "servlets.HomePageServlet", urlPatterns = "/homepage")
+@WebServlet(name = "HomePageServlet", urlPatterns = "/homepage")
 public class HomePageServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
     private String PROFILE_ROUTE = "/views/userprofile.jsp";
@@ -42,6 +42,7 @@ public class HomePageServlet extends AbstractServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -83,10 +84,10 @@ public class HomePageServlet extends AbstractServlet {
 
         User user= ((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();
         String username=user.getUsername();
-        String id=(String)request.getParameter("btn");
+        String id=request.getParameter("btn");
         int idExchange =Integer.parseInt(id);
         Platform platform = Platform.getInstance();
-        return platform.marketExchange(username,idExchange);
+        return platform.marketExchange(username, idExchange);
     }
 
 }
