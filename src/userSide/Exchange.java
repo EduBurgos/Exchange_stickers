@@ -2,7 +2,10 @@ package userSide;
 
 import collection.Card;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Exchange {
     private int id_trans;
@@ -12,7 +15,7 @@ public class Exchange {
     private int[] id_card_wanted;
     private boolean trans_comp; //true se completata altrimenti false
 
-    public Exchange(String username, int[] id_card_owm, int[] id_card_wanted) {
+    public Exchange(int id_trans,String username, int[] id_card_owm, int [] id_card_wanted) {
         this.id_trans = id_trans;
         this.username = username;
         this.id_card_owm = id_card_owm;
@@ -20,7 +23,7 @@ public class Exchange {
         this.username_offerente= null;
         this.trans_comp=false;
     }
-    public Exchange(int id_trans, String username, int[] id_card_owm, int[] id_card_wanted, boolean trans_comp,String username_offerente) {
+    public Exchange(int id_trans, String username, int[] id_card_owm, int [] id_card_wanted, boolean trans_comp,String username_offerente) {
         this.id_trans = id_trans;
         this.username= username;
         this.id_card_owm = id_card_owm;
