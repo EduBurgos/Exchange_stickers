@@ -35,16 +35,18 @@
             <script>
                 var CardsToGiveArray = new Array();
                 var toGive = "cardsToGive";
+                var temporaryArray = new Array();
             </script>
             <div style="overflow: auto; width: 100%; height: 100%">
+                <%int j =0;%>
                 <%for(Card entry : c.getCardsOwn().keySet()){%>
                 <%for(int i =0; i<c.getCardsOwn().get(entry); i++){%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"%>" onclick="chooseCardsToGive(CardsToGiveArray, <%=entry.getId()%>, toGive, <%=i%>)" >
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"%>" onclick="chooseCardsToGive(CardsToGiveArray, <%=entry.getId()%>, toGive, <%=j%>, temporaryArray)" >
                     <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
-                    <img id="<%=entry.getId() + "cardsToGive" + i%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
+                    <img id="<%=entry.getId() + "cardsToGive" + j%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
                     </input>
                 </div>
-
+                <%j++;%>
                 <%}%>
                 <%}%>
             </div>
@@ -107,32 +109,27 @@
 
 <script>
     //------------------------------------------------------------
-    function chooseCardsToGive(array, card, value, i){
+    function chooseCardsToGive(array, card, value, i, tempArray){
         var id = card.toString().concat("input");
         var idImg = card.toString() + value + i.toString();
         console.log("l'idImg è "+idImg);
         var me = document.getElementById(id);
-
-
-        if(array.includes(card) == true){
+        if(tempArray.includes(i) == true){
             removePictureToGive(idImg, value, i);
             document.getElementById(idImg).style.filter = "opacity(100%)";
             removeFromArray(array, card);
+            removeFromArray(tempArray, i);
             me.setAttribute("name", "");
             alert("a card is just removed, array:"+array);
         } else{
             showPictureToGive(idImg, value, i);
             document.getElementById(idImg).style.filter = "opacity(40%)";
             addToArray(array, card);
+            addToArray(tempArray, i);
             me.setAttribute("name", value);
             alert("a card is just added, array:"+array);
         }
     }
-
-
-
-
-
     function showPictureToGive(id, where,i) {
         var idWhereToAdd = where.toString().concat("Recap");
         var completeWhere = where.concat(i.toString());
@@ -150,7 +147,6 @@
         divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
         src.appendChild(divCln);
     }
-
     function removePictureToGive(id, where, i) {
         //var idWhereToAdd = where.toString().concat("Recap");
         var completeWhere = where.concat(i.toString());
@@ -172,7 +168,6 @@
     }
     //------------------------------------------------------------
     function chooseCards(array, card, value){
-
         var id = card.toString().concat("input");
         var idImg = card.toString() + value;
         var me = document.getElementById(id);
@@ -204,7 +199,6 @@
         divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
         src.appendChild(divCln);
     }
-
     function removePicture(id, where) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
