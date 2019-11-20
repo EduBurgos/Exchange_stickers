@@ -31,17 +31,14 @@ public class ExchangeServlet extends AbstractServlet {
         //prendere gli id delle carte da scambiare
         try {
             String[] cardsToTake = request.getParameterValues("cardsToTake");
-            for (int i=0; i<cardsToTake.length;i++){
-                System.out.println(cardsToTake[i]);
-            }
-            /*for(int i=0; i<cardsToTake.length; i++){
-                System.out.println(cardsToTake[i]);
-            }*/
-
             String cardsToGive[] = request.getParameterValues("cardsToGive");
+
             System.out.println("carte da prendere "+ Arrays.toString(cardsToTake));
             System.out.println("carte da dare "+ Arrays.toString(cardsToGive));
-
+            //TODO cambiare controllo sul null, non solo se carte da scambiare sono uguali
+            if(cardsToGive ==null) {
+                cardsToGive = cardsToTake.clone();
+            }
             int[] intArrayToGive = new int[cardsToGive.length];
             int[] intArrayToTake = new int[cardsToTake.length];
             //passo da array di stringhe ad array di interi
