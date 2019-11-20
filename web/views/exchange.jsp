@@ -146,6 +146,7 @@
         divCln.setAttribute("id", idDivCopy);
         divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
         src.appendChild(divCln);
+        imgCln.style.filter = "opacity(100%)";
     }
     function removePictureToGive(id, where, i) {
         //var idWhereToAdd = where.toString().concat("Recap");
