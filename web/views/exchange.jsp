@@ -172,21 +172,24 @@
         var id = card.toString().concat("input");
         var idImg = card.toString() + value;
         var me = document.getElementById(id);
-        if(array.includes(card) == true){
-            removePicture(idImg, value);
-            //document.getElementById(idImg).style.filter = "opacity(100%)";
-            removeFromArray(array, card);
-            me.setAttribute("name", "");
-            alert("a card is just removed, array:"+array);
-        } else{
-            showPicture(idImg, value);
-            //document.getElementById(idImg).style.filter = "opacity(40%)";
-            addToArray(array, card);
-            me.setAttribute("name", value);
-            alert("a card is just added, array:"+array);
-        }
+        showPicture(idImg, value, card);
+        addToArray(array, card);
+        me.setAttribute("name", value);
+        alert("a card is just added, array:"+array);
     }
-    function showPicture(id, where) {
+
+    function removeSelectedCard(array, card, value) {
+        console.log("inizia il removeSelectedCard");
+        var id = card.toString().concat("input");
+        var idImg = card.toString() + value;
+        var me = document.getElementById(id);
+        removePicture(idImg, value);
+        removeFromArray(array, card);
+        me.setAttribute("name", "");
+        alert("a card is just removed, array:"+array);
+    }
+
+    function showPicture(id, where, idCard) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
         var idDivCopy = idDiv.concat("Copy");
@@ -198,6 +201,7 @@
         var src = document.getElementById(idWhereToAdd);
         divCln.setAttribute("id", idDivCopy);
         divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
+        divCln.setAttribute("onclick", "removeSelectedCard(CardsToTakeArray,"+ idCard+" , toTake)");
         src.appendChild(divCln);
     }
     function removePicture(id, where) {
