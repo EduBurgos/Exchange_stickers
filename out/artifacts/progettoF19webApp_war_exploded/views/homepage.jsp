@@ -31,11 +31,13 @@
         <div class="container page-top">
 
 
-            <% ExchangeCardDAO e=new ExchangeCardDAOImpl();   %>
-            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
-            <% ArrayList<Exchange> ex=e.getAllExchange(u);   %>
 
+            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
+            <% Platform platform=Platform.getInstance();   %>
+            <%ArrayList<Exchange> ex= platform.getAllExchanges(u);%>
+            <%session.setAttribute("exchangesList",ex);%>
                 <%for(int i=0;i<ex.size();i++){%>
+                <%int idtrans= ex.get(i).getId_trans();     %>
                 <div class="col-lg-3 ">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -49,24 +51,27 @@
                 <div class="carousel-inner" role="listbox">
                     <%int il=0;%>
                     <% for(int id:ex.get(i).getId_card_owm())   {  %>
-                    <%if(id!=0 && il==0){%>
-                    <%il++;%>
-                    <div class="item active">
-                        <%CardsDao c= new CardsDaoImpl();    %>
-                        <%Card card=c.findByID(id);    %>
-                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                        <div class="carousel-caption">
-                            <button  onclick="showCards()">Show Cards Wanted</button>
-                            <div class="class1" style="max-height: 275px;">
-                                <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
-                                <%if(idWanted!=0){%>
-                                <%card=c.findByID(idWanted);    %>
-                                <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
-                                <%}%>
-                                <%}%>
+                     <%if(id!=0 && il==0){%>
+                        <%il++;%>
+                        <div class="item active">
+                            <%CardsDao c= new CardsDaoImpl();    %>
+                            <%Card card=c.findByID(id);    %>
+                            <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                            <div class="carousel-caption">
+                                <button  onclick="showCards()">Show Cards Wanted</button>
+                                <div class="class1" style="max-height: 275px;">
+                                    <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
+                                      <%if(idWanted!=0){%>
+                                        <%card=c.findByID(idWanted);    %>
+                                        <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
+                                      <%}%>
+                                    <%}%>
+                                    <form  method="post" action="../homepage">
+                                        <input type="submit" name="btn"  value="<%=idtrans%>"/>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <%}else if(id!=0 && il!=0){%>
                     <div class="item">
                         <%CardsDao c= new CardsDaoImpl();    %>
@@ -75,12 +80,15 @@
                         <div class="carousel-caption">
                             <button onclick="showCards()">Show Cards Wanted</button>
                             <div class="class1">
-                           <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
-                            <%if(idWanted!=0){%>
-                            <%card=c.findByID(idWanted);    %>
-                                <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
-                            <%} %>
-                            <%}%>
+                              <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
+                                <%if(idWanted!=0){%>
+                                    <%card=c.findByID(idWanted);    %>
+                                    <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
+                                <%} %>
+                              <%}%>
+                                <form  method="post" action="../homepage">
+                                    <input type="submit" name="btn"  value="accept" id="<%=idtrans%>"/>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -311,10 +319,7 @@ function showOpacity(){
     var mostra = document.getElementById("mostra");
     var save = document.getElementById("save");
 
-    mostra.onclick = function() {
-        save.style.visibility = "visible";
 
-    }
 
 </script>
 </body>

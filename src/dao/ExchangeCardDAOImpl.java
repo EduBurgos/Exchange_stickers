@@ -17,8 +17,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     ResultSet result = null;
 
     private static final String insert_transaction_query = "INSERT INTO exchanges (username) VALUES (?)";
-    private static final String insert_cardown_query = "insert into cards_own(id_trans,cardId) values (?,?)";
-    private static final String insert_cardWanted_query = "insert into cards_wanted(id_trans,cardId) values (?,?)";
+    private static final String insert_cardown_query = "insert into cards_own(id_trans,cardId,quantity) values (?,?,?)";
+    private static final String insert_cardWanted_query = "insert into cards_wanted(id_trans,cardId,quantity) values (?,?,?)";
 
     private static final String switchpeople = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
                                                  "SET AUTOCOMMIT=0;" +
@@ -155,6 +155,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     }
 
     /**Retrun a exchange*/
+    //inutile ho un ogegtto che è una lista di scambi... basta passarlo
     @Override
     public Exchange getExchange(int id_trans) throws SQLException {
         conn = null;
@@ -233,7 +234,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 CardWCounter++;
             }
             while (result != null) {
-                username_offer=result.getString("username_offer");
+                username_offer=result.getString("username");
                 while (result.getInt(1) == id_trans) {
                     if (!checkCard(cardown, result.getInt("own"))) {
                         cardown[CardOCounter] = result.getInt("own");
@@ -250,7 +251,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                         break;
                     }
                 }
-                allExchange.add(new Exchange(id_trans,"Obe", cardown, cardwanted, false,username_offer));
+                //modificare null con nome offerente
+                allExchange.add(new Exchange(id_trans,username_offer, cardown, cardwanted, false,null));
                 System.out.println("cardown = " + Arrays.toString(cardown));
                 System.out.println("cardwanted = " + Arrays.toString(cardwanted));
                 if(result==null)
@@ -259,11 +261,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 }
                 else
                 {
-                    result.next();
                     id_trans = result.getInt("id_trans");
                 }
-                cardown=null;
-                cardwanted=null;
+                cardown=new int[5];
+                cardwanted=new int[5];
+                CardOCounter=0;
+                CardWCounter=0;
             }
         }
         catch (SQLException e) {
