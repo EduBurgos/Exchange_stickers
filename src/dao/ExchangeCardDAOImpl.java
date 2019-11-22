@@ -44,9 +44,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     //private static final String view_catalog = "select * from catalog";
     // query trova trattativa secondo nome della carta
     private static final String SEARCH_BY_NAME_CARD="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardName=?";
-    private static final String SEARCH_BY_CATEGORY="exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Category=? ";
-    private static final String SEARCH_BY_CLASS=" exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Class=?";
-    private static final String SEARCH_BY_TYPE="exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardType=?";
+    private static final String SEARCH_BY_CATEGORY="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Category=? ";
+    private static final String SEARCH_BY_CLASS="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Class=?";
+    private static final String SEARCH_BY_TYPE="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardType=?";
 
 
 
