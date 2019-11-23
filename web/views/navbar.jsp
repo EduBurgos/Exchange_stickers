@@ -40,22 +40,20 @@ it is included in each page of the application -->
 
                 </ul>
                 <!---SEARCH WITH FILTERS--->
-                <div
-                    class="row1">
+                <div class="row1">
                     <div class="col-sm-3">
                         <div class="input-group" id="adv-search">
-                            <input type="text" class="form-control" placeholder="Search Card..." />
-
+                            <input type="text" class="form-control" name="filterCard" placeholder="Search Card..." />
                             <div class="input-group-btn">
                                 <div class="btn-group" role="group">
                                     <div class="dropdown dropdown-lg">
                                         <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ><span class="glyphicon glyphicon-filter" >&nbsp;</span><span class="caret" >&nbsp;</span></button>
                                         <div class="dropdown-menu dropdown-menu-right" role="menu" id="menuS">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label >Category</label>
-                                                    <select class="form-control">
-                                                        <option value="0" selected>------------></option>
+                                       <form class="form-horizontal"  role="form" method="get" action="../Search">
+                                               <div class="form-group">
+                                                   <label >Category</label>
+                                                    <select name="filterCategory" class="form-control">
+                                                        <option value="0" selected>---------></option>
                                                         <option value="1">Hearthstone</option>
                                                         <option value="2">Pokemon</option>
                                                         <option value="3">Yu-Gi-Oh!</option>
@@ -63,14 +61,14 @@ it is included in each page of the application -->
                                                 </div>
                                                 <div class="form-group">
                                                     <label> Card Class</label>
-                                                    <input class="form-control" type="text" />
+                                                    <input class="form-control" type="text" name="filterClass" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Card Type</label>
-                                                    <input class="form-control" type="text" />
+                                                    <input class="form-control" type="text" name="filterType" />
                                                 </div>
                                               <a href="Searchpage.jsp" ><button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button></a>
-                                            </form>
+                                      </form>
                                         </div>
                                     </div>
                                     <a href="Searchpage.jsp" ><button id="searchBtn1" type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span> </button></a>
@@ -79,6 +77,7 @@ it is included in each page of the application -->
                         </div>
                     </div>
                 </div> <!--- END SEARCH WITH FILTERS--->
+
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>

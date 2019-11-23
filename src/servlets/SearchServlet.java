@@ -44,21 +44,14 @@ public class SearchServlet extends AbstractServlet {
     }
 
     private  ArrayList<Card> searchFilter(HttpServletRequest request) throws SQLException {
-        String filter = request.getParameter("filtersearch");
-        String search = request.getParameter("Filter");
+        String filterCategory = request.getParameter("filterCategory");
+        int category= Integer.parseInt(filterCategory);
+        String filterClass= request.getParameter("filterClass");
+        String filterType= request.getParameter("filterType");
+        String filterCard= request.getParameter("filterCard");
         CollectionOwn logged= (CollectionOwn) request.getSession().getAttribute("logged");
         String username= logged.getOwner().getUsername();
         Platform platform = Platform.getInstance();
-        switch (filter){
-            case "Category":
-                return platform.findByCategory(username,search);
-
-            case "Class":
-                return platform.findByClass(username,search);
-
-            case "Type":
-                return platform.findByType(username, search);
-        }
         return null;
     }
 
