@@ -3,6 +3,7 @@ package servlets;
 import collection.CollectionOwn;
 import platform.Platform;
 import servlets.AbstractServlet;
+import userSide.Exchange;
 import userSide.User;
 
 import javax.servlet.*;
@@ -10,6 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Class that handles requests between web pages(catalogue.jsp, confirmPage.jsp, navbar.jsp, reservationState.jsp).
@@ -82,12 +84,12 @@ public class HomePageServlet extends AbstractServlet {
 
     private boolean marketExchange(HttpServletRequest request) throws SQLException {
 
-        User user= ((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();
-        String username=user.getUsername();
         String id=request.getParameter("btn");
         int idExchange =Integer.parseInt(id);
         Platform platform = Platform.getInstance();
-        return platform.marketExchange(username, idExchange);
+        //provare a passare direttamente oggetto utile
+        String username=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner().getUsername();
+        return platform.marketExchange((Exchange)((ArrayList)request.getSession().getAttribute("exchangesList")).get(idExchange-1),username);
     }
 
 }

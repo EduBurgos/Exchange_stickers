@@ -20,24 +20,26 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String insert_cardown_query = "insert into cards_own(id_trans,cardId,quantity) values (?,?,?)";
     private static final String insert_cardWanted_query = "insert into cards_wanted(id_trans,cardId,quantity) values (?,?,?)";
 
-    private static final String switchpeople = "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
-                                                 "SET AUTOCOMMIT=0;" +
-                                                    "start TRANSACTION;" +
-                                                        "select * from collections where ID_Card=? AND USERNAME=?;" +
-                                                        " update collections" +
-                                                            "SET  USERNAME=? WHERE ID_CARD=? AND USERNAME=?;" +
-                                                    "commit;";
-    private static final String flag_complete ="start TRANSACTION;" +
-                                                    "    select * from exchanges where id_trans=?;" +
-                                                    "    update exchanges" +
-                                                    "SET  USERNAME_Offer=? , trans_comp =? WHERE id_trans=?;" +
-                                                "commit; ";
+    private static final String switchpeople ="SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
+                                                "SET AUTOCOMMIT=0;"+
+                                                    "start TRANSACTION;"+
+                                                    "select * from collections where ID_Card=? AND USERNAME=?;"+
+                                                    "insert into collections (ID_CARD,Username) values (?,?)"+
+                                                    "ON DUPLICATE KEY UPDATE quantity=quantity+1;"+
+                                                    "delete FROM collections WHERE Username=? and quantity=1;"+
+                                                    "update collections SET  quantity=quantity-1 WHERE  ID_CARD=? AND USERNAME=?;"+
+                                                "commit";
+
+    private static final String flag_complete ="SET TRANSACTION;" +
+                                                " select * from exchanges where id_trans=?;" +
+                                                    "    update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE (id_trans=?);" +
+                                                "commit";
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
     private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=?)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp='0'";
 
-    private static final String delete_exchange = "SET AUTOOMMIT=0" +
+    private static final String delete_exchange = "SET AUTOcOMMIT=0" +
                                                     "start transaction;" +
                                                         "delete from exchanges where id_trans=?" +
                                                     "commit;";
@@ -121,7 +123,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement.setInt(1,exchangeCard.getId_trans());
             preparedStatement.setString(2,exchangeCard.getUsername_offerente());
             preparedStatement.setInt(3,exchangeCard.getId_trans());
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
 
             //da al mio utente le carte che vuole
             for (int i: exchangeCard.getId_card_wanted()) {
@@ -148,9 +150,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         catch (SQLException e)
         {
-
+            return true;
         }
-            return false;
+        return false;
+
 
     }
 
