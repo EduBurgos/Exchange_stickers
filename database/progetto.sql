@@ -505,13 +505,13 @@ INSERT INTO catalog VALUES(155,'Yu-Gi-Oh!','Luce',0,'Rara','Mostro','Venere Sple
                                                                                         L''attivazione e gli effetti delle Carte Magia/Trappola attivate sul tuo Terreno non possono essere annullate.');
 
 
-INSERT INTO users VALUES('Obe','Edu', 'Bur', 'edu@hotmail.it','1234');
-INSERT INTO users VALUES( 'Sau', 'Dan', 'Her', 'dan@gmail.com', '1234');
-INSERT INTO users VALUES( 'Zay', 'Mar', 'Her', 'mar@hotmail.com', '1234');
-INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', '1234');
-INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','1234' );
-INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', '1234');
-INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', '1234');
+INSERT INTO users VALUES('Obe','Edu', 'Bur', 'edu@hotmail.it','GGkhr8q6bhBg1V0ZjUJyrg==');
+INSERT INTO users VALUES( 'Sau', 'Dan', 'Her', 'dan@gmail.com', 'GGkhr8q6bhBg1V0ZjUJyrg==');
+INSERT INTO users VALUES( 'Zay', 'Mar', 'Her', 'mar@hotmail.com', 'GGkhr8q6bhBg1V0ZjUJyrg==');
+INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', 'GGkhr8q6bhBg1V0ZjUJyrg==');
+INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','GGkhr8q6bhBg1V0ZjUJyrg==' );
+INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', 'GGkhr8q6bhBg1V0ZjUJyrg==');
+INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', 'GGkhr8q6bhBg1V0ZjUJyrg==');
 INSERT INTO users VALUES( 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
 INSERT INTO users VALUES( 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
 INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
@@ -519,40 +519,40 @@ INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegr
 
 
 /*Obe*/
-INSERT INTO collections VALUES(1 ,'Obe',false);
-INSERT INTO collections VALUES(2 ,'Obe' ,false);
-INSERT INTO collections VALUES(3 ,'Obe',false);
-INSERT INTO collections VALUES(4 ,'Obe',false);
-INSERT INTO collections VALUES(5 ,'Obe',false);
+INSERT INTO collections VALUES(1 ,'Obe',false, 2);
+INSERT INTO collections VALUES(2 ,'Obe' ,false, 2);
+INSERT INTO collections VALUES(3 ,'Obe',false, 2);
+INSERT INTO collections VALUES(4 ,'Obe',false, 2);
+INSERT INTO collections VALUES(5 ,'Obe',false, 2);
 
 /*Sau*/
-INSERT INTO collections VALUES(6 ,'Sau',false);
-INSERT INTO collections VALUES(7 ,'Sau',false);
-INSERT INTO collections VALUES(8 ,'Sau',false);
-INSERT INTO collections VALUES(9 ,'Sau',false);
-INSERT INTO collections VALUES(10 ,'Sau',false);
+INSERT INTO collections VALUES(6 ,'Sau',false, 2);
+INSERT INTO collections VALUES(7 ,'Sau',false, 2);
+INSERT INTO collections VALUES(8 ,'Sau',false, 2);
+INSERT INTO collections VALUES(9 ,'Sau',false, 2);
+INSERT INTO collections VALUES(10 ,'Sau',false, 2);
 
 /*Zay*/
-INSERT INTO collections VALUES(10 ,'Zay',false);
-INSERT INTO collections VALUES(11 ,'Zay',false);
-INSERT INTO collections VALUES(12 ,'Zay',false);
-INSERT INTO collections VALUES(13 ,'Zay',false);
-INSERT INTO collections VALUES(14 ,'Zay',false);
+INSERT INTO collections VALUES(10 ,'Zay',false, 2);
+INSERT INTO collections VALUES(11 ,'Zay',false, 2);
+INSERT INTO collections VALUES(12 ,'Zay',false, 2);
+INSERT INTO collections VALUES(13 ,'Zay',false, 2);
+INSERT INTO collections VALUES(14 ,'Zay',false, 2);
 
 /*elge*/
-INSERT INTO collections VALUES(14 ,'elge',false);
-INSERT INTO collections VALUES(50 ,'elge',false);
-INSERT INTO collections VALUES(55 ,'elge',false);
-INSERT INTO collections VALUES(33 ,'elge',false);
-INSERT INTO collections VALUES(20 ,'elge',false);
+INSERT INTO collections VALUES(14 ,'elge',false, 2);
+INSERT INTO collections VALUES(50 ,'elge',false, 2);
+INSERT INTO collections VALUES(55 ,'elge',false, 2);
+INSERT INTO collections VALUES(33 ,'elge',false, 2);
+INSERT INTO collections VALUES(20 ,'elge',false, 2);
 
 /*Pol*/
-INSERT INTO collections VALUES(100 ,'Pol',false);
-INSERT INTO collections VALUES(90 ,'Pol',false);
-INSERT INTO collections VALUES(30 ,'Pol',false);
-INSERT INTO collections VALUES(45 ,'Pol',false);
-INSERT INTO collections VALUES(19 ,'Pol',false);
-INSERT INTO collections VALUES(15 ,'Pol',false);
-INSERT INTO collections VALUES(5 ,'Pol',false);
+INSERT INTO collections VALUES(100 ,'Pol',false, 2);
+INSERT INTO collections VALUES(90 ,'Pol',false, 2);
+INSERT INTO collections VALUES(30 ,'Pol',false, 2);
+INSERT INTO collections VALUES(45 ,'Pol',false, 2);
+INSERT INTO collections VALUES(19 ,'Pol',false, 2);
+INSERT INTO collections VALUES(15 ,'Pol',false, 2);
+INSERT INTO collections VALUES(5 ,'Pol',false, 2);
 
 
