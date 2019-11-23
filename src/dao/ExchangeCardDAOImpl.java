@@ -57,6 +57,41 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         conn = null;
 
 
+        Map<Card, Integer> cardownRefactored = new HashMap<>();
+        Map<Card, Integer> cardwantedRefactored = new HashMap<>();
+        ArrayList<Integer> carteCensiteOwn = new ArrayList<>();
+        ArrayList<Integer> carteCensiteWanted = new ArrayList<>();
+
+        for (Card x : cardown) {
+            if(!(carteCensiteOwn.contains(x.getId()))) {
+                int quantità = 1;
+                int posizioneAttuale = cardown.indexOf(x);
+                for (int j = cardown.size() - 1; j > posizioneAttuale; j--) {
+                    Card objDaParagonare = cardown.get(j);
+                    if (x.getId() == objDaParagonare.getId()) {
+                        quantità++;
+                    }
+                }
+                cardownRefactored.put(x, quantità);
+                carteCensiteOwn.add(x.getId());
+            }
+        }
+
+        for (Card y : cardwanted) {
+            if(!(carteCensiteWanted.contains(y.getId()))) {
+                int quantità = 1;
+                int posizioneAttuale = cardwanted.indexOf(y);
+                for (int j = cardwanted.size() - 1; j > posizioneAttuale; j--) {
+                    Card objDaParagonare = cardwanted.get(j);
+                    if (y.getId() == objDaParagonare.getId()) {
+                        quantità++;
+                    }
+                }
+                cardwantedRefactored.put(y, quantità);
+                carteCensiteWanted.add(y.getId());
+            }
+        }
+
         try {
             conn = connector.createConnection();
 
@@ -68,16 +103,18 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
             if (result.next() && result!=null)
             {
-                for (Card c: cardown) {
+                for (Card c: cardownRefactored.keySet()) {
                     preparedStatement=conn.prepareStatement(insert_cardown_query);
                     preparedStatement.setInt(1,result.getInt(1));
                     preparedStatement.setInt(2,c.getId());
+                    preparedStatement.setInt(3, cardownRefactored.get(c));
                     preparedStatement.execute();
                 }
-                for ( Card d: cardwanted) {
+                for ( Card d: cardwantedRefactored.keySet()) {
                     preparedStatement=conn.prepareStatement(insert_cardWanted_query);
                     preparedStatement.setInt(1,result.getInt(1));
                     preparedStatement.setInt(2,d.getId());
+                    preparedStatement.setInt(3, cardwantedRefactored.get(d));
                     preparedStatement.execute();
                 }
             }
