@@ -78,7 +78,7 @@ create table Cards_wanted(
                              cardId  int not null ,
                              quantity int(5) DEFAULT 1,
                              primary key (Id_trans,cardId),
-                             foreign key (cardId) references collections(ID_Card),
+                             foreign key (cardId) references catalog(ID),
                              foreign key(Id_trans) references exchanges(id_trans)
                                  ON DELETE cascade
 );
