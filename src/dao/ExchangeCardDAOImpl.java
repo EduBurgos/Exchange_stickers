@@ -30,10 +30,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                                                     "update collections SET  quantity=quantity-1 WHERE  ID_CARD=? AND USERNAME=?;"+
                                                 "commit";
 
-    private static final String flag_complete ="SET TRANSACTION;" +
-                                                " select * from exchanges where id_trans=?;" +
-                                                    "    update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE (id_trans=?);" +
-                                                "commit";
+    private static final String select_transaction = "select * from exchanges where id_trans=?";
+    private static final String flag_complete = "update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE id_trans=? ";
+
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
     private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
@@ -42,7 +41,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String delete_exchange = "SET AUTOcOMMIT=0" +
                                                     "start transaction;" +
                                                         "delete from exchanges where id_trans=?" +
-                                                    "commit;";
+                                                    "commit";
     //private static final String view_catalog = "select * from catalog";
     // query trova trattativa secondo nome della carta
     private static final String SEARCH_BY_NAME_CARD="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardName=?";
@@ -156,11 +155,18 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         try {
             //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(flag_complete);
+            preparedStatement = conn.prepareStatement(select_transaction);
+            //start transaction
+            conn.setAutoCommit(false);
             preparedStatement.setInt(1,exchangeCard.getId_trans());
-            preparedStatement.setString(2,exchangeCard.getUsername_offerente());
-            preparedStatement.setInt(3,exchangeCard.getId_trans());
+            preparedStatement.execute();
+
+            preparedStatement=conn.prepareStatement(flag_complete);
+            preparedStatement.setString(1,exchangeCard.getUsername_offerente());
+            preparedStatement.setInt(2,exchangeCard.getId_trans());
             preparedStatement.executeUpdate();
+
+            conn.commit();
 
             //da al mio utente le carte che vuole
             for (int i: exchangeCard.getId_card_wanted()) {
@@ -183,7 +189,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 preparedStatement.setString(5,exchangeCard.getId_user());
                 preparedStatement.execute();
             }
-
+            conn.setAutoCommit(true);
         }
         catch (SQLException e)
         {
