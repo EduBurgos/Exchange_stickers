@@ -89,7 +89,8 @@ public class HomePageServlet extends AbstractServlet {
         Platform platform = Platform.getInstance();
         //provare a passare direttamente oggetto utile
         String username=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner().getUsername();
-        return platform.marketExchange((Exchange)((ArrayList)request.getSession().getAttribute("exchangesList")).get(idExchange-1),username);
+        ArrayList<Exchange> c=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");
+        return platform.marketExchange(((ArrayList<Exchange>)request.getSession().getAttribute("exchangesList")).get(idExchange),username);
     }
 
 }

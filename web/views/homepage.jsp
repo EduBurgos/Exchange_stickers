@@ -33,8 +33,7 @@
         <div class="container page-top">
             <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
             <% Platform platform=Platform.getInstance();   %>
-            <%ArrayList<Exchange> ex= platform.getAllExchanges(u);%>
-            <%session.setAttribute("exchangesList",ex);%>
+            <%ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
                 <%for(int i=0;i<ex.size();i++){%>
                 <%int idtrans= ex.get(i).getId_trans();     %>
                 <div class="col-lg-3 ">
@@ -49,8 +48,8 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <%int il=0;%>
-                    <% for(int id:ex.get(i).getId_card_owm())   {  %>
-                     <%if(id!=0 && il==0){%>
+                    <% for(int id:ex.get(i).get_id_card_owm())   {  %>
+                     <%if(il==0){%>
                         <%il++;%>
                         <div class="item active">
                             <%CardsDao c= new CardsDaoImpl();    %>
@@ -66,7 +65,7 @@
                                       <%}%>
                                     <%}%>
                                     <form  method="post" action="../homepage">
-                                        <input type="submit" name="btn"  value="<%=idtrans%>"/>
+                                        <input type="submit" name="btn"  value="<%=i%>"/>
                                     </form>
                                 </div>
                             </div>
@@ -86,7 +85,7 @@
                                 <%} %>
                               <%}%>
                                 <form  method="post" action="../homepage">
-                                    <input type="submit" name="btn"  value="accept" id="<%=idtrans%>"/>
+                                    <input type="submit" name="btn"  value="accept" id="<%=i%>"/>
                                 </form>
                             </div>
                         </div>

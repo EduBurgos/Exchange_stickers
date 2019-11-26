@@ -39,14 +39,19 @@ public class ExchangeServlet extends AbstractServlet {
             if(cardsToGive ==null) {
                 cardsToGive = cardsToTake.clone();
             }
-            int[] intArrayToGive = new int[cardsToGive.length];
-            int[] intArrayToTake = new int[cardsToTake.length];
+            ArrayList<Integer> intArrayToGive = new ArrayList<>();
+            ArrayList<Integer> intArrayToTake = new ArrayList<>();
             //passo da array di stringhe ad array di interi
             for (int i=0; i<cardsToGive.length;i++){
-                intArrayToGive[i] = Integer.parseInt(cardsToGive[i]);
+                if(Integer.parseInt(cardsToGive[i])!=0)
+                {
+                    intArrayToGive.add(Integer.parseInt(cardsToGive[i]));
+                }
             }
             for (int i=0; i<cardsToTake.length;i++){
-                intArrayToTake[i] = Integer.parseInt(cardsToTake[i]);
+                if(Integer.parseInt(cardsToGive[i])!=0) {
+                    intArrayToTake.add(Integer.parseInt(cardsToTake[i]));
+                }
             }
 
             CollectionOwn collectionOwn=(CollectionOwn) request.getSession().getAttribute("logged");

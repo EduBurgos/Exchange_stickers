@@ -19,14 +19,16 @@ public class LoginServlet extends AbstractServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        final String secretkey = "Khaledmerda";
+        final String secretkey = "chiaveprova";
 
         try {
                 CollectionOwn logged = confirmPassword(request);
                 if(logged!=null)
                 {
+                    Platform platform=Platform.getInstance();
                     request.getSession().setAttribute("errorMessage", null);
                     request.getSession().setAttribute("logged",logged);
+                    request.getSession().setAttribute("exchangesList",platform.getAllExchanges(logged.getOwner()));
                     response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
                 }
                 else{

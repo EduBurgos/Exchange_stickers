@@ -1,9 +1,8 @@
 package dao;
 
 import collection.Card;
-import collection.Cards;
-import collection.CollectionOwn;
 import com.mysql.jdbc.Statement;
+import platform.Platform;
 import userSide.Exchange;
 import userSide.User;
 
@@ -20,16 +19,13 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String insert_cardown_query = "insert into cards_own(id_trans,cardId,quantity) values (?,?,?)";
     private static final String insert_cardWanted_query = "insert into cards_wanted(id_trans,cardId,quantity) values (?,?,?)";
 
-    private static final String switchpeople ="SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"+
-                                                "SET AUTOCOMMIT=0;"+
-                                                    "start TRANSACTION;"+
-                                                    "select * from collections where ID_Card=? AND USERNAME=?;"+
-                                                    "insert into collections (ID_CARD,Username) values (?,?)"+
-                                                    "ON DUPLICATE KEY UPDATE quantity=quantity+1;"+
-                                                    "delete FROM collections WHERE Username=? and quantity=1;"+
-                                                    "update collections SET  quantity=quantity-1 WHERE  ID_CARD=? AND USERNAME=?;"+
-                                                "commit";
+    private static final String selectCollection = "select * from collections where ID_Card=? AND USERNAME=?";
+    private static final String switchpeople = "insert into collections (ID_CARD,Username) values (?,?) "+
+                                                    "ON DUPLICATE KEY UPDATE quantity=quantity+1";
+    private static final String deleteCollection = "delete FROM collections WHERE Username=? and quantity=1 and ID_CARD=?";
+    private static final String updateCollection = "update collections SET  quantity=quantity-1 WHERE  ID_CARD=? AND USERNAME=?";
 
+    //transaction for update flag
     private static final String select_transaction = "select * from exchanges where id_trans=?";
     private static final String flag_complete = "update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE id_trans=? ";
 
@@ -143,15 +139,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
         //cancello carte presenti in entrambe le liste perchè è inutile scambaire due carte uguali
-        for (int i :exchangeCard.getId_card_owm()) {
-            for (int k: exchangeCard.getId_card_wanted()) {
-                if(i==k)
-                {
-                    exchangeCard.getId_card_wanted()[i]=0;
-                    exchangeCard.getId_card_owm()[i]=0;
-                }
-            }
-        }
         try {
             //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
             conn = connector.createConnection();
@@ -166,29 +153,62 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement.setInt(2,exchangeCard.getId_trans());
             preparedStatement.executeUpdate();
 
-            conn.commit();
 
-            //da al mio utente le carte che vuole
-            for (int i: exchangeCard.getId_card_wanted()) {
+            //da all'utente le mie carte che vuole
+            for(int i=0;i<exchangeCard.getId_card_wanted().size();i++)
+            {
                 //se è già nella collezione incremento la quantità
-                preparedStatement = conn.prepareStatement(switchpeople);
-                preparedStatement.setInt(1,i);
-                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
-                preparedStatement.setString(3,exchangeCard.getId_user());
-                preparedStatement.setInt(4,i);
-                preparedStatement.setString(5,exchangeCard.getUsername_offerente());
-                preparedStatement.execute();
-            }
-            //da all'offerente le carte vendute
-            for (int i: exchangeCard.getId_card_owm()) {
-                preparedStatement = conn.prepareStatement(switchpeople);
-                preparedStatement.setInt(1,i);
+                //blocco le carte
+                preparedStatement = conn.prepareStatement(selectCollection);
+                preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
                 preparedStatement.setString(2,exchangeCard.getId_user());
-                preparedStatement.setString(3,exchangeCard.getUsername_offerente());
-                preparedStatement.setInt(4,i);
-                preparedStatement.setString(5,exchangeCard.getId_user());
+                preparedStatement.execute();
+
+                //se è già nella collezione del tizio incrementa
+                preparedStatement = conn.prepareStatement(switchpeople);
+                preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
+                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.execute();
+
+                preparedStatement=conn.prepareStatement(deleteCollection);
+                preparedStatement.setString(1,exchangeCard.getId_user());
+                preparedStatement.setInt(2,exchangeCard.getId_card_wanted().get(i));
+                preparedStatement.execute();
+
+                preparedStatement=conn.prepareStatement(updateCollection);
+                preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
+                preparedStatement.setString(2,exchangeCard.getId_user());
                 preparedStatement.execute();
             }
+            //da a me le carte dell'offerente
+            for (int i=0;i<exchangeCard.get_id_card_owm().size();i++)
+            {
+                //se è già nella collezione incremento la quantità
+                //blocco le carte
+                preparedStatement = conn.prepareStatement(selectCollection);
+                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.execute();
+
+                //se è già nella collezione del tizio incrementa
+                preparedStatement = conn.prepareStatement(switchpeople);
+                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                preparedStatement.setString(2,exchangeCard.getId_user());
+                preparedStatement.execute();
+
+                preparedStatement=conn.prepareStatement(deleteCollection);
+                preparedStatement.setString(1,exchangeCard.getUsername_offerente());
+                preparedStatement.setInt(2,exchangeCard.get_id_card_owm().get(i));
+                preparedStatement.execute();
+
+                preparedStatement=conn.prepareStatement(updateCollection);
+                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.execute();
+
+
+            }
+            conn.commit();
             conn.setAutoCommit(true);
         }
         catch (SQLException e)
@@ -211,23 +231,20 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement.setInt(1, id_trans);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            int [] cardown =new int[5];
-            int[] cardwanted= new int[5];
-            int counter=0;
+            ArrayList<Integer> cardown =new ArrayList<>();
+            ArrayList<Integer> cardwanted= new ArrayList<>();
 
             while (result.next()) {
-                cardown[counter] = result.getInt("cardId");
-                counter++;
-
+                cardown.add(result.getInt("cardId"));
             }
             preparedStatement = conn.prepareStatement(get_cardWanted);
             preparedStatement.setInt(1, id_trans);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            counter=0;
+
+
             while (result.next()) {
-                cardwanted[counter] = result.getInt("cardId");
-                counter++;
+                cardwanted.add(result.getInt("cardId"));
             }
             return new Exchange(id_trans, result.getString("username"), cardown,cardwanted, result.getBoolean("trans_comp"),result.getString("username_offer"));
         } catch (SQLException e) {
@@ -256,10 +273,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     @Override
     public ArrayList<Exchange> getAllExchange(User user) throws SQLException {
         conn=null;
-        int CardOCounter=0;
-        int CardWCounter=0;
-        int[] cardown = new int[5];
-        int[] cardwanted = new int[5];
+        Platform platform = Platform.getInstance();
+
+        ArrayList<Integer> cardown = new ArrayList<>();
+        ArrayList<Integer> cardwanted=new ArrayList<>();
         ArrayList<Exchange> allExchange = new ArrayList<>();
         try {
             conn = connector.createConnection();
@@ -274,22 +291,21 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             String username_offer;
             if(result!=null && result.next()) {
                 id_trans = result.getInt(1);
-                cardown[CardOCounter] = result.getInt("own");
-                cardwanted[CardWCounter] = result.getInt("want");
-                CardOCounter++;
-                CardWCounter++;
+                cardown.add(result.getInt("own"));
+                cardwanted.add(result.getInt("want"));
             }
             while (result != null) {
+                cardown=new ArrayList<Integer>();
+                cardwanted=new ArrayList<Integer>();
                 username_offer=result.getString("username");
                 while (result.getInt(1) == id_trans) {
                     if (!checkCard(cardown, result.getInt("own"))) {
-                        cardown[CardOCounter] = result.getInt("own");
-                        CardOCounter=addCard(result.getInt("oqt"), cardown, result.getInt("own"),CardOCounter+1);
-
+                        cardown.add(result.getInt("own"));
+                        addCard(result.getInt("oqt"), cardown, result.getInt("own"));
                     }
                     if (!checkCard(cardwanted, result.getInt("want"))) {
-                        cardwanted[CardWCounter] = result.getInt("want");
-                        CardWCounter=addCard(result.getInt("wqt"), cardown, result.getInt("want"),CardWCounter+1);
+                        cardwanted.add(result.getInt("want"));
+                        addCard(result.getInt("wqt"), cardown, result.getInt("want"));
                     }
                     if(result.next()==false)
                     {
@@ -299,8 +315,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 }
                 //modificare null con nome offerente
                 allExchange.add(new Exchange(id_trans,username_offer, cardown, cardwanted, false,null));
-                System.out.println("cardown = " + Arrays.toString(cardown));
-                System.out.println("cardwanted = " + Arrays.toString(cardwanted));
                 if(result==null)
                 {
                     break;
@@ -309,10 +323,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 {
                     id_trans = result.getInt("id_trans");
                 }
-                cardown=new int[5];
-                cardwanted=new int[5];
-                CardOCounter=0;
-                CardWCounter=0;
+
             }
         }
         catch (SQLException e) {
@@ -545,26 +556,24 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return null;
     }
-    public boolean checkCard(int [] cards,int toSearch)
+    public boolean checkCard(ArrayList<Integer> cards, int toSearch)
     {
         //metodo che controlla se elemento è già presente nell'array
-            for (int i=0; i<cards.length; i++)
-                if (cards[i]==toSearch)
+            for (int i=0; i<cards.size(); i++)
+                if (cards.contains(toSearch))
                     return true;
             return false;
         }
-        public int addCard(int quantity, int[] cardsArray,int card,int counter)
+        public void addCard(int quantity, ArrayList<Integer> cardsArray, int card)
         {
             if(quantity>1)
             {
                while (quantity!=1)
                 {
-                    cardsArray[counter]=card;
+                    cardsArray.add(card);
                     quantity--;
-                    counter++;
                 }
             }
-            return counter;
         }
 /**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
 

@@ -187,7 +187,7 @@ public class Platform {
      * @return  true if the exchange is registered false if the registration fails
      * @throws SQLException
      */
-    public void setExchange(String Username, int[] idCardOwn, int[] idCardWanted) throws SQLException {
+    public void setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
         //Exchange exchange = new Exchange(Username, idCardOwn, idCardWanted);
         ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
         UserDaoImpl userDaoImpl = new UserDaoImpl();
@@ -196,11 +196,11 @@ public class Platform {
         ArrayList<Card> wantedCards = new ArrayList<Card>();
 
         CardsDaoImpl cardsDaoImpl = new CardsDaoImpl();
-        for(int i=0; i<idCardOwn.length; i++){
-            ownedCards.add(cardsDaoImpl.findByID(idCardOwn[i]));
+        for(int i=0;i<CardOwn.size();i++) {
+            ownedCards.add(cardsDaoImpl.findByID(CardOwn.get(i)));
         }
-        for(int i=0; i<idCardWanted.length; i++){
-            wantedCards.add(cardsDaoImpl.findByID(idCardWanted[i]));
+        for(int i=0; i<CardWanted.size(); i++){
+            wantedCards.add(cardsDaoImpl.findByID(CardWanted.get(i)));
         }
         exchangeCardDAO.create(user, ownedCards, wantedCards);
     }
@@ -211,7 +211,6 @@ public class Platform {
         User user= userDao.findByUsername(username);
         allExchangesDao.getAllExchange(user);
     }
-
     /**
      * Method used to accept exchanges
      * @param exchange that i want to accept
