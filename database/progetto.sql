@@ -505,13 +505,13 @@ INSERT INTO catalog VALUES(155,'Yu-Gi-Oh!','Luce',0,'Rara','Mostro','Venere Sple
                                                                                         L''attivazione e gli effetti delle Carte Magia/Trappola attivate sul tuo Terreno non possono essere annullate.');
 
 
-INSERT INTO users VALUES('Obe','Edu', 'Bur', 'edu@hotmail.it','GGkhr8q6bhBg1V0ZjUJyrg==');
-INSERT INTO users VALUES( 'Sau', 'Dan', 'Her', 'dan@gmail.com', 'GGkhr8q6bhBg1V0ZjUJyrg==');
-INSERT INTO users VALUES( 'Zay', 'Mar', 'Her', 'mar@hotmail.com', 'GGkhr8q6bhBg1V0ZjUJyrg==');
-INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', 'GGkhr8q6bhBg1V0ZjUJyrg==');
-INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','GGkhr8q6bhBg1V0ZjUJyrg==' );
-INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', 'GGkhr8q6bhBg1V0ZjUJyrg==');
-INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', 'GGkhr8q6bhBg1V0ZjUJyrg==');
+INSERT INTO users VALUES('Obe','Edu', 'Bur', 'edu@hotmail.it','GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'Sau', 'Dan', 'Her', 'dan@gmail.com', 'GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'Zay', 'Mar', 'Her', 'mar@hotmail.com', 'GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', 'GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','GbEZsnkEipLEhXM/lV4C8A==' );
+INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', 'GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', 'GbEZsnkEipLEhXM/lV4C8A==');
 INSERT INTO users VALUES( 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
 INSERT INTO users VALUES( 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
 INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');

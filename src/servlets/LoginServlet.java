@@ -19,7 +19,7 @@ public class LoginServlet extends AbstractServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        final String secretkey = "chiaveprova";
+        final String secretkey = "Khaledmerda";
 
         try {
                 CollectionOwn logged = confirmPassword(request);
@@ -49,7 +49,7 @@ public class LoginServlet extends AbstractServlet {
     }
 
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
-        final String secretkey = "Khaledmerda";
+        final String secretkey = "chiavesupersegretissimaXD";
 
         String name = request.getParameter("name");
         String pass = Platform.encrypt(request.getParameter("password"), secretkey);

@@ -69,7 +69,7 @@ public class SignUpServlet extends AbstractServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        final String secretkey = "Khaledmerda";
+        final String secretkey = "chiavesupersegretissimaXD";
 
 
 
