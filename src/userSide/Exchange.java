@@ -11,23 +11,23 @@ public class Exchange {
     private int id_trans;
     private String username;
     private String username_offerente;
-    private int[] id_card_owm;
-    private int[] id_card_wanted;
+    private ArrayList<Integer> card_owm;
+    private ArrayList<Integer> card_wanted;
     private boolean trans_comp; //true se completata altrimenti false
 
-    public Exchange(int id_trans,String username, int[] id_card_owm, int [] id_card_wanted) {
+    public Exchange(int id_trans,String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted) {
         this.id_trans = id_trans;
         this.username = username;
-        this.id_card_owm = id_card_owm;
-        this.id_card_wanted = id_card_wanted;
+        this.card_owm = card_owm;
+        this.card_wanted = card_wanted;
         this.username_offerente= null;
         this.trans_comp=false;
     }
-    public Exchange(int id_trans, String username, int[] id_card_owm, int [] id_card_wanted, boolean trans_comp,String username_offerente) {
+    public Exchange(int id_trans, String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted, boolean trans_comp,String username_offerente) {
         this.id_trans = id_trans;
         this.username= username;
-        this.id_card_owm = id_card_owm;
-        this.id_card_wanted = id_card_wanted;
+        this.card_owm = card_owm;
+        this.card_wanted = card_wanted;
         this.trans_comp = trans_comp;
         this.username_offerente=username_offerente;
     }
@@ -41,13 +41,13 @@ public class Exchange {
 
     public void setId_user(String username) { this.username = username; }
 
-    public int[] getId_card_owm() { return id_card_owm; }
+    public ArrayList<Integer> get_id_card_owm() { return card_owm; }
 
-    public void setId_card_owm(int[] id_card_owm) { this.id_card_owm = id_card_owm; }
+    public void set_id_Card_owm(ArrayList<Integer> card_owm) { this.card_owm = card_owm; }
 
-    public int[] getId_card_wanted() { return id_card_wanted; }
+    public ArrayList<Integer> getId_card_wanted() { return card_wanted; }
 
-    public void setId_card_wanted(int[] id_card_wanted) { this.id_card_wanted = id_card_wanted; }
+    public void setId_card_wanted(ArrayList<Integer> card_wanted) { this.card_wanted = card_wanted; }
 
     public boolean isTrans_comp() { return trans_comp; }
 
