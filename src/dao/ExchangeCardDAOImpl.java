@@ -9,6 +9,8 @@ import userSide.User;
 import java.sql.*;
 import java.util.*;
 
+import static java.sql.Connection.TRANSACTION_SERIALIZABLE;
+
 public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -138,6 +140,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
+        Savepoint savepoint = null;
+        Savepoint insert = null;
+        Savepoint insert2 = null;
         //cancello carte presenti in entrambe le liste perchè è inutile scambaire due carte uguali
         try {
             //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
@@ -145,8 +150,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement = conn.prepareStatement(select_transaction);
             //start transaction
             conn.setAutoCommit(false);
+            conn.setTransactionIsolation(TRANSACTION_SERIALIZABLE);
             preparedStatement.setInt(1,exchangeCard.getId_trans());
             preparedStatement.execute();
+            savepoint=conn.setSavepoint();
+
 
             preparedStatement=conn.prepareStatement(flag_complete);
             preparedStatement.setString(1,exchangeCard.getUsername_offerente());
@@ -161,24 +169,27 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 //blocco le carte
                 preparedStatement = conn.prepareStatement(selectCollection);
                 preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.setString(2,exchangeCard.getId_user());
+                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
                 preparedStatement.execute();
+                insert=conn.setSavepoint();
 
                 //se è già nella collezione del tizio incrementa
                 preparedStatement = conn.prepareStatement(switchpeople);
                 preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.setString(2,exchangeCard.getId_user());
                 preparedStatement.execute();
 
                 preparedStatement=conn.prepareStatement(deleteCollection);
-                preparedStatement.setString(1,exchangeCard.getId_user());
+                preparedStatement.setString(1,exchangeCard.getUsername_offerente());
                 preparedStatement.setInt(2,exchangeCard.getId_card_wanted().get(i));
                 preparedStatement.execute();
+                conn.commit();
 
                 preparedStatement=conn.prepareStatement(updateCollection);
                 preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.setString(2,exchangeCard.getId_user());
+                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
                 preparedStatement.execute();
+                conn.commit();
             }
             //da a me le carte dell'offerente
             for (int i=0;i<exchangeCard.get_id_card_owm().size();i++)
@@ -187,32 +198,43 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 //blocco le carte
                 preparedStatement = conn.prepareStatement(selectCollection);
                 preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.setString(2,exchangeCard.getId_user());
                 preparedStatement.execute();
+                insert2=conn.setSavepoint();
+
 
                 //se è già nella collezione del tizio incrementa
                 preparedStatement = conn.prepareStatement(switchpeople);
                 preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.setString(2,exchangeCard.getId_user());
-                preparedStatement.execute();
-
-                preparedStatement=conn.prepareStatement(deleteCollection);
-                preparedStatement.setString(1,exchangeCard.getUsername_offerente());
-                preparedStatement.setInt(2,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.execute();
-
-                preparedStatement=conn.prepareStatement(updateCollection);
-                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
                 preparedStatement.setString(2,exchangeCard.getUsername_offerente());
                 preparedStatement.execute();
 
+                preparedStatement=conn.prepareStatement(deleteCollection);
+                preparedStatement.setString(1,exchangeCard.getId_user());
+                preparedStatement.setInt(2,exchangeCard.get_id_card_owm().get(i));
+                preparedStatement.execute();
+                conn.commit();
 
+                preparedStatement=conn.prepareStatement(updateCollection);
+                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                preparedStatement.setString(2,exchangeCard.getId_user());
+                preparedStatement.execute();
+                conn.commit();
             }
-            conn.commit();
             conn.setAutoCommit(true);
         }
         catch (SQLException e)
         {
+            try {
+                conn.rollback(savepoint);
+                conn.rollback(insert);
+                conn.rollback(insert2);
+            }
+            catch (SQLException e1)
+            {
+
+            }
+
             return true;
         }
         return false;
