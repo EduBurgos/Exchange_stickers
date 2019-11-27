@@ -278,14 +278,14 @@ public class Platform {
 
     /**.........................METODI PER CERCARE NELLA PROPRIA COLLEZIONE**/
     /**Metodo Per trovare Carta nel proprio profilo*/
-    public Card findByName(String username, String nameCard) throws SQLException{
+    public ArrayList<Card> findByName(String username, String nameCard) throws SQLException{
         User account=null;
         try{
             UserDao user= new UserDaoImpl();
             account=user.findByUsername(username);
             if(account!=null){
                 CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
-                Card answer=collectionOwnDao.findByName(account,nameCard);
+                ArrayList<Card> answer=collectionOwnDao.findByName(account,nameCard);
                 return answer;
             }
         }catch (NullPointerException e){

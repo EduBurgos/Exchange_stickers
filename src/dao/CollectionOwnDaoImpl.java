@@ -28,7 +28,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     private static final String SEARCH_BY_CATEGORY="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Category=?";
     private static final String SEARCH_BY_CLASS="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Class=?";
     private static final String SEARCH_BY_TYPE="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardType=?";
-
+    private static final String SEARCH_BY_ALL="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=? AND Category=? AND Class=? AND CardType=?";
+    private static final String SEARCH_BY_NAME_CATEGORY_CLASS="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=? AND Category=? AND Class=?";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -158,9 +159,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 /**.....................................METODI DI RICERCA.................................**/
     /** Metodo per trovare una determinata carta nella mia collezione*/
 
-    public Card findByName(User user, String name){
+    public ArrayList<Card> findByName(User user, String name){
 
-        user.getUsername();
+        ArrayList<Card> answer= new ArrayList<>();
         try {
 
             conn = connector.createConnection();
@@ -170,26 +171,44 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             preparedStatement.setString(2,name);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            Card answer=new Card(result.getInt("ID"),
-                    result.getString("Category"),
-                    result.getString("Class"),
-                    result.getInt("Lvl"),
-                    result.getString("Rarity"),
-                    result.getString("CardType"),
-                    result.getString("CardName"),
-                    result.getString("CardDescription"));
-
-            return answer;
-        }catch (SQLException e){
-            return null;
+            while(result.next()) {
+                for(int i=0; i<result.getInt("quantity");i++) {
+                    answer.add(new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
         }
+        return answer;
 
     }
 
     /**Metodo per trovare delle carte della mia collezione che abbiano in comune la stessa categoria */
     public ArrayList<Card> findByCategory(User user, String category){
         ArrayList<Card> list= new ArrayList<Card>();
-        user.getUsername();
         try {
 
             conn = connector.createConnection();
@@ -200,27 +219,46 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {
-                Card answer = new Card(result.getInt("ID"),
-                        result.getString("Category"),
-                        result.getString("Class"),
-                        result.getInt("Lvl"),
-                        result.getString("Rarity"),
-                        result.getString("CardType"),
-                        result.getString("CardName"),
-                        result.getString("CardDescription"));
-                list.add(answer);
+                for (int i = 0; i < result.getInt("quantity"); i++) {
+                    Card answer = new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"));
+                    list.add(answer);
+                }
             }
-            return list;
-        }catch (SQLException e){
-            return null;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
         }
+        return list;
 
     }
+
+
     /**Metodo per trovare delle carte nella mia collezione che abbiano in comune la stessa classe*/
 
     public ArrayList<Card> findByClass(User user, String classCard){
         ArrayList<Card> list= new ArrayList<Card>();
-        user.getUsername();
         try {
 
             conn = connector.createConnection();
@@ -231,25 +269,43 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {
-                Card answer = new Card(result.getInt("ID"),
-                        result.getString("Category"),
-                        result.getString("Class"),
-                        result.getInt("Lvl"),
-                        result.getString("Rarity"),
-                        result.getString("CardType"),
-                        result.getString("CardName"),
-                        result.getString("CardDescription"));
-                list.add(answer);
+                for (int i = 0; i < result.getInt("quantity"); i++) {
+                    Card answer = new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"));
+                    list.add(answer);
+                }
             }
-            return list;
-        }catch (SQLException e){
-            return null;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
         }
+        return list;
+
     }
     /**Metodo che mi trova le carte nella mia collezione che abbiano in comune lo stesso tipo*/
     public ArrayList<Card> findByType(User user, String typeCard){
         ArrayList<Card> list= new ArrayList<Card>();
-        user.getUsername();
         try {
 
             conn = connector.createConnection();
@@ -260,20 +316,134 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {
-                Card answer = new Card(result.getInt("ID"),
-                        result.getString("Category"),
-                        result.getString("Class"),
-                        result.getInt("Lvl"),
-                        result.getString("Rarity"),
-                        result.getString("CardType"),
-                        result.getString("CardName"),
-                        result.getString("CardDescription"));
-                list.add(answer);
+                for (int i = 0; i < result.getInt("quantity"); i++) {
+                    Card answer = new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"));
+                    list.add(answer);
+                }
             }
-            return list;
-        }catch (SQLException e){
-            return null;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
         }
+        return list;
+
+    }
+
+    public ArrayList<Card> findByAll (User user, String name, String category, String classCard, String type){
+        ArrayList<Card> list= new ArrayList<Card>();
+
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEARCH_BY_ALL);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,name);
+            preparedStatement.setString(3,category);
+            preparedStatement.setString(4,classCard);
+            preparedStatement.setString(5,type);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                for (int i = 0; i < result.getInt("quantity"); i++) {
+                    Card answer = new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"));
+                    list.add(answer);
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Card> findByNameCategoryClass(User user, String name, String category, String classCard){
+        ArrayList<Card> list= new ArrayList<Card>();
+
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEARCH_BY_NAME_CATEGORY_CLASS);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,name);
+            preparedStatement.setString(3,category);
+            preparedStatement.setString(4,classCard);
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                for (int i = 0; i < result.getInt("quantity"); i++) {
+                    Card answer = new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"));
+                    list.add(answer);
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list;
     }
     /**......................FINE METODI DI RICERCA..................................**/
     @Override
