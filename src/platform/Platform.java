@@ -303,18 +303,18 @@ public class Platform {
     /**Metodo Per trovare Carta nel proprio profilo*/
     public ArrayList<Card> findByName(String username, String nameCard) throws SQLException{
         User account=null;
+        ArrayList<Card> answer=new ArrayList<>();
         try{
             UserDao user= new UserDaoImpl();
             account=user.findByUsername(username);
             if(account!=null){
                 CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
-                ArrayList<Card> answer=collectionOwnDao.findByName(account,nameCard);
-                return answer;
+                answer=collectionOwnDao.findByName(account,nameCard);
             }
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-        return  null;
+        return  answer;
     }
     /**Metodo per trovare carte della stessa categoria nel profilo */
 
@@ -327,12 +327,11 @@ public class Platform {
             if(account!=null){
                 CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
                 list=collectionOwnDao.findByCategory(account,categoryCard);
-                return list;
             }
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
     /**Metodo per trovare carte della stessa classe nel profilo */
 
@@ -345,12 +344,11 @@ public class Platform {
             if(account!=null){
                 CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
                 list=collectionOwnDao.findByClass(account,classCard);
-                return list;
             }
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 
     /**Metodo per trovare carte della stesso tipo nel profilo */
@@ -364,12 +362,11 @@ public class Platform {
             if(account!=null){
                 CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
                 list=collectionOwnDao.findByType(account,typeCard);
-                return list;
             }
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 
 /**..........................FINE METODI DI RICERCA NELLA PROPRIA COLLEZIONE.....................**/

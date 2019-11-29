@@ -5,6 +5,7 @@
 <%@ page import="collection.Card" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="collection.CollectionOwn" %>
+<%@ page import="platform.Platform" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -75,6 +76,7 @@
                     <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
                     <li role="presentation" class="active" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="mycollectionTab">My Collection</a></li>
                     <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
+                  <!--  <li role="presentation"><a href="#filters" aria-controls="filters" role="tab" data-toggle="tab">Filter</a></li>-->
                 </ul>
             </div>
             <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
@@ -98,7 +100,6 @@
                 <%}
                 %>
             </div>
-
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
 
             <div role="tabpanel" class="tab-pane" id="exchangeables">
@@ -112,6 +113,28 @@
                 </form>
 
             </div>
+
+              <!--  <div role="tabpanel" class="tab-pane" id="filters">
+
+                    <form  method="get" action= "../Search">-->
+                        <% //ArrayList<Card> filterArray=null ;     %>
+                        <%//Platform platform=Platform.getInstance();      %>
+                    <%//if(request.getSession().getAttribute("category")!=null){  %>
+                    <% //filterArray= platform.findByCategory(u.getUsername(),(String) request.getSession().getAttribute("category"));%>
+                        <% //if(request.getSession().getAttribute("class")!=null){    %>
+                        <% //filterArray= platform.findByClass(u.getUsername(),(String) request.getSession().getAttribute("class"));}%>
+                        <% //}  if(request.getSession().getAttribute("type")!=null){    %>
+                        <% //filterArray= platform.findByType(u.getUsername(),(String) request.getSession().getAttribute("type"));%>
+                        <%//} if(filterArray!=null){      %>
+                    <%//for(Card filter: filterArray){%>
+                  <!--      <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                        <img src="../img/<%//filter.getCategoria()%>/<%//(filter.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        </div>-->
+                    <%//}
+                    %>
+                        <%//}
+                        %>
+                    </form>
         </div>
 
     </div>

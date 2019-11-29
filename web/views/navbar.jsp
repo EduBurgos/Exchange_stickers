@@ -54,9 +54,9 @@ it is included in each page of the application -->
                                                    <label >Category</label>
                                                     <select name="filterCategory" class="form-control">
                                                         <option value="0" selected>---------></option>
-                                                        <option value="1">Hearthstone</option>
-                                                        <option value="2">Pokemon</option>
-                                                        <option value="3">Yu-Gi-Oh!</option>
+                                                        <option value="Hearthstone">Hearthstone</option>
+                                                        <option value="Pokemon">Pokemon</option>
+                                                        <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

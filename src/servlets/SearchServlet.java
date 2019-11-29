@@ -19,7 +19,7 @@ import java.util.Map;
 
 @WebServlet(name = "SearchServlet", urlPatterns = "/Search")
 public class SearchServlet extends AbstractServlet {
-    private String DEFAULT_ROUTE = "/views/homepage.jsp";
+    private String DEFAULT_ROUTE = "/views/userprofile.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -29,11 +29,7 @@ public class SearchServlet extends AbstractServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            request.getSession().setAttribute("filter", null);
-            ArrayList<Exchange> filter = searchFilter(request);
-
-            if (filter != null) {
-                request.getSession().setAttribute("filter", filter);
+            if (searchFilter(request)) {
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
             } else {
                 forwardTo(request, response, INDEXPROFILE_ROUTE);
@@ -43,28 +39,29 @@ public class SearchServlet extends AbstractServlet {
         }
     }
 
-    private ArrayList<Exchange> searchFilter(HttpServletRequest request) throws SQLException {
+    private boolean searchFilter(HttpServletRequest request) throws SQLException {
         String filterCategory = request.getParameter("filterCategory");
-        int category = Integer.parseInt(filterCategory);
+        request.getSession().setAttribute("category", filterCategory);
         String filterClass = request.getParameter("filterClass");
+        request.getSession().setAttribute("class", filterClass);
         String filterType = request.getParameter("filterType");
+        request.getSession().setAttribute("type", filterType);
         String filterCard = request.getParameter("filterCard");
+        request.getSession().setAttribute("card", filterCard);
         CollectionOwn logged = (CollectionOwn) request.getSession().getAttribute("logged");
         User user = logged.getOwner();
         Platform platform = Platform.getInstance();
-        //serie di if/else per controllare che metodi dao siano giusti
-        if (category != 0) {
-            return platform.findTByCategoryCard(user, filterCategory);
+        if (!filterCategory.equals("0")) {
+            return true;
         } else if (filterClass != null) {
-            return platform.findTByClassCard(user, filterClass);
-        } else if (filterType != null) {
-            return platform.findTByTypeCard(user, filterType);
+            return true;
         } else if (filterCard != null) {
-            return platform.findTByNameCard(user, filterCard);
-        } else
-            return null;
-
+            return true;
+        } else if (filterType != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
-
 
