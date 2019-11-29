@@ -43,15 +43,10 @@ public class ExchangeServlet extends AbstractServlet {
             ArrayList<Integer> intArrayToTake = new ArrayList<>();
             //passo da array di stringhe ad array di interi
             for (int i=0; i<cardsToGive.length;i++){
-                if(Integer.parseInt(cardsToGive[i])!=0)
-                {
                     intArrayToGive.add(Integer.parseInt(cardsToGive[i]));
-                }
             }
             for (int i=0; i<cardsToTake.length;i++){
-                if(Integer.parseInt(cardsToGive[i])!=0) {
                     intArrayToTake.add(Integer.parseInt(cardsToTake[i]));
-                }
             }
 
             CollectionOwn collectionOwn=(CollectionOwn) request.getSession().getAttribute("logged");
@@ -60,6 +55,7 @@ public class ExchangeServlet extends AbstractServlet {
             Platform platform = Platform.getInstance();
             platform.setExchange(username, intArrayToGive, intArrayToTake);
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
+
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
         } catch (Exception e) {
             e.printStackTrace();

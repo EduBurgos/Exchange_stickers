@@ -192,17 +192,40 @@ public class Platform {
         ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
         UserDaoImpl userDaoImpl = new UserDaoImpl();
         User user = userDaoImpl.findByUsername(Username);
-        ArrayList<Card> ownedCards = new ArrayList<Card>();
-        ArrayList<Card> wantedCards = new ArrayList<Card>();
+        Map<Integer,Integer> ownedCards = new HashMap<>();
+        Map<Integer,Integer> wantedCards = new HashMap<>();
 
-        CardsDaoImpl cardsDaoImpl = new CardsDaoImpl();
+       /*CardsDaoImpl cardsDaoImpl = new CardsDaoImpl();
         for(int i=0;i<CardOwn.size();i++) {
             ownedCards.add(cardsDaoImpl.findByID(CardOwn.get(i)));
         }
         for(int i=0; i<CardWanted.size(); i++){
             wantedCards.add(cardsDaoImpl.findByID(CardWanted.get(i)));
+        }*/
+        for (int c: CardOwn) {
+            if(ownedCards.containsKey(c))
+            {
+                int app=ownedCards.get(c)+1;
+                ownedCards.replace(c,app);
+            }
+            else
+            {
+                ownedCards.put(c,1);
+            }
         }
-        exchangeCardDAO.create(user, ownedCards, wantedCards);
+        for (int c: CardWanted)
+        {
+            if(wantedCards.containsKey(c))
+            {
+                int app=wantedCards.get(c)+1;
+                wantedCards.replace(c,app);
+            }
+            else
+            {
+                wantedCards.put(c,1);
+            }
+        }
+        exchangeCardDAO.create(user,ownedCards,wantedCards);
     }
 
     public void getAllExchanges(String username) throws SQLException{

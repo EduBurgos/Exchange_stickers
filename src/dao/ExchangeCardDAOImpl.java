@@ -34,7 +34,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
     private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
-    private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=?)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp='0'";
+    private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
 
     private static final String delete_exchange = "SET AUTOcOMMIT=0" +
                                                     "start transaction;" +
@@ -50,16 +50,15 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     @Override
-    public void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException {
+    public void create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException {
         conn = null;
 
+        //Map<Integer, Integer> cardownRefactored = new HashMap<>();
+        //Map<Integer, Integer> cardwantedRefactored = new HashMap<>();
+        //ArrayList<Integer> carteCensiteOwn = new ArrayList<>();
+        //ArrayList<Integer> carteCensiteWanted = new ArrayList<>();
 
-        Map<Card, Integer> cardownRefactored = new HashMap<>();
-        Map<Card, Integer> cardwantedRefactored = new HashMap<>();
-        ArrayList<Integer> carteCensiteOwn = new ArrayList<>();
-        ArrayList<Integer> carteCensiteWanted = new ArrayList<>();
-
-        for (Card x : cardown) {
+        /*for (Card x : cardown) {
             if(!(carteCensiteOwn.contains(x.getId()))) {
                 int quantità = 1;
                 int posizioneAttuale = cardown.indexOf(x);
@@ -72,9 +71,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cardownRefactored.put(x, quantità);
                 carteCensiteOwn.add(x.getId());
             }
-        }
+        }*/
 
-        for (Card y : cardwanted) {
+        /*for (Card y : cardwanted) {
             if(!(carteCensiteWanted.contains(y.getId()))) {
                 int quantità = 1;
                 int posizioneAttuale = cardwanted.indexOf(y);
@@ -87,7 +86,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cardwantedRefactored.put(y, quantità);
                 carteCensiteWanted.add(y.getId());
             }
-        }
+        }*/
 
         try {
             conn = connector.createConnection();
@@ -100,18 +99,18 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
             if (result.next() && result!=null)
             {
-                for (Card c: cardownRefactored.keySet()) {
+                for (int c: cardown.keySet()) {
                     preparedStatement=conn.prepareStatement(insert_cardown_query);
                     preparedStatement.setInt(1,result.getInt(1));
-                    preparedStatement.setInt(2,c.getId());
-                    preparedStatement.setInt(3, cardownRefactored.get(c));
+                    preparedStatement.setInt(2,c);
+                    preparedStatement.setInt(3, cardown.get(c));
                     preparedStatement.execute();
                 }
-                for ( Card d: cardwantedRefactored.keySet()) {
+                for (int d: cardwanted.keySet()) {
                     preparedStatement=conn.prepareStatement(insert_cardWanted_query);
                     preparedStatement.setInt(1,result.getInt(1));
-                    preparedStatement.setInt(2,d.getId());
-                    preparedStatement.setInt(3, cardwantedRefactored.get(d));
+                    preparedStatement.setInt(2,d);
+                    preparedStatement.setInt(3, cardwanted.get(d));
                     preparedStatement.execute();
                 }
             }
@@ -153,7 +152,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             conn.setTransactionIsolation(TRANSACTION_SERIALIZABLE);
             preparedStatement.setInt(1,exchangeCard.getId_trans());
             preparedStatement.execute();
-            savepoint=conn.setSavepoint();
+            result=preparedStatement.getResultSet();
+            savepoint = conn.setSavepoint();
+            if(result==null && !result.next()) {
+                return false;
+            }
 
 
             preparedStatement=conn.prepareStatement(flag_complete);
@@ -306,6 +309,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getUsername());
             preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setBoolean(4,false);
             // preparedStatement.setString(2, user.getUsername());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();

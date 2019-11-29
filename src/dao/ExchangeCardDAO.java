@@ -11,7 +11,7 @@ import java.util.Map;
 public interface ExchangeCardDAO {
     //CRUD
     /*The public is redundant*/
-     void create(User user, ArrayList<Card> cardown, ArrayList<Card> cardwanted) throws SQLException;
+     void create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException;
 
      boolean marketExchange(Exchange exchangeCard) ;
 
