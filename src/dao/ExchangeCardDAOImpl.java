@@ -33,8 +33,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
-    private static final String get_cardWanted="select exchanges.* , cards_wanted.cardId from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
+    private static final String get_all_my_exchange ="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.Id_trans as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans  where username=?;";
+    private static final String get_cardWanted="select cards_wanted.* from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
+
+
 
     private static final String delete_exchange = "SET AUTOcOMMIT=0" +
                                                     "start transaction;" +
@@ -296,20 +299,32 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     /**Return all available exchanges */
     @Override
-    public ArrayList<Exchange> getAllExchange(User user) throws SQLException {
+    public ArrayList<Exchange> getAllExchange(User user,String parameter) throws SQLException {
         conn=null;
-        Platform platform = Platform.getInstance();
-
         ArrayList<Integer> cardown = new ArrayList<>();
         ArrayList<Integer> cardwanted=new ArrayList<>();
         ArrayList<Exchange> allExchange = new ArrayList<>();
+        conn = connector.createConnection();
+        switch (parameter)
+                {
+                    case "mine":
+                    {
+                        preparedStatement = conn.prepareStatement(get_all_my_exchange);
+                        preparedStatement.setString(1, user.getUsername());
+                    }
+                    break;
+                    case "all":
+                    {
+                        preparedStatement = conn.prepareStatement(get_all_exchange);
+                        preparedStatement.setString(1, user.getUsername());
+                        preparedStatement.setString(2, user.getUsername());
+                        preparedStatement.setString(3, user.getUsername());
+                        preparedStatement.setBoolean(4,false);
+                    }
+                }
         try {
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(get_all_exchange);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, user.getUsername());
-            preparedStatement.setBoolean(4,false);
+
+
             // preparedStatement.setString(2, user.getUsername());
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
@@ -373,7 +388,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return allExchange;
     }
-    @Override
+
+   @Override
     public void delete(int id_trans) throws SQLException {
         conn = null;
         try {

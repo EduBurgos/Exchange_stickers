@@ -15,13 +15,12 @@ public interface ExchangeCardDAO {
 
      boolean marketExchange(Exchange exchangeCard) ;
 
-     Exchange getExchange(int id_trans) throws SQLException;
 
      //void update() throws SQLException;
 
      void delete(int id_trans) throws SQLException;
-
-     ArrayList<Exchange> getAllExchange(User user) throws SQLException;
+  Exchange getExchange(int id_trans) throws SQLException;
+   ArrayList<Exchange> getAllExchange(User user,String Parameter) throws SQLException;
  ArrayList<Exchange>findTByNameCard(User user, String nameCard)throws  SQLException;
  ArrayList<Exchange>findTByCategory(User user, String category) throws  SQLException;
  ArrayList<Exchange>findTByClassCard(User user, String classCard) throws  SQLException;

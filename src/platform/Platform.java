@@ -228,12 +228,6 @@ public class Platform {
         exchangeCardDAO.create(user,ownedCards,wantedCards);
     }
 
-    public void getAllExchanges(String username) throws SQLException{
-        ExchangeCardDAOImpl allExchangesDao= new ExchangeCardDAOImpl();
-        UserDaoImpl userDao= new UserDaoImpl();
-        User user= userDao.findByUsername(username);
-        allExchangesDao.getAllExchange(user);
-    }
     /**
      * Method used to accept exchanges
      * @param exchange that i want to accept
@@ -245,17 +239,6 @@ public class Platform {
         exchange.setUsername_offerente(loggato);
         exchangeCardDAO.marketExchange(exchange);
         return true;
-    }
-    /**
-     * Method used to accept an exchange
-     * @throws SQLException
-     */
-    public boolean acceptExchange() {
-        //controllo se carte richieste ci sono
-        //controllo se carte volute sono in possesso di chi a settato l'offerta
-        //try catch di un metodo private che svolge i settaggi delle nuova carte, in modo da bloccare entrambe le transazioni qualora qualcosa non andasse bene
-        //if che restituisce true se ha passato i controlli e ha fatto l'update su db
-        return false;
     }
 
 
@@ -279,25 +262,6 @@ public class Platform {
         return null;
     }
 
-    /**Metodo che prende tutte le trattative*/
-  /*  public ArrayList<Exchange> getExchange() throws SQLException{
-        try{
-            ExchangeCardDAOImpl market = new ExchangeCardDAOImpl();
-            for (Exchange x : market.getAllExchange()
-                 ) {
-                System.out.println("inizio stampa exchange: ");
-                System.out.println(x.getId_user());
-                System.out.println(x.getId_trans());
-                System.out.println(x.getId_card_owm());
-                System.out.println(x.getId_card_wanted());
-                System.out.println(x.isTrans_comp());
-            }
-            return market.getAllExchange();
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return null;
-    }*/
 
     /**.........................METODI PER CERCARE NELLA PROPRIA COLLEZIONE**/
     /**Metodo Per trovare Carta nel proprio profilo*/
@@ -435,8 +399,19 @@ public class Platform {
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
           ExchangeCardDAO ex = new ExchangeCardDAOImpl();
-          return  ex.getAllExchange(user);
+          return  ex.getAllExchange(user,"all");
       }catch(NullPointerException e){
+          e.printStackTrace();
+      }
+      return null;
+  }
+  public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
+      try {
+          ExchangeCardDAO exchangeCardDAO= new ExchangeCardDAOImpl();
+          return exchangeCardDAO.getAllExchange(user,"mine");
+      }
+      catch (Error e)
+      {
           e.printStackTrace();
       }
       return null;

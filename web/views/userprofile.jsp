@@ -6,6 +6,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="collection.CollectionOwn" %>
 <%@ page import="platform.Platform" %>
+<%@ page import="userSide.Exchange" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -50,6 +51,7 @@
         else{ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("logged");} %>
         <% User u = c.getOwner();%>
+
 
         <h1><%=u.getUsername()%></h1>
 
@@ -111,6 +113,22 @@
                     <!--TASTO CERCA -->
                     <input type="submit" value="Search" >
                 </form>
+
+            </div>
+
+            <!-- Visualizza scambi -->
+            <div role="tabpanel" class="tab-pane" id="Myexchanges">
+                <% Platform platform = Platform.getInstance();
+                    ArrayList<Exchange> ex= platform.getAllMyExchnages(u);
+                %><%for(Card entry : c.getCardsOwn().keySet()){%>
+                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                    <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
+                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                    <%}
+                    %>
+                </div>
+                <%}
+                %>
 
             </div>
 
