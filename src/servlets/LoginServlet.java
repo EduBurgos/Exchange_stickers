@@ -16,10 +16,9 @@ import java.sql.SQLException;
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
+    final String secretkey = "chiavesupersegretissimaXD";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        final String secretkey = "Khaledmerda";
 
         try {
                 CollectionOwn logged = confirmPassword(request);
@@ -49,7 +48,6 @@ public class LoginServlet extends AbstractServlet {
     }
 
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
-        final String secretkey = "chiavesupersegretissimaXD";
 
         String name = request.getParameter("name");
         String pass = Platform.encrypt(request.getParameter("password"), secretkey);
