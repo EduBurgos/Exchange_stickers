@@ -1,5 +1,3 @@
-<%@ page import="dao.CollectionOwnDaoImpl" %>
-<%@ page import="dao.UserDaoImpl" %>
 <%@ page import="userSide.User" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="collection.Card" %>
@@ -7,6 +5,7 @@
 <%@ page import="collection.CollectionOwn" %>
 <%@ page import="platform.Platform" %>
 <%@ page import="userSide.Exchange" %>
+<%@ page import="dao.*" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -78,7 +77,9 @@
                     <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
                     <li role="presentation" class="active" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="mycollectionTab">My Collection</a></li>
                     <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
-                  <!--  <li role="presentation"><a href="#filters" aria-controls="filters" role="tab" data-toggle="tab">Filter</a></li>-->
+                    <li role="presentation"><a href="#myexchanges" aria-controls="myexchanges" role="tab" data-toggle="myexchanges">My exchanges</a></li>
+                    <!--  <li role="presentation"><a href="#filters" aria-controls="filters" role="tab" data-toggle="tab">Filter</a></li>-->
+
                 </ul>
             </div>
             <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
@@ -117,18 +118,27 @@
             </div>
 
             <!-- Visualizza scambi -->
-            <div role="tabpanel" class="tab-pane" id="Myexchanges">
+            <div role="tabpanel" class="tab-pane" id="myexchanges">
                 <% Platform platform = Platform.getInstance();
-                    ArrayList<Exchange> ex= platform.getAllMyExchnages(u);
-                %><%for(Card entry : c.getCardsOwn().keySet()){%>
-                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    <%}
-                    %>
-                </div>
-                <%}
-                %>
+                    ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
+                <% for(int i =0 ; i< ex.size(); i++) { %>
+                    <% for (int ca: ex.get(i).get_id_card_owm()) { %>
+                        <% CardsDao cardsDao = new CardsDaoImpl();
+                             Card card=cardsDao.findByID(ca); %>
+                            <div class="col-4">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top">
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <button type="button" class="btn btn-dark" onclick="ShowDiv()">Go somewhere</button>
+                                    </div>
+                                </div>
+                                <div class="row" id="toHide"></div>
+                            </div>
+                    <% } %>
+                <%}%>
+            </div>
+
 
             </div>
 
@@ -165,6 +175,14 @@
     {
         <% request.getSession().removeAttribute("snitch"); %>
         location.reload();
+    }
+    function showDiv() {
+        var x = document.getElementById("toHide");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
     }
 </script>
 
