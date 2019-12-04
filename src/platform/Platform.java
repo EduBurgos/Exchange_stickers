@@ -333,6 +333,24 @@ public class Platform {
         return list;
     }
 
+    /** metodo per combinare filtri*/
+
+    public ArrayList<Card> filtersCollections(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
+        ArrayList<Card> list= new ArrayList<Card>();
+        User account=null;
+        try{
+            UserDao user=new UserDaoImpl();
+            account= user.findByUsername(username);
+            if(account!=null){
+                CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
+                list=collectionOwnDao.filters(account,nameCard,category,classCard,typeCard);
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 /**..........................FINE METODI DI RICERCA NELLA PROPRIA COLLEZIONE.....................**/
 
 /**...........................METODI DI RICERCA NELLE TRATTATIVE...................**/

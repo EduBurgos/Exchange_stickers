@@ -51,6 +51,7 @@ public class SearchServlet extends AbstractServlet {
         CollectionOwn logged = (CollectionOwn) request.getSession().getAttribute("logged");
         User user = logged.getOwner();
         Platform platform = Platform.getInstance();
+        // metodi per il filtro applicato
         if (!filterCategory.equals("0")) {
             return true;
         } else if (filterClass != null) {

@@ -24,6 +24,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
+
     private static final String SEARCH_BY_CARDNAME= "select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=?";
     private static final String SEARCH_BY_CATEGORY="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Category=?";
     private static final String SEARCH_BY_CLASS="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Class=?";
@@ -445,6 +446,79 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         }
         return list;
     }
+
+    /** metodo per combinare filtri */
+
+    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
+
+        ArrayList<Card> list= new ArrayList<Card>();
+        String s= "select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
+        int j=2;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(s);
+            preparedStatement.setString(1, user.getUsername());
+            if( name!=null || category!=null || classCard!=null || typeCard!=null) {
+
+                if(name!=null){
+                    s+="AND CardName=?";
+                    preparedStatement.setString(j,name);
+                    j++;
+                }
+                if(category!=null){
+                    s+="AND Category=?";
+                    preparedStatement.setString(j,category);
+                    j++;
+                }
+                if(classCard!=null){
+                    s+="AND Class=?";
+                    preparedStatement.setString(j,classCard);
+                    j++;
+                }
+                if(typeCard!=null){
+                    s+="AND TYPE =?";
+                    preparedStatement.setString(j,typeCard);
+                    j++;
+                }
+
+            }
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while (result.next() && result != null) {
+                for (int i = 0; i < result.getInt("quantity"); i++) {
+                    Card answer = new Card(result.getInt("ID"),
+                            result.getString("Category"),
+                            result.getString("Class"),
+                            result.getInt("Lvl"),
+                            result.getString("Rarity"),
+                            result.getString("CardType"),
+                            result.getString("CardName"),
+                            result.getString("CardDescription"));
+                    list.add(answer);
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list;
+    }
+
     /**......................FINE METODI DI RICERCA..................................**/
     @Override
     public ArrayList<Card> openSachet(User user){
