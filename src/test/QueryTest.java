@@ -1,11 +1,13 @@
+package test;
+
 import dao.CardsDaoImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
 public class QueryTest {
 
-        @Test(expected = NullPointerException.class)
+        @Test
         public void findAll(){
             CardsDaoImpl x = new CardsDaoImpl();
             try{
