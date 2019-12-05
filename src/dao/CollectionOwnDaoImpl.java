@@ -25,12 +25,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
 
-    private static final String SEARCH_BY_CARDNAME= "select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=?";
-    private static final String SEARCH_BY_CATEGORY="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Category=?";
-    private static final String SEARCH_BY_CLASS="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND Class=?";
-    private static final String SEARCH_BY_TYPE="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardType=?";
-    private static final String SEARCH_BY_ALL="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=? AND Category=? AND Class=? AND CardType=?";
-    private static final String SEARCH_BY_NAME_CATEGORY_CLASS="select * from collections inner join catalog on(collections.ID_Card=catalog.ID) WHERE Username=? AND CardName=? AND Category=? AND Class=?";
+    private static  String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -157,330 +152,48 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
 
-/**.....................................METODI DI RICERCA.................................**/
-    /** Metodo per trovare una determinata carta nella mia collezione*/
+/**.....................................METODO DI RICERCA.................................**/
 
-    public ArrayList<Card> findByName(User user, String name){
-
-        ArrayList<Card> answer= new ArrayList<>();
-        try {
-
-            conn = connector.createConnection();
-
-            preparedStatement = conn.prepareStatement(SEARCH_BY_CARDNAME);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2,name);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while(result.next()) {
-                for(int i=0; i<result.getInt("quantity");i++) {
-                    answer.add(new Card(result.getInt("ID"),
-                            result.getString("Category"),
-                            result.getString("Class"),
-                            result.getInt("Lvl"),
-                            result.getString("Rarity"),
-                            result.getString("CardType"),
-                            result.getString("CardName"),
-                            result.getString("CardDescription")));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return answer;
-
-    }
-
-    /**Metodo per trovare delle carte della mia collezione che abbiano in comune la stessa categoria */
-    public ArrayList<Card> findByCategory(User user, String category){
-        ArrayList<Card> list= new ArrayList<Card>();
-        try {
-
-            conn = connector.createConnection();
-
-            preparedStatement = conn.prepareStatement(SEARCH_BY_CATEGORY);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2,category);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while (result.next() && result != null) {
-                for (int i = 0; i < result.getInt("quantity"); i++) {
-                    Card answer = new Card(result.getInt("ID"),
-                            result.getString("Category"),
-                            result.getString("Class"),
-                            result.getInt("Lvl"),
-                            result.getString("Rarity"),
-                            result.getString("CardType"),
-                            result.getString("CardName"),
-                            result.getString("CardDescription"));
-                    list.add(answer);
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return list;
-
-    }
-
-
-    /**Metodo per trovare delle carte nella mia collezione che abbiano in comune la stessa classe*/
-
-    public ArrayList<Card> findByClass(User user, String classCard){
-        ArrayList<Card> list= new ArrayList<Card>();
-        try {
-
-            conn = connector.createConnection();
-
-            preparedStatement = conn.prepareStatement(SEARCH_BY_CLASS);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2,classCard);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while (result.next() && result != null) {
-                for (int i = 0; i < result.getInt("quantity"); i++) {
-                    Card answer = new Card(result.getInt("ID"),
-                            result.getString("Category"),
-                            result.getString("Class"),
-                            result.getInt("Lvl"),
-                            result.getString("Rarity"),
-                            result.getString("CardType"),
-                            result.getString("CardName"),
-                            result.getString("CardDescription"));
-                    list.add(answer);
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return list;
-
-    }
-    /**Metodo che mi trova le carte nella mia collezione che abbiano in comune lo stesso tipo*/
-    public ArrayList<Card> findByType(User user, String typeCard){
-        ArrayList<Card> list= new ArrayList<Card>();
-        try {
-
-            conn = connector.createConnection();
-
-            preparedStatement = conn.prepareStatement(SEARCH_BY_TYPE);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2,typeCard);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while (result.next() && result != null) {
-                for (int i = 0; i < result.getInt("quantity"); i++) {
-                    Card answer = new Card(result.getInt("ID"),
-                            result.getString("Category"),
-                            result.getString("Class"),
-                            result.getInt("Lvl"),
-                            result.getString("Rarity"),
-                            result.getString("CardType"),
-                            result.getString("CardName"),
-                            result.getString("CardDescription"));
-                    list.add(answer);
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return list;
-
-    }
-
-    public ArrayList<Card> findByAll (User user, String name, String category, String classCard, String type){
-        ArrayList<Card> list= new ArrayList<Card>();
-
-        try {
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(SEARCH_BY_ALL);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2,name);
-            preparedStatement.setString(3,category);
-            preparedStatement.setString(4,classCard);
-            preparedStatement.setString(5,type);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while (result.next() && result != null) {
-                for (int i = 0; i < result.getInt("quantity"); i++) {
-                    Card answer = new Card(result.getInt("ID"),
-                            result.getString("Category"),
-                            result.getString("Class"),
-                            result.getInt("Lvl"),
-                            result.getString("Rarity"),
-                            result.getString("CardType"),
-                            result.getString("CardName"),
-                            result.getString("CardDescription"));
-                    list.add(answer);
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return list;
-    }
-
-    public ArrayList<Card> findByNameCategoryClass(User user, String name, String category, String classCard){
-        ArrayList<Card> list= new ArrayList<Card>();
-
-        try {
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(SEARCH_BY_NAME_CATEGORY_CLASS);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2,name);
-            preparedStatement.setString(3,category);
-            preparedStatement.setString(4,classCard);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while (result.next() && result != null) {
-                for (int i = 0; i < result.getInt("quantity"); i++) {
-                    Card answer = new Card(result.getInt("ID"),
-                            result.getString("Category"),
-                            result.getString("Class"),
-                            result.getInt("Lvl"),
-                            result.getString("Rarity"),
-                            result.getString("CardType"),
-                            result.getString("CardName"),
-                            result.getString("CardDescription"));
-                    list.add(answer);
-                }
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return list;
-    }
-
-    /** metodo per combinare filtri */
 
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
 
         ArrayList<Card> list= new ArrayList<Card>();
-        String s= "select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
         int j=2;
         try {
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(s);
-            preparedStatement.setString(1, user.getUsername());
             if( name!=null || category!=null || classCard!=null || typeCard!=null) {
 
                 if(name!=null){
-                    s+="AND CardName=?";
+                    search_cards+=" AND CardName=?";
+                }
+                if(category!=null){
+                    search_cards+=" AND Category=?";
+                }
+                if(!classCard.equals("")){
+                    search_cards+=" AND Class=?";
+                }
+                if(!typeCard.equals("")){
+                    search_cards+=" AND CardType =?";
+
+                }
+                preparedStatement = conn.prepareStatement(search_cards);
+                preparedStatement.setString(1, user.getUsername());
+                if(name!=null){
                     preparedStatement.setString(j,name);
                     j++;
                 }
                 if(category!=null){
-                    s+="AND Category=?";
                     preparedStatement.setString(j,category);
                     j++;
                 }
-                if(classCard!=null){
-                    s+="AND Class=?";
+                if(!classCard.equals("")){
                     preparedStatement.setString(j,classCard);
                     j++;
                 }
-                if(typeCard!=null){
-                    s+="AND TYPE =?";
+                if(!typeCard.equals("")){
                     preparedStatement.setString(j,typeCard);
                     j++;
                 }
-
             }
             preparedStatement.execute();
             result = preparedStatement.getResultSet();

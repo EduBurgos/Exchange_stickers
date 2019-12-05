@@ -140,11 +140,10 @@
             </div>
 
 
-            </div>
 
               <div role="tabpanel" class="tab-pane" id="filters">
 
-                    <form  method="get" action= "../Search">-->
+                    <form  method="get" action= "../Search">
                         <% ArrayList<Card> filterArray=null ;     %>
                         <%//Platform platform=Platform.getInstance();      %>
                     <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>

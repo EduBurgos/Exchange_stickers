@@ -19,10 +19,5 @@ public interface CollectionOwnDao {
 
     Card get_last_card(User user);
     ArrayList<Card> openSachet(User user);
-    ArrayList<Card> findByName(User user, String name);
-    ArrayList<Card>findByCategory(User user, String category);
-    ArrayList<Card>findByClass(User user, String classCard);
-    ArrayList<Card>findByType(User user, String typeCard);
-    ArrayList<Card> findByAll(User user, String name, String category, String classCard, String type);
-    ArrayList<Card>findByNameCategoryClass(User user,String name, String category, String classCard);
+    ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard );
 }
