@@ -598,6 +598,88 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return null;
     }
+
+
+
+    public ArrayList<Exchange>filters(User user, String name, String category , String classCard, String typeCard) throws SQLException{
+        conn=null;
+        Exchange ex;
+        ArrayList<Exchange> answer= new ArrayList<>();
+        String search_exchanges="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE username !=?";
+        int j=2;
+        try {
+                conn = connector.createConnection();
+                if( name!=null || !category.equals("0") || !classCard.equals("") || !typeCard.equals("")) {
+
+                    if (name != null) {
+                        search_exchanges += " AND CardName=?";
+                    }
+                    if (!category.equals("0")) {
+                        search_exchanges += " AND Category=?";
+                    }
+                    if (!classCard.equals("")) {
+                        search_exchanges += " AND Class=?";
+                    }
+                    if (!typeCard.equals("")) {
+                        search_exchanges += " AND CardType =?";
+
+                    }
+                    preparedStatement = conn.prepareStatement(search_exchanges);
+                    if (name != null) {
+                        preparedStatement.setString(j, name);
+                        j++;
+                    }
+                    if (!category.equals("0")) {
+                        preparedStatement.setString(j, category);
+                        j++;
+                    }
+                    if (!classCard.equals("")) {
+                        preparedStatement.setString(j, classCard);
+                        j++;
+                    }
+                    if (!typeCard.equals("")) {
+                        preparedStatement.setString(j, typeCard);
+                        j++;
+                    }
+                }
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            while(result!=null && result.next()) {
+                if(!result.getBoolean("trans_comp")) {
+                    result.previous();
+                    while (result.next()) {
+                        ex=getExchange(result.getInt("id_trans"));
+                        answer.add(ex);
+                    }
+                }
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return answer;
+    }
+
+
+
+
+
     public boolean checkCard(ArrayList<Integer> cards, int toSearch)
     {
         //metodo che controlla se elemento è già presente nell'array

@@ -25,4 +25,5 @@ public interface ExchangeCardDAO {
  ArrayList<Exchange>findTByCategory(User user, String category) throws  SQLException;
  ArrayList<Exchange>findTByClassCard(User user, String classCard) throws  SQLException;
  ArrayList<Exchange>findTByTypeCard(User user, String typeCard) throws  SQLException;
+ ArrayList<Exchange>filters(User user, String name, String category , String classCard, String typeCard) throws SQLException;
 }

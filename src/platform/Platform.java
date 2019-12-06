@@ -281,6 +281,22 @@ public class Platform {
         return list;
     }
 
+    public ArrayList<Exchange> filtersExchanges(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
+        ArrayList<Exchange> list= new ArrayList<>();
+        User account=null;
+        try{
+            UserDao user=new UserDaoImpl();
+            account= user.findByUsername(username);
+            if(account!=null){
+               ExchangeCardDAOImpl exchangeCardDAO= new ExchangeCardDAOImpl();
+                list=exchangeCardDAO.filters(account,nameCard,category,classCard,typeCard);
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 /**..........................FINE METODI DI RICERCA NELLA PROPRIA COLLEZIONE.....................**/
 
 /**...........................METODI DI RICERCA NELLE TRATTATIVE...................**/

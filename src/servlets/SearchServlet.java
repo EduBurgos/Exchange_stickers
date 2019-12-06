@@ -20,6 +20,7 @@ import java.util.Map;
 @WebServlet(name = "SearchServlet", urlPatterns = "/Search")
 public class SearchServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/userprofile.jsp";
+    private String HOMEPAGE_ROUTE="/views/homepage.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -30,8 +31,16 @@ public class SearchServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             if (searchFilter(request)) {
-                response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
-            } else {
+                String host=request.getHeader("Referer");
+                String profile="http://localhost:8080/progettoF19webApp_war_exploded/views/userprofile.jsp";
+                if(host.equals(profile)) {
+                    response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
+                }
+                    else {
+                        response.sendRedirect(request.getContextPath()+HOMEPAGE_ROUTE);
+                    }
+                }
+             else {
                 forwardTo(request, response, INDEXPROFILE_ROUTE);
             }
         } catch (SQLException e) {
