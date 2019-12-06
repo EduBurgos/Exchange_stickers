@@ -25,7 +25,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
 
-    private static  String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -159,14 +158,15 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
         ArrayList<Card> list= new ArrayList<Card>();
         int j=2;
+        String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
         try {
             conn = connector.createConnection();
-            if( name!=null || category!=null || classCard!=null || typeCard!=null) {
+            if( name!=null || !category.equals("0") || !classCard.equals("") || !typeCard.equals("")) {
 
                 if(name!=null){
                     search_cards+=" AND CardName=?";
                 }
-                if(category!=null){
+                if(!category.equals("0")){
                     search_cards+=" AND Category=?";
                 }
                 if(!classCard.equals("")){
@@ -182,7 +182,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                     preparedStatement.setString(j,name);
                     j++;
                 }
-                if(category!=null){
+                if(!category.equals("0")){
                     preparedStatement.setString(j,category);
                     j++;
                 }
