@@ -33,7 +33,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
-    private static final String get_all_my_exchange ="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.Id_trans as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans  where username=?;";
+    private static final String get_all_my_exchange ="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.Id_trans as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans  where username=? order by exchanges.id_trans";
     private static final String get_cardWanted="select cards_wanted.* from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
 
@@ -329,6 +329,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             int id_trans=0;
+            boolean trans_compl=false;
+            String username;
             String username_offer;
             if(result!=null && result.next()) {
                 id_trans = result.getInt(1);
@@ -338,7 +340,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             while (result != null) {
                 cardown=new ArrayList<Integer>();
                 cardwanted=new ArrayList<Integer>();
-                username_offer=result.getString("username");
+                username=result.getString("username");
+                username_offer=result.getString("username_offer");
+                trans_compl = result.getBoolean("trans_comp");
                 while (result.getInt(1) == id_trans) {
                     if (!checkCard(cardown, result.getInt("own"))) {
                         cardown.add(result.getInt("own"));
@@ -355,7 +359,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                     }
                 }
                 //modificare null con nome offerente
-                allExchange.add(new Exchange(id_trans,username_offer, cardown, cardwanted, false,null));
+                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
                 if(result==null)
                 {
                     break;
