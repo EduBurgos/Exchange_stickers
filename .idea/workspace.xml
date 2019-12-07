@@ -6,24 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04e8c0f5-ef17-430f-8b97-0f7ee6046a94" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/servlets/SearchServlet.java" afterDir="false" />
+    <list default="true" id="04e8c0f5-ef17-430f-8b97-0f7ee6046a94" name="Default Changelist" comment="createExchange funzionante!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/progetto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/progetto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/CollectionOwn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/CollectionOwn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/HomePageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/HomePageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/stylesheets/homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/stylesheets/homepage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CardsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CardsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CollectionOwnDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionOwnDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progettoF19webApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/progettoF19webApp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ExchangeCardDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ExchangeCardDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/navbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,54 +44,68 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$USER_HOME$/Desktop/Nuova cartella (2)/colorlib-search-10/colorlib-search-10/index.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="206">
+                    <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/platform/Platform.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="394" column="13" selection-start-line="394" selection-start-column="13" selection-end-line="394" selection-end-column="13" />
-              <folding>
-                <element signature="e#10203#10209#0" expanded="true" />
-                <element signature="e#10898#10904#0" expanded="true" />
-                <element signature="e#11584#11590#0" expanded="true" />
-                <element signature="e#12458#12468#0" expanded="true" />
-                <element signature="e#12953#12963#0" expanded="true" />
-                <element signature="e#13443#13453#0" expanded="true" />
-                <element signature="e#13928#13938#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="24" column="58" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="277" column="88" selection-start-line="277" selection-start-column="88" selection-end-line="277" selection-end-column="88" />
-              <folding>
-                <element signature="e#7021#7027#0" expanded="true" />
-                <element signature="e#8260#8266#0" expanded="true" />
-                <element signature="e#9489#9495#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="3808">
+              <caret line="232" selection-start-line="232" selection-end-line="232" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlets/SearchServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/servlets/SearchServlet.java">
+        <entry file="file://$PROJECT_DIR$/web/views/navbar.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="136">
+              <caret line="51" column="46" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1054">
+              <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1411">
+              <caret line="83" column="18" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -134,17 +139,17 @@
         <option value="$PROJECT_DIR$/src/collection/AbstractCard.java" />
         <option value="$PROJECT_DIR$/src/collection/Card.java" />
         <option value="$PROJECT_DIR$/web/views/exchange.jsp" />
-        <option value="$PROJECT_DIR$/web/views/userprofile.jsp" />
-        <option value="$PROJECT_DIR$/web/views/navbar.jsp" />
         <option value="$PROJECT_DIR$/database/progetto.sql" />
         <option value="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/dao/CardsDao.java" />
         <option value="$PROJECT_DIR$/src/dao/ExchangeCardDAO.java" />
         <option value="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/dao/CollectionOwnDao.java" />
-        <option value="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/platform/Platform.java" />
+        <option value="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" />
+        <option value="$PROJECT_DIR$/web/views/userprofile.jsp" />
         <option value="$PROJECT_DIR$/src/servlets/SearchServlet.java" />
+        <option value="$PROJECT_DIR$/web/views/navbar.jsp" />
       </list>
     </option>
   </component>
@@ -155,8 +160,8 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="676" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -170,17 +175,6 @@
     </navigator>
     <panes>
       <pane id="ProjectPane" />
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Progetto-F19v29" type="58d84e3e:PackageViewProjectNode" />
-              <item name="progettoF19webApp" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Production'; set:Production; class com.intellij.psi.search.scope.ProjectProductionScope">
           <expand>
@@ -196,33 +190,13 @@
           </expand>
           <select />
         </subPane>
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
           <expand>
             <path>
-              <item name="Progetto-F19v29" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="progettoF19webApp" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v29" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="progettoF19webApp" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v29" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="progettoF19webApp" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="servlets" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v29" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="progettoF19webApp" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Progetto-F19v29" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="progettoF19webApp" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Progetto-F19v29" type="58d84e3e:PackageViewProjectNode" />
+              <item name="progettoF19webApp" type="616d4139:PackageViewModuleNode" />
             </path>
           </expand>
           <select />
@@ -559,6 +533,9 @@
       <workItem from="1573075343441" duration="64000" />
       <workItem from="1573124676769" duration="1467000" />
       <workItem from="1573144296487" duration="576000" />
+      <workItem from="1575559391876" duration="6566000" />
+      <workItem from="1575660968689" duration="16459000" />
+      <workItem from="1575746157284" duration="891000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -820,7 +797,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57542000" />
+    <option name="totallyTimeSpent" value="81458000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -832,7 +809,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="0" width="697" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -840,7 +818,7 @@
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Web" order="5" side_tool="true" />
-      <window_info active="true" id="Project" order="6" visible="true" weight="0.3600605" />
+      <window_info id="Project" order="6" weight="0.63388807" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.3297587" />
@@ -849,13 +827,13 @@
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5053691" side_tool="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49731544" weight="0.3297587" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49731544" weight="0.32405892" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="11" sideWeight="0.49463087" weight="0.3289689" />
-      <window_info anchor="bottom" id="Debug" order="12" sideWeight="0.49395972" weight="0.3994638" />
+      <window_info anchor="bottom" id="Run" order="11" sideWeight="0.49463087" weight="0.32733223" />
+      <window_info anchor="bottom" id="Debug" order="12" sideWeight="0.49395972" weight="0.4053156" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4986577" weight="0.3289689" />
       <window_info anchor="bottom" id="TODO" order="14" sideWeight="0.4966443" weight="0.3297587" />
       <window_info anchor="right" id="Maven" order="0" />
@@ -960,12 +938,29 @@
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java</url>
+          <line>156</line>
+          <properties class="dao.CollectionOwnDaoImpl">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>filterArray</expression-string>
+        <language-id>JSP</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/servlets/SignUpServlet.java">
@@ -1029,20 +1024,6 @@
     <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="119" column="26" selection-start-line="119" selection-start-column="26" selection-end-line="119" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/navbar.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="126" column="5" lean-forward="true" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/collection/CollectionOwn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1091,9 +1072,6 @@
           <caret column="17" selection-start-column="17" selection-end-column="17" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlets/ExchangeServlet.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1144,45 +1122,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="58" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/test/CardTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="277" column="88" selection-start-line="277" selection-start-column="88" selection-end-line="277" selection-end-column="88" />
-          <folding>
-            <element signature="e#7021#7027#0" expanded="true" />
-            <element signature="e#8260#8266#0" expanded="true" />
-            <element signature="e#9489#9495#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/platform/Platform.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="394" column="13" selection-start-line="394" selection-start-column="13" selection-end-line="394" selection-end-column="13" />
-          <folding>
-            <element signature="e#10203#10209#0" expanded="true" />
-            <element signature="e#10898#10904#0" expanded="true" />
-            <element signature="e#11584#11590#0" expanded="true" />
-            <element signature="e#12458#12468#0" expanded="true" />
-            <element signature="e#12953#12963#0" expanded="true" />
-            <element signature="e#13443#13453#0" expanded="true" />
-            <element signature="e#13928#13938#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4369">
+          <caret line="280" selection-start-line="280" selection-end-line="280" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/stylesheets/navbar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3808">
+          <caret line="232" selection-start-line="232" selection-end-line="232" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlets/SearchServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="442">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/homepage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/userprofile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="18" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Nuova cartella (2)/colorlib-search-10/colorlib-search-10/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/navbar.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="51" column="46" selection-start-line="51" selection-start-column="46" selection-end-line="51" selection-end-column="46" />
         </state>
       </provider>
     </entry>

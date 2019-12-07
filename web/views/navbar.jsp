@@ -40,7 +40,25 @@ it is included in each page of the application -->
 
                 </ul>
                 <!---SEARCH WITH FILTERS--->
-                <div class="row1">
+                <form>
+                    <div class=inner-form">
+                        <div class="row1">
+                            <div class="col-sm-3">
+                                 <div class="basic-search">
+                                    <div class="input-group" id="adv-search">
+                                         <input type="text" class="form-control" name="filterCard" placeholder="Search Card..."/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                        </div>
+
+                                     </div>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </form>
+
+               <!---- <div class="row1">
                     <div class="col-sm-3">
                         <div class="input-group" id="adv-search">
                             <input type="text" class="form-control" name="filterCard" placeholder="Search Card..." />
@@ -53,7 +71,7 @@ it is included in each page of the application -->
                                                <div class="form-group">
                                                    <label >Category</label>
                                                     <select name="filterCategory" class="form-control">
-                                                        <option value="0" selected>---------></option>
+                                                        <option value="0" selected></option>
                                                         <option value="Hearthstone">Hearthstone</option>
                                                         <option value="Pokemon">Pokemon</option>
                                                         <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
@@ -76,7 +94,7 @@ it is included in each page of the application -->
                             </div>
                         </div>
                     </div>
-                </div> <!--- END SEARCH WITH FILTERS--->
+                </div> ----><!--- END SEARCH WITH FILTERS--->
 
 
                 <ul class="nav navbar-nav navbar-right">

@@ -55,8 +55,8 @@
         <h1><%=u.getUsername()%></h1>
 
         <div class="meta">
-            <p><i class="name"></i>Name: <%=u.getNome()+" "+u.getCognome()%></p>
-            <p><i class="email"></i>E-mail: <%=u.getEmail()%></p>
+            <p><i class="name">Name: </i><%=u.getNome()+" "+u.getCognome()%></p>
+            <p><i class="email">E-mail: </i><%=u.getEmail()%></p>
         </div>
     </section>
     <div class="section center-col content">
@@ -73,19 +73,13 @@
         <!-- Nav tabs -->
         <div class="row">
             <div class="col-10 col-md-10 col-lg-10 col-sm-10 col-xs-10">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="mycollection-tab" data-toggle="tab" href="#mycollection" role="tab" aria-controls="mycollection" aria-selected="true">My collection</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="exchangeables-tab" data-toggle="tab" href="#exchangeables" role="tab" aria-controls="exchangeables" aria-selected="false">SNITCH CARD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="filters-tab" data-toggle="tab" href="#filters" role="tab" aria-controls="filters" aria-selected="false">Filters</a>
-                    </li>
+                <ul class="nav nav-tabs" role="tablist">
+                    <!--    <li role="presentation" class="active"><a href="#ultimoaggiornamento" aria-controls="ultimoaggiornamento" role="tab" data-toggle="tab">Ultimo Aggiornamento</a></li> -->
+                    <li role="presentation" class="active" ><a href="#mycollection" aria-controls="mycollection" role="tab" data-toggle="mycollectionTab">My Collection</a></li>
+                    <li role="presentation"><a href="#exchangeables" aria-controls="exchangeables" role="tab" data-toggle="tab">SNITCH CARD</a></li>
+                    <li role="presentation"><a href="#myexchanges" aria-controls="myexchanges" role="tab" data-toggle="myexchanges">My exchanges</a></li>
+                    <li role="presentation"><a href="#filters" aria-controls="filters" role="tab" data-toggle="tab">Filter</a></li>
+
                 </ul>
             </div>
             <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
@@ -97,11 +91,12 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel fade in show active" class="tab-pane fade in active" id="mycollection" aria-labelledby="mycollection-tab">
+
+            <div role="tabpanel" class="tab-pane fade in active" id="mycollection">
                 <%for(Card entry : c.getCardsOwn().keySet()){%>
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                     <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                        <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
                     <%}
                     %>
                 </div>
@@ -109,7 +104,8 @@
                 %>
             </div>
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
-            <div role="tabpanel" class="tab-pane" id="exchangeables" aria-labelledby="exchangeables-tab">
+
+            <div role="tabpanel" class="tab-pane" id="exchangeables">
 
                 <form  method="get" action= "../userprofile">
 
@@ -122,51 +118,50 @@
             </div>
 
             <!-- Visualizza scambi -->
-            <div role="tabpanel" class="tab-pane" id="myexchanges" aria-labelledby="myexchanges-tab">
+            <div role="tabpanel" class="tab-pane" id="myexchanges">
                 <% Platform platform = Platform.getInstance();
                     ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
                 <% for(int i =0 ; i< ex.size(); i++) { %>
-                <% for (int ca: ex.get(i).get_id_card_owm()) { %>
-                <% CardsDao cardsDao = new CardsDaoImpl();
-                    Card card=cardsDao.findByID(ca); %>
-                <div class="col-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <button type="button" class="btn btn-dark" onclick="ShowDiv()">Go somewhere</button>
-                        </div>
-                    </div>
-                    <div class="row" id="toHide"></div>
-                </div>
-                <% } %>
+                    <% for (int ca: ex.get(i).get_id_card_owm()) { %>
+                        <% CardsDao cardsDao = new CardsDaoImpl();
+                             Card card=cardsDao.findByID(ca); %>
+                            <div class="col-4">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top">
+                                    <div class="card-body">
+                                    <!--    <p class="card-text"> kl quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                                        <button type="button" class="btn btn-dark" onclick="ShowDiv()">Go somewhere</button>
+                                    </div>
+                                </div>
+                                <div class="row" id="toHide"></div>
+                            </div>
+                    <% } %>
                 <%}%>
             </div>
 
 
 
-            <div role="tabpanel" class="tab-pane" id="filters" aria-labelledby="filters-tab">
+              <div role="tabpanel" class="tab-pane" id="filters">
 
-                <form  method="get" action= "../Search">
-                    <% ArrayList<Card> filterArray=null ;     %>
-                    <%//Platform platform=Platform.getInstance();      %>
+                    <form  method="get" action= "../Search">
+                        <% ArrayList<Card> filterArray=null ;     %>
+                        <%//Platform platform=Platform.getInstance();      %>
                     <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
-                    <% filterArray= platform.filtersCollections(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
-                    <% }  %>
-                    <% if(filterArray!=null){      %>
+                      <% filterArray= platform.filtersCollections(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
+                        <% }  %>
+                        <% if(filterArray!=null){      %>
                     <%for(Card filter: filterArray){%>
-                    <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                        <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                         <img src="../img/<%=filter.getCategoria()%>/<%=(filter.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    </div>
+                        </div>
                     <%}
                     %>
-                    <%}
-                    %>
-                </form>
-            </div>
-
+                        <%}%>
+                    </form>
         </div>
+
     </div>
+</div>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
