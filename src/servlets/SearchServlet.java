@@ -30,9 +30,9 @@ public class SearchServlet extends AbstractServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            String host=request.getHeader("Referer");
+            String profile="http://localhost:8080/progettoF19webApp_war_exploded/views/userprofile.jsp";
             if (searchFilter(request)) {
-                String host=request.getHeader("Referer");
-                String profile="http://localhost:8080/progettoF19webApp_war_exploded/views/userprofile.jsp";
                 if(host.equals(profile)) {
                     response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
                 }
@@ -40,9 +40,11 @@ public class SearchServlet extends AbstractServlet {
                         response.sendRedirect(request.getContextPath()+HOMEPAGE_ROUTE);
                     }
                 }
-             else {
+             else if(host.equals(profile)) {
                 forwardTo(request, response, INDEXPROFILE_ROUTE);
             }
+            else
+                forwardTo(request, response, INDEXHOMEPAGE_ROUTE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,17 +59,14 @@ public class SearchServlet extends AbstractServlet {
         request.getSession().setAttribute("type", filterType);
         String filterCard = request.getParameter("filterCard");
         request.getSession().setAttribute("card", filterCard);
-        CollectionOwn logged = (CollectionOwn) request.getSession().getAttribute("logged");
-        User user = logged.getOwner();
-        Platform platform = Platform.getInstance();
         // metodi per il filtro applicato
         if (!filterCategory.equals("0")) {
             return true;
-        } else if (filterClass != null) {
+        } else if (!filterClass.equals("")) {
             return true;
         } else if (filterCard != null) {
             return true;
-        } else if (filterType != null) {
+        } else if (!filterType.equals("")) {
             return true;
         } else {
             return false;

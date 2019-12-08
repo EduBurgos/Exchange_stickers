@@ -300,63 +300,7 @@ public class Platform {
 /**..........................FINE METODI DI RICERCA NELLA PROPRIA COLLEZIONE.....................**/
 
 /**...........................METODI DI RICERCA NELLE TRATTATIVE...................**/
-    /**metodo di ricerca usando solo  il nome della carta*/
 
-    public ArrayList<Exchange> findTByNameCard(User user, String nameCard) throws SQLException{
-        ArrayList<Exchange> answer= new ArrayList<Exchange>();
-        try{
-            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
-            answer=ex.findTByNameCard(user,nameCard);
-            return answer;
-
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /** Metodo di ricerca usando solo la categoria della carta*/
-
-    public ArrayList<Exchange> findTByCategoryCard(User user, String category) throws SQLException{
-        ArrayList<Exchange> answer= new ArrayList<Exchange>();
-        try{
-            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
-            answer=ex.findTByNameCard(user,category);
-            return answer;
-
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /** Metodo di ricerca usando solo la classe della carta*/
-
-    public ArrayList<Exchange> findTByClassCard(User user, String classCard) throws SQLException{
-        ArrayList<Exchange> answer= new ArrayList<Exchange>();
-        try{
-            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
-            answer=ex.findTByNameCard(user,classCard);
-            return answer;
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /** Metodo di ricerca usando solo il tipo della carta*/
-    public ArrayList<Exchange> findTByTypeCard(User user, String typeCard) throws SQLException{
-        ArrayList<Exchange> answer= new ArrayList<Exchange>();
-        try{
-            ExchangeCardDAO ex= new ExchangeCardDAOImpl();
-            answer=ex.findTByNameCard(user,typeCard);
-            return answer;
-
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     /** ..........FINE METODI DI RICERCA IN TRATTATIVE.....**/
 
