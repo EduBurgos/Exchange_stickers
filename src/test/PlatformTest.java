@@ -3,19 +3,21 @@ package test;
 import collection.Card;
 import collection.CollectionOwn;
 import dao.CollectionOwnDaoImpl;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import dao.ExchangeCardDAOImpl;
+import dao.UserDaoImpl;
+import org.junit.jupiter.api.*;
 import platform.Platform;
+import userSide.Exchange;
 import userSide.User;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PlatformTest {
 
     private Platform platform = Platform.getInstance();
@@ -26,11 +28,11 @@ public class PlatformTest {
 
 
     @Test
+    @Order(1)
     public void signupTest(){
         try {
             Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
             cardsOwn = new CollectionOwnDaoImpl().getCollentionOwn(testUser);
-
             assertEquals(true, result);
         }
         catch (Exception e){
@@ -39,6 +41,7 @@ public class PlatformTest {
     }
 
     @Test
+    @Order(2)
     public void loginTest(){
         try {
             String secretkey = "chiavesupersegretissimaXD";
@@ -53,8 +56,8 @@ public class PlatformTest {
     }
 
     @Test
+    @Order(3)
     public void setExchangeTest(){
-
         ArrayList<Integer> cardsToGive = setTestCards(1);
         ArrayList<Integer> cardsToTake = setTestCards(5);
         try {
@@ -63,6 +66,28 @@ public class PlatformTest {
 
         } catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Order(4)
+    public void acceptExchangeTest(){
+        try {
+            ArrayList<Integer> cardsToGive = setTestCards(1);
+            ArrayList<Integer> cardsToTake = setTestCards(5);
+            //TODO check if users have target cards
+            ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
+            UserDaoImpl userDao = new UserDaoImpl();
+            User testUserSetExchange = userDao.findByUsername("Obe");
+            User testUserAccepting = userDao.findByUsername("Pol");
+            this.platform.setExchange(testUserSetExchange.getUsername(), cardsToGive, cardsToTake);
+            Exchange exchange =  exchangeCardDAO.getAllExchange(testUserSetExchange, "mine").get(0);
+            boolean result = this.platform.marketExchange(exchange, testUserAccepting.getUsername());
+            assertTrue(result);
+
+        } catch (Exception e){
+            e.printStackTrace();
+            fail();
         }
     }
 
