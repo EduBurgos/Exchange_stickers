@@ -283,11 +283,11 @@ public class UserDaoImpl implements UserDao {
             } catch (Exception rse) {
                 rse.printStackTrace();
             }
-            try {
+            /*try {
                 preparedStatement.close();
             } catch (Exception sse) {
                 sse.printStackTrace();
-            }
+            }*/
             try {
                 conn.close();
             } catch (Exception cse) {
