@@ -354,7 +354,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                         break;
                     }
                 }
-                //modificare null con nome offerente
+                //TODO modificare null con nome offerente, altrimenti il result.close si spacca
                 allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
                 if(result==null)
                 {
@@ -370,11 +370,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
+            /*try {
                 result.close();
             } catch (Exception rse) {
                 rse.printStackTrace();
-            }
+            }*/
             try {
                 preparedStatement.close();
             } catch (Exception sse) {
