@@ -21,5 +21,5 @@ public interface ExchangeCardDAO {
      void delete(int id_trans) throws SQLException;
   Exchange getExchange(int id_trans) throws SQLException;
    ArrayList<Exchange> getAllExchange(User user,String Parameter) throws SQLException;
- ArrayList<Exchange>filters(User user, String name, String category , String classCard, String typeCard) throws SQLException;
+    ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException;
 }

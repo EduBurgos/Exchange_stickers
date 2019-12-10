@@ -1,8 +1,6 @@
 package servlets;
 /*StandardCharsets.US_ASCII*/
-import dao.CollectionOwnDao;
-import dao.CollectionOwnDaoImpl;
-import dao.UserDaoImpl;
+import dao.*;
 import platform.Platform;
 import userSide.User;
 
@@ -89,10 +87,12 @@ public class SignUpServlet extends AbstractServlet {
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
                 //passare da platform
                 User u = new User(name, lastName, username, email);
-                CollectionOwnDao cart = new CollectionOwnDaoImpl();
+
+                Facade card = new FacadeImplements();
+                //CollectionOwnDao cart = new CollectionOwnDaoImpl();
 
                 for(int i = 0; i<6; i++) {
-                    cart.createRandomCard(u);
+                    card.createRandomCard(u);
                 }
                 forwardTo(request, response, INDEX_ROUTE);
 

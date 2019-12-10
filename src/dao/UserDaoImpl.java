@@ -3,15 +3,10 @@ package dao;
 
 import collection.Card;
 import userSide.User;
-
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class UserDaoImpl implements UserDao {
-
-
-
     /** Query used to add a new user*/
     private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
     /** Query used to read a single user */
@@ -252,6 +247,7 @@ public class UserDaoImpl implements UserDao {
         return allUsers;
     }
 
+    @Override
     public boolean checkUnique(User user){
         conn=null;
 

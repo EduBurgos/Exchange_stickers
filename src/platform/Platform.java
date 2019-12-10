@@ -56,14 +56,20 @@ public class Platform {
         User logg = null;
 
         try {
-            UserDao userDao = new UserDaoImpl();
-            logg = userDao.findByUsername(username);
+            //UserDao userDao = new UserDaoImpl();
+
+            Facade user = new FacadeImplements();
+
+            logg = user.findByUsername(username);
             String a = logg.getPass();
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
-                CollectionOwn collectionOwn=new CollectionOwn(logg,collectionOwnDao.getCollentionOwn(logg));
+                FacadeImplements f = new FacadeImplements();
+                CollectionOwn collectionOwn = new CollectionOwn(logg,f.getCollentionOwn(logg));
+
+                //CollectionOwnDaoImpl collectionOwnDao = new CollectionOwnDaoImpl();
+                //CollectionOwn collectionOwn = new CollectionOwn(logg,collectionOwnDao.getCollentionOwn(logg));
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
@@ -85,7 +91,9 @@ public class Platform {
      */
     public boolean SignUp(String name, String lastName, String username, String email, String password,String retype) throws SQLException {
           User reg = new User(name, lastName, username, email);
-          UserDaoImpl userTemp = new UserDaoImpl();
+
+          FacadeImplements userTemp = new FacadeImplements();
+          //UserDaoImpl userTemp = new UserDaoImpl();
           try{
             if (userTemp.checkUnique(reg) && checkEmail(email)) {
                 boolean succ = userTemp.save(reg, password);         /**User salvato correttamente*/
@@ -166,7 +174,9 @@ public class Platform {
     // metodo per rimuovere carta dell'utente
     public void removeCard(User user, Card card){
 
-        UserDao ud = new UserDaoImpl();
+        Facade ud = new FacadeImplements();
+
+        //UserDao ud = new UserDaoImpl();
 
 
        /* User s;
@@ -189,9 +199,14 @@ public class Platform {
      */
     public void setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
         //Exchange exchange = new Exchange(Username, idCardOwn, idCardWanted);
-        ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
-        User user = userDaoImpl.findByUsername(Username);
+        //ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
+
+        FacadeImplements f = new FacadeImplements();
+        FacadeImplements u = new FacadeImplements();
+        User user = u.findByUsername(Username);
+
+        //UserDaoImpl userDaoImpl = new UserDaoImpl();
+        //User user = userDaoImpl.findByUsername(Username);
         Map<Integer,Integer> ownedCards = new HashMap<>();
         Map<Integer,Integer> wantedCards = new HashMap<>();
 
@@ -225,7 +240,8 @@ public class Platform {
                 wantedCards.put(c,1);
             }
         }
-        exchangeCardDAO.create(user,ownedCards,wantedCards);
+        //exchangeCardDAO.create(user,ownedCards,wantedCards);
+        f.create(user,ownedCards,wantedCards);
     }
 
     /**
@@ -235,9 +251,14 @@ public class Platform {
      */
 
     public boolean marketExchange(Exchange exchange,String loggato) {
-        ExchangeCardDAO exchangeCardDAO = new  ExchangeCardDAOImpl();
+        //ExchangeCardDAO exchangeCardDAO = new  ExchangeCardDAOImpl();
+        //exchange.setUsername_offerente(loggato);
+        //exchangeCardDAO.marketExchange(exchange);
+
+        Facade f = new FacadeImplements();
         exchange.setUsername_offerente(loggato);
-        exchangeCardDAO.marketExchange(exchange);
+        f.marketExchange(exchange);
+
         return true;
     }
 
@@ -246,14 +267,20 @@ public class Platform {
     public CollectionOwn SnitchCards(String username) throws SQLException{
         User nick = null;
         try {
-            UserDao userDao = new UserDaoImpl();
-            nick = userDao.findByUsername(username);
+            Facade u = new FacadeImplements();
+            nick = u.findByUsername(username);
+
+            //UserDao userDao = new UserDaoImpl();
+            //nick = userDao.findByUsername(username);
 
             if(nick != null)
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
-                CollectionOwn collectionOwn = new CollectionOwn(nick, collectionOwnDao.getCollentionOwn(nick));
+                FacadeImplements f = new FacadeImplements();
+                CollectionOwn collectionOwn = new CollectionOwn(nick, f.getCollentionOwn(nick));
+
+                //CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
+                //CollectionOwn collectionOwn = new CollectionOwn(nick, collectionOwnDao.getCollentionOwn(nick));
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
@@ -269,11 +296,17 @@ public class Platform {
         ArrayList<Card> list= new ArrayList<Card>();
         User account=null;
         try{
-            UserDao user=new UserDaoImpl();
+            Facade user = new FacadeImplements();
             account= user.findByUsername(username);
+
+            //UserDao user=new UserDaoImpl();
+            //account= user.findByUsername(username);
             if(account!=null){
-                CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
-                list=collectionOwnDao.filters(account,nameCard,category,classCard,typeCard);
+                FacadeImplements f = new FacadeImplements();
+                list = f.filters(account,nameCard,category,classCard,typeCard);
+
+                //CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
+                //list=collectionOwnDao.filters(account,nameCard,category,classCard,typeCard);
             }
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -285,11 +318,16 @@ public class Platform {
         ArrayList<Exchange> list= new ArrayList<>();
         User account=null;
         try{
-            UserDao user=new UserDaoImpl();
+            Facade user = new FacadeImplements();
             account= user.findByUsername(username);
+            //UserDao user=new UserDaoImpl();
+            //account= user.findByUsername(username);
             if(account!=null){
-               ExchangeCardDAOImpl exchangeCardDAO= new ExchangeCardDAOImpl();
-                list=exchangeCardDAO.filters(account,nameCard,category,classCard,typeCard);
+                FacadeImplements f = new FacadeImplements();
+                list = f.filtersexchange(account,nameCard,category,classCard,typeCard);
+
+                //ExchangeCardDAOImpl exchangeCardDAO= new ExchangeCardDAOImpl();
+                //list=exchangeCardDAO.filtersexchange(account,nameCard,category,classCard,typeCard);
             }
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -306,8 +344,11 @@ public class Platform {
 
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
-          ExchangeCardDAO ex = new ExchangeCardDAOImpl();
-          return  ex.getAllExchange(user,"all");
+          //ExchangeCardDAO ex = new ExchangeCardDAOImpl();
+
+          Facade f = new FacadeImplements();
+
+          return  f.getAllExchange(user,"all");
       }catch(NullPointerException e){
           e.printStackTrace();
       }
@@ -315,8 +356,9 @@ public class Platform {
   }
   public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
       try {
-          ExchangeCardDAO exchangeCardDAO= new ExchangeCardDAOImpl();
-          return exchangeCardDAO.getAllExchange(user,"mine");
+          //ExchangeCardDAO exchangeCardDAO= new ExchangeCardDAOImpl();
+          Facade f = new FacadeImplements();
+          return f.getAllExchange(user,"mine");
       }
       catch (Error e)
       {

@@ -1,8 +1,6 @@
 package dao;
 
-import collection.Card;
 import com.mysql.jdbc.Statement;
-import platform.Platform;
 import userSide.Exchange;
 import userSide.User;
 
@@ -134,7 +132,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
-
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
@@ -243,7 +240,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     }
-
     /**Retrun a exchange*/
     //inutile ho un ogegtto che è una lista di scambi... basta passarlo
     @Override
@@ -292,7 +288,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             return null;
         }
     }
-
     /**Return all available exchanges */
     @Override
     public ArrayList<Exchange> getAllExchange(User user,String parameter) throws SQLException {
@@ -388,7 +383,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return allExchange;
     }
-
    @Override
     public void delete(int id_trans) throws SQLException {
         conn = null;
@@ -417,13 +411,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
-
     /**..............METODI PER CERCARE LE TRATATTIVE**/
     /**Metodo che mi trova tratativa/e */
-
-
-
-    public ArrayList<Exchange>filters(User user, String name, String category , String classCard, String typeCard) throws SQLException{
+    public ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
         conn=null;
         ArrayList<Exchange> answer= new ArrayList<>();
         int j=5;
@@ -538,10 +528,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return answer;
     }
 
-
-
-
-
     public boolean checkCard(ArrayList<Integer> cards, int toSearch)
     {
         //metodo che controlla se elemento è già presente nell'array
@@ -562,6 +548,4 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
 /**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
-
-
 }

@@ -1,8 +1,6 @@
 package servlets;
 
-import collection.Card;
 import collection.CollectionOwn;
-import dao.CardsDaoImpl;
 import platform.Platform;
 
 import javax.servlet.ServletException;
