@@ -2,9 +2,7 @@ package test;
 
 import collection.Card;
 import collection.CollectionOwn;
-import dao.CollectionOwnDaoImpl;
-import dao.ExchangeCardDAOImpl;
-import dao.UserDaoImpl;
+import dao.*;
 import org.junit.jupiter.api.*;
 import platform.Platform;
 import userSide.Exchange;
@@ -46,12 +44,31 @@ public class PlatformTest {
         try {
             String secretkey = "chiavesupersegretissimaXD";
             String pass = Platform.encrypt(passwordTest, secretkey);
-            CollectionOwn result = this.platform.LogIn("Obe", pass);
-            assert(result instanceof CollectionOwn);
-            //TODO to finish
-
+            CollectionOwn testCollection = this.platform.LogIn("Obe", pass);
+            //_________________________________________________________
+            Facade daoFacade = new FacadeImplements();
+            User testUser = daoFacade.findByUsername("Obe");
+            Map<Card,Integer> collectionOwn = daoFacade.getCollentionOwn(testUser);
+            boolean equalCollResult = true;
+            boolean checkedCard = false;
+            for (Card collToTest : testCollection.getCardsOwn().keySet()
+                 ) {
+                for (Card collection : collectionOwn.keySet()
+                     ) {
+                    boolean cond1 = collection.getId() == collToTest.getId();
+                    boolean cond2 = testCollection.getCardsOwn().get(collToTest) != collectionOwn.get(collection);
+                    if (cond1 && cond2){
+                        checkedCard = true;
+                        equalCollResult=false;
+                    }
+                    if (checkedCard){
+                        equalCollResult=false;
+                    }
+                }
+            }
+            assertTrue(equalCollResult);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
