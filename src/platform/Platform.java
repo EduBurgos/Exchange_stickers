@@ -290,7 +290,7 @@ public class Platform {
     }
 
 
-    /**.........................METODI PER CERCARE NELLA PROPRIA COLLEZIONE**/
+    /**.........................METODI DI RICERCA........**/
 
     public ArrayList<Card> filtersCollections(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
         ArrayList<Card> list= new ArrayList<Card>();
@@ -335,12 +335,9 @@ public class Platform {
         return list;
     }
 
-/**..........................FINE METODI DI RICERCA NELLA PROPRIA COLLEZIONE.....................**/
-
-/**...........................METODI DI RICERCA NELLE TRATTATIVE...................**/
+/**..........................FINE METODI DI RICERCA .....................**/
 
 
-    /** ..........FINE METODI DI RICERCA IN TRATTATIVE.....**/
 
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {

@@ -50,13 +50,7 @@ public class SearchServlet extends AbstractServlet {
         String filterCard = request.getParameter("filterCard");
         request.getSession().setAttribute("card", filterCard);
         // metodi per il filtro applicato
-        if (!filterCategory.equals("0")) {
-            return true;
-        } else if (!filterClass.equals("")) {
-            return true;
-        } else if (filterCard != null) {
-            return true;
-        } else if (!filterType.equals("")) {
+        if (filterCategory!=null ||!filterClass.equals("")||!filterCard.equals("")||!filterType.equals("")) {
             return true;
         } else {
             return false;

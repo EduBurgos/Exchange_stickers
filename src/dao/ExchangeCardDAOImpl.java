@@ -424,12 +424,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
                 try {
                 conn = connector.createConnection();
-                if( name!=null || !category.equals("0") || !classCard.equals("") || !typeCard.equals("")) {
+                if( !name.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
 
-                    if (name != null) {
+                    if (!name.equals("")) {
                         get_all_exchangeFilter += " AND CardName=?";
                     }
-                    if (!category.equals("0")) {
+                    if (category!=null) {
                         get_all_exchangeFilter += " AND Category=?";
                     }
                     if (!classCard.equals("")) {
@@ -444,11 +444,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                     preparedStatement.setString(2, user.getUsername());
                     preparedStatement.setString(3, user.getUsername());
                     preparedStatement.setBoolean(4,false);
-                    if (name != null) {
+                    if (!name.equals("")) {
                         preparedStatement.setString(j, name);
                         j++;
                     }
-                    if (!category.equals("0")) {
+                    if (category!=null) {
                         preparedStatement.setString(j, category);
                         j++;
                     }

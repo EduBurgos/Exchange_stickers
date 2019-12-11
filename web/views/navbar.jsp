@@ -40,24 +40,35 @@ it is included in each page of the application -->
 
                 </ul>
                 <!---SEARCH WITH FILTERS--->
+
                 <div class="row1">
+
                     <div class="col-sm-3">
-                        <div class="input-group" id="adv-search">
-                            <input type="text" class="form-control" name="filterCard" placeholder="Search Card..." />
+                        <form role="form" method="get" action="../Search">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="filterCard" placeholder="Search card..." />
+                            </div>
+                            <button  type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span></button>
+
+                            <!--input type="text" class="form-control" name="filterCard"  id="searchName" placeholder="Search Card..." /--->
+
                             <div class="input-group-btn">
                                 <div class="btn-group" role="group">
                                     <div class="dropdown dropdown-lg">
                                         <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ><span class="glyphicon glyphicon-filter" >&nbsp;</span><span class="caret" >&nbsp;</span></button>
                                         <div class="dropdown-menu dropdown-menu-right" role="menu" id="menuS">
-                                       <form class="form-horizontal"  role="form" method="get" action="../Search">
-                                               <div class="form-group">
+                                       <!----form class="form-horizontal" role="form" method="get" action="../Search"-->
+                                               <div class="form-group" >
                                                    <label >Category</label>
-                                                    <select name="filterCategory" class="form-control">
-                                                        <option value="0" selected>---------></option>
-                                                        <option value="Hearthstone">Hearthstone</option>
-                                                        <option value="Pokemon">Pokemon</option>
-                                                        <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
-                                                    </select>
+                                                   <div class="checkbox">
+                                                       <label><input type="checkbox" name="filterCategory" value="Hearthstone">Hearthstone</label>
+                                                   </div>
+                                                   <div class="checkbox">
+                                                       <label><input type="checkbox" name="filterCategory" value="Pokemon">Pokemon</label>
+                                                   </div>
+                                                   <div class="checkbox">
+                                                       <label><input type="checkbox" name="filterCategory" value="Yu-Gi-Oh!">Yu-Gi-Oh!</label>
+                                                   </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label> Card Class</label>
@@ -67,14 +78,15 @@ it is included in each page of the application -->
                                                     <label>Card Type</label>
                                                     <input class="form-control" type="text" name="filterType" />
                                                 </div>
-                                              <a href="Searchpage.jsp" ><button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button></a>
-                                      </form>
+                                              <button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button>
+                                       <!/form--->
                                         </div>
                                     </div>
-                                    <a href="Searchpage.jsp" ><button id="searchBtn1" type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span> </button></a>
+
                                 </div>
                             </div>
-                        </div>
+                        <!_/div->
+                        </form>
                     </div>
                 </div> <!--- END SEARCH WITH FILTERS--->
 
@@ -146,7 +158,6 @@ it is included in each page of the application -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <!-- Popper.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="../bootstrap-3.3.7/js/bootstrap.js"></script>
 </body>
 </html>
