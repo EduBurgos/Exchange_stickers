@@ -188,3 +188,13 @@ img.zoom {
     margin-bottom: 8px;
     margin-top: 8px;
 }
+.card-img-top
+{
+    height: 150px;
+
+}
+.carousel
+{
+    margin-left: 10px;
+    margin-top: 10px;
+}

@@ -27,7 +27,11 @@
     <link rel="stylesheet" href="../stylesheets/userprofile.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7/js/bootstrap.min.js">
+    <script src="../jquery/jquery-3.4.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Custom styles for this template -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
 
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -102,11 +106,9 @@
                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
                     <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
                     <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    <%}
-                    %>
+                    <%}%>
                 </div>
-                <%}
-                %>
+                <%}%>
             </div>
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
             <div role="tabpanel" class="tab-pane" id="exchangeables" aria-labelledby="exchangeables-tab">
@@ -123,25 +125,51 @@
 
             <!-- Visualizza scambi -->
             <div role="tabpanel" class="tab-pane" id="myexchanges" aria-labelledby="myexchanges-tab">
-                <% Platform platform = Platform.getInstance();
-                    ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
-                <% for(int i =0 ; i< ex.size(); i++) { %>
-                <% for (int ca: ex.get(i).get_id_card_owm()) { %>
-                <% CardsDao cardsDao = new CardsDaoImpl();
-                    Card card=cardsDao.findByID(ca); %>
-                <div class="col-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <button type="button" class="btn btn-dark" onclick="ShowDiv()">Go somewhere</button>
+                <% Platform platform=Platform.getInstance();   %>
+                <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
+                <%for(int i=0;i<ex.size();i++){%>
+                        <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+                                <%int attivo=0;%>
+                                <% for (int ca: ex.get(i).get_id_card_owm()) { %>
+                                <% CardsDao cardsDao = new CardsDaoImpl();
+                                    Card card=cardsDao.findByID(ca); %>
+                                    <%if(attivo==0){%>
+                                    <%attivo=1;%>
+                                    <div class="item active card" style="width: 18rem">
+                                    <%}else{%>
+                                        <div class="item card" style="width: 18rem">
+                                        <%}%>
+
+                                    <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-dark" onclick="ShowDiv()">Go somewhere</button>
+                                    </div>
+
+                                        </div>
+                                <%}%>
+                            </div>
+                            <a class="left carousel-control" href="#carousel<%=i%>" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel<%=i%>" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                    </div>
-                    <div class="row" id="toHide"></div>
-                </div>
-                <% } %>
+                            <div class="col-sm-1"></div>
+                            <%if ((i%2==0)&(i!=0)){ %>
+                            <div class="row" id="toHide">
+                                <div class="col-sm-12">
+                                </div>
+                            </div>
+                            <%}%>
                 <%}%>
             </div>
+
+
 
 
 
@@ -169,7 +197,7 @@
     </div>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
 <script>
     function cleaAttr()
     {
@@ -186,5 +214,5 @@
     }
 </script>
 
-</body>
+
 </html>
