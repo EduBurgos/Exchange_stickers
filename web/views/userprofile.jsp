@@ -124,49 +124,48 @@
             </div>
 
             <!-- Visualizza scambi -->
+            <!-- Visualizza scambi -->
             <div role="tabpanel" class="tab-pane" id="myexchanges" aria-labelledby="myexchanges-tab">
                 <% Platform platform=Platform.getInstance();   %>
                 <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
-                <%for(int i=0;i<ex.size();i++){%>
-                        <div id="carousel<%=i%>" class="carousel slide col-sm-3">
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox">
-                                <%int attivo=0;%>
-                                <% for (int ca: ex.get(i).get_id_card_owm()) { %>
-                                <% CardsDao cardsDao = new CardsDaoImpl();
-                                    Card card=cardsDao.findByID(ca); %>
-                                    <%if(attivo==0){%>
-                                    <%attivo=1;%>
-                                    <div class="item active card" style="width: 18rem">
-                                    <%}else{%>
-                                        <div class="item card" style="width: 18rem">
-                                        <%}%>
-
-                                    <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-dark" onclick="ShowDiv()">Go somewhere</button>
-                                    </div>
-
-                                        </div>
+                <div class="row">
+                    <%for(int i=0;i<ex.size();i++){%>
+                <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <%int attivo=0;%>
+                        <% for (int ca: ex.get(i).get_id_card_owm()) { %>
+                        <% CardsDao cardsDao = new CardsDaoImpl();
+                            Card card=cardsDao.findByID(ca); %>
+                        <%if(attivo==0){%>
+                        <%attivo=1;%>
+                        <div class="item active card" style="width: 18rem">
+                            <%}else{%>
+                            <div class="item card" style="width: 18rem">
                                 <%}%>
-                            </div>
-                            <a class="left carousel-control" href="#carousel<%=i%>" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel<%=i%>" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                            <div class="col-sm-1"></div>
-                            <%if ((i%2==0)&(i!=0)){ %>
-                            <div class="row" id="toHide">
-                                <div class="col-sm-12">
+
+                                <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                <div class="card-body">
+                                    <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Go somewhere</button>
                                 </div>
+
                             </div>
                             <%}%>
-                <%}%>
+                        <a class="left carousel-control" href="#carousel<%=i%>" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel<%=i%>" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                    <div class="col-sm-3" id="toHide<%=i%>" style="display: none">
+                        prova
+                    </div>
+                    <%}%>
+                </div>
             </div>
 
 
@@ -197,6 +196,7 @@
     </div>
 
 </div>
+</div>
 </body>
 <script>
     function cleaAttr()
@@ -204,8 +204,8 @@
         <% request.getSession().removeAttribute("snitch"); %>
         location.reload();
     }
-    function showDiv() {
-        var x = document.getElementById("toHide");
+    function showDiv(i) {
+        var x = document.getElementById("toHide"+i);
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -213,6 +213,5 @@
         }
     }
 </script>
-
 
 </html>

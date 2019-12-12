@@ -193,8 +193,6 @@ img.zoom {
     height: 150px;
 
 }
-.carousel
-{
-    margin-left: 10px;
-    margin-top: 10px;
+.carousel slide{
+    margin-right: 10px;
 }
