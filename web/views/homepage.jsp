@@ -35,7 +35,7 @@
             <% Platform platform=Platform.getInstance();   %>
             <%ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
             <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
-                <%if(!request.getSession().getAttribute("category").equals("0") ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| request.getSession().getAttribute("card")!=null) {  %>
+                <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>
                      <%ex= platform.filtersExchanges(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));   %>
                 <% }  %>
             <% }  %>
