@@ -161,9 +161,15 @@
                         </a>
                     </div>
                 </div>
-                    <div class="col-sm-3" id="toHide<%=i%>" style="display: none">
+                    <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
                         prova
                     </div>
+                    <%if ((i%2==0)&(i!=0)){ %>
+                        </div>
+                        <div class="row">
+                    <%}%>
+
+
                     <%}%>
                 </div>
             </div>
@@ -205,11 +211,23 @@
         location.reload();
     }
     function showDiv(i) {
-        var x = document.getElementById("toHide"+i);
+
+        var x= document.getElementById("toHide"+i);
         if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
+                x.style.display = "block";
+
+                if (document.getElementsByClassName("toHideActive").length!=0)
+                {
+                    var y = document.getElementsByClassName("toHideActive")[0];
+                    y.classList.remove("toHideActive");
+                    y.style.display="none";
+                }
+                x.classList.add("toHideActive");
+            }
+        else
+        {
+            x.style.display="none";
+            x.classList.remove("toHideActive");
         }
     }
 </script>

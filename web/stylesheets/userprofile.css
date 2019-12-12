@@ -194,5 +194,9 @@ img.zoom {
 
 }
 .carousel slide{
-    margin-right: 10px;
+    margin-right: 40px;
+}
+.toHide
+{
+    background-color: black;
 }
