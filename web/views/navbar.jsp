@@ -40,55 +40,49 @@ it is included in each page of the application -->
 
                 </ul>
                 <!---SEARCH WITH FILTERS--->
+                <form role="form" method="get" action="../Search">
 
-                <div class="row1">
-
-                    <div class="col-sm-3">
-                        <form role="form" method="get" action="../Search">
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="filterCard" placeholder="Search card..." />
-                            </div>
-                            <button  type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span></button>
-
-                            <!--input type="text" class="form-control" name="filterCard"  id="searchName" placeholder="Search Card..." /--->
-
-                            <div class="input-group-btn">
-                                <div class="btn-group" role="group">
-                                    <div class="dropdown dropdown-lg">
-                                        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ><span class="glyphicon glyphicon-filter" >&nbsp;</span><span class="caret" >&nbsp;</span></button>
-                                        <div class="dropdown-menu dropdown-menu-right" role="menu" id="menuS">
-                                       <!----form class="form-horizontal" role="form" method="get" action="../Search"-->
-                                               <div class="form-group" >
-                                                   <label >Category</label>
-                                                   <div class="checkbox">
-                                                       <label><input type="checkbox" name="filterCategory" value="Hearthstone">Hearthstone</label>
-                                                   </div>
-                                                   <div class="checkbox">
-                                                       <label><input type="checkbox" name="filterCategory" value="Pokemon">Pokemon</label>
-                                                   </div>
-                                                   <div class="checkbox">
-                                                       <label><input type="checkbox" name="filterCategory" value="Yu-Gi-Oh!">Yu-Gi-Oh!</label>
-                                                   </div>
+                    <div class="row1">
+                        <div class="col-sm-3">
+                            <div class="input-group" id="adv-search">
+                                <input type="text" name="filterCard" class="form-control" placeholder="Search Card..." />
+                                <div class="input-group-btn">
+                                    <div class="btn-group" role="group">
+                                        <div class="dropdown dropdown-lg">
+                                            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ><span class="glyphicon glyphicon-filter" >&nbsp;</span><span class="caret" >&nbsp;</span></button>
+                                            <div class="dropdown-menu dropdown-menu-right" role="menu" id="menuS">
+                                                <div class="form-horizontal" >
+                                                    <div class="form-group" id="checklistCategory" >
+                                                        <label >Category</label>
+                                                        <div class="checkbox" >
+                                                            <label><input type="checkbox" name="filterCategory" value="Hearthstone">Hearthstone</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="filterCategory" value="Pokemon">Pokemon</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="filterCategory" value="Yu-Gi-Oh!">Yu-Gi-Oh!</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label> Card Class</label>
+                                                        <input class="form-control" type="text" name="filterClass" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Card Type</label>
+                                                        <input class="form-control" type="text" name="filterType" />
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label> Card Class</label>
-                                                    <input class="form-control" type="text" name="filterClass" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Card Type</label>
-                                                    <input class="form-control" type="text" name="filterType" />
-                                                </div>
-                                              <button type="submit" class="btn btn-success active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="label-icon" >Search</span></button>
-                                       <!/form--->
+                                            </div>
                                         </div>
+                                        <button id="searchBtn1" type="submit" class="btn btn-success active" ><span class="glyphicon glyphicon-search" ></span> </button>
                                     </div>
-
                                 </div>
                             </div>
-                        <!_/div->
-                        </form>
+                        </div>
                     </div>
-                </div> <!--- END SEARCH WITH FILTERS--->
+                </form> <!--- END SEARCH WITH FILTERS--->
 
 
                 <ul class="nav navbar-nav navbar-right">
