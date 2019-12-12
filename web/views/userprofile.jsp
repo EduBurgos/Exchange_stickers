@@ -85,7 +85,7 @@
                         <a class="nav-link" id="exchangeables-tab" data-toggle="tab" href="#exchangeables" role="tab" aria-controls="exchangeables" aria-selected="false">SNITCH CARD</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">My excahnges</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="filters-tab" data-toggle="tab" href="#filters" role="tab" aria-controls="filters" aria-selected="false">Filters</a>
@@ -102,13 +102,21 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel fade in show active" class="tab-pane fade in active" id="mycollection" aria-labelledby="mycollection-tab">
-                <%for(Card entry : c.getCardsOwn().keySet()){%>
-                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                    <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
-                    <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                <div class="row">
+                    <%int conta=0;%>
+                    <%for(Card entry : c.getCardsOwn().keySet()){%>
+                            <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
+                                <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                                <%conta++;%>
+                                <img src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                                </div>
+                            <%}%>
+                        <%if (conta%6==0){%>
+                            </div>
+                            <div class="row">
+                        <%}%>
                     <%}%>
                 </div>
-                <%}%>
             </div>
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
             <div role="tabpanel" class="tab-pane" id="exchangeables" aria-labelledby="exchangeables-tab">
@@ -146,7 +154,16 @@
 
                                 <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Go somewhere</button>
+                                    <div class="row">
+                                        <div class="col-sm-8" style="margin-left: 5px">
+                                            <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Show cards wanted</button>
+                                        </div>
+                                        <div class="col-sm-3" style="margin-left: 5px" >
+                                            <button type="button" class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
