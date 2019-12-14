@@ -1,6 +1,7 @@
 package servlets;
 
 import collection.CollectionOwn;
+import dao.FacadeImplements;
 import platform.Platform;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,18 @@ public class ProfileServlet extends AbstractServlet{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("delete")!=null)
+        {
+            String value= request.getParameter("delete");
+            int id_trans=Integer.parseInt(value);
+            FacadeImplements facadeImplements=new FacadeImplements();
+            try {
+                facadeImplements.delete(id_trans);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            forwardTo(request, response, INDEXPROFILE_ROUTE);
+        }
 
         try{
             CollectionOwn nickname = confirmNickname(request);

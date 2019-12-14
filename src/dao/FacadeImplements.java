@@ -70,7 +70,8 @@ public class FacadeImplements implements Facade
     }
     @Override
     public void delete(int id_trans) throws SQLException {
-
+        ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
+        exchangeCardDAO.delete(id_trans);
     }
     @Override
     public Exchange getExchange(int id_trans) throws SQLException {

@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../stylesheets/userprofile.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7/js/bootstrap.min.js">
+    <link rel="stylesheet" href="../stylesheets/animate.css">
     <script src="../jquery/jquery-3.4.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Custom styles for this template -->
@@ -172,15 +173,19 @@
                                 <%}%>
 
                                 <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                <img src="../img/Yu-Gi-Oh!/AnimaImmortale.png" style="display: none" id="toShow<%=card.getNome()%><%=ex.indexOf(ca)%>" onmouseenter="close()">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-8" style="margin-left: 5px">
                                             <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Show cards wanted</button>
                                         </div>
                                         <div class="col-sm-3" style="margin-left: 5px" >
-                                            <button type="button" class="btn btn-danger">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </button>
+                                            <form method="get" action= "../userprofile">
+                                                <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
+                                                <button type="submit" class="btn btn-danger" value="">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </input>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -269,6 +274,9 @@
             x.classList.remove("toHideActive");
         }
     }
+
+
+
 </script>
 
 </html>
