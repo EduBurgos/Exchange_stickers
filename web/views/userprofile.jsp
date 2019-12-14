@@ -87,9 +87,6 @@
                     <li class="nav-item">
                         <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">My excahnges</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="filters-tab" data-toggle="tab" href="#filters" role="tab" aria-controls="filters" aria-selected="false">Filters</a>
-                    </li>
                 </ul>
             </div>
             <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
@@ -103,7 +100,28 @@
         <div class="tab-content">
             <div role="tabpanel fade in show active" class="tab-pane fade in active" id="mycollection" aria-labelledby="mycollection-tab">
                 <div class="row">
+
                     <%int conta=0;%>
+                    <% ArrayList<Card> filterArray =null;   %>
+                    <%Platform platform=Platform.getInstance();      %>
+                    <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
+                        <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>
+                            <% filterArray= platform.filtersCollections(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
+                        <%}%>
+                    <%}%>
+
+                    <% if(filterArray!=null){       %>
+                        <%for(Card filter: filterArray){%>
+                            <div class="col-lg-2 col-md-2 col-xs-2 thumb">
+                            <%conta++;%>
+                                <img src="../img/<%=filter.getCategoria()%>/<%=(filter.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
+                                </div>
+                            <%if (conta%6==0){%>
+                                 </div>
+                                 <div class="row">
+                             <%}%>
+                        <%}%>
+                    <%} else{ %>
                     <%for(Card entry : c.getCardsOwn().keySet()){%>
                             <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
                                 <div class="col-lg-2 col-md-2 col-xs-2 thumb">
@@ -116,6 +134,7 @@
                             <div class="row">
                         <%}%>
                     <%}%>
+                                <%}%>
                 </div>
             </div>
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
@@ -134,7 +153,7 @@
             <!-- Visualizza scambi -->
             <!-- Visualizza scambi -->
             <div role="tabpanel" class="tab-pane" id="myexchanges" aria-labelledby="myexchanges-tab">
-                <% Platform platform=Platform.getInstance();   %>
+                <%// Platform platform=Platform.getInstance();   %>
                 <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
                 <div class="row">
                     <%for(int i=0;i<ex.size();i++){%>
@@ -220,24 +239,12 @@
 
 
 
-            <div role="tabpanel" class="tab-pane" id="filters" aria-labelledby="filters-tab">
 
-                <form  method="get" action= "../Search">
-                    <% ArrayList<Card> filterArray=null ;     %>
-                    <%//Platform platform=Platform.getInstance();      %>
-                    <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
-                    <% filterArray= platform.filtersCollections(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
-                    <% }  %>
-                    <% if(filterArray!=null){      %>
-                    <%for(Card filter: filterArray){%>
-                    <div class="col-lg-2 col-md-2 col-xs-2 thumb">
-                        <img src="../img/<%=filter.getCategoria()%>/<%=(filter.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                    </div>
-                    <%}
-                    %>
-                    <%}
-                    %>
-                </form>
+
+
+
+
+
             </div>
 
         </div>
