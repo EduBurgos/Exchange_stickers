@@ -61,7 +61,8 @@ public class FacadeImplements implements Facade
     /*EXCHANGE CARD DAO*/
     @Override
     public void create(User user, Map<Integer, Integer> cardown, Map<Integer, Integer> cardwanted) throws SQLException {
-
+        ExchangeCardDAO exchangeCardDAO=new ExchangeCardDAOImpl();
+        exchangeCardDAO.create(user,cardown,cardwanted);
     }
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
