@@ -182,8 +182,9 @@
                                         <div class="col-sm-3" style="margin-left: 5px" >
                                             <form method="get" action= "../userprofile">
                                                 <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
-                                                <button type="submit" class="btn btn-danger" value=""></button>
+                                                <button type="submit" class="btn btn-danger">
                                                     <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
                                                 </input>
                                             </form>
                                         </div>
