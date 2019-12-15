@@ -58,16 +58,13 @@ public class UserDaoImpl implements UserDao {
 
 
 
-            preparedStatement.execute();
-            return true;
+            int res= preparedStatement.executeUpdate();
+            if (res >0){
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
             try {
                 preparedStatement.close();
             } catch (Exception sse) {
