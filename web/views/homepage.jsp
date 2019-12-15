@@ -1,6 +1,5 @@
 <%@ page import="collection.Card" %>
 <%@ page import="userSide.User" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="dao.*" %>
 <%@ page import="userSide.Exchange" %>
 <%@ page import="platform.Platform" %>
