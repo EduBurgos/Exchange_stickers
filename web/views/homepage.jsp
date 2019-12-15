@@ -259,7 +259,7 @@ FINE COMENTO-->
 </div>
 
 </div>
-<% String role=request.getSession().getAttribute("role").toString();%>
+<% String role=(String) request.getSession().getAttribute("role");%>
 <%if (role!=null){%>
 <input type="hidden" id="role" value=<%= role %> />
 <%}%>
