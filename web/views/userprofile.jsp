@@ -79,22 +79,22 @@
         <div class="row">
             <div class="col-10 col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
+
+                    <li class="nav-item" onclick="cleaAttr()">
                         <a class="nav-link active" id="mycollection-tab" data-toggle="tab" href="#mycollection" role="tab" aria-controls="mycollection" aria-selected="true">My collection</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" id="exchangeables-tab" data-toggle="tab" href="#exchangeables" role="tab" aria-controls="exchangeables" aria-selected="false">SNITCH CARD</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">My excahnges</a>
                     </li>
                 </ul>
+
             </div>
-            <div class="col-2 col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-end">
-                <button type="button" class="btn btn-default btn-lg" onclick="cleaAttr()">
-                    <span class="glyphicon glyphicon-home" ></span>
-                </button>
-            </div>
+
         </div>
 
         <!-- Tab panes -->
@@ -275,9 +275,6 @@
             x.classList.remove("toHideActive");
         }
     }
-
-
-
 </script>
 
 </html>
