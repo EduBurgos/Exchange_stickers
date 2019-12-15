@@ -1,15 +1,8 @@
 <%@ page import="collection.Card" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="dao.CollectionOwnDaoImpl" %>
-<%@ page import="dao.UserDaoImpl" %>
-<%@ page import="userSide.User" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="collection.Card" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="collection.CollectionOwn" %>
-<%@ page import="collection.Catalogue" %>
-<%@ page import="userSide.Exchange" %>
-<%@ page import="dao.CardsDaoImpl" %>
+<%@ page import="platform.Platform" %>
+<%@ page import="java.util.ArrayList" %>
 
 <html>
 <head>
@@ -23,6 +16,9 @@
 </head>
 
 <body>
+
+<% Platform platform = Platform.getInstance(); %>
+
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
@@ -58,8 +54,8 @@
                 var toTake = "cardsToTake";
             </script>
             <div style="overflow: auto; width: 100%; height: 100%">
-                <% CardsDaoImpl allCards = new CardsDaoImpl();%>
-                <% for (Card u : allCards.findAllGeneric()) {%>
+                <% ArrayList<Card> allCards = platform.allCardsCatalog();%>
+                <% for (Card u : allCards) {%>
 
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)" id="<%=u.getId() + "divToTake"%>">
                     <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">

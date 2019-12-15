@@ -148,7 +148,6 @@ public class PlatformTest {
         }
         return setList;
     }
-
     public String getPasswordTest() {
         return passwordTest;
     }
