@@ -31,6 +31,12 @@ public class FacadeImplements implements Facade
         return c.delete(card);
     }
 
+    @Override
+    public ArrayList<Card> findAllGeneric() throws SQLException {
+        CardsDaoImpl f = new CardsDaoImpl();
+        return f.findAllGeneric();
+    }
+
     /*COLLECTION ONW DAO*/
     @Override
     public Map<Card, Integer> getCollentionOwn(User user) {

@@ -225,9 +225,6 @@ public class CardsDaoImpl implements CardsDao {
         return card;
     }
 
-
-
-
     public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
         conn = null;

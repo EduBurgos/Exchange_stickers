@@ -417,6 +417,10 @@ public class Platform {
         }
         return null;
     }
+    public ArrayList<Card> allCardsCatalog () throws SQLException {
+        FacadeImplements allCards = new FacadeImplements();
+        return allCards.findAllGeneric();
+    }
 
 
 }
