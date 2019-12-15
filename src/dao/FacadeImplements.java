@@ -12,20 +12,25 @@ public class FacadeImplements implements Facade
 {
     @Override
     public boolean insert(Card card) throws SQLException {
-        return false;
+        CardsDaoImpl c = new CardsDaoImpl();
+        return c.insert(card);
     }
     @Override
     public Card findByID(int id) throws SQLException {
-        return null;
+        CardsDaoImpl c = new CardsDaoImpl();
+        return c.findByID(id);
     }
     @Override
     public boolean update(Card card) throws SQLException {
-        return false;
+        CardsDaoImpl c = new CardsDaoImpl();
+        return  c.update(card);
     }
     @Override
     public boolean delete(Card card) throws SQLException {
-        return false;
+        CardsDaoImpl c = new CardsDaoImpl();
+        return c.delete(card);
     }
+
     /*COLLECTION ONW DAO*/
     @Override
     public Map<Card, Integer> getCollentionOwn(User user) {
@@ -34,11 +39,13 @@ public class FacadeImplements implements Facade
     }
     @Override
     public boolean update() throws SQLException {
-        return false;
+        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
+        return f.update();
     }
     @Override
     public boolean delete() throws SQLException {
-        return false;
+        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
+        return f.delete();
     }
     @Override
     public Card createRandomCard(User user) throws SQLException {
@@ -47,11 +54,13 @@ public class FacadeImplements implements Facade
     }
     @Override
     public Card get_last_card(User user) {
-        return null;
+        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
+        return f.get_last_card(user);
     }
     @Override
     public ArrayList<Card> openSachet(User user) {
-        return null;
+        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
+        return f.openSachet(user);
     }
     @Override
     public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard) {
@@ -71,12 +80,14 @@ public class FacadeImplements implements Facade
     }
     @Override
     public void delete(int id_trans) throws SQLException {
-        ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
-        exchangeCardDAO.delete(id_trans);
+        ExchangeCardDAOImpl f = new ExchangeCardDAOImpl();
+        f.delete(id_trans);
     }
     @Override
     public Exchange getExchange(int id_trans) throws SQLException {
-        return null;
+        ExchangeCardDAOImpl f = new ExchangeCardDAOImpl();
+        return f.getExchange(id_trans);
+
     }
     @Override
     public ArrayList<Exchange> getAllExchange(User user, String Parameter) throws SQLException {
@@ -91,32 +102,37 @@ public class FacadeImplements implements Facade
     /*USER DAO*/
     @Override
     public boolean save(User user, String pass) throws SQLException {
-        return false;
+        UserDaoImpl f = new UserDaoImpl();
+        return f.save(user, pass);
     }
     @Override
     public User findByUsername(String username) throws SQLException {
-        UserDaoImpl u = new UserDaoImpl();
-        return u.findByUsername(username);
+        UserDaoImpl f = new UserDaoImpl();
+        return f.findByUsername(username);
     }
     @Override
     public boolean update(User user) throws SQLException {
-        return false;
+        UserDaoImpl f = new UserDaoImpl();
+        return f.update(user);
     }
     @Override
     public boolean delete(User user) throws SQLException {
-        return false;
+        UserDaoImpl f = new UserDaoImpl();
+        return f.delete(user);
     }
     @Override
     public boolean checkByUser(User user) throws SQLException {
-        return false;
+        UserDaoImpl f = new UserDaoImpl();
+        return f.checkByUser(user);
     }
     @Override
     public ArrayList<User> findAll() throws SQLException {
-        return null;
+        UserDaoImpl f = new UserDaoImpl();
+        return f.findAll();
     }
     @Override
     public boolean checkUnique(User user) {
-        UserDaoImpl c = new UserDaoImpl();
-        return c.checkUnique(user);
+        UserDaoImpl f = new UserDaoImpl();
+        return f.checkUnique(user);
     }
 }
