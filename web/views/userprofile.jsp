@@ -122,6 +122,9 @@
                                  <div class="row">
                              <%}%>
                         <%}%>
+                    <%if(filterArray.size()==0){       %>
+                           <h4>Search produced no results.</h4>
+                        <%}%>
                     <%} else{ %>
                     <%for(Card entry : c.getCardsOwn().keySet()){%>
                             <%for(int i=0;i<c.getCardsOwn().get(entry);i++){%>
