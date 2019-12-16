@@ -39,137 +39,95 @@
                      <%ex= platform.filtersExchanges(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));   %>
                 <% }  %>
             <% }  %>
-                <%for(int i=0;i<ex.size();i++){%>
-                <%int idtrans= ex.get(i).getId_trans();     %>
-                <div class="col-lg-3 ">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                   <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <%int il=0;%>
-                    <% for(int id:ex.get(i).get_id_card_owm())   {  %>
-                     <%if(il==0){%>
-                        <%il++;%>
-                        <div class="item active">
-                            <%CardsDao c= new CardsDaoImpl();    %>
-                            <%Card card=c.findByID(id);    %>
-                            <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                            <div class="carousel-caption">
-                                <button  onclick="showCards()">Show Cards Wanted</button>
-                                <div class="class1" style="max-height: 275px;">
-                                    <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
-                                      <%if(idWanted!=0){%>
-                                        <%card=c.findByID(idWanted);    %>
-                                        <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
-                                      <%}%>
+
+            <div class="row">
+                <h1> TRATTATIVE DISPONIBILI: </h1>
+
+                <%for(int i=0;i<ex.size();i++){%>
+                <% User u1=platform.findUser(ex.get(i).getId_user());   %>
+
+                <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                    <!-- Wrapper for slides -->
+                    <div class="display: inline">
+                        <form  method="post" action="../homepage">
+                            <label style="color:darkblue"><strong><%=u1.getUsername()   %></strong></label>
+                            <input type="submit"  class="btn-primary"  name="btn"  id="<%=i%>"/>
+                    </form>
+                    </div>
+                    <div class="carousel-inner" role="listbox">
+                        <%int attivo=0;%>
+                        <% for (int ca: ex.get(i).get_id_card_owm()) { %>
+                        <% CardsDao cardsDao = new CardsDaoImpl();
+                            Card card=cardsDao.findByID(ca); %>
+                        <%if(attivo==0){%>
+                        <%attivo=1;%>
+                        <div class="item active card" style="width: 18rem">
+                            <%}else{%>
+                            <div class="item card" style="width: 18rem">
+                                <%}%>
+
+                                <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-8" style="margin-left: 5px">
+                                            <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Show cards wanted</button>
+                                        </div>
+                                        <div class="col-sm-3" style="margin-left: 5px" >
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <%}%>
+                            <a class="left carousel-control" href="#carousel<%=i%>" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel<%=i%>" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
+                        <div id="carousel<%=i%>W" class="carousel slide">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+                                <%int attivoW=0;%>
+                                <% for (int ca: ex.get(i).getId_card_wanted()) { %>
+                                <% CardsDao cardsDao = new CardsDaoImpl();
+                                    Card card=cardsDao.findByID(ca); %>
+                                <%if(attivoW==0){%>
+                                <%attivoW=1;%>
+                                <div class="item active card" style="width: 18rem">
+                                    <%}else{%>
+                                    <div class="item card" style="width: 18rem">
+                                        <%}%>
+                                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                    </div>
                                     <%}%>
-                                    <form  method="post" action="../homepage">
-                                        <input type="submit" name="btn"  value="<%=i%>"/>
-                                    </form>
+                                    <a class="left carousel-control" href="#carousel<%=i%>W" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel<%=i%>W" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    <%}else if(id!=0 && il!=0){%>
-                    <div class="item">
-                        <%CardsDao c= new CardsDaoImpl();    %>
-                        <%Card card=c.findByID(id);    %>
-                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                        <div class="carousel-caption">
-                            <button onclick="showCards()">Show Cards Wanted</button>
-                            <div class="class1">
-                              <% for(int idWanted:ex.get(i).getId_card_wanted())   {  %>
-                                <%if(idWanted!=0){%>
-                                    <%card=c.findByID(idWanted);    %>
-                                    <img  data-src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png"  class="img-little" alt="">
-                                <%} %>
-                              <%}%>
-                                <form  method="post" action="../homepage">
-                                    <input type="submit" name="btn"  value="accept" id="<%=i%>"/>
-                                </form>
-                            </div>
-                        </div>
+                        <%if (((i+1)%3==0)&(i!=0)){ %>
                     </div>
-                    <%}%>
-                    <%}%>
-                  <!--  <div class="item">
-                        <img src="../img/Pokemon/Axew.png" alt="...">
-                        <div class="carousel-caption">
-                            <button type="button" class="btn btn-default" onclick="show()">Mostra</button>
-                            <div id="id1" class="class1">
+                    <div class="row">
+                        <%}%>
 
-                            </div>
-                        </div>
-                    </div>-->
-                    ...
+
+                        <%}%>
+                    </div>
                 </div>
-
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </div>
-                 </div>
-                <%}%>
-
-
-
-
-
-
-      <!--     <div class="col-lg-3 ">
-            <div id="carousel-example-generic1" class="carousel slide" data-ride="carousel">-->
-                <!-- Indicators -->
-         <!--       <ol class="carousel-indicators">-->
-                    <%//for(int i=0; i<e.getExchange(1).getId_card_owm().length;i++){ %>
-             <!--       <li data-target="#carousel-example-generic1" data-slide-to="<%//i%>" class="active"></li>-->
-                    <%//}%>
-                 <!--   <li data-target="#carousel-example-generic1" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic1" data-slide-to="2"></li>-->
-             <!--   </ol>-->
-
-                <!-- Wrapper for slides -->
-          <!--      <div class="carousel-inner" role="listbox">
-                    <%//for(int i:e.getExchange(1).getId_card_owm())   {  %>
-                    <div class="item active">
-                        <%// Card ca=  c.findByID(i);   %>
-                          <img src="../img/<%//ca.getCategoria()%>/<% //(ca.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid" alt="">
-                        <div class="carousel-caption">
-
-                        </div>
-                    </div>-->
-                    <%// }%>
-
-                <!--    <div class="item">
-                        <img src="../img/Pokemon/Axew.png" alt="...">
-                        <div class="carousel-caption">
-                        </div>
-                    </div>-->
-                    ...
-              <!--  </div>-->
-
-
-                <!-- Controls -->
-         <!--       <a class="left carousel-control" href="#carousel-example-generic1" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic1" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>-->
-            </div>
 <!-- INIZIO COMENTO IMPLEMENTAZIONE 1 MARKET
                     <%// Platform market1 = Platform.getInstance(); %>
                 <h6><%// market1.toString(); %></h6>
@@ -321,6 +279,26 @@ function showOpacity(){
         });
     });
 
+    function showDiv(i) {
+
+        var x= document.getElementById("toHide"+i);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+
+            if (document.getElementsByClassName("toHideActive").length!=0)
+            {
+                var y = document.getElementsByClassName("toHideActive")[0];
+                y.classList.remove("toHideActive");
+                y.style.display="none";
+            }
+            x.classList.add("toHideActive");
+        }
+        else
+        {
+            x.style.display="none";
+            x.classList.remove("toHideActive");
+        }
+    }
 
     var mostra = document.getElementById("mostra");
     var save = document.getElementById("save");

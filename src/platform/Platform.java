@@ -129,14 +129,17 @@ public class Platform {
         return true;
     }
     //cerca un utente dal suo username
-    public User findUser(String user)
+    public User findUser(String id) throws SQLException
     {
-        /*for (User i: this.users
-        ) {
-            if(i.getUsername().equals(user)){
-                return i;}
-        }*/
-        return null;
+        User account=null;
+        try{
+            Facade user = new FacadeImplements();
+            account= user.findByUsername(id);
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return account;
     }
 
 
