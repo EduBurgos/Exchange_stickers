@@ -42,7 +42,9 @@
 
             <div class="row">
                 <h1> TRATTATIVE DISPONIBILI: </h1>
-
+                <%if(ex.size()==0){%>
+                    <h4>Nessuna trattativa disponibile.</h4>
+                <% }  %>
                 <%for(int i=0;i<ex.size();i++){%>
                 <% User u1=platform.findUser(ex.get(i).getId_user());   %>
 
@@ -51,7 +53,8 @@
                     <div class="display: inline">
                         <form  method="post" action="../homepage">
                             <label style="color:darkblue"><strong><%=u1.getUsername()   %></strong></label>
-                            <input type="submit"  class="btn-primary"  name="btn"  id="<%=i%>"/>
+                            <input type="hidden" name="btn"  value="<%=i%>"/>
+                            <input type="submit"  class="btn-primary"  value="accept" name="btn"  id="<%=i%>"/>
                     </form>
                     </div>
                     <div class="carousel-inner" role="listbox">
