@@ -28,7 +28,6 @@
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
-
        <!--------MERCATO -------->
         <div class="container page-top">
             <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
@@ -218,7 +217,37 @@ FINE COMENTO-->
 </div>
 <% String role=(String) request.getSession().getAttribute("role");%>
 <%if (role!=null){%>
-<input type="hidden" id="role" value=<%= role %> />
+<script>
+    Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: 'Lo scambio è stato postato con successo',
+        showConfirmButton: false,
+        timer: 2500})
+</script>
+<% request.getSession().setAttribute("role",null); %>
+<%}%>
+
+<% String doneExchangeNotif=(String) request.getSession().getAttribute("doneExchange");%>
+<%if ("true".equalsIgnoreCase(doneExchangeNotif)){%>
+<script></script>
+Swal.fire({
+position: 'bottom-end',
+icon: 'success',
+title: 'Lo scambio è stato avvenuto con successo',
+showConfirmButton: false,
+timer: 2500})
+</script>
+<%request.getSession().setAttribute("doneExchange",null); %>
+<%}%>
+<%if ("false".equalsIgnoreCase(doneExchangeNotif)) { %>
+<script>
+Swal.fire({
+title: 'C\'è stato qualche problema nell\'esecuzione dello scambio.\n Riprova',
+icon: 'error',
+showConfirmButton: true})
+</script>
+<% request.getSession().setAttribute("doneExchange",null); %>
 <%}%>
 <!-- jQuery CDN - Slim version (=without AJAX)
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -304,18 +333,6 @@ function showOpacity(){
     var save = document.getElementById("save");
 
 
-    var exchangeNotification=document.getElementById("role");
-    console.log("this is var role: "+exchangeNotification);
-    if(exchangeNotification != null) {
-        Swal.fire({
-            position: 'bottom-end',
-            icon: 'success',
-            title: 'Lo scambio è stato postato con successo',
-            showConfirmButton: false,
-            timer: 3000
-            <% request.getSession().setAttribute("role",null); %>
-        })
-    }
 </script>
 </body>
 
