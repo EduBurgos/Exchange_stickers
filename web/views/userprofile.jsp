@@ -185,13 +185,16 @@
                                             <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Show cards wanted</button>
                                         </div>
                                         <div class="col-sm-3" style="margin-left: 5px" >
-                                            <form method="get" action= "../userprofile">
-                                                <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </button>
-                                                </input>
-                                            </form>
+                                            <!--se la transazione è mia vedo il cestino altrimenti no -->
+                                            <%if (ex.get(i).getId_user().equals(u.getUsername())){ %>
+                                                <form method="get" action= "../userprofile">
+                                                    <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                    </input>
+                                                </form>
+                                            <%}%>
                                         </div>
                                     </div>
                                 </div>
@@ -233,6 +236,11 @@
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
+                                    <%if(ex.get(i).get_trans_com()){ %>
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                                        </button>
+                                    <%}%>
                                 </div>
                             </div>
                     </div>
