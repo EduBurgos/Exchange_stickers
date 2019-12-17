@@ -24,14 +24,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <meta name="viewport" content="width=device-width, initial-swq  cale=1"/>
     -->
-    <link rel="stylesheet" href="../stylesheets/userprofile.css">
+
     <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7/js/bootstrap.min.js">
     <link rel="stylesheet" href="../stylesheets/animate.css">
+
     <script src="../jquery/jquery-3.4.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Custom styles for this template -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../stylesheets/userprofile.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
 
     <!-- Bootstrap JS -->
@@ -161,7 +163,7 @@
                 <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
                 <div class="row">
                     <%for(int i=0;i<ex.size();i++){%>
-                <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                <div id="carousel<%=i%>" class="carousel slide col-sm-3" style="height: 32rem;">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <%int attivo=0;%>
@@ -170,9 +172,9 @@
                             Card card=cardsDao.findByID(ca); %>
                         <%if(attivo==0){%>
                         <%attivo=1;%>
-                        <div class="item active card" style="width: 18rem">
+                        <div class="item active card" >
                             <%}else{%>
-                            <div class="item card" style="width: 18rem">
+                            <div class="item card">
                                 <%}%>
 
                                 <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
@@ -183,13 +185,16 @@
                                             <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Show cards wanted</button>
                                         </div>
                                         <div class="col-sm-3" style="margin-left: 5px" >
-                                            <form method="get" action= "../userprofile">
-                                                <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </button>
-                                                </input>
-                                            </form>
+                                            <!--se la transazione è mia vedo il cestino altrimenti no -->
+                                            <%if (ex.get(i).getId_user().equals(u.getUsername())){ %>
+                                                <form method="get" action= "../userprofile">
+                                                    <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                    </input>
+                                                </form>
+                                            <%}%>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +212,7 @@
                     </div>
                 </div>
                     <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
-                        <div id="carousel<%=i%>W" class="carousel slide">
+                        <div id="carousel<%=i%>W" class="carousel slide" style="height: 32rem;">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>
@@ -216,9 +221,9 @@
                                     Card card=cardsDao.findByID(ca); %>
                                 <%if(attivoW==0){%>
                                 <%attivoW=1;%>
-                                <div class="item active card" style="width: 18rem">
+                                <div class="item active card">
                                     <%}else{%>
-                                    <div class="item card" style="width: 18rem">
+                                    <div class="item card">
                                         <%}%>
                                         <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
                                     </div>
@@ -231,6 +236,11 @@
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
+                                    <%if(ex.get(i).get_trans_com()){ %>
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                                        </button>
+                                    <%}%>
                                 </div>
                             </div>
                     </div>

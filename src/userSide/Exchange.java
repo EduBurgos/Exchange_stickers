@@ -54,5 +54,7 @@ public class Exchange {
     public void setTrans_comp(boolean trans_comp) { this.trans_comp = trans_comp;}
     public String getUsername_offerente() {return username_offerente;}
     public void setUsername_offerente(String username_offerente) {this.username_offerente=username_offerente;}
-
+     public boolean get_trans_com() {
+        return trans_comp;
+     }
 }
