@@ -147,6 +147,14 @@ body {
     background-image: url(../img/images/logo.png);
 
 }
+
+#info{
+    background-color: #8c8c8c;
+    overflow-y: scroll;
+    max-width: 200px;
+    max-height: 200px;
+}
+
 /*---------------------------------------------------
     SEARCH FILTER STYLE
 -----------------------------------------------------*/
