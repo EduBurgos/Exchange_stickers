@@ -10,8 +10,9 @@
     <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../stylesheets/exchange.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/js/bootstrap.min.js">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+    <script src="../jquery/jquery-3.4.1.js"></script>
 
 </head>
 
