@@ -425,5 +425,23 @@ public class Platform {
         return allCards.findAllGeneric();
     }
 
+    public ArrayList<Exchange> notifyDoneExchanges(User user) throws SQLException{
+        FacadeImplements temp = new FacadeImplements();
+        ArrayList<Exchange> result = temp.exchangeToNotify(user);
+        for (Exchange ex: result
+             ) {
+            temp.setExchangeNotified(ex);
+        }
+        return result;
+    }
 
+    public Card findCardByID(int id)throws SQLException{
+        FacadeImplements temp = new FacadeImplements();
+        return temp.findByID(id);
+    }
+
+    public void setExchangeNotified(Exchange exchange) throws SQLException {
+        FacadeImplements temp = new FacadeImplements();
+        temp.setExchangeNotified(exchange);
+    }
 }

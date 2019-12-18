@@ -141,4 +141,16 @@ public class FacadeImplements implements Facade
         UserDaoImpl f = new UserDaoImpl();
         return f.checkUnique(user);
     }
+
+    @Override
+    public ArrayList<Exchange> exchangeToNotify(User user) throws SQLException{
+        ExchangeCardDAO temp = new ExchangeCardDAOImpl();
+        return temp.exchangeToNotify(user);
+    }
+
+    @Override
+    public void setExchangeNotified(Exchange exchange) throws SQLException {
+        ExchangeCardDAO temp = new ExchangeCardDAOImpl();
+        temp.setExchangeNotified(exchange);
+    }
 }

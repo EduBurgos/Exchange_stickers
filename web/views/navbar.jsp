@@ -1,4 +1,8 @@
 <%@ page import="dao.CardsDao" %>
+<%@ page import="userSide.Exchange" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="platform.Platform" %>
+<%@ page import="collection.Card" %>
 <!-- NAVIGATION BAR : this page contains the top navigation bar with links to Home, Reservations and Catalogue ;
 it is included in each page of the application -->
 
@@ -11,6 +15,7 @@ it is included in each page of the application -->
     <link rel="stylesheet" href="../stylesheets/navbar.css">
 </head>
 <body>
+<% Platform platform=Platform.getInstance();   %>
 <!-------- NAVBAR------->
 <div class="container">
     <nav class="navbar navbar-icon-top  navbar-default  navbar-fixed-top ">
@@ -86,7 +91,62 @@ it is included in each page of the application -->
 
 
                 <ul class="nav navbar-nav navbar-right">
+                    <!-- NOTIFICATION -->
+                    <%ArrayList<Exchange> notifications=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesToNotify");%>
+                    <%int notificationNumber =0;%>
+                    <% if(notifications != null){notificationNumber = notifications.size();}%>
+                    <% if(notificationNumber>0) {%>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="removeIndex()">
+                            <span class="glyphicon glyphicon-bell"><strong id="notifNumber"><%=notificationNumber%></strong>
+                            </span>
+                            <strong>Notification</strong>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: whitesmoke">
+                        <%for (Exchange exchange : notifications) {%>
 
+
+                                <div class="dropdown-item">
+                                    <p>Lo scambio:</p>
+                                    <%String givenCards= "";%>
+                                    <%for (int id : exchange.get_id_card_owm()){%>
+                                    <% givenCards+= platform.findCardByID(id).getNome()+", ";%>
+                                        <%}%>
+                                    <p>
+                                    <strong><%=givenCards%></strong>
+                                    </p>
+                                    <p>
+                                    per
+                                    </p>
+                                    <%String takenCards= "";%>
+                                    <%for (int id : exchange.getId_card_wanted()){%>
+                                    <% takenCards+= platform.findCardByID(id).getNome()+", ";%>
+                                    <%}%>
+                                    <p>
+                                       <strong><%=takenCards%></strong>
+                                    </p>
+                                    <p>
+                                        è stato accettato da <%=exchange.getUsername_offerente()%>
+                                    </p>
+                                </div>
+                                <div class="divider"></div>
+
+                            <%}%>
+                        </div>
+                    </li>
+                    <%} else{%>
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-bell"></span>
+                            <strong>Notification</strong>
+                        </a>
+                        <div class="dropdown-menu" style="background: whitesmoke">
+                            Nessuna notifica
+                        </div>
+                    </li>
+                            <%}%>
+
+                    <!-- END NOTIFICATION -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                             <i class="fa fa-question">
@@ -120,6 +180,7 @@ it is included in each page of the application -->
                                 <li><button type="submit" class="btn btn-primary-outline"> <i class="glyphicon glyphicon-log-out"></i><strong> Logout </strong></button></li>
                             </form>
                         </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -154,6 +215,11 @@ it is included in each page of the application -->
     {
         <% request.getSession().removeAttribute("snitched"); %>
         location.href(" ../views/userprofile.jsp").load;
+    }
+
+    function removeIndex() {
+        document.getElementById("notifNumber").style.display = "none";
+        <% request.getSession().setAttribute("exchangesToNotify",null); %>
     }
 </script>
 

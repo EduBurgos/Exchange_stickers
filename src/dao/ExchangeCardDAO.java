@@ -22,4 +22,6 @@ public interface ExchangeCardDAO {
   Exchange getExchange(int id_trans) throws SQLException;
    ArrayList<Exchange> getAllExchange(User user,String Parameter) throws SQLException;
     ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException;
+    ArrayList<Exchange> exchangeToNotify(User user) throws SQLException;
+    void setExchangeNotified(Exchange exchange) throws SQLException;
 }

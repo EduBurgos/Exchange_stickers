@@ -34,11 +34,13 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String get_all_my_exchange ="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.cardId as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans where username=? order by exchanges.id_trans";
     private static final String get_cardWanted="select cards_wanted.* from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
-
+    private static final String get_exchange_to_notify="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.cardId as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans where username=? and trans_comp=1 and notified=0 order by exchanges.id_trans";
 
 
     private static final String delete_exchange = "delete from exchanges where id_trans=?";
     //private static final String view_catalog = "select * from catalog";
+    private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
+
 
 
 
@@ -545,4 +547,106 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
 /**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
+
+    public ArrayList<Exchange> exchangeToNotify(User user){
+        conn = null;
+        ArrayList<Integer> cardown = new ArrayList<>();
+        ArrayList<Integer> cardwanted=new ArrayList<>();
+        ArrayList<Exchange> allExchange = new ArrayList<>();
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(get_exchange_to_notify);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            int id_trans=0;
+            boolean trans_compl=false;
+            String username;
+            String username_offer;
+            if(result!=null && result.next()) {
+                id_trans = result.getInt("id_trans");
+                cardown.add(result.getInt("own"));
+                cardwanted.add(result.getInt("want"));
+            }
+            while (result != null) {
+                cardown=new ArrayList<Integer>();
+                cardwanted=new ArrayList<Integer>();
+                username=result.getString("username");
+                username_offer=result.getString("username_offer");
+                trans_compl = result.getBoolean("trans_comp");
+                while (result.getInt("id_trans") == id_trans) {
+                    if (!checkCard(cardown, result.getInt("own"))) {
+                        cardown.add(result.getInt("own"));
+                        addCard(result.getInt("oqt"), cardown, result.getInt("own"));
+                    }
+                    if (!checkCard(cardwanted, result.getInt("want"))) {
+                        cardwanted.add(result.getInt("want"));
+                        addCard(result.getInt("wqt"), cardown, result.getInt("want"));
+                    }
+                    if(result.next()==false)
+                    {
+                        result=null;
+                        break;
+                    }
+                }
+                //TODO modificare null con nome offerente, altrimenti il result.close si spacca
+
+                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
+                if(result==null)
+                {
+                    break;
+                }
+                else
+                {
+                    id_trans = result.getInt("id_trans");
+                }
+
+            }
+
+
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return allExchange;
+    }
+
+    public void setExchangeNotified(Exchange exchange){
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(set_exchange_notified);
+            preparedStatement.setInt(1, exchange.getId_trans());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+    }
 }
