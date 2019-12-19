@@ -1,6 +1,5 @@
 <%@ page import="collection.Card" %>
 <%@ page import="userSide.User" %>
-<%@ page import="dao.*" %>
 <%@ page import="userSide.Exchange" %>
 <%@ page import="platform.Platform" %>
 <%@ page import="java.util.ArrayList" %>
@@ -46,9 +45,8 @@
                     <h4>Nessuna trattativa disponibile.</h4>
                 <% }  %>
                 <%for(int i=0;i<ex.size();i++){%>
-                <% User u1=platform.findUser(ex.get(i).getId_user());   %>
-
-                <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                    <% User u1=platform.findUser(ex.get(i).getId_user());   %>
+                    <div id="carousel<%=i%>" class="carousel slide col-sm-3">
                     <!-- Wrapper for slides -->
                     <div class="display: inline">
                         <form  method="post" action="../homepage">
@@ -60,14 +58,13 @@
                     <div class="carousel-inner" role="listbox">
                         <%int attivo=0;%>
                         <% for (int ca: ex.get(i).get_id_card_owm()) { %>
-                        <% CardsDao cardsDao = new CardsDaoImpl();
-                            Card card=cardsDao.findByID(ca); %>
-                        <%if(attivo==0){%>
-                        <%attivo=1;%>
-                        <div class="item active card" style="width: 18rem">
+                            <% Card card=platform.findCardByID(ca);    %>
+                            <%if(attivo==0){%>
+                                 <%attivo=1;%>
+                                 <div class="item active card" style="width: 18rem">
                             <%}else{%>
                             <div class="item card" style="width: 18rem">
-                                <%}%>
+                        <%}%>
 
                                 <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
                                 <div class="card-body">
@@ -99,17 +96,16 @@
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>
                                 <% for (int ca: ex.get(i).getId_card_wanted()) { %>
-                                <% CardsDao cardsDao = new CardsDaoImpl();
-                                    Card card=cardsDao.findByID(ca); %>
-                                <%if(attivoW==0){%>
-                                <%attivoW=1;%>
-                                <div class="item active card" style="width: 18rem">
+                                    <% Card card=platform.findCardByID(ca);    %>
+                                    <%if(attivoW==0){%>
+                                        <%attivoW=1;%>
+                                        <div class="item active card" style="width: 18rem">
                                     <%}else{%>
-                                    <div class="item card" style="width: 18rem">
-                                        <%}%>
-                                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                        <div class="item card" style="width: 18rem">
+                                     <%}%>
+                                    <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
                                     </div>
-                                    <%}%>
+                                <%}%>
                                     <a class="left carousel-control" href="#carousel<%=i%>W" role="button" data-slide="prev">
                                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
