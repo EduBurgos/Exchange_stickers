@@ -39,7 +39,7 @@
                 <%int j =0;%>
                 <%for(Card entry : c.getCardsOwn().keySet()){%>
                 <%for(int i =0; i<c.getCardsOwn().get(entry); i++){%>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"%>" onclick="chooseCardsToGive(CardsToGiveArray, <%=entry.getId()%>, toGive, <%=j%>, temporaryArray)" >
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"+j%>" onclick="chooseCardsToGive(CardsToGiveArray, <%=entry.getId()%>, toGive, <%=j%>, temporaryArray)" >
                     <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
                     <img id="<%=entry.getId() + "cardsToGive" + j%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
                     </input>
@@ -133,6 +133,7 @@
         var completeWhere = where.concat(i.toString());
         console.log("completeWhere = "+completeWhere);
         var idDiv = id.replace(completeWhere, "divToGive");
+        idDiv = idDiv.concat(i.toString());
         console.log("idDiv: "+idDiv);
         var idDivCopy = idDiv.concat("Copy").concat(i.toString());
         console.log("idDivCopy: "+idDivCopy);
@@ -142,9 +143,10 @@
         var imgCln = img.cloneNode(true);
         var src = document.getElementById(idWhereToAdd);
         divCln.setAttribute("id", idDivCopy);
-        divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
+        //divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
+        divCard.removeAttribute("style");
         src.appendChild(divCln);
-        imgCln.style.filter = "opacity(100%)";
+
 
     }
     function removePictureToGive(id, where, i) {
@@ -152,6 +154,7 @@
         var completeWhere = where.concat(i.toString());
         console.log("completeWhere = "+completeWhere);
         var idDiv = id.replace(completeWhere, "divToGive");
+        idDiv = idDiv.concat(i.toString());
         var idDivCopy = idDiv.concat("Copy").concat(i.toString());
         //var imgToRemove = document.getElementById(idDivCopy);
         console.log(idDiv);
