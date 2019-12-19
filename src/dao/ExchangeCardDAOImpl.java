@@ -26,7 +26,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String updateCollection = "update collections SET  quantity=quantity-1 WHERE  ID_CARD=? AND USERNAME=?";
 
     //transaction for update flag
-    private static final String select_transaction = "select * from exchanges where id_trans=?";
+    private static final String select_transaction = "select * from exchanges where id_trans=? and trans_comp='0'";
     private static final String flag_complete = "update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE id_trans=? ";
 
 
@@ -48,42 +48,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     @Override
     public void create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException {
         conn = null;
-
-        //Map<Integer, Integer> cardownRefactored = new HashMap<>();
-        //Map<Integer, Integer> cardwantedRefactored = new HashMap<>();
-        //ArrayList<Integer> carteCensiteOwn = new ArrayList<>();
-        //ArrayList<Integer> carteCensiteWanted = new ArrayList<>();
-
-        /*for (Card x : cardown) {
-            if(!(carteCensiteOwn.contains(x.getId()))) {
-                int quantità = 1;
-                int posizioneAttuale = cardown.indexOf(x);
-                for (int j = cardown.size() - 1; j > posizioneAttuale; j--) {
-                    Card objDaParagonare = cardown.get(j);
-                    if (x.getId() == objDaParagonare.getId()) {
-                        quantità++;
-                    }
-                }
-                cardownRefactored.put(x, quantità);
-                carteCensiteOwn.add(x.getId());
-            }
-        }*/
-
-        /*for (Card y : cardwanted) {
-            if(!(carteCensiteWanted.contains(y.getId()))) {
-                int quantità = 1;
-                int posizioneAttuale = cardwanted.indexOf(y);
-                for (int j = cardwanted.size() - 1; j > posizioneAttuale; j--) {
-                    Card objDaParagonare = cardwanted.get(j);
-                    if (y.getId() == objDaParagonare.getId()) {
-                        quantità++;
-                    }
-                }
-                cardwantedRefactored.put(y, quantità);
-                carteCensiteWanted.add(y.getId());
-            }
-        }*/
-
         try {
             conn = connector.createConnection();
 
@@ -131,102 +95,118 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
+    /**
+     * Method used to  exchange cards
+     * @param exchangeCard
+     * @return true/false
+     */
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
         Savepoint savepoint = null;
-        Savepoint insert = null;
-        Savepoint insert2 = null;
-        //cancello carte presenti in entrambe le liste perchè è inutile scambaire due carte uguali
+        List<Savepoint> insert = new LinkedList<>();
+        List<Savepoint> insert2 =new LinkedList<>();
+        //cancello carte presenti in entrambe le liste perchè non ha senso scambiare due carte uguali
         try {
-            //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(select_transaction);
-            //start transaction
-            conn.setAutoCommit(false);
-            conn.setTransactionIsolation(TRANSACTION_SERIALIZABLE);
-            preparedStatement.setInt(1,exchangeCard.getId_trans());
-            preparedStatement.execute();
-            result=preparedStatement.getResultSet();
-            savepoint = conn.setSavepoint();
-            if(result==null && !result.next()) {
-                return false;
-            }
+                //seleziono il record della transazione e creo un savepoint a cui fare rollback in caso di errori
+                conn = connector.createConnection();
+                preparedStatement = conn.prepareStatement(select_transaction);
+                //start transaction
+                conn.setAutoCommit(false);
+                //transaction level serializable
+                conn.setTransactionIsolation(TRANSACTION_SERIALIZABLE);
 
-
-            preparedStatement=conn.prepareStatement(flag_complete);
-            preparedStatement.setString(1,exchangeCard.getUsername_offerente());
-            preparedStatement.setInt(2,exchangeCard.getId_trans());
-            preparedStatement.executeUpdate();
-
-
-            //da all'utente le mie carte che vuole
-            for(int i=0;i<exchangeCard.getId_card_wanted().size();i++)
-            {
-                //se è già nella collezione incremento la quantità
-                //blocco le carte
-                preparedStatement = conn.prepareStatement(selectCollection);
-                preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                preparedStatement.setInt(1,exchangeCard.getId_trans());
                 preparedStatement.execute();
-                insert=conn.setSavepoint();
-
-                //se è già nella collezione del tizio incrementa
-                preparedStatement = conn.prepareStatement(switchpeople);
-                preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.setString(2,exchangeCard.getId_user());
-                preparedStatement.execute();
-
-                preparedStatement=conn.prepareStatement(deleteCollection);
+                result=preparedStatement.getResultSet();
+                savepoint = conn.setSavepoint();
+                //se non trovo la transazione vuol dire che qualcuno l'ha già accettata quindi esco dal metodo con false
+                if(result==null && !result.next()) {
+                    return false;
+                }
+                //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
+                preparedStatement=conn.prepareStatement(flag_complete);
                 preparedStatement.setString(1,exchangeCard.getUsername_offerente());
-                preparedStatement.setInt(2,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.execute();
-                conn.commit();
+                preparedStatement.setInt(2,exchangeCard.getId_trans());
+                preparedStatement.executeUpdate();
 
-                preparedStatement=conn.prepareStatement(updateCollection);
-                preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
-                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
-                preparedStatement.execute();
-                conn.commit();
+                //da all'utente le mie carte che vuole
+                for(int i=0;i<exchangeCard.getId_card_wanted().size();i++)
+                {
+                    //blocco le carte selezionandole e creo un savepoint a cui tornare
+                    preparedStatement = conn.prepareStatement(selectCollection);
+                    preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
+                    preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                    preparedStatement.execute();
+                    insert.add(conn.setSavepoint());
+
+                    //se la mia carta è già nella collezione dell'acquirente  incremento la quantità nella sua collezione con "on duplicate key"
+                    preparedStatement = conn.prepareStatement(switchpeople);
+                    preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
+                    preparedStatement.setString(2,exchangeCard.getId_user());
+                    preparedStatement.execute();
+
+                    //cancello dalla  collezione del venditore la carta appena ceduta (se ne possiede solo una)
+                    preparedStatement=conn.prepareStatement(deleteCollection);
+                    preparedStatement.setString(1,exchangeCard.getUsername_offerente());
+                    preparedStatement.setInt(2,exchangeCard.getId_card_wanted().get(i));
+                    preparedStatement.execute();
+                    conn.commit();
+
+                    //se, invece, ne possiede più di una faccio un decremento del campo quantità
+                    preparedStatement=conn.prepareStatement(updateCollection);
+                    preparedStatement.setInt(1,exchangeCard.getId_card_wanted().get(i));
+                    preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                    preparedStatement.execute();
+                    conn.commit();
+                }
+                //da al venditore le carte dell'acquirente
+                for (int i=0;i<exchangeCard.get_id_card_owm().size();i++)
+                {
+                    //blocco le carte e creo un savepoint della collezione dell'acquirente(uno per ogni ciclo)
+                    preparedStatement = conn.prepareStatement(selectCollection);
+                    preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                    preparedStatement.setString(2,exchangeCard.getId_user());
+                    preparedStatement.execute();
+                    insert2.add(conn.setSavepoint());
+
+                    //se la carta è già nella collezione del venditore incrementa tramite on duplicate key
+                    preparedStatement = conn.prepareStatement(switchpeople);
+                    preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                    preparedStatement.setString(2,exchangeCard.getUsername_offerente());
+                    preparedStatement.execute();
+
+                    //cancello dalla collezione dell'acquirente la carta se ne possiede soltanto una
+                    preparedStatement=conn.prepareStatement(deleteCollection);
+                    preparedStatement.setString(1,exchangeCard.getId_user());
+                    preparedStatement.setInt(2,exchangeCard.get_id_card_owm().get(i));
+                    preparedStatement.execute();
+                    //conn.commit();
+
+                    //altrimenti decremento la quantità
+                    preparedStatement=conn.prepareStatement(updateCollection);
+                    preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
+                    preparedStatement.setString(2,exchangeCard.getId_user());
+                    preparedStatement.execute();
+                    //salvo le modifiche della transazione
+                    conn.commit();
+                }
+                //riporta il db alla configurazione iniziale
+                conn.setAutoCommit(true);
+
             }
-            //da a me le carte dell'offerente
-            for (int i=0;i<exchangeCard.get_id_card_owm().size();i++)
-            {
-                //se è già nella collezione incremento la quantità
-                //blocco le carte
-                preparedStatement = conn.prepareStatement(selectCollection);
-                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.setString(2,exchangeCard.getId_user());
-                preparedStatement.execute();
-                insert2=conn.setSavepoint();
-
-
-                //se è già nella collezione del tizio incrementa
-                preparedStatement = conn.prepareStatement(switchpeople);
-                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.setString(2,exchangeCard.getUsername_offerente());
-                preparedStatement.execute();
-
-                preparedStatement=conn.prepareStatement(deleteCollection);
-                preparedStatement.setString(1,exchangeCard.getId_user());
-                preparedStatement.setInt(2,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.execute();
-                conn.commit();
-
-                preparedStatement=conn.prepareStatement(updateCollection);
-                preparedStatement.setInt(1,exchangeCard.get_id_card_owm().get(i));
-                preparedStatement.setString(2,exchangeCard.getId_user());
-                preparedStatement.execute();
-                conn.commit();
-            }
-            conn.setAutoCommit(true);
-        }
         catch (SQLException e)
         {
+            //in caso di errore eseguo dei rollback per tornare allo stato precedente alle modifiche
             try {
                 conn.rollback(savepoint);
-                conn.rollback(insert);
-                conn.rollback(insert2);
+                for (Savepoint s:insert) {
+                    conn.rollback(s);
+                }
+                for (Savepoint s:insert2) {
+                    conn.rollback(s);
+                }
+
             }
             catch (SQLException e1)
             {
@@ -287,7 +267,15 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             return null;
         }
     }
-    /**Return all available exchanges */
+
+    /**this methos takes all user's exchanges or all the exchanges that he can accept
+     *
+     * @param user
+     * @param parameter (switch clause) "mine" to get all user's exchanges - "all" to get exchenges he can accept -
+     *                     notify to exchanges not notified,yet
+     * @return ArrayList<Exchanges>
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Exchange> getAllExchange(User user,String parameter) throws SQLException {
         conn=null;
@@ -295,21 +283,30 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         ArrayList<Integer> cardwanted=new ArrayList<>();
         ArrayList<Exchange> allExchange = new ArrayList<>();
         conn = connector.createConnection();
+        //switch per decidere quale query utilizzare
         switch (parameter)
                 {
                     case "mine":
                     {
+                        //prendo tutte le trattative che l'utente ha realizzato
                         preparedStatement = conn.prepareStatement(get_all_my_exchange);
                         preparedStatement.setString(1, user.getUsername());
                     }
                     break;
                     case "all":
                     {
+                        //prendo tutte le trattative a cui l'utente può accedere ( deve possedere le carte che il venditore vuole in cambio) il controllo è fatto all'interno della query
                         preparedStatement = conn.prepareStatement(get_all_exchange);
                         preparedStatement.setString(1, user.getUsername());
                         preparedStatement.setString(2, user.getUsername());
                         preparedStatement.setString(3, user.getUsername());
-                        preparedStatement.setBoolean(4,false);
+                        preparedStatement.setBoolean(4,false); //mostra solo le transazioni non completate
+                    }
+                    break;
+                    case "notify":
+                    {
+                        preparedStatement = conn.prepareStatement(get_exchange_to_notify);
+                        preparedStatement.setString(1, user.getUsername());
                     }
                 }
         try {
@@ -322,10 +319,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             boolean trans_compl=false;
             String username;
             String username_offer;
+            //inizio la lettura del result set
             if(result!=null && result.next()) {
+                //salvo il primo id transazione per sapere quando settare un nuovo scambio
                 id_trans = result.getInt("id_trans");
-                cardown.add(result.getInt("own"));
-                cardwanted.add(result.getInt("want"));
+                addCard(result.getInt("oqt"), cardown, result.getInt("own"));
+                addCard(result.getInt("wqt"), cardown, result.getInt("want"));
             }
             while (result != null) {
                 cardown=new ArrayList<Integer>();
@@ -333,22 +332,29 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 username=result.getString("username");
                 username_offer=result.getString("username_offer");
                 trans_compl = result.getBoolean("trans_comp");
+                //finchè l'id_trans contenuto nel result_set è uguale a quello salvato non crea una nuovo scambio,
+                // quando l'id cambia lo scambio viene aggiunto alla lista
                 while (result.getInt("id_trans") == id_trans) {
+                    // controlla se la carta è già nella lista cardown, se non lo è l'aggiunge
+                    //il controllo è necessario perchè il result set è dato da più join
                     if (!checkCard(cardown, result.getInt("own"))) {
-                        cardown.add(result.getInt("own"));
+                        //cardown.add(result.getInt("own"));
                         addCard(result.getInt("oqt"), cardown, result.getInt("own"));
                     }
+                    // controlla se la carta è già nella lista cardwanted, se non lo è l'aggiunge
                     if (!checkCard(cardwanted, result.getInt("want"))) {
-                        cardwanted.add(result.getInt("want"));
-                        addCard(result.getInt("wqt"), cardown, result.getInt("want"));
+                       //cardwanted.add(result.getInt("want"));
+                        //aggiungo n volte la stessa carta nella lista dove n è dato da wqt
+                        addCard(result.getInt("wqt"), cardwanted, result.getInt("want"));
                     }
+                    //se ho analizzato tutto il resltSet esco dal ciclio
                     if(result.next()==false)
                     {
                         result=null;
                         break;
                     }
                 }
-                //TODO modificare null con nome offerente, altrimenti il result.close si spacca
+                //aggiungo scambio alla lista
                 allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
                 if(result==null)
                 {
@@ -356,19 +362,14 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 }
                 else
                 {
+                    //salvo il nuovo id_transazione e ritorno nel while
                     id_trans = result.getInt("id_trans");
                 }
-
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            /*try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }*/
             try {
                 preparedStatement.close();
             } catch (Exception sse) {
@@ -527,100 +528,38 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return answer;
     }
 
+    /** Method used by "getAllExchanges". It Cheacks if a card is alredy contained in a list
+     * @param cards type ArrayList
+     * @param toSearch type int (it is the id of the card to search)
+     * @return true if cards contains toSearch false if not
+     */
     public boolean checkCard(ArrayList<Integer> cards, int toSearch)
     {
         //metodo che controlla se elemento è già presente nell'array
-            for (int i=0; i<cards.size(); i++)
                 if (cards.contains(toSearch))
                     return true;
             return false;
-        }
-        public void addCard(int quantity, ArrayList<Integer> cardsArray, int card)
+    }
+
+    /**
+     * Methos who add n equals card into a list
+     * @param quantity  number of cards to add
+     * @param cardsArray list where cards have to be added
+     * @param card id of the card to add
+     */
+    public void addCard(int quantity, ArrayList<Integer> cardsArray, int card)
         {
-            if(quantity>1)
-            {
-               while (quantity!=1)
+            //if(quantity>1)
+            //{
+               while (quantity!=0)
                 {
                     cardsArray.add(card);
                     quantity--;
                 }
-            }
+            //}
         }
 /**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
 
-    public ArrayList<Exchange> exchangeToNotify(User user){
-        conn = null;
-        ArrayList<Integer> cardown = new ArrayList<>();
-        ArrayList<Integer> cardwanted=new ArrayList<>();
-        ArrayList<Exchange> allExchange = new ArrayList<>();
-        try {
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(get_exchange_to_notify);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            int id_trans=0;
-            boolean trans_compl=false;
-            String username;
-            String username_offer;
-            if(result!=null && result.next()) {
-                id_trans = result.getInt("id_trans");
-                cardown.add(result.getInt("own"));
-                cardwanted.add(result.getInt("want"));
-            }
-            while (result != null) {
-                cardown=new ArrayList<Integer>();
-                cardwanted=new ArrayList<Integer>();
-                username=result.getString("username");
-                username_offer=result.getString("username_offer");
-                trans_compl = result.getBoolean("trans_comp");
-                while (result.getInt("id_trans") == id_trans) {
-                    if (!checkCard(cardown, result.getInt("own"))) {
-                        cardown.add(result.getInt("own"));
-                        addCard(result.getInt("oqt"), cardown, result.getInt("own"));
-                    }
-                    if (!checkCard(cardwanted, result.getInt("want"))) {
-                        cardwanted.add(result.getInt("want"));
-                        addCard(result.getInt("wqt"), cardown, result.getInt("want"));
-                    }
-                    if(result.next()==false)
-                    {
-                        result=null;
-                        break;
-                    }
-                }
-                //TODO modificare null con nome offerente, altrimenti il result.close si spacca
-
-                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
-                if(result==null)
-                {
-                    break;
-                }
-                else
-                {
-                    id_trans = result.getInt("id_trans");
-                }
-
-            }
-
-
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return allExchange;
-    }
 
     public void setExchangeNotified(Exchange exchange){
         conn = null;

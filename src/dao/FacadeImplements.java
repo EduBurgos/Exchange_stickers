@@ -142,10 +142,9 @@ public class FacadeImplements implements Facade
         return f.checkUnique(user);
     }
 
-    @Override
     public ArrayList<Exchange> exchangeToNotify(User user) throws SQLException{
         ExchangeCardDAO temp = new ExchangeCardDAOImpl();
-        return temp.exchangeToNotify(user);
+        return temp.getAllExchange(user,"notify");
     }
 
     @Override

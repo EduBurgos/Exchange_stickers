@@ -70,9 +70,9 @@ create table Cards_own(
                           cardId  int not null ,
                           quantity int(5) DEFAULT 1,
                           primary key (Id_trans,cardId),
-                          foreign key (cardId) references collections(ID_Card),
                           foreign key(Id_trans) references exchanges(id_trans)
                               ON DELETE CASCADE
+                              ON UPDATE CASCADE
 );
 create table Cards_wanted(
                              Id_trans INT not null,
