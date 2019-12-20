@@ -233,7 +233,7 @@ FINE COMENTO-->
 Swal.fire({
 position: 'bottom-end',
 icon: 'success',
-title: 'Lo scambio è stato avvenuto con successo',
+title: 'Lo scambio è avvenuto con successo',
 showConfirmButton: false,
 timer: 2500})
 </script>
