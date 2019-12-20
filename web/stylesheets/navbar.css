@@ -147,9 +147,31 @@ body {
     background-image: url(../img/images/logo.png);
 
 }
+
+#info{
+    background-color: #8c8c8c;
+    overflow-y: scroll;
+    max-width: 200px;
+    max-height: 200px;
+}
+
 /*---------------------------------------------------
     SEARCH FILTER STYLE
 -----------------------------------------------------*/
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 300px;
+        margin-top: 5%;
+
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 300px;
+
+    }
+}
 
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
@@ -158,6 +180,7 @@ body {
 }
 .input-group-btn .btn-group {
     display: flex !important;
+
 }
 .btn-group .btn {
     border-radius: 0;
@@ -181,19 +204,7 @@ body {
     border-bottom-left-radius: 4px;
 }
 
-@media screen and (min-width: 768px) {
-    #adv-search {
-        width: 300px;
-        margin-top: 5%;
-    }
-    .dropdown.dropdown-lg {
-        position: static !important;
-    }
-    .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 300px;
 
-    }
-}
 
 /*---------------------------------------------------
     SCROLL TO-TOP STYLE

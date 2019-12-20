@@ -183,8 +183,21 @@ img.zoom {
     color: #777;
 }
 
+.carousel-inner>.item>a>img{
+    display: block;
+    width: 23rem;
+    height: 29rem;
+}
+
 .nav-tabs {
     border-bottom: 1px solid #ddd;
     margin-bottom: 8px;
     margin-top: 8px;
+}
+.carousel slide{
+    margin-right: 40px;
+}
+.toHide
+{
+    background-color: black;
 }

@@ -94,7 +94,7 @@
 
 #startbutton{
     font-palette: light;
-    background-color: #34ce57;
+    background-color: darkgreen;
     text-align: center;
     margin:0 auto;
 
@@ -121,7 +121,7 @@
 }
 
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: darkgreen; /* Green */
     border: none;
     color: white;
     text-align: center;

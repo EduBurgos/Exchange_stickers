@@ -1,8 +1,6 @@
 package servlets;
 
-import collection.Card;
 import collection.CollectionOwn;
-import dao.CardsDaoImpl;
 import platform.Platform;
 
 import javax.servlet.ServletException;
@@ -56,6 +54,7 @@ public class ExchangeServlet extends AbstractServlet {
             platform.setExchange(username, intArrayToGive, intArrayToTake);
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
 
+            request.getSession().setAttribute("role", "notification");
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
         } catch (Exception e) {
             e.printStackTrace();

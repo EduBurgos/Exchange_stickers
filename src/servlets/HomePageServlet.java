@@ -35,8 +35,10 @@ public class HomePageServlet extends AbstractServlet {
         try {
             boolean resultExchange = marketExchange(request);
             if (resultExchange) {
+                request.getSession().setAttribute("doneExchange", "true");
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
             } else {
+                request.getSession().setAttribute("doneExchange", "false");
                 forwardTo(request, response, DEFAULT_ROUTE);
 
             }

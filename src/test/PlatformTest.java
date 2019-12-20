@@ -1,25 +1,36 @@
 package test;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import collection.Card;
+import collection.CollectionOwn;
+import dao.*;
+import org.junit.jupiter.api.*;
 import platform.Platform;
+import userSide.Exchange;
 import userSide.User;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
-public class PlatformTest {
-    private Platform platform = Platform.getInstance();
-    private User user = new User("nomeProva", "cognomeProva", "usernameProva", "mailProva");
-    private User testUser = getTestUser();
-    private ArrayList<Integer> CardOwn;
-    private ArrayList<Integer> CardWanted;
+import static org.junit.jupiter.api.Assertions.*;
 
-    @BeforeAll
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class PlatformTest {
+
+    private Platform platform = Platform.getInstance();
+    private User testUser = new User("nomeProva"+randomStringGeneratore(), "cognomeProva"+randomStringGeneratore(), "usernameProva"+randomStringGeneratore(), "emailProva"+randomStringGeneratore()+"@test.com");;
+    private String passwordTest="1234";
+    private Map<Card,Integer> cardsOwn;
+    private Map<Card,Integer> cardsWanted;
+
+
+    @Test
+    @Order(1)
     public void signupTest(){
         try {
-            Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getEmail(),  testUser.getEmail(), testUser.getPass(), "retype");
+            Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
+            cardsOwn = new CollectionOwnDaoImpl().getCollentionOwn(testUser);
             assertEquals(true, result);
         }
         catch (Exception e){
@@ -28,11 +39,72 @@ public class PlatformTest {
     }
 
     @Test
+    @Order(2)
     public void loginTest(){
         try {
-
+            String secretkey = "chiavesupersegretissimaXD";
+            String pass = Platform.encrypt(passwordTest, secretkey);
+            CollectionOwn testCollection = this.platform.LogIn("Obe", pass);
+            //_________________________________________________________
+            Facade daoFacade = new FacadeImplements();
+            User testUser = daoFacade.findByUsername("Obe");
+            Map<Card,Integer> collectionOwn = daoFacade.getCollentionOwn(testUser);
+            boolean equalCollResult = true;
+            boolean checkedCard = false;
+            for (Card collToTest : testCollection.getCardsOwn().keySet()
+                 ) {
+                for (Card collection : collectionOwn.keySet()
+                     ) {
+                    boolean cond1 = collection.getId() == collToTest.getId();
+                    boolean cond2 = testCollection.getCardsOwn().get(collToTest) != collectionOwn.get(collection);
+                    if (cond1 && cond2){
+                        checkedCard = true;
+                        equalCollResult=false;
+                    }
+                    if (checkedCard){
+                        equalCollResult=false;
+                    }
+                }
+            }
+            assertTrue(equalCollResult);
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    @Test
+    @Order(3)
+    public void setExchangeTest(){
+        ArrayList<Integer> cardsToGive = setTestCards(1);
+        ArrayList<Integer> cardsToTake = setTestCards(5);
+        try {
+            this.platform.setExchange("Obe", cardsToGive, cardsToTake);
+            //TODO cercare un modo per controllare se scambio è settato anche non sapendo l'id_trans
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Order(4)
+    public void acceptExchangeTest(){
+        try {
+            ArrayList<Integer> cardsToGive = setTestCards(1);
+            ArrayList<Integer> cardsToTake = setTestCards(5);
+            //TODO check if users have target cards
+            ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
+            UserDaoImpl userDao = new UserDaoImpl();
+            User testUserSetExchange = userDao.findByUsername("Obe");
+            User testUserAccepting = userDao.findByUsername("Pol");
+            this.platform.setExchange(testUserSetExchange.getUsername(), cardsToGive, cardsToTake);
+            Exchange exchange =  exchangeCardDAO.getAllExchange(testUserSetExchange, "mine").get(0);
+            boolean result = this.platform.marketExchange(exchange, testUserAccepting.getUsername());
+            assertTrue(result);
+
+        } catch (Exception e){
+            e.printStackTrace();
+            fail();
         }
     }
 
@@ -43,11 +115,7 @@ public class PlatformTest {
 
 
     private User getTestUser(){
-        this.testUser.setNome("nomeProva"+randomStringGeneratore());
-        this.testUser.setCognome("cognomeProva"+randomStringGeneratore());
-        this.testUser.setUsername("usernameProva"+randomStringGeneratore());
-        this.testUser.setEmail("emailProva"+randomStringGeneratore()+"@test.com");
-        this.testUser.setPass("passwordTest"+randomStringGeneratore());
+        User tempUser = new User("nomeProva"+randomStringGeneratore(), "cognomeProva"+randomStringGeneratore(), "emailProva"+randomStringGeneratore()+"@test.com", "passwordTest"+randomStringGeneratore());
         return testUser;
     }
 
@@ -65,6 +133,27 @@ public class PlatformTest {
             String generatedString = buffer.toString();
 
             return generatedString;
+    }
+
+    /**
+     * method to set 5 sorted cards in arraylist
+     * @param i
+     * @return set List
+     */
+    private ArrayList<Integer> setTestCards(int i){
+        ArrayList<Integer> setList = new ArrayList<>();
+        int range = i+5;
+        for(; i<range; i++){
+            setList.add(i);
+        }
+        return setList;
+    }
+    public String getPasswordTest() {
+        return passwordTest;
+    }
+
+    public void setPasswordTest(String passwordTest) {
+        this.passwordTest = passwordTest;
     }
 }
 

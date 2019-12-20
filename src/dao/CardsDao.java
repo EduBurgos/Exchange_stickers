@@ -14,6 +14,6 @@ public interface CardsDao {
    
     boolean update(Card card) throws SQLException;
     boolean delete(Card card) throws SQLException;
-   
 
+    ArrayList<Card> findAllGeneric() throws SQLException;
 }

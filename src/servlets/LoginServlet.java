@@ -28,6 +28,7 @@ public class LoginServlet extends AbstractServlet {
                     request.getSession().setAttribute("errorMessage", null);
                     request.getSession().setAttribute("logged",logged);
                     request.getSession().setAttribute("exchangesList",platform.getAllExchanges(logged.getOwner()));
+                    request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(logged.getOwner()));
                     response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
                 }
                 else{

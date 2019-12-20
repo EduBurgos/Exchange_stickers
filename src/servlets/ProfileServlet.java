@@ -1,10 +1,8 @@
 package servlets;
 
 import collection.CollectionOwn;
-import dao.CollectionOwnDaoImpl;
+import dao.FacadeImplements;
 import platform.Platform;
-import userSide.Exchange;
-import userSide.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 
 @WebServlet(name = "ProfileServlet", urlPatterns = "/userprofile")
@@ -27,6 +24,18 @@ public class ProfileServlet extends AbstractServlet{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("delete")!=null)
+        {
+            String value= request.getParameter("delete");
+            int id_trans=Integer.parseInt(value);
+            FacadeImplements facadeImplements=new FacadeImplements();
+            try {
+                facadeImplements.delete(id_trans);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            forwardTo(request, response, INDEXPROFILE_ROUTE);
+        }
 
         try{
             CollectionOwn nickname = confirmNickname(request);

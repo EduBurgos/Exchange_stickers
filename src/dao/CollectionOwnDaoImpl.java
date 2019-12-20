@@ -161,12 +161,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
         try {
             conn = connector.createConnection();
-            if( name!=null || !category.equals("0") || !classCard.equals("") || !typeCard.equals("")) {
+            if( !name.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
 
-                if(name!=null){
+                if(!name.equals("")){
                     search_cards+=" AND CardName=?";
                 }
-                if(!category.equals("0")){
+                if(category!=null){
                     search_cards+=" AND Category=?";
                 }
                 if(!classCard.equals("")){
@@ -178,11 +178,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                 }
                 preparedStatement = conn.prepareStatement(search_cards);
                 preparedStatement.setString(1, user.getUsername());
-                if(name!=null){
+                if(!name.equals("")){
                     preparedStatement.setString(j,name);
                     j++;
                 }
-                if(!category.equals("0")){
+                if(category!=null){
                     preparedStatement.setString(j,category);
                     j++;
                 }

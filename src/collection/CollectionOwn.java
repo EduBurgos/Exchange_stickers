@@ -1,13 +1,10 @@
 package collection;
 
-import dao.CollectionOwnDaoImpl;
 import userSide.User;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 /** Class that represents the collection owned by the user
  * @see User

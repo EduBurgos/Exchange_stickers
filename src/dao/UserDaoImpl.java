@@ -3,15 +3,10 @@ package dao;
 
 import collection.Card;
 import userSide.User;
-
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class UserDaoImpl implements UserDao {
-
-
-
     /** Query used to add a new user*/
     private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
     /** Query used to read a single user */
@@ -63,16 +58,13 @@ public class UserDaoImpl implements UserDao {
 
 
 
-            preparedStatement.execute();
-            return true;
+            int res= preparedStatement.executeUpdate();
+            if (res >0){
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
             try {
                 preparedStatement.close();
             } catch (Exception sse) {
@@ -252,6 +244,7 @@ public class UserDaoImpl implements UserDao {
         return allUsers;
     }
 
+    @Override
     public boolean checkUnique(User user){
         conn=null;
 
@@ -283,11 +276,11 @@ public class UserDaoImpl implements UserDao {
             } catch (Exception rse) {
                 rse.printStackTrace();
             }
-            try {
+            /*try {
                 preparedStatement.close();
             } catch (Exception sse) {
                 sse.printStackTrace();
-            }
+            }*/
             try {
                 conn.close();
             } catch (Exception cse) {

@@ -1,8 +1,6 @@
 package dao;
 
-import collection.Card;
 import com.mysql.jdbc.Statement;
-import platform.Platform;
 import userSide.Exchange;
 import userSide.User;
 
@@ -33,22 +31,17 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
-    private static final String get_all_my_exchange ="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.Id_trans as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans  where username=? order by exchanges.id_trans";
+    private static final String get_all_my_exchange ="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.cardId as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans where username=? order by exchanges.id_trans";
     private static final String get_cardWanted="select cards_wanted.* from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
+    private static final String get_exchange_to_notify="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.cardId as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans where username=? and trans_comp=1 and notified=0 order by exchanges.id_trans";
 
 
-
-    private static final String delete_exchange = "SET AUTOcOMMIT=0" +
-                                                    "start transaction;" +
-                                                        "delete from exchanges where id_trans=?" +
-                                                    "commit";
+    private static final String delete_exchange = "delete from exchanges where id_trans=?";
     //private static final String view_catalog = "select * from catalog";
-    // query trova trattativa secondo nome della carta
-    private static final String SEARCH_BY_NAME_CARD="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardName=?";
-    private static final String SEARCH_BY_CATEGORY="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Category=? ";
-    private static final String SEARCH_BY_CLASS="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.Class=?";
-    private static final String SEARCH_BY_TYPE="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE catalog.CardType=?";
+    private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
+
+
 
 
 
@@ -138,7 +131,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
-
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
         conn = null;
@@ -247,7 +239,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     }
-
     /**Retrun a exchange*/
     //inutile ho un ogegtto che è una lista di scambi... basta passarlo
     @Override
@@ -296,7 +287,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             return null;
         }
     }
-
     /**Return all available exchanges */
     @Override
     public ArrayList<Exchange> getAllExchange(User user,String parameter) throws SQLException {
@@ -333,7 +323,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             String username;
             String username_offer;
             if(result!=null && result.next()) {
-                id_trans = result.getInt(1);
+                id_trans = result.getInt("id_trans");
                 cardown.add(result.getInt("own"));
                 cardwanted.add(result.getInt("want"));
             }
@@ -343,7 +333,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 username=result.getString("username");
                 username_offer=result.getString("username_offer");
                 trans_compl = result.getBoolean("trans_comp");
-                while (result.getInt(1) == id_trans) {
+                while (result.getInt("id_trans") == id_trans) {
                     if (!checkCard(cardown, result.getInt("own"))) {
                         cardown.add(result.getInt("own"));
                         addCard(result.getInt("oqt"), cardown, result.getInt("own"));
@@ -358,7 +348,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                         break;
                     }
                 }
-                //modificare null con nome offerente
+                //TODO modificare null con nome offerente, altrimenti il result.close si spacca
                 allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
                 if(result==null)
                 {
@@ -374,11 +364,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
+            /*try {
                 result.close();
             } catch (Exception rse) {
                 rse.printStackTrace();
-            }
+            }*/
             try {
                 preparedStatement.close();
             } catch (Exception sse) {
@@ -392,7 +382,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return allExchange;
     }
-
    @Override
     public void delete(int id_trans) throws SQLException {
         conn = null;
@@ -421,219 +410,44 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
-
     /**..............METODI PER CERCARE LE TRATATTIVE**/
-    /**Metodo che mi trova tratativa/e secondo il nome della carta*/
-    public ArrayList<Exchange>findTByNameCard(User user, String nameCard) throws SQLException{
+    /**Metodo che mi trova tratativa/e */
+    public ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
         conn=null;
-        Exchange ex=null;
         ArrayList<Exchange> answer= new ArrayList<>();
-        try{
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(SEARCH_BY_NAME_CARD);
-            preparedStatement.setString(1, nameCard);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while(result!=null && result.next()) {
-                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
-                    result.previous();
-                    while (result.next()) {
-                        ex=getExchange(result.getInt("id_trans"));
-                        answer.add(ex);
-                    }
-                }
-            }
+        int j=5;
+       String get_all_exchangeFilter ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from (exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans) join catalog ON cards_own.cardId=catalog.ID  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
 
-            return answer;
+        ArrayList<Integer> cardown = new ArrayList<>();
+        ArrayList<Integer> cardwanted=new ArrayList<>();
 
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    /**Metodo che mi trova tratativa/e secondo la categoria*/
-    public ArrayList<Exchange>findTByCategory(User user, String category) throws SQLException{
-        conn=null;
-        Exchange ex=null;
-        ArrayList<Exchange> answer= new ArrayList<>();
-        try{
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(SEARCH_BY_CATEGORY);
-            preparedStatement.setString(1, category);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while(result!=null && result.next()) {
-                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
-                    result.previous();
-                    while (result.next()) {
-                        ex=getExchange(result.getInt("id_trans"));
-                        answer.add(ex);
-                    }
-                }
-            }
-
-            return answer;
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    /**Metodo che mi trova tratativa/e secondo la classe della carta*/
-    public ArrayList<Exchange>findTByClassCard(User user, String classCard) throws SQLException{
-        conn=null;
-        Exchange ex=null;
-        ArrayList<Exchange> answer= new ArrayList<>();
-        try{
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(SEARCH_BY_CLASS);
-            preparedStatement.setString(1, classCard);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while(result!=null && result.next()) {
-                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
-                    result.previous();
-                    while (result.next()) {
-                        ex=getExchange(result.getInt("id_trans"));
-                        answer.add(ex);
-                    }
-                }
-            }
-
-            return answer;
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    /**Metodo che mi trova tratativa/e secondo il tipo della carta*/
-    public ArrayList<Exchange>findTByTypeCard(User user, String typeCard) throws SQLException{
-        conn=null;
-        Exchange ex=null;
-        ArrayList<Exchange> answer= new ArrayList<>();
-        try{
-            conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(SEARCH_BY_TYPE);
-            preparedStatement.setString(1, typeCard);
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while(result!=null && result.next()) {
-                if(!result.getBoolean("trans_comp") && !result.getString("username").equals(user.getUsername())) {
-                    result.previous();
-                    while (result.next()) {
-                        ex=getExchange(result.getInt("id_trans"));
-                        answer.add(ex);
-                    }
-                }
-            }
-
-            return answer;
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-
-
-    public ArrayList<Exchange>filters(User user, String name, String category , String classCard, String typeCard) throws SQLException{
-        conn=null;
-        Exchange ex;
-        ArrayList<Exchange> answer= new ArrayList<>();
-        String search_exchanges="SELECT exchanges.*, cards_own.cardId from (exchanges natural join cards_own) join catalog ON cards_own.cardId=catalog.ID WHERE username !=?";
-        int j=2;
-        try {
+                try {
                 conn = connector.createConnection();
-                if( name!=null || !category.equals("0") || !classCard.equals("") || !typeCard.equals("")) {
+                if( !name.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
 
-                    if (name != null) {
-                        search_exchanges += " AND CardName=?";
+                    if (!name.equals("")) {
+                        get_all_exchangeFilter += " AND CardName=?";
                     }
-                    if (!category.equals("0")) {
-                        search_exchanges += " AND Category=?";
+                    if (category!=null) {
+                        get_all_exchangeFilter += " AND Category=?";
                     }
                     if (!classCard.equals("")) {
-                        search_exchanges += " AND Class=?";
+                        get_all_exchangeFilter += " AND Class=?";
                     }
                     if (!typeCard.equals("")) {
-                        search_exchanges += " AND CardType =?";
+                        get_all_exchangeFilter += " AND CardType =?";
 
                     }
-                    preparedStatement = conn.prepareStatement(search_exchanges);
-                    if (name != null) {
+                    preparedStatement = conn.prepareStatement(get_all_exchangeFilter);
+                    preparedStatement.setString(1, user.getUsername());
+                    preparedStatement.setString(2, user.getUsername());
+                    preparedStatement.setString(3, user.getUsername());
+                    preparedStatement.setBoolean(4,false);
+                    if (!name.equals("")) {
                         preparedStatement.setString(j, name);
                         j++;
                     }
-                    if (!category.equals("0")) {
+                    if (category!=null) {
                         preparedStatement.setString(j, category);
                         j++;
                     }
@@ -648,15 +462,48 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 }
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
-            while(result!=null && result.next()) {
-                if(!result.getBoolean("trans_comp")) {
-                    result.previous();
-                    while (result.next()) {
-                        ex=getExchange(result.getInt("id_trans"));
-                        answer.add(ex);
+
+                    int id_trans=0;
+                    boolean trans_compl;
+                    String username, username_offer;
+                    if(result!=null && result.next()) {
+                        id_trans = result.getInt(1);
+                        cardown.add(result.getInt("own"));
+                        cardwanted.add(result.getInt("want"));
                     }
-                }
-            }
+                    while (result != null) {
+                        cardown=new ArrayList<>();
+                        cardwanted=new ArrayList<>();
+                        username=result.getString("username");
+                        username_offer=result.getString("username_offer");
+                        trans_compl = result.getBoolean("trans_comp");
+                        while (result.getInt(1) == id_trans) {
+
+                            if (!checkCard(cardwanted, result.getInt("want"))) {
+                                cardwanted.add(result.getInt("want"));
+                                addCard(result.getInt("wqt"), cardown, result.getInt("want"));
+                            }
+                            if (!checkCard(cardown, result.getInt("own"))) {
+                                cardown.add(result.getInt("own"));
+                                addCard(result.getInt("oqt"), cardown, result.getInt("own"));
+                            }
+                            if(!result.next())
+                            {
+                                result=null;
+                                break;
+                            }
+                        }
+                        answer.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
+                        if(result==null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            id_trans = result.getInt("id_trans");
+                        }
+
+                    }
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -680,10 +527,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return answer;
     }
 
-
-
-
-
     public boolean checkCard(ArrayList<Integer> cards, int toSearch)
     {
         //metodo che controlla se elemento è già presente nell'array
@@ -705,5 +548,105 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
 /**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
 
+    public ArrayList<Exchange> exchangeToNotify(User user){
+        conn = null;
+        ArrayList<Integer> cardown = new ArrayList<>();
+        ArrayList<Integer> cardwanted=new ArrayList<>();
+        ArrayList<Exchange> allExchange = new ArrayList<>();
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(get_exchange_to_notify);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+            int id_trans=0;
+            boolean trans_compl=false;
+            String username;
+            String username_offer;
+            if(result!=null && result.next()) {
+                id_trans = result.getInt("id_trans");
+                cardown.add(result.getInt("own"));
+                cardwanted.add(result.getInt("want"));
+            }
+            while (result != null) {
+                cardown=new ArrayList<Integer>();
+                cardwanted=new ArrayList<Integer>();
+                username=result.getString("username");
+                username_offer=result.getString("username_offer");
+                trans_compl = result.getBoolean("trans_comp");
+                while (result.getInt("id_trans") == id_trans) {
+                    if (!checkCard(cardown, result.getInt("own"))) {
+                        cardown.add(result.getInt("own"));
+                        addCard(result.getInt("oqt"), cardown, result.getInt("own"));
+                    }
+                    if (!checkCard(cardwanted, result.getInt("want"))) {
+                        cardwanted.add(result.getInt("want"));
+                        addCard(result.getInt("wqt"), cardown, result.getInt("want"));
+                    }
+                    if(result.next()==false)
+                    {
+                        result=null;
+                        break;
+                    }
+                }
+                //TODO modificare null con nome offerente, altrimenti il result.close si spacca
 
+                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
+                if(result==null)
+                {
+                    break;
+                }
+                else
+                {
+                    id_trans = result.getInt("id_trans");
+                }
+
+            }
+
+
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return allExchange;
+    }
+
+    public void setExchangeNotified(Exchange exchange){
+        conn = null;
+        try {
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(set_exchange_notified);
+            preparedStatement.setInt(1, exchange.getId_trans());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+    }
 }
