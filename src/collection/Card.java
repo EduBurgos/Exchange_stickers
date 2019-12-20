@@ -104,6 +104,7 @@ public class Card extends AbstractCard implements Comparable {
         return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione +"\n";
     }
 
+
     @Override
     public int compareTo(Object o) {
         if ((o != null) && (o instanceof Card)) {

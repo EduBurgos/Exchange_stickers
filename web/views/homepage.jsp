@@ -1,3 +1,5 @@
+<!-- HOMEPAGE: this page shows all available exchanges that can be accepted by the user who logged.-->
+
 <%@ page import="collection.Card" %>
 <%@ page import="userSide.User" %>
 <%@ page import="userSide.Exchange" %>
@@ -6,6 +8,8 @@
 <%@ page import="collection.CollectionOwn" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +31,13 @@
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
-       <!--------MERCATO -------->
         <div class="container page-top">
+
             <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
             <% Platform platform=Platform.getInstance();   %>
             <%ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
+
+            <!---It is used to show exchanges filtered  by users using the search filter of the navbar --->
             <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
                 <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>
                      <%ex= platform.filtersExchanges(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));   %>
@@ -259,7 +265,7 @@ showConfirmButton: true})
 <script>
 
 
-
+    //da cancellare
     function show() {
         document.getElementById('id1').style.maxHeight = "200px";
         var images = document.querySelectorAll("#id1 img");
@@ -269,6 +275,7 @@ showConfirmButton: true})
         }
     }
 
+    // da cancellare
     var op=0;
     function showCards() {
         document.getElementsByClassName("class1")[0].style.maxHeight = "200px";
@@ -282,6 +289,7 @@ showConfirmButton: true})
 
     }
 
+    // da cancellare
 function showOpacity(){
     var imagesactive = document.querySelectorAll(".item > img");
     if(imagesactive[0].style.opacity==='1') {
@@ -307,6 +315,11 @@ function showOpacity(){
         });
     });
 
+    /**
+     *  Method shows wanted cards when button " show card wanted" is click.
+     *  @param i counter
+     */
+
     function showDiv(i) {
 
         var x= document.getElementById("toHide"+i);
@@ -328,7 +341,8 @@ function showOpacity(){
         }
     }
 
-    var mostra = document.getElementById("mostra");
+   // da cancellare
+   var mostra = document.getElementById("mostra");
     var save = document.getElementById("save");
 
 

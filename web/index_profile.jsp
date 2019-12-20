@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: saram
-  Date: 05/10/2019
-  Time: 17:32
-  To change this template use File | Settings | File Templates.
---%>
+<!---This page keeps css of userprofile.jsp  when in profile servlet forward  is done --->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
