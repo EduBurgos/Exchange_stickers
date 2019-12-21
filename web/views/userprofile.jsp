@@ -54,14 +54,12 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         <% c= (CollectionOwn)request.getSession().getAttribute("snitch");}
         else{ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("logged");} %>
-        <% User u = c.getOwner();%>
 
-
-        <h1><%=u.getUsername()%></h1>
+        <h1><%=c.getOwner().getUsername()%></h1>
 
         <div class="meta">
-            <p><i class="name"></i>Name: <%=u.getNome()+" "+u.getCognome()%></p>
-            <p><i class="email"></i>E-mail: <%=u.getEmail()%></p>
+            <p><i class="name"></i>Name: <%=c.getOwner().getNome()+" "+c.getOwner().getCognome()%></p>
+            <p><i class="email"></i>E-mail: <%=c.getOwner().getEmail()%></p>
         </div>
     </section>
     <div class="section center-col content">
@@ -100,7 +98,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     <%Platform platform=Platform.getInstance();      %>
                     <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
                         <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>
-                            <% filterArray= platform.filtersCollections(u.getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
+                            <% filterArray= platform.filtersCollections(c.getOwner().getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
                         <%}%>
                     <%}%>
 
@@ -151,7 +149,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
             <!-- Visualizza scambi -->
             <div role="tabpanel" class="tab-pane" id="myexchanges" aria-labelledby="myexchanges-tab">
                 <%// Platform platform=Platform.getInstance();   %>
-                <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(u);%>
+                <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(c.getOwner());%>
                 <div class="row">
                     <%for(int i=0;i<ex.size();i++){%>
                 <div id="carousel<%=i%>" class="carousel slide col-sm-3" style="height: 32rem;">
@@ -159,8 +157,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     <div class="carousel-inner" role="listbox">
                         <%int attivo=0;%>
                         <% for (int ca: ex.get(i).get_id_card_owm()) { %>
-                        <% CardsDao cardsDao = new CardsDaoImpl();
-                            Card card=cardsDao.findByID(ca); %>
+                        <%Card card=platform.findCardByID(ca);%>
                         <%if(attivo==0){%>
                         <%attivo=1;%>
                         <div class="item active card" >
@@ -177,7 +174,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                         </div>
                                         <div class="col-sm-3" style="margin-left: 5px" >
                                             <!--se la transazione è mia vedo il cestino altrimenti no -->
-                                            <%if (ex.get(i).getId_user().equals(u.getUsername())){ %>
+                                            <%if (ex.get(i).getId_user().equals(c.getOwner().getUsername())){ %>
                                                 <form method="get" action= "../userprofile">
                                                     <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
                                                     <button type="submit" class="btn btn-danger">
@@ -208,8 +205,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>
                                 <% for (int ca: ex.get(i).getId_card_wanted()) { %>
-                                <% CardsDao cardsDao = new CardsDaoImpl();
-                                    Card card=cardsDao.findByID(ca); %>
+                                <% Card card=platform.findCardByID(ca); %>
                                 <%if(attivoW==0){%>
                                 <%attivoW=1;%>
                                 <div class="item active card">
