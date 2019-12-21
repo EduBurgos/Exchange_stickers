@@ -1,8 +1,10 @@
+
+-- Table that contains all cards
 CREATE TABLE catalog(
                         ID int PRIMARY KEY,
                         Category VARCHAR(32) NOT NULL,
                         Class VARCHAR(32) NOT NULL,
-                        Lvl NUMERIC(8) NOT NULL,
+                        Lvl NUMERIC(8) NOT NULL,   -- Level of the card
                         Rarity VARCHAR(16) NOT NULL,
                         CardType VARCHAR(32),
                         CardName VARCHAR(128) NOT NULL,
@@ -10,18 +12,18 @@ CREATE TABLE catalog(
                         unique(Class, Rarity, CardName, CardType)
 );
 
-
+-- Table that contains all the users signed up to the platform
 CREATE TABLE users(
                       Username VARCHAR(32) NOT NULL ,
                       NameUser VARCHAR(32) NOT NULL,
                       Surname VARCHAR(32) NOT NULL,
                       Mail VARCHAR(64) NOT NULL,
-                      pass VARCHAR(64) NOT NULL,
+                      pass VARCHAR(64) NOT NULL,  -- user's password
                       PRIMARY KEY (Username)
 );
 
 
-
+-- DA CHIEDERE
 CREATE TABLE accesses(
 
                          Username VARCHAR(32) NOT NULL ,
@@ -32,8 +34,7 @@ CREATE TABLE accesses(
 );
 
 
-
-/*Inserimento evento che cancella contenuto tabella accesses una volta al giorno*/
+-- Event that deletes table accesses content once a day
 SET GLOBAL event_scheduler = 1;
 
 CREATE EVENT cancelGifted
@@ -43,41 +44,46 @@ CREATE EVENT cancelGifted
     delete from
         accesses;
 
+-- Table that contains collections of all the users signed up to the platform
 CREATE TABLE collections(
-                            ID_Card int not null ,
-                            USERNAME VARCHAR(32) not null ,
-                            In_Market boolean,
-                            quantity int not null DEFAULT 1,
+                            ID_Card int not null ,             -- id of the card owned
+                            USERNAME VARCHAR(32) not null ,   -- username of the owner
+                            In_Market boolean,          -- inutile forse da cancellare
+                            quantity int not null DEFAULT 1, -- quantity of the card
                             primary key (ID_Card,USERNAME),
                              FOREIGN KEY (USERNAME) REFERENCES Users(Username),
                             FOREIGN KEY (ID_Card) REFERENCES Catalog(ID)
 );
 
+-- Table that records all the exchanges occurred
 create table exchanges(
-                          id_trans INT not null auto_increment,
-                          username VARCHAR(32) NOT NULL ,
-                          username_offer VARCHAR(32) DEFAULT NULL,
-                          trans_comp boolean DEFAULT FALSE,
-                          notified int not null DEFAULT 0,
+                          id_trans INT not null auto_increment,  -- id of the exchange
+                          username VARCHAR(32) NOT NULL ,  -- username of the user who started the exchange   */
+                          username_offer VARCHAR(32) DEFAULT NULL,  -- username of the user who accepts the exchange, null if the exchange is still open
+                          trans_comp boolean DEFAULT FALSE,     -- false when the exchange is created, true when it's accepted
+                          notified int not null DEFAULT 0, -- false when the exchange, which is accepted, is not notified to the user who started the exchange, true otherwise
                           primary key (id_trans),
                           foreign key(username) references users(username),
                           foreign key(username_offer) references users(username)
 
 );
 
+-- Table that contains all the cards offered by the users who start the exchanges
 create table Cards_own(
-                          Id_trans INT not null,
+                          Id_trans INT not null, -- id of the exchange
                           cardId  int not null ,
-                          quantity int(5) DEFAULT 1,
+                          quantity int(5) DEFAULT 1,  -- quantity of the card that can be exchangeable
                           primary key (Id_trans,cardId),
                           foreign key(Id_trans) references exchanges(id_trans)
                               ON DELETE CASCADE
                               ON UPDATE CASCADE
 );
+
+-- Table that contains all cards wanted by the users who start exchanges
 create table Cards_wanted(
-                             Id_trans INT not null,
+                             Id_trans INT not null,  -- id of the exchange
                              cardId  int not null ,
-                             quantity int(5) DEFAULT 1,
+                             quantity int(5) DEFAULT 1, -- quantity of the card that can be exchangeable
                              primary key (Id_trans,cardId),
                              foreign key (cardId) references catalog(ID),
                              foreign key(Id_trans) references exchanges(id_trans)
