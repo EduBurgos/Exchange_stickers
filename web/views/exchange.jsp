@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../stylesheets/exchange.css">
     <link rel="stylesheet" href="../bootstrap-3.3.7/js/bootstrap.min.js">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </head>
 
@@ -29,6 +29,7 @@
     <div id="tot">
         <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
 
+        <!-------- DIV CARTE DA SELEZIONARE DA DARE------->
         <div class="leftbox">
             <script>
                 var CardsToGiveArray = new Array();
@@ -49,7 +50,9 @@
                 <%}%>
             </div>
         </div>
+        <!-------- FINE DIV CARTE DA SELEZIONARE DA DARE------->
 
+        <!-------- DIV CARTE DA SELEZIONARE DA PRENDERE------->
         <div class="rightbox">
             <script>
                 var CardsToTakeArray = new Array();
@@ -69,6 +72,9 @@
             </div>
         </div>
     </div>
+    <!--------FINE DIV CARTE DA SELEZIONARE DA PRENDERE------->
+
+    <!-------- DIV RECAP------->
     <div id="recap">
         <div  id="cardsToGiveRecap">
             <h1>DIV RECAP DA DARE</h1>
@@ -77,6 +83,9 @@
             <h1>DIV RECAP DA PRENDERE</h1>
         </div>
     </div>
+    <!-------- FINE DIV RECAP------->
+
+    <!-------- DIV PULSANTE START------->
     <div id="start" >
         <script>
             if (CardsToTakeArray.length > 5 || CardsToGiveArray.length > 5 || CardsToTakeArray == null || CardsToGiveArray == null) {
@@ -101,35 +110,63 @@
         </script>
 
     </div>
+    <!-------- FINE DIV PULSANTE START------->
 
 </form>
 
 
 <script>
     //------------------------------------------------------------
+    /**
+     * main selection method to add or remove a card to give
+     *
+     * @param array --> is the array made by cards id
+     * @param card --> card id(it's not ought to be unique for each owned card)
+     * @param value --> string that identify the div where will be cloned the image
+     * @param i --> index used to identify each card
+     * @param tempArray --> is the array made by cards index
+     */
     function chooseCardsToGive(array, card, value, i, tempArray){
-        var id = card.toString().concat("input");
-        var idImg = card.toString() + value + i.toString();
+        var id = card.toString().concat("input");//create the input id
+        var idImg = card.toString() + value + i.toString();//create the img id
         console.log("l'idImg è "+idImg);
-        var me = document.getElementById(id);
+        var me = document.getElementById(id);//retrieve input element
         if(tempArray.includes(i) == true){
             removePictureToGive(idImg, value, i);
             document.getElementById(idImg).style.filter = "opacity(100%)";
             removeFromArray(array, card);
             removeFromArray(tempArray, i);
             me.setAttribute("name", "");
-            alert("a card is just removed, array:"+array);
+            console.log("a card is just removed, array:"+array);
+            Swal.fire({
+                icon: 'success',
+                title: 'carta rimossa dalla trattativa',
+                showConfirmButton: false,
+                timer: 1500})
         } else{
             showPictureToGive(idImg, value, i);
             document.getElementById(idImg).style.filter = "opacity(40%)";
             addToArray(array, card);
             addToArray(tempArray, i);
             me.setAttribute("name", value);
-            alert("a card is just added, array:"+array);
+            console.log("a card is just added, array:"+array);
+            Swal.fire({
+                icon: 'success',
+                title: 'carta aggiunta alla trattativa',
+                showConfirmButton: false,
+                timer: 1500})
         }
     }
+
+    /**
+     * method to add the selected card in recap div to give
+     *
+     * @param id
+     * @param where
+     * @param i
+     */
     function showPictureToGive(id, where,i) {
-        var idWhereToAdd = where.toString().concat("Recap");
+        var idWhereToAdd = where.toString().concat("Recap");//create id div where the card will be cloned
         var completeWhere = where.concat(i.toString());
         console.log("completeWhere = "+completeWhere);
         var idDiv = id.replace(completeWhere, "divToGive");
@@ -141,14 +178,21 @@
         var divCln = divCard.cloneNode(true);
         var img = document.getElementById(id);
         var imgCln = img.cloneNode(true);
-        var src = document.getElementById(idWhereToAdd);
-        divCln.setAttribute("id", idDivCopy);
+        var src = document.getElementById(idWhereToAdd);//retrieve div recap where will be cloned
+        divCln.setAttribute("id", idDivCopy);//set unique id to clone
         //divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
-        divCard.removeAttribute("style");
-        src.appendChild(divCln);
-
-
+        divCard.removeAttribute("style");//set color img without opacity filter
+        src.appendChild(divCln);//add the clone div to div recap
     }
+
+    /**
+     * method to remove the selected card in recap div to give
+     *
+     * @param id
+     * @param where
+     * @param i
+     * @returns {HTMLElement}
+     */
     function removePictureToGive(id, where, i) {
         //var idWhereToAdd = where.toString().concat("Recap");
         var completeWhere = where.concat(i.toString());
@@ -169,7 +213,14 @@
         console.log("elem = "+elem);
         return elem.parentNode.removeChild(elem);
     }
-    //------------------------------------------------------------
+
+    /**
+     * method to add a cards in the array that will be sent to server
+     *
+     * @param array
+     * @param card
+     * @param value
+     */
     function chooseCards(array, card, value){
         var id = card.toString().concat("input");
         var idImg = card.toString() + value;
@@ -177,9 +228,22 @@
         showPicture(idImg, value, card);
         addToArray(array, card);
         me.setAttribute("name", value);
-        alert("a card is just added, array:"+array);
+        console.log("a card is just added, array:"+array);
+        //alert
+        Swal.fire({
+            icon: 'success',
+            title: 'carta aggiunta alla trattativa',
+            showConfirmButton: false,
+            timer: 1500})
     }
 
+    /**
+     * method to remove a cards from the array that will be sent to server
+     *
+     * @param array
+     * @param card
+     * @param value
+     */
     function removeSelectedCard(array, card, value) {
         console.log("inizia il removeSelectedCard");
         var id = card.toString().concat("input");
@@ -188,9 +252,21 @@
         removePicture(idImg, value);
         removeFromArray(array, card);
         me.setAttribute("name", "");
-        alert("a card is just removed, array:"+array);
+        console.log("a card is just removed, array:"+array);
+        Swal.fire({
+            icon: 'success',
+            title: 'carta rimossa dalla trattativa',
+            showConfirmButton: false,
+            timer: 1500})
     }
 
+    /**
+     * method to add the selected card in recap div to take
+     *
+     * @param id
+     * @param where
+     * @param idCard
+     */
     function showPicture(id, where, idCard) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
@@ -206,6 +282,12 @@
         divCln.setAttribute("onclick", "removeSelectedCard(CardsToTakeArray,"+ idCard+" , toTake)");
         src.appendChild(divCln);
     }
+    /**
+     * method to remove the selected card in recap div to take
+     *
+     * @param id
+     * @param where
+     */
     function removePicture(id, where) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
@@ -221,17 +303,17 @@
         var elem = document.getElementById(idDivCopy);
         return elem.parentNode.removeChild(elem);
     }
+
+
     function selDeselCards(array, action) {
         var me = document.currentScript;
         var value = me.getAttribute("value");
         if (array.includes(value) == true) {
             me.removeAttribute("name");
             removeFromArray(array, value);
-            //alert("a card is just removed, array:"+array);
         } else {
             me.setAttribute("name", action);
             addToArray(array, value, action);
-            //alert("a card is just added, array:"+array);
         }
     }
     // method to add an element selected to array, we will use it to create the arrays to pass to servlet(one for cards to send and the other to receive)
@@ -242,11 +324,26 @@
         var pos = array.indexOf(card);
         array.splice(pos, 1);
     }
+
+    /**
+     * method to start exchange, except if user selected no cards or more than 5
+     *
+     * @param array1 --> array with cards to give
+     * @param array2 --> array with cards to take
+     */
     function startChange(array1, array2) {
         if (array1.length > 5 || array2.length > 5 ) {
-            alert("non puoi selezionare più di 5 carte");
+            Swal.fire({
+                icon: 'warning',
+                title: 'non puoi selezionare più di 5 carte',
+                showConfirmButton: false,
+                timer: 2000})
         } else if(array1.length == 0 || array2.length ==0 ){
-            alert("devi selezionare almeno una carta");
+            Swal.fire({
+                icon: 'warning',
+                title: 'devi selezionare almeno una carta',
+                showConfirmButton: false,
+                timer: 2000})
         } else{
             document.getElementById("myForm").submit();
         }

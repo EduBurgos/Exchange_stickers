@@ -1,10 +1,13 @@
+<!-- NAVIGATION BAR : this page contains the top navigation bar with links to Home, Exchange, Search's Navbar, Notification, Help and Account ;
+it is included in each page of the application -->
+
+
 <%@ page import="dao.CardsDao" %>
 <%@ page import="userSide.Exchange" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="platform.Platform" %>
 <%@ page import="collection.Card" %>
-<!-- NAVIGATION BAR : this page contains the top navigation bar with links to Home, Reservations and Catalogue ;
-it is included in each page of the application -->
+
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -223,7 +226,7 @@ it is included in each page of the application -->
     }
 </script>
 
-<!-----SCRIPT OF THE SEARCH WITH FILTERS----->
+
 
 
 

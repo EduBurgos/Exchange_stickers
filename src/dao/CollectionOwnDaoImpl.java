@@ -153,7 +153,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
 /**.....................................METODO DI RICERCA.................................**/
 
-
+    int verifica=0;
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
 
         ArrayList<Card> list= new ArrayList<Card>();
@@ -229,9 +229,16 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                 cse.printStackTrace();
             }
         }
+        controllo2(verifica++);
         return list;
     }
+    public String controllo2(int v){
+        if(v==2)
+            return "Metodo eseguito una seconda volta";
+         else
+             return "eseguito solo una volta";
 
+    }
     /**......................FINE METODI DI RICERCA..................................**/
     @Override
     public ArrayList<Card> openSachet(User user){

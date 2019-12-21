@@ -1,3 +1,6 @@
+<!--- USERPROFILE: This page shows informations about  the user who is logged to the platform,their collection and the exchanges made by them;
+It contains the feature "snitch card" which allows to see other users' profiles.-->
+
 <%@ page import="userSide.User" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="collection.Card" %>
@@ -7,14 +10,7 @@
 <%@ page import="userSide.Exchange" %>
 <%@ page import="dao.*" %>
 
-<%--
-  Created by IntelliJ IDEA.
-  User: Utente
-  Date: 09/07/2019
-  Time: 23:10
-  To change this template use File | Settings | File Templates.
---%>
-<%-- <%@ page contentType="text/html;charset=UTF-8" language="java" %> --%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +47,8 @@
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
+        <!--This part allows me to see informations of the user logged if the attribute "snitch" is null otherwise it shows informations about the user searched
+            if the attribute is set in the userprofile servlet when  "snitch card" feature is used --->
         <% CollectionOwn c; %>
         <% if(request.getSession().getAttribute("snitch")!=null){ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("snitch");}
@@ -67,15 +65,6 @@
         </div>
     </section>
     <div class="section center-col content">
-        <!-- Nav -->
-        <!--
-        <nav class="profile-nav">
-            <ul>
-                <li class="collection">My Collection</li>
-                <li>Scambiabili</li>
-            </ul>
-        </nav>
-        -->
 
         <!-- Nav tabs -->
         <div class="row">
@@ -101,9 +90,11 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
+            <!---  TAB MY COLLECTIONS:It shows cards belonging to my collection. --->
             <div role="tabpanel fade in show active" class="tab-pane fade in active" id="mycollection" aria-labelledby="mycollection-tab">
                 <div class="row">
 
+                    <!--It is used to show cards filtered  by users using the search filter of the navbar --->
                     <%int conta=0;%>
                     <% ArrayList<Card> filterArray =null;   %>
                     <%Platform platform=Platform.getInstance();      %>
@@ -142,7 +133,8 @@
                     <%}%>
                                 <%}%>
                 </div>
-            </div>
+            </div> <!--- END MY COLLECTION-->
+
             <!-- QUESTO PERMETTE SAPERE LE CARTE ALTRUI -->
             <div role="tabpanel" class="tab-pane" id="exchangeables" aria-labelledby="exchangeables-tab">
 
@@ -156,7 +148,6 @@
 
             </div>
 
-            <!-- Visualizza scambi -->
             <!-- Visualizza scambi -->
             <div role="tabpanel" class="tab-pane" id="myexchanges" aria-labelledby="myexchanges-tab">
                 <%// Platform platform=Platform.getInstance();   %>

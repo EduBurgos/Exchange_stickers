@@ -10,16 +10,13 @@ import java.util.ArrayList;
  * Class that represents a user
  */
 public class User {
-    /**User's name*/
+
     private String nome;
-    /**User's surname*/
     private String cognome;
-    /**User's username*/
     private String username;
-    /**User's password*/
     private String pass;
-    /**User's email*/
     private String email;
+
 
     /**
      * Overloading constructor used for new users
@@ -80,11 +77,11 @@ public class User {
 
     /**
      * Method used to see if there are two users with the same name, surname, username and email
-     * @param second user that we want to check
-     * @return true if there are two users with the same name, surname, username and email, false if not
+     * @param   second user that we want to check
+     * @return  true if there are two users with the same name, surname, username and email, false if not
      */
 
-    public boolean equals(User second){ //metodo per definire se è uguale ad un altro user
+    public boolean equals(User second){
         return (this.nome.equals(second.nome)) && (this.cognome.equals(second.cognome)) && (this.username.equals(second.username)) && (this.email.equals(second.email));
     }
 
