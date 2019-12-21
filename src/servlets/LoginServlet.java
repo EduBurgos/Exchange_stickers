@@ -18,6 +18,22 @@ public class LoginServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
     final String secretkey = "chiavesupersegretissimaXD";
 
+    /**
+     * method to check if username and password from login form are correct.
+     * <p>
+     *     If all is correct sets some session's parameters for that user.
+     *     and redirect the request to a new jsp page (Homepage).
+     *     On the other hand if the username or the password are not correct it sets an error message
+     *     and redirect the request to the same page (login)
+     * </p>
+     * @param request
+     * @param response
+     *
+     * @throws ServletException
+     * @throws IOException
+     *
+     */
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
@@ -48,6 +64,13 @@ public class LoginServlet extends AbstractServlet {
         forwardTo(request, response, INDEX_ROUTE);
     }
 
+    /**
+     * Checks if the input fields from the login form are correct using platform's login method
+     * which returns the collection of the logged user.
+     * @param request
+     * @return CollectionOwn the card's collection of the logged user.
+     * @throws SQLException
+     */
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
 
         String name = request.getParameter("name");

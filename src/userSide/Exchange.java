@@ -7,14 +7,24 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/** Class that represents the exchanges created by a user
+ **/
 public class Exchange {
     private int id_trans;
     private String username;
     private String username_offerente;
     private ArrayList<Integer> card_owm;
     private ArrayList<Integer> card_wanted;
-    private boolean trans_comp; //true se completata altrimenti false
+    private boolean trans_comp; //true if completed else false
 
+    /**
+     * Constructor for uncompleted exchange
+     * Used for users exchanges that are not accepted by someone , yet
+     * @param id_trans an int number. Indicates the id on the database of the exchange
+     * @param username a String. Indicates the username of the one who created the exchange
+     * @param card_owm an ArrayList of integer. Indicates the ids of  cards to sell
+     * @param card_wanted an ArrayList of integer. Indicates the ids of cards to receive
+     */
     public Exchange(int id_trans,String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted) {
         this.id_trans = id_trans;
         this.username = username;
@@ -23,12 +33,21 @@ public class Exchange {
         this.username_offerente= null;
         this.trans_comp=false;
     }
-    public Exchange(int id_trans, String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted, boolean trans_comp,String username_offerente) {
+    /**
+     * Constructor for completed exchange
+     * Used for users exchanges that are not accepted by someone , yet
+     * @param id_trans an int number. Indicates the id on the database of the exchange
+     * @param username a String. Indicates the username of the one who created the exchange
+     * @param card_owm an ArrayList of integer. Indicates the ids of  cards to sell
+     * @param card_wanted an ArrayList of integer. Indicates the ids of cards to receive
+     * @param username_offerente a String. Indicates the username of the buyer.
+     */
+    public Exchange(int id_trans, String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted,String username_offerente) {
         this.id_trans = id_trans;
         this.username= username;
         this.card_owm = card_owm;
         this.card_wanted = card_wanted;
-        this.trans_comp = trans_comp;
+        this.trans_comp = true;
         this.username_offerente=username_offerente;
     }
 
