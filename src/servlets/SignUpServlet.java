@@ -18,6 +18,8 @@ import java.sql.SQLException;
 @WebServlet(name = "SignUpServlet", urlPatterns = "/signUp")
 public class SignUpServlet extends AbstractServlet {
 
+    private final int numbercard = 6;
+
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
     /**dove imposta name, surname e Username ? **/
@@ -91,7 +93,7 @@ public class SignUpServlet extends AbstractServlet {
                 Facade card = new FacadeImplements();
                 //CollectionOwnDao cart = new CollectionOwnDaoImpl();
 
-                for(int i = 0; i<6; i++) {
+                for(int i = 0; i<numbercard; i++) {
                     card.createRandomCard(u);
                 }
                 forwardTo(request, response, INDEX_ROUTE);
