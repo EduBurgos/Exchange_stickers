@@ -7,8 +7,6 @@ import org.junit.jupiter.api.*;
 import platform.Platform;
 import userSide.Exchange;
 import userSide.User;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -25,19 +23,25 @@ public class PlatformTest {
     private Map<Card,Integer> cardsWanted;
 
 
+    /**
+     * Test signup method creating an user and checking if we can get his collection, generated randomly, from database
+     */
     @Test
     @Order(1)
     public void signupTest(){
         try {
             Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
             cardsOwn = new CollectionOwnDaoImpl().getCollentionOwn(testUser);
-            assertEquals(true, result);
+            assertTrue(result);
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    /**
+     * Test login method trying access with an user and checking if we find correctly his collection in database
+     */
     @Test
     @Order(2)
     public void loginTest(){
@@ -72,6 +76,9 @@ public class PlatformTest {
         }
     }
 
+    /**
+     *
+     */
     @Test
     @Order(3)
     public void setExchangeTest(){
@@ -86,6 +93,9 @@ public class PlatformTest {
         }
     }
 
+    /**
+     * Test the case when an user accept an exchange checking if method returns true value
+     */
     @Test
     @Order(4)
     public void acceptExchangeTest(){
@@ -109,16 +119,18 @@ public class PlatformTest {
     }
 
 
-
-
-
-
-
+    /**
+     * method used to generate an user without redundant issue that can be used to test
+     * @return testUser The user will be used to Test
+     */
     private User getTestUser(){
         User tempUser = new User("nomeProva"+randomStringGeneratore(), "cognomeProva"+randomStringGeneratore(), "emailProva"+randomStringGeneratore()+"@test.com", "passwordTest"+randomStringGeneratore());
         return testUser;
     }
 
+    /**
+     * method to generate a random string
+     */
     private String randomStringGeneratore(){
             int leftLimit = 97; // letter 'a'
             int rightLimit = 122; // letter 'z'
@@ -137,8 +149,8 @@ public class PlatformTest {
 
     /**
      * method to set 5 sorted cards in arraylist
-     * @param i
-     * @return set List
+     * @param i Index of first card
+     * @return setList The list of cards
      */
     private ArrayList<Integer> setTestCards(int i){
         ArrayList<Integer> setList = new ArrayList<>();
