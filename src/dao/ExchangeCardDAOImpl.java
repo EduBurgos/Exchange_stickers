@@ -245,7 +245,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             while (result.next()) {
                 cardwanted.add(result.getInt("cardId"));
             }
-            return new Exchange(id_trans, result.getString("username"), cardown,cardwanted, result.getBoolean("trans_comp"),result.getString("username_offer"));
+            return new Exchange(id_trans, result.getString("username"), cardown,cardwanted);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -355,7 +355,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                     }
                 }
                 //aggiungo scambio alla lista
-                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
+                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted));
                 if(result==null)
                 {
                     break;
@@ -411,8 +411,22 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
         }
     }
-    /**..............METODI PER CERCARE LE TRATATTIVE**/
-    /**Metodo che mi trova tratativa/e */
+
+    /**
+     * Method that allows the logged user to find certain available exchanges,except for the ones starded by logged user,
+     *  through the filters of the search bar.
+     * <p>
+     *     depending to parameters specified, the original query is completed in such a way that
+     *     it can returned the requested exchanges
+     * </p>
+     * @param user logged user
+     * @param name  name of the card that belongs to searched exchange.
+     * @param category  category of the card that belong to searched exchange.
+     * @param classCard  class of the card that belong to searched exchange.
+     * @param typeCard  type of the card that belong to searched exchange.
+     * @return ArrayList that contains the requested exchanges from logged user.
+     * @throws SQLException
+     * */
     public ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
         conn=null;
         ArrayList<Exchange> answer= new ArrayList<>();
@@ -494,7 +508,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                                 break;
                             }
                         }
-                        answer.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl,username_offer));
+                        answer.add(new Exchange(id_trans,username, cardown, cardwanted));
                         if(result==null)
                         {
                             break;

@@ -151,7 +151,21 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
 
-/**.....................................METODO DI RICERCA.................................**/
+
+    /**
+     * Method that allows the logged user to find certain cards in his collection,
+     * through the filters of the search bar.
+     * <p>
+     *      depending to parameters specified, the original query is completed in such a way that
+     *      it can returned the requested cards
+     * </p>
+     * @param user logged user
+     * @param name  name of the card searched.
+     * @param category  category of the card searched.
+     * @param classCard  class of the card searched .
+     * @param typeCard  type of the card searched.
+     * @return ArrayList that contains the requested cards from logged user.
+     */
 
     int verifica=0;
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
@@ -232,6 +246,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         controllo2(verifica++);
         return list;
     }
+
+
+
     public String controllo2(int v){
         if(v==2)
             return "Metodo eseguito una seconda volta";
@@ -239,7 +256,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
              return "eseguito solo una volta";
 
     }
-    /**......................FINE METODI DI RICERCA..................................**/
+
     @Override
     public ArrayList<Card> openSachet(User user){
         ArrayList<Card> c = new ArrayList<Card>();
