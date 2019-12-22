@@ -159,15 +159,13 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      *      depending to parameters specified, the original query is completed in such a way that
      *      it can returned the requested cards
      * </p>
-     * @param user logged user
-     * @param name  name of the card searched.
-     * @param category  category of the card searched.
-     * @param classCard  class of the card searched .
-     * @param typeCard  type of the card searched.
-     * @return ArrayList that contains the requested cards from logged user.
+     * @param user type User. Indicates logged user
+     * @param name  a String. Indicates name of the card searched.
+     * @param category  a String. Indicates category of the card searched.
+     * @param classCard a String. Indicates class of the card searched .
+     * @param typeCard  a String. Indicates type of the card searched.
+     * @return ArrayList<Card> that contains the requested cards from logged user.
      */
-
-    int verifica=0;
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
 
         ArrayList<Card> list= new ArrayList<Card>();
@@ -243,19 +241,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                 cse.printStackTrace();
             }
         }
-        controllo2(verifica++);
         return list;
     }
 
 
 
-    public String controllo2(int v){
-        if(v==2)
-            return "Metodo eseguito una seconda volta";
-         else
-             return "eseguito solo una volta";
 
-    }
 
     @Override
     public ArrayList<Card> openSachet(User user){

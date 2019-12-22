@@ -279,23 +279,27 @@ public class Platform {
     }
 
 
-    /**.........................METODI DI RICERCA........**/
 
+    /**
+     * Method used to filter cards belonging to logged user  by the name, category,
+     * class and/or type
+     * @param username a String. Indicates username of the user logged
+     * @param nameCard a String.Indicates name of the card searched
+     * @param category a String.Indicates category of the cards searched
+     * @param classCard a String.Indicates class of the cards searched
+     * @param typeCard a String.Indicates type of the cards searched
+     * @return ArrayList<Card> Indicates all cards filtered
+     * @throws SQLException exception caused by database
+     */
     public ArrayList<Card> filtersCollections(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
         ArrayList<Card> list= new ArrayList<Card>();
-        User account=null;
+        User account;
         try{
             Facade user = new FacadeImplements();
             account= user.findByUsername(username);
-
-            //UserDao user=new UserDaoImpl();
-            //account= user.findByUsername(username);
             if(account!=null){
                 FacadeImplements f = new FacadeImplements();
                 list = f.filters(account,nameCard,category,classCard,typeCard);
-
-                //CollectionOwnDaoImpl collectionOwnDao= new CollectionOwnDaoImpl();
-                //list=collectionOwnDao.filters(account,nameCard,category,classCard,typeCard);
             }
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -303,6 +307,17 @@ public class Platform {
         return list;
     }
 
+    /**
+     * Method used to filter exchanges by the name, category, class and/or type
+     * of one of the cards offered in the exchange made by other users
+     * @param username a String. Indicates username of logged user
+     * @param nameCard a String. Indicates name of one of the cards searched offered in exchange
+     * @param category a String. Indicates category of one of the cards searched offered in exchange
+     * @param classCard a String. Indicates class of one of the cards searched offered in exchange
+     * @param typeCard a String. Indicates type of one of the cards searched offered in exchange
+     * @return ArrayList<Exchange> Indicates all the exchanges filtered
+     * @throws SQLException exception caused by database
+     */
     public ArrayList<Exchange> filtersExchanges(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
         ArrayList<Exchange> list= new ArrayList<>();
         User account=null;

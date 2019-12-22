@@ -419,12 +419,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
      *     depending to parameters specified, the original query is completed in such a way that
      *     it can returned the requested exchanges
      * </p>
-     * @param user logged user
-     * @param name  name of the card that belongs to searched exchange.
-     * @param category  category of the card that belong to searched exchange.
-     * @param classCard  class of the card that belong to searched exchange.
-     * @param typeCard  type of the card that belong to searched exchange.
-     * @return ArrayList that contains the requested exchanges from logged user.
+     * @param user type User. Indicates logged user
+     * @param name  a String. Indicates name of the card that belongs to searched exchange.
+     * @param category  a String. Indicates category of the card that belong to searched exchange.
+     * @param classCard a String. Indicates class of the card that belong to searched exchange.
+     * @param typeCard  a String. Indicates type of the card that belong to searched exchange.
+     * @return ArrayList<Exchange> that contains the requested exchanges from logged user.
      * @throws SQLException
      * */
     public ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
