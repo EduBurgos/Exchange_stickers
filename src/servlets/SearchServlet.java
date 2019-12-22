@@ -14,7 +14,6 @@ public class SearchServlet extends AbstractServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
     }
 
     /**
