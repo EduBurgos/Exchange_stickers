@@ -1,3 +1,4 @@
+programma
 <%@ page import="collection.Card" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="collection.CollectionOwn" %>
@@ -119,12 +120,11 @@
     //------------------------------------------------------------
     /**
      * main selection method to add or remove a card to give
-     *
-     * @param array --> is the array made by cards id
-     * @param card --> card id(it's not ought to be unique for each owned card)
-     * @param value --> string that identify the div where will be cloned the image
-     * @param i --> index used to identify each card
-     * @param tempArray --> is the array made by cards index
+     * @param array Is the array made by cards id
+     * @param card Card id(it's not ought to be unique for each owned card)
+     * @param value String that identify the div where will be cloned the image
+     * @param i Index used to identify each card
+     * @param tempArray Is the array made by cards index
      */
     function chooseCardsToGive(array, card, value, i, tempArray){
         var id = card.toString().concat("input");//create the input id
@@ -160,10 +160,9 @@
 
     /**
      * method to add the selected card in recap div to give
-     *
-     * @param id
+     * @param id Rapresents the image id of card we want to add
      * @param where
-     * @param i
+     * @param idCard Rapresents the id of card we want to add
      */
     function showPictureToGive(id, where,i) {
         var idWhereToAdd = where.toString().concat("Recap");//create id div where the card will be cloned
@@ -187,11 +186,9 @@
 
     /**
      * method to remove the selected card in recap div to give
-     *
-     * @param id
+     * @param id Rapresents the id of card we want to remove
      * @param where
-     * @param i
-     * @returns {HTMLElement}
+     * @param i Rapresents unique index
      */
     function removePictureToGive(id, where, i) {
         //var idWhereToAdd = where.toString().concat("Recap");
@@ -215,11 +212,10 @@
     }
 
     /**
-     * method to add a cards in the array that will be sent to server
-     *
-     * @param array
-     * @param card
-     * @param value
+     * method to add a cards in the array that will be sent to server. This method works on divs
+     * @param array Array where il be added or removed ids
+     * @param  Rapresents the card id
+     * @param value It's a string that rapresent where I'm working(toGive or toTake)
      */
     function chooseCards(array, card, value){
         var id = card.toString().concat("input");
@@ -239,7 +235,6 @@
 
     /**
      * method to remove a cards from the array that will be sent to server
-     *
      * @param array
      * @param card
      * @param value
@@ -262,10 +257,9 @@
 
     /**
      * method to add the selected card in recap div to take
-     *
-     * @param id
+     * @param id Rapresents the image id of card we want to add
      * @param where
-     * @param idCard
+     * @param idCard Rapresents the id of card we want to add
      */
     function showPicture(id, where, idCard) {
         var idWhereToAdd = where.toString().concat("Recap");
@@ -284,8 +278,7 @@
     }
     /**
      * method to remove the selected card in recap div to take
-     *
-     * @param id
+     * @param id Rapresents the id of card we want to remove
      * @param where
      */
     function removePicture(id, where) {
@@ -304,7 +297,11 @@
         return elem.parentNode.removeChild(elem);
     }
 
-
+    /**
+     * Method used to add and remove attribute 'name', which is the way to manipulate and sent cards we choose
+     * @param array rapresenyts wich array will be modified
+     * @param action rapresents what div we will operate in
+     */
     function selDeselCards(array, action) {
         var me = document.currentScript;
         var value = me.getAttribute("value");
@@ -327,9 +324,8 @@
 
     /**
      * method to start exchange, except if user selected no cards or more than 5
-     *
-     * @param array1 --> array with cards to give
-     * @param array2 --> array with cards to take
+     * @param array1 Array with cards to give
+     * @param array2 Array with cards to take
      */
     function startChange(array1, array2) {
         if (array1.length > 5 || array2.length > 5 ) {
