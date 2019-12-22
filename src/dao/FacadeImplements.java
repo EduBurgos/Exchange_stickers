@@ -272,6 +272,7 @@ public class FacadeImplements implements Facade
     }
     /**
      *TODO: Capire cosa fa questo metodo
+     * TOEDU: lo avete scritto tu e paolo, viene usato nella registrazione per controllare che l'utente non sia già presente nel db
      * @param user
      * @return
      */
