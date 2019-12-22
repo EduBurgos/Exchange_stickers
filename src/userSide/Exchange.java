@@ -34,20 +34,21 @@ public class Exchange {
         this.trans_comp=false;
     }
     /**
-     * Constructor for completed exchange
+     * Constructor for generic exchange
      * Used for users exchanges that are not accepted by someone , yet
      * @param id_trans an int number. Indicates the id on the database of the exchange
      * @param username a String. Indicates the username of the one who created the exchange
      * @param card_owm an ArrayList of integer. Indicates the ids of  cards to sell
      * @param card_wanted an ArrayList of integer. Indicates the ids of cards to receive
+     * @param trans_comp  boolean.Indicates if the transaction is completed
      * @param username_offerente a String. Indicates the username of the buyer.
      */
-    public Exchange(int id_trans, String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted,String username_offerente) {
+    public Exchange(int id_trans, String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted,boolean trans_comp,String username_offerente) {
         this.id_trans = id_trans;
         this.username= username;
         this.card_owm = card_owm;
         this.card_wanted = card_wanted;
-        this.trans_comp = true;
+        this.trans_comp =trans_comp;
         this.username_offerente=username_offerente;
     }
 
