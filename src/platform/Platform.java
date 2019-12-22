@@ -44,19 +44,17 @@ public class Platform {
 
 
     /**
-     * This method controls if the user is already registered to the platform
-     * @param username
-     * @param pass
+     * Returns the collection of the logged users
+     * This method checks if the user is already registered to the platform and if username and password are correct
+     * @param username a String of the user to check
+     * @param pass a String
      * @return  CollectionOwn logged
      * @exception SQLException
      */
-
-    //metodo per il login
     public CollectionOwn LogIn(String username,String pass) throws SQLException {
         User logg = null;
 
         try {
-            //UserDao userDao = new UserDaoImpl();
 
             Facade user = new FacadeImplements();
 
@@ -67,9 +65,6 @@ public class Platform {
                 //quando loggo carico anche carte utente in collectionOwn
                 FacadeImplements f = new FacadeImplements();
                 CollectionOwn collectionOwn = new CollectionOwn(logg,f.getCollentionOwn(logg));
-
-                //CollectionOwnDaoImpl collectionOwnDao = new CollectionOwnDaoImpl();
-                //CollectionOwn collectionOwn = new CollectionOwn(logg,collectionOwnDao.getCollentionOwn(logg));
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
@@ -106,16 +101,7 @@ public class Platform {
             return false;
     }
 
-    //metodo controllo usernames
-    public Boolean checkUsername(User user){
 
-    /*    for (User i: this.users
-        ) {
-            if(i.getUsername().equals(user.getUsername())){
-                return false;}
-        }*/
-        return true;
-    }
 
 
     //mmh inutile per ora
@@ -174,7 +160,7 @@ public class Platform {
         return new CollectionOwn(collectionOwn.getOwner(),collectionOwn.searchCard(toSearch));
     }
 
-    // metodo per rimuovere carta dell'utente
+    // mai usato
     public void removeCard(User user, Card card){
 
         Facade ud = new FacadeImplements();
@@ -427,7 +413,7 @@ public class Platform {
 
     public ArrayList<Exchange> notifyDoneExchanges(User user) throws SQLException{
         FacadeImplements temp = new FacadeImplements();
-        ArrayList<Exchange> result = temp.exchangeToNotify(user);
+        ArrayList<Exchange> result = temp.getAllExchange(user,"notify");
         for (Exchange ex: result
              ) {
             temp.setExchangeNotified(ex);

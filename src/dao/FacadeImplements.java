@@ -285,15 +285,6 @@ public class FacadeImplements implements Facade
      * @param
      * @return
      */
-    public ArrayList<Exchange> exchangeToNotify(User user) throws SQLException{
-        ExchangeCardDAO temp = new ExchangeCardDAOImpl();
-        return temp.getAllExchange(user,"notify");
-    }
-    /**
-     *
-     * @param
-     * @return
-     */
     @Override
     public void setExchangeNotified(Exchange exchange) throws SQLException {
         ExchangeCardDAO temp = new ExchangeCardDAOImpl();
