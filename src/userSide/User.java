@@ -19,11 +19,11 @@ public class User {
 
 
     /**
-     * Overloading constructor used for new users
-     * @param nome new user's name
-     * @param cognome new user's surname
-     * @param username new user's email
-     * @param email new user's email
+     * Constructor for user
+     * @param nome a String. Indicates user's name
+     * @param cognome a String. Indicates user's surname
+     * @param username a String. Indicates user's email
+     * @param email a String. Indicates user's email
      */
     public User(String nome, String cognome, String username, String email){
         this.nome = nome;
@@ -77,7 +77,7 @@ public class User {
 
     /**
      * Method used to see if there are two users with the same name, surname, username and email
-     * @param   second user that we want to check
+     * @param   second type User. Indicates a user who will be compared
      * @return  true if there are two users with the same name, surname, username and email, false if not
      */
 

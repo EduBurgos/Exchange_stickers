@@ -16,7 +16,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      */
     private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) AND Username = ?";
 
-    private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username, In_Market)"+"VALUES";
+    private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username)"+"VALUES";
 
     private static final String new_randow_card_for_new_user ="insert into collections(ID_Card,USERNAME) values ((select id from catalog order by rand() limit 1),?)";
 
@@ -24,7 +24,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
 
+    private static final String SEE_GIFTED_QUERY="select * from accesses where Username=?";
 
+    private static final String INSERT_GIFTED_QUERY="insert into accesses (Username) VALUES(?)";
+
+    private static final String insert_collection="insert into collections (ID_CARD,Username) values ((select id from catalog order by rand() limit 1),?) ON DUPLICATE KEY UPDATE quantity=quantity+1;";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -32,11 +36,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     ResultSet result = null;
 
 
-    public boolean insert(User user, Card card, boolean in_market) {
+    public boolean insert(User user, Card card) {
         conn = null;
         try {
             conn = connector.createConnection();
-            String query2 = INSERT_QUERY + "("+user.getUsername()+", "+card.getId()+", "+in_market+")";
+            String query2 = INSERT_QUERY + "("+user.getUsername()+", "+card.getId()+")";
             preparedStatement = conn.prepareStatement(query2);
             preparedStatement.execute();
             return true;
@@ -114,7 +118,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         try{
             Card card;
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(new_randow_card_for_new_user);
+            preparedStatement = conn.prepareStatement(insert_collection);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.execute();
             card = get_last_card(user);
@@ -122,6 +126,58 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         }catch (SQLException e){
             System.out.println(e.toString());
             return null;
+        }
+
+    }
+
+    /**
+     * Method used to gift five new cards to user when they log to the platform.
+     * Cards can be gifted once a day
+     * <p>
+     *     Checks in the database table accesses if the user has logged to the platform today. If it's their first
+     *     time they logged for that day, the user receives new cards and the user's username in  inserted to
+     *     the table
+     * </p>
+     * @param user type User. Indicates user that has to be checked if they already logged today
+     */
+    public void giftCard(User user){
+        int nCards=5;
+        try{
+            conn = connector.createConnection();
+            preparedStatement = conn.prepareStatement(SEE_GIFTED_QUERY);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.execute();
+            result = preparedStatement.getResultSet();
+
+            if(!result.next()){
+                for(int i=0;i<nCards;i++){
+                    createRandomCard(user);
+                }
+                preparedStatement = conn.prepareStatement(INSERT_GIFTED_QUERY);
+                preparedStatement.setString(1, user.getUsername());
+                preparedStatement.execute();
+                preparedStatement.setString(1,user.getUsername());
+
+                }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                preparedStatement.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
         }
 
     }

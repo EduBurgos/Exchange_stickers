@@ -138,6 +138,12 @@ public class FacadeImplements implements Facade
         return f.filters(user, name, category, classCard, typeCard);
     }
 
+    @Override
+    public void giftCard(User user){
+        CollectionOwnDao f= new CollectionOwnDaoImpl();
+        f.giftCard(user);
+    }
+
     /*EXCHANGE CARD DAO*/
     /**
      * TODO: Capire cosa fa questo metodo

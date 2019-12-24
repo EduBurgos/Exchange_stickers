@@ -48,7 +48,7 @@ CREATE EVENT cancelGifted
 CREATE TABLE collections(
                             ID_Card int not null ,             -- id of the card owned
                             USERNAME VARCHAR(32) not null ,   -- username of the owner
-                            In_Market boolean,          -- inutile forse da cancellare
+                           -- In_Market boolean,          -- inutile forse da cancellare
                             quantity int not null DEFAULT 1, -- quantity of the card
                             primary key (ID_Card,USERNAME),
                              FOREIGN KEY (USERNAME) REFERENCES Users(Username),
@@ -526,40 +526,40 @@ INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegr
 
 
 /*Obe*/
-INSERT INTO collections VALUES(1 ,'Obe',false, 2);
-INSERT INTO collections VALUES(2 ,'Obe' ,false, 2);
-INSERT INTO collections VALUES(3 ,'Obe',false, 2);
-INSERT INTO collections VALUES(4 ,'Obe',false, 2);
-INSERT INTO collections VALUES(5 ,'Obe',false, 2);
+INSERT INTO collections VALUES(1 ,'Obe',2);
+INSERT INTO collections VALUES(2 ,'Obe',2);
+INSERT INTO collections VALUES(3 ,'Obe',2);
+INSERT INTO collections VALUES(4 ,'Obe',2);
+INSERT INTO collections VALUES(5 ,'Obe',2);
 
 /*Sau*/
-INSERT INTO collections VALUES(6 ,'Sau',false, 2);
-INSERT INTO collections VALUES(7 ,'Sau',false, 2);
-INSERT INTO collections VALUES(8 ,'Sau',false, 2);
-INSERT INTO collections VALUES(9 ,'Sau',false, 2);
-INSERT INTO collections VALUES(10 ,'Sau',false, 2);
+INSERT INTO collections VALUES(6 ,'Sau',2);
+INSERT INTO collections VALUES(7 ,'Sau',2);
+INSERT INTO collections VALUES(8 ,'Sau',2);
+INSERT INTO collections VALUES(9 ,'Sau',2);
+INSERT INTO collections VALUES(10 ,'Sau',2);
 
 /*Zay*/
-INSERT INTO collections VALUES(10 ,'Zay',false, 2);
-INSERT INTO collections VALUES(11 ,'Zay',false, 2);
-INSERT INTO collections VALUES(12 ,'Zay',false, 2);
-INSERT INTO collections VALUES(13 ,'Zay',false, 2);
-INSERT INTO collections VALUES(14 ,'Zay',false, 2);
+INSERT INTO collections VALUES(10 ,'Zay',2);
+INSERT INTO collections VALUES(11 ,'Zay',2);
+INSERT INTO collections VALUES(12 ,'Zay',2);
+INSERT INTO collections VALUES(13 ,'Zay',2);
+INSERT INTO collections VALUES(14 ,'Zay',2);
 
 /*elge*/
-INSERT INTO collections VALUES(14 ,'elge',false, 2);
-INSERT INTO collections VALUES(50 ,'elge',false, 2);
-INSERT INTO collections VALUES(55 ,'elge',false, 2);
-INSERT INTO collections VALUES(33 ,'elge',false, 2);
-INSERT INTO collections VALUES(20 ,'elge',false, 2);
+INSERT INTO collections VALUES(14 ,'elge',2);
+INSERT INTO collections VALUES(50 ,'elge',2);
+INSERT INTO collections VALUES(55 ,'elge',2);
+INSERT INTO collections VALUES(33 ,'elge',2);
+INSERT INTO collections VALUES(20 ,'elge',2);
 
 /*Pol*/
-INSERT INTO collections VALUES(100 ,'Pol',false, 2);
-INSERT INTO collections VALUES(90 ,'Pol',false, 2);
-INSERT INTO collections VALUES(30 ,'Pol',false, 2);
-INSERT INTO collections VALUES(45 ,'Pol',false, 2);
-INSERT INTO collections VALUES(19 ,'Pol',false, 2);
-INSERT INTO collections VALUES(15 ,'Pol',false, 2);
-INSERT INTO collections VALUES(5 ,'Pol',false, 2);
+INSERT INTO collections VALUES(100 ,'Pol',2);
+INSERT INTO collections VALUES(90 ,'Pol',2);
+INSERT INTO collections VALUES(30 ,'Pol',2);
+INSERT INTO collections VALUES(45 ,'Pol',2);
+INSERT INTO collections VALUES(19 ,'Pol',2);
+INSERT INTO collections VALUES(15 ,'Pol',2);
+INSERT INTO collections VALUES(5 ,'Pol',2);
 
 
