@@ -1,7 +1,6 @@
 package collection;
-
+//Decorator pattern
 /** Class that represents a card
- * Decorator pattern is used
  */
 public class Card extends AbstractCard implements Comparable {
 

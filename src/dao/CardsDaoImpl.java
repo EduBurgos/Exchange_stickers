@@ -33,7 +33,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Method used to insert a card in DB
-     * @param card card which is going to be added
+     * @param card type Card. Indicates card which is going to be added
      * @return true if the card is added, false if not
      * @throws SQLException
      */
@@ -80,7 +80,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Method used to delete a card in DB
-     * @param card card we want to delete
+     * @param card type Card. Indicates card which is going to be delete
      * @return true if the card has been successfully deleted, false otherwise
      * @throws SQLException
      */
@@ -112,7 +112,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Method used to update a card in DB
-     * @param card card we want to update
+     * @param card type Card. Indicates card that has to be updated
      * @return true if the card has  been successfully updated, false otherwise
      * @throws SQLException
      */
@@ -179,7 +179,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Method used to find a card by its ID
-     * @param id id of the card we are searching for
+     * @param id a int. Indicates id of the card searched
      * @return Card we are searching for
      * @throws SQLException
      */

@@ -35,7 +35,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
 
-
+    /**
+     * Method used to insert a card in user's collection
+     * @param user type User. Indicates user who will have the card
+     * @param card type Card. Indicates card that is going to be inserted
+     * @return true if the card is successfully inserted in user's collection, false otherwise
+     */
     public boolean insert(User user, Card card) {
         conn = null;
         try {

@@ -36,7 +36,8 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Method that adds a new user in the database
-     * @param user user we want to add
+     * @param user type User. Indicates user who is going to be added
+     * @param pass  a String. Indicates new user's password
      * @return true if the user has been successfully added, false if not
      * @throws SQLException
      * @throws Exception
@@ -81,7 +82,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Method that updates a user in the database
-     * @param user user we want to update
+     * @param user user who is going to be updated
      * @return true if the user has been found and successfully updated false if not
      * @throws SQLException
      * @throws Exception
@@ -121,7 +122,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Method that deletes a user in the database
-     * @param user user we want to remove
+     * @param user type Yser. Indicates user who is going to be removed
      * @return true if the user has been found and successfully removed false if not
      * @throws SQLException
      * @throws Exception
@@ -157,7 +158,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Method that checks if the user is present in the database
-     * @param user user we want to find
+     * @param user type User. Indicates user that has to be found
      * @return true if the user has been found false if not
      * @throws SQLException
      * @throws Exception
@@ -201,8 +202,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Method that finds all users in the database
-     * @param
-     * @return ArrayList which contains users in DB
+     * @return ArrayList<User> which contains users in DB
      * @throws SQLException
      * @throws Exception
      */
@@ -326,6 +326,12 @@ public class UserDaoImpl implements UserDao {
         return getCollentionOwn(user);
     }
 
+    /**
+     * Method used to search user in database by their username
+     * @param username a String. Indicates username of the user that has to found
+     * @return User. Indicates user found in database
+     * @throws SQLException
+     */
     public User findByUsername(String username) throws SQLException {
         User user = null;
         conn = null;

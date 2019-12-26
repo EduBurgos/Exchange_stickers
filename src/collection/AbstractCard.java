@@ -1,8 +1,7 @@
 package collection;
 
-/**Implementation of decorator pattern
- *
- */
+//Implementation of decorator pattern
+
 
 public abstract class AbstractCard implements Cards {
     protected int id;
