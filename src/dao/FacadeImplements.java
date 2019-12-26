@@ -139,8 +139,9 @@ public class FacadeImplements implements Facade
     }
 
     /**
-     * TODO: METODO ANCORA NON IMPLEMENTATO NELLA SUA CLASSE
-     * */
+     * Method that gifts new cards to the user who did daily access. Cards can be gifted max once a day.
+     * @param user type User. It indicates user who receives new cards
+     */
     @Override
     public void giftCard(User user){
         CollectionOwnDao f = new CollectionOwnDaoImpl();

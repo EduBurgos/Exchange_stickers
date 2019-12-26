@@ -36,8 +36,8 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Method that adds a new user in the database
-     * @param user type User. Indicates user who is going to be added
-     * @param pass  a String. Indicates new user's password
+     * @param user type User. It indicates user who is going to be added
+     * @param pass  a String. It indicates new user's password
      * @return true if the user has been successfully added, false if not
      * @throws SQLException
      * @throws Exception

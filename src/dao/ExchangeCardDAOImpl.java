@@ -219,8 +219,15 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     }
-    /**Retrun a exchange*/
+
     //inutile ho un ogegtto che è una lista di scambi... basta passarlo
+
+    /**
+     * Method used to get exchange by its id
+     * @param id_trans a int. Indicates id of the exchange searched
+     * @return Exchange
+     * @throws SQLException
+     */
     @Override
     public Exchange getExchange(int id_trans) throws SQLException {
         conn = null;
