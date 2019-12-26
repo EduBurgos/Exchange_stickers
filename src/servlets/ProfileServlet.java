@@ -63,6 +63,10 @@ public class ProfileServlet extends AbstractServlet{
         }
     }
 
+    /**
+     * Method that confirms nickname that will load the own collection.
+     * @param request
+     * return collection own*/
     private CollectionOwn confirmNickname(HttpServletRequest request) throws SQLException {
         String nickname = request.getParameter("Nickname");
         Platform platform = Platform.getInstance();

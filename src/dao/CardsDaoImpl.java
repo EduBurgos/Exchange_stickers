@@ -225,6 +225,11 @@ public class CardsDaoImpl implements CardsDao {
         return card;
     }
 
+    /**
+     * method that finds a lot of cards
+     * @param
+     * @return ArrayList<Card>
+     */
     public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
         conn = null;

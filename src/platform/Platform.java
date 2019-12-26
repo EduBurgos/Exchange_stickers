@@ -115,6 +115,12 @@ public class Platform {
         return true;
     }
     //cerca un utente dal suo username
+
+    /**
+     * Method that used an id to find to user
+     * @param id
+     * @return User
+     * */
     public User findUser(String id) throws SQLException
     {
         User account=null;
@@ -127,7 +133,6 @@ public class Platform {
         }
         return account;
     }
-
 
     /**
      * Method that checks if the mail is valid
@@ -180,9 +185,11 @@ public class Platform {
     {
         return collectionOwn.insert(card,quantity);
     }*/
-    //TODO sistemare commento con parametri giusti
     /**
      * Method used to insert an exchange record
+     * @param Username
+     * @param CardOwn
+     * @param CardWanted
      * @return  true if the exchange is registered false if the registration fails
      * @throws SQLException
      */
@@ -238,7 +245,6 @@ public class Platform {
      * @param exchange that i want to accept
      * @return true if the exchange is successful, false otherwise
      */
-
     public boolean marketExchange(Exchange exchange,String loggato) {
         //ExchangeCardDAO exchangeCardDAO = new  ExchangeCardDAOImpl();
         //exchange.setUsername_offerente(loggato);
@@ -250,9 +256,11 @@ public class Platform {
 
         return true;
     }
-
-
-    /**Metodo curiosita carte di altri user*/
+    /**
+     * Method that show cars of another user
+     * @param username
+     * @return Collection cards.
+     */
     public CollectionOwn SnitchCards(String username) throws SQLException{
         User nick = null;
         try {
@@ -277,8 +285,6 @@ public class Platform {
         }
         return null;
     }
-
-
 
     /**
      * Method used to filter cards belonging to logged user  by the name, category,
@@ -342,7 +348,10 @@ public class Platform {
 /**..........................FINE METODI DI RICERCA .....................**/
 
 
-
+ /**
+  * Method that show all exchange
+  * @param user
+  * @return ArrayList<Exchange> get all exchanges*/
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
           //ExchangeCardDAO ex = new ExchangeCardDAOImpl();
@@ -355,6 +364,11 @@ public class Platform {
       }
       return null;
   }
+
+    /**
+     * Method that show all my exchange
+     * @param user
+     * @return ArrayList<Exchange> get all my exchanges*/
   public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
       try {
           //ExchangeCardDAO exchangeCardDAO= new ExchangeCardDAOImpl();
@@ -372,6 +386,10 @@ public class Platform {
     private static SecretKeySpec secretKey;
     private static byte[] key;
 
+    /**
+     * Digest myKey using a hashing algorithm
+     * @param myKey
+     * @return*/
     public static void setKey(String myKey)
     {
         MessageDigest sha = null;
@@ -389,7 +407,8 @@ public class Platform {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Method that take strToEncrypt using as seed secret*/
     public static String encrypt(String strToEncrypt, String secret)
     {
         try
@@ -405,6 +424,8 @@ public class Platform {
         }
         return null;
     }
+
+    //TODO: DA CANCELLARE ? RISCHIAMO DI PRESENTARE QUESTO METODO O PENSIAMO IN UNO PIU SICURO?
     /**Metodo decryp*/
     public static String decrypt(String strToDecrypt, String secret)
     {
@@ -421,6 +442,10 @@ public class Platform {
         }
         return null;
     }
+
+    /**
+     * method that take all cards catalog
+     * @return ArrayList<Card> all cards catalog */
     public ArrayList<Card> allCardsCatalog () throws SQLException {
         FacadeImplements allCards = new FacadeImplements();
         return allCards.findAllGeneric();
@@ -436,11 +461,16 @@ public class Platform {
         return result;
     }
 
+    /**
+     * method that find a card usind an id
+     * @param id
+     * @return Card*/
     public Card findCardByID(int id)throws SQLException{
         FacadeImplements temp = new FacadeImplements();
         return temp.findByID(id);
     }
 
+    //TODO: METODO NON IMPLEMENTATO.
     public void setExchangeNotified(Exchange exchange) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
         temp.setExchangeNotified(exchange);

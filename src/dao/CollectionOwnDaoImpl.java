@@ -308,7 +308,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     public ArrayList<Card> openSachet(User user){
         ArrayList<Card> c = new ArrayList<Card>();
 
-        for(int i=0; i<6; i++){
+        for(int i=0; i<6; i++){                 // TODO: cambiare il 6 per una costante globale (no hardcode).
             c.add(createRandomCard(user));
         }
         return c;

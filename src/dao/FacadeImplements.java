@@ -12,9 +12,9 @@ public class FacadeImplements implements Facade
 {
     /*CARDDAO IMPLEMENT*/
     /**
-     *
+     * method of inserting a card
      * @param card
-     * @return method of inserting a card
+     * @return return boolean, verification of successful insertion.
      */
     @Override
     public boolean insert(Card card) throws SQLException {
@@ -22,9 +22,9 @@ public class FacadeImplements implements Facade
         return c.insert(card);
     }
     /**
-     *
+     * method that finds a card by id
      * @param id
-     * @return method that finds a card by id
+     * @return returns a card given an id
      */
     @Override
     public Card findByID(int id) throws SQLException {
@@ -32,9 +32,9 @@ public class FacadeImplements implements Facade
         return c.findByID(id);
     }
     /**
-     *
+     * method that modifies the object card
      * @param card
-     * @return method that modifies the object card
+     * @return boolean, check if the change was successful
      */
     @Override
     public boolean update(Card card) throws SQLException {
@@ -42,9 +42,9 @@ public class FacadeImplements implements Facade
         return  c.update(card);
     }
     /**
-     *
+     * method that delete the object card
      * @param card
-     * @return method that delete the object card
+     * @return boolean
      */
     @Override
     public boolean delete(Card card) throws SQLException {
@@ -52,9 +52,9 @@ public class FacadeImplements implements Facade
         return c.delete(card);
     }
     /**
-     *
+     * method that finds a lot of cards
      * @param
-     * @return method that finds a lot of cards
+     * @return ArrayList<Card>
      */
     @Override
     public ArrayList<Card> findAllGeneric() throws SQLException {
@@ -64,9 +64,9 @@ public class FacadeImplements implements Facade
 
     /*COLLECTION ONW DAO*/
     /**
-     *
+     * method that takes the owner's card
      * @param  user
-     * @return method that takes the owner's card
+     * @return get collection Own
      */
     @Override
     public Map<Card, Integer> getCollentionOwn(User user) {
@@ -74,9 +74,9 @@ public class FacadeImplements implements Facade
         return f.getCollentionOwn(user);
     }
     /**
-     *
+     * method that update the owner's card
      * @param
-     * @return method that update the owner's card
+     * @return boolean, update the owner's card
      */
     @Override
     public boolean update() throws SQLException {
@@ -84,9 +84,9 @@ public class FacadeImplements implements Facade
         return f.update();
     }
     /**
-     *
+     * method that delete the owner's card
      * @param
-     * @return method that delete the owner's card
+     * @return boolean, delete the owner's card
      */
     @Override
     public boolean delete() throws SQLException {
@@ -94,9 +94,9 @@ public class FacadeImplements implements Facade
         return f.delete();
     }
     /**
-     *
+     * method that create to random card
      * @param user
-     * @return method that create to random card
+     * @return Card, create to random card
      */
     @Override
     public Card createRandomCard(User user) throws SQLException {
@@ -104,9 +104,9 @@ public class FacadeImplements implements Facade
         return f.createRandomCard(user);
     }
     /**
-     *
+     * method that gets the last card of the user on the DB.
      * @param user
-     * @return method that gets the last card of the user on the DB.
+     * @return Card
      */
     @Override
     public Card get_last_card(User user) {
@@ -114,9 +114,9 @@ public class FacadeImplements implements Facade
         return f.get_last_card(user);
     }
     /**
-     *
+     * method used to generate a number of card for user
      * @param user
-     * @return method used to generate a number of card for user
+     * @return ArrayList<Card>
      */
     @Override
     public ArrayList<Card> openSachet(User user) {
@@ -124,13 +124,13 @@ public class FacadeImplements implements Facade
         return f.openSachet(user);
     }
     /**
-     *
+     * method used to find a given card
      * @param user
      * @param name
      * @param category
      * @param classCard
      * @param typeCard
-     * @return method used to find a given card
+     * @return ArrayList<Card>
      */
     @Override
     public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard) {
@@ -138,9 +138,12 @@ public class FacadeImplements implements Facade
         return f.filters(user, name, category, classCard, typeCard);
     }
 
+    /**
+     * TODO: METODO ANCORA NON IMPLEMENTATO NELLA SUA CLASSE
+     * */
     @Override
     public void giftCard(User user){
-        CollectionOwnDao f= new CollectionOwnDaoImpl();
+        CollectionOwnDao f = new CollectionOwnDaoImpl();
         f.giftCard(user);
     }
 
@@ -160,7 +163,7 @@ public class FacadeImplements implements Facade
     /**
      *TODO: Capire cosa fa questo metodo
      * @param exchangeCard
-     * @return
+     * @return boolean
      */
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
@@ -168,9 +171,9 @@ public class FacadeImplements implements Facade
         return f.marketExchange(exchangeCard);
     }
     /**
-     *
+     * method that cancels a transaction
      * @param id_trans
-     * @return method that cancels a transaction
+     * @return cancels a transaction
      */
     @Override
     public void delete(int id_trans) throws SQLException {
@@ -178,9 +181,9 @@ public class FacadeImplements implements Facade
         f.delete(id_trans);
     }
     /**
-     *TODO: Capire cosa fa questo metodo
+     * Given an id a transaction is created
      * @param id_trans
-     * @return Capire cosa fa questo metodo
+     * @return Exchange
      */
     @Override
     public Exchange getExchange(int id_trans) throws SQLException {
@@ -189,10 +192,10 @@ public class FacadeImplements implements Facade
 
     }
     /**
-     *
+     * method that returns all transactions
      * @param user
      * @param Parameter
-     * @return method that returns all transactions
+     * @return  ArrayList<Exchange>, returns all transactions
      */
     @Override
     public ArrayList<Exchange> getAllExchange(User user, String Parameter) throws SQLException {
@@ -200,13 +203,13 @@ public class FacadeImplements implements Facade
         return f.getAllExchange(user, Parameter);
     }
     /**
-     *
+     * method that filters the exchanges given certain parameters
      * @param user
      * @param name
      * @param category
      * @param classCard
      * @param typeCard
-     * @return method that filters the exchanges given certain parameters
+     * @return ArrayList<Exchange>.
      */
     @Override
     public ArrayList<Exchange> filtersexchange(User user, String name, String category, String classCard, String typeCard) throws SQLException {
@@ -216,10 +219,10 @@ public class FacadeImplements implements Facade
 
     /*USER DAO*/
     /**
-     *
+     * method that save a new user
      * @param user
      * @param pass
-     * @return method that save a new user
+     * @return boolean,save a new user
      */
     @Override
     public boolean save(User user, String pass) throws SQLException {
@@ -227,9 +230,9 @@ public class FacadeImplements implements Facade
         return f.save(user, pass);
     }
     /**
-     *
+     * method that find a user
      * @param username
-     * @return method that find a user
+     * @return User, find a user
      */
     @Override
     public User findByUsername(String username) throws SQLException {
@@ -237,9 +240,9 @@ public class FacadeImplements implements Facade
         return f.findByUsername(username);
     }
     /**
-     *
+     * method that update to user
      * @param user
-     * @return method that update to user
+     * @return boolean, update to user
      */
     @Override
     public boolean update(User user) throws SQLException {
@@ -247,9 +250,9 @@ public class FacadeImplements implements Facade
         return f.update(user);
     }
     /**
-     *
+     * method that delete to user
      * @param user
-     * @return method that delete to user
+     * @return boolean, delete to user
      */
     @Override
     public boolean delete(User user) throws SQLException {
@@ -257,9 +260,9 @@ public class FacadeImplements implements Facade
         return f.delete(user);
     }
     /**
-     * TODO: Capire cosa fa questo metodo
+     * checks if a user exists in the DB
      * @param user
-     * @return
+     * @return boolean
      */
     @Override
     public boolean checkByUser(User user) throws SQLException {
@@ -267,9 +270,9 @@ public class FacadeImplements implements Facade
         return f.checkByUser(user);
     }
     /**
-     *
+     * method that find all user
      * @param
-     * @return method that find all user
+     * @return ArrayList<User>, find all user
      */
     @Override
     public ArrayList<User> findAll() throws SQLException {
@@ -277,10 +280,9 @@ public class FacadeImplements implements Facade
         return f.findAll();
     }
     /**
-     *TODO: Capire cosa fa questo metodo
-     * TOEDU: lo avete scritto tu e paolo, viene usato nella registrazione per controllare che l'utente non sia già presente nel db
+     * method used to verify that a user does not exist in the database, user in registration.
      * @param user
-     * @return
+     * @return boolean, verify that a user does not exist in the database
      */
     @Override
     public boolean checkUnique(User user) {
@@ -288,9 +290,9 @@ public class FacadeImplements implements Facade
         return f.checkUnique(user);
     }
     /**
-     *
-     * @param
-     * @return
+     * shows notifications when a transaction has been accepted
+     * @param exchange
+     * @return shows exchange notifications
      */
     @Override
     public void setExchangeNotified(Exchange exchange) throws SQLException {

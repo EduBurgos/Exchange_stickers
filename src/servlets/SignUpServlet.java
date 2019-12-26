@@ -71,8 +71,6 @@ public class SignUpServlet extends AbstractServlet {
 
         final String secretkey = "chiavesupersegretissimaXD";
 
-
-
         String name = request.getParameter("FirstName");
         String lastName = request.getParameter("LastName");
         String username = request.getParameter("Username");
@@ -89,15 +87,12 @@ public class SignUpServlet extends AbstractServlet {
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
                 //passare da platform
                 User u = new User(name, lastName, username, email);
-
                 Facade card = new FacadeImplements();
-                //CollectionOwnDao cart = new CollectionOwnDaoImpl();
 
                 for(int i = 0; i<numbercard; i++) {
                     card.createRandomCard(u);
                 }
                 forwardTo(request, response, INDEX_ROUTE);
-
             }
             else{
                 request.getSession().setAttribute("message", "User already signed up");
