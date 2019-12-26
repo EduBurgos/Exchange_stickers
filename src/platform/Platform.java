@@ -345,7 +345,25 @@ public class Platform {
         return list;
     }
 
-/**..........................FINE METODI DI RICERCA .....................**/
+    /**
+     * Method that gives new cards when a user does their daily access
+     * @param user type User. Indicates user tht has to be checked to see if it's their first time they logged to the
+     * platform today  and they have to receive their daily cards
+     * @throws SQLException Exception caused by database
+     */
+    public void giftCard(User user) throws SQLException{
+        User account;
+        try{
+            Facade u = new FacadeImplements();
+            account=u.findByUsername(user.getUsername());
+            if(account!=null){
+                FacadeImplements f = new FacadeImplements();
+                f.giftCard(user);
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+    }
 
 
  /**

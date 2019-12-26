@@ -23,11 +23,10 @@ CREATE TABLE users(
 );
 
 
--- DA CHIEDERE
+-- Table that contains usernames of all the users who did the daily access
 CREATE TABLE accesses(
 
                          Username VARCHAR(32) NOT NULL ,
-                         gifted boolean,
                          PRIMARY KEY (Username),
                          FOREIGN KEY (Username) REFERENCES users(Username)
 
