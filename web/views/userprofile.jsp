@@ -22,8 +22,8 @@ It contains the feature "snitch card" which allows to see other users' profiles.
     -->
 
     <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../bootstrap-3.3.7/js/bootstrap.min.js">
     <link rel="stylesheet" href="../stylesheets/animate.css">
+
 
     <script src="../jquery/jquery-3.4.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -152,7 +152,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                 <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(c.getOwner());%>
                 <div class="row">
                     <%for(int i=0;i<ex.size();i++){%>
-                <div id="carousel<%=i%>" class="carousel slide col-sm-3" style="height: 32rem;">
+                <div id="carousel<%=i%>" class="carousel slide col-sm-3">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <%int attivo=0;%>
@@ -169,15 +169,15 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                 <img src="../img/Yu-Gi-Oh!/AnimaImmortale.png" style="display: none" id="toShow<%=card.getNome()%><%=ex.indexOf(ca)%>" onmouseenter="close()">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-8" style="margin-left: 5px">
-                                            <button type="button" class="btn btn-dark" onclick="showDiv(<%=i%>)">Show cards wanted</button>
-                                        </div>
-                                        <div class="col-sm-3" style="margin-left: 5px" >
+                                        <div class="col-sm-7">
+                                            <button type="button" class="btn btn-dark" id="show"  onclick="showDiv(<%=i%>)">Show cards<br> wanted </button>
+                                    </div>
+                                        <div class="col-sm-2">
                                             <!--se la transazione è mia vedo il cestino altrimenti no -->
                                             <%if (ex.get(i).getId_user().equals(c.getOwner().getUsername())){ %>
                                                 <form method="get" action= "../userprofile">
                                                     <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
-                                                    <button type="submit" class="btn btn-danger">
+                                                    <button type="submit" class="btn btn-danger" id="delete">
                                                         <span class="glyphicon glyphicon-trash"></span>
                                                     </button>
                                                     </input>
@@ -200,7 +200,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     </div>
                 </div>
                     <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
-                        <div id="carousel<%=i%>W" class="carousel slide" style="height: 32rem;">
+                        <div id="carousel<%=i%>W" class="carousel slide">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>
@@ -212,7 +212,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                     <%}else{%>
                                     <div class="item card">
                                         <%}%>
-                                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
+                                        <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide" id="hideimg">
                                     </div>
                                     <%}%>
                                     <a class="left carousel-control" href="#carousel<%=i%>W" role="button" data-slide="prev">
@@ -223,12 +223,12 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
-                                    <%if(ex.get(i).get_trans_com()){ %>
-                                        <button type="button" class="btn btn-success">
-                                            <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
-                                        </button>
-                                    <%}%>
                                 </div>
+                                <%if(ex.get(i).get_trans_com()){ %>
+                                <button type="button" class="btn btn-success" style="float:right;">
+                                    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                                </button>
+                                <%}%>
                             </div>
                     </div>
                     <%if ((i%2==0)&(i!=0)){ %>
@@ -276,5 +276,4 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         }
     }
 </script>
-
 </html>

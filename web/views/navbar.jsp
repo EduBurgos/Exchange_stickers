@@ -14,7 +14,7 @@ it is included in each page of the application -->
 <head>
     <!-- Custom styles for this template -->
     <meta charset="UTF-8">
-    <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <!-- <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
     <link rel="stylesheet" href="../stylesheets/navbar.css">
 </head>
 <body>
