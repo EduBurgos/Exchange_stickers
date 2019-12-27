@@ -123,7 +123,7 @@ programma
      * @param array Is the array made by cards id
      * @param card Card id(it's not ought to be unique for each owned card)
      * @param value String that identify the div where will be cloned the image
-     * @param i Index used to identify each card
+     * @param i Int rappresents the index used to identify each card
      * @param tempArray Is the array made by cards index
      */
     function chooseCardsToGive(array, card, value, i, tempArray){
@@ -160,9 +160,9 @@ programma
 
     /**
      * method to add the selected card in recap div to give
-     * @param id Rapresents the image id of card we want to add
+     * @param id String that rapresents the image id of card we want to add
      * @param where
-     * @param idCard Rapresents the id of card we want to add
+     * @param idCard Int that rapresents the id of card we want to add
      */
     function showPictureToGive(id, where,i) {
         var idWhereToAdd = where.toString().concat("Recap");//create id div where the card will be cloned
@@ -186,9 +186,9 @@ programma
 
     /**
      * method to remove the selected card in recap div to give
-     * @param id Rapresents the id of card we want to remove
+     * @param id String that rappresents the id of card we want to remove
      * @param where
-     * @param i Rapresents unique index
+     * @param i Int that rapresents unique index
      */
     function removePictureToGive(id, where, i) {
         //var idWhereToAdd = where.toString().concat("Recap");
@@ -214,7 +214,7 @@ programma
     /**
      * method to add a cards in the array that will be sent to server. This method works on divs
      * @param array Array where il be added or removed ids
-     * @param  Rapresents the card id
+     * @param card Int that rapresents the card id
      * @param value It's a string that rapresent where I'm working(toGive or toTake)
      */
     function chooseCards(array, card, value){
