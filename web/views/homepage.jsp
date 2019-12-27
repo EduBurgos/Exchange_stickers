@@ -46,7 +46,8 @@
 
 
             <div class="row">
-                <h1> TRATTATIVE DISPONIBILI: </h1>
+                <h1> TRATTATIVE DISPONIBILI:
+                                             </h1>
                 <%if(ex.size()==0){%>
                     <h4>Nessuna trattativa disponibile.</h4>
                 <% }  %>
@@ -105,18 +106,18 @@
                                     <% Card card=platform.findCardByID(ca);    %>
                                     <%if(attivoW==0){%>
                                         <%attivoW=1;%>
-                                        <div class="item active card" style="width: 18rem">
+                                        <div class="item active card" id="cardW" >
                                     <%}else{%>
-                                        <div class="item card" style="width: 18rem">
+                                        <div class="item card" id="cardW" >
                                      <%}%>
                                     <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
                                     </div>
                                 <%}%>
-                                    <a class="left carousel-control" href="#carousel<%=i%>W" role="button" data-slide="prev">
+                                    <a class="left carousel-control" href="#carousel<%=i%>W" role="button" data-slide="prev" id="push">
                                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="right carousel-control" href="#carousel<%=i%>W" role="button" data-slide="next">
+                                    <a class="right carousel-control" href="#carousel<%=i%>W" role="button" data-slide="next" id="push">
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>

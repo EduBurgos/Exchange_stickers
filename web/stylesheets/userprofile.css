@@ -102,7 +102,7 @@ a {
 .profile-avatar .inner {
     width: 206px;
     height: 206px;
-    margin: 5px;
+    margin: auto;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
