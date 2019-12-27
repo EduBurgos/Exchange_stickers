@@ -220,6 +220,10 @@ FINE COMENTO-->
 </div>
 
 </div>
+
+<!-- START NOTIFICATION PART-->
+
+<!-- EXCHANGE SETTING NOTIFICATION -->
 <% String role=(String) request.getSession().getAttribute("role");%>
 <%if (role!=null){%>
 <script>
@@ -233,9 +237,10 @@ FINE COMENTO-->
 <% request.getSession().setAttribute("role",null); %>
 <%}%>
 
+<!-- EXCHANGE ACCEPTANCE NOTIFICATION -->
 <% String doneExchangeNotif=(String) request.getSession().getAttribute("doneExchange");%>
 <%if ("true".equalsIgnoreCase(doneExchangeNotif)){%>
-<script></script>
+<script>
 Swal.fire({
 position: 'bottom-end',
 icon: 'success',
@@ -245,6 +250,7 @@ timer: 2500})
 </script>
 <%request.getSession().setAttribute("doneExchange",null); %>
 <%}%>
+
 <%if ("false".equalsIgnoreCase(doneExchangeNotif)) { %>
 <script>
 Swal.fire({
@@ -254,6 +260,8 @@ showConfirmButton: true})
 </script>
 <% request.getSession().setAttribute("doneExchange",null); %>
 <%}%>
+<!-- END NOTIFICATION PART-->
+
 <!-- jQuery CDN - Slim version (=without AJAX)
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  Popper.JS
