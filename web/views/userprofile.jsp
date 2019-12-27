@@ -174,7 +174,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                     </div>
                                         <div class="col-sm-2">
                                             <!--se la transazione è mia vedo il cestino altrimenti no -->
-                                            <%if (ex.get(i).getId_user().equals(c.getOwner().getUsername())){ %>
+                                            <%if(request.getSession().getAttribute("snitch")==null){ %>
                                                 <form method="get" action= "../userprofile">
                                                     <input type="hidden" value="<%=ex.get(i).getId_trans()%>" name="delete">
                                                     <button type="submit" class="btn btn-danger" id="delete">
