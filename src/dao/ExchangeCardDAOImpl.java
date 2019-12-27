@@ -362,7 +362,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                     }
                 }
                 //aggiungo scambio alla lista
-                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted));
+                allExchange.add(new Exchange(id_trans,username, cardown, cardwanted, trans_compl, username_offer));
                 if(result==null)
                 {
                     break;
