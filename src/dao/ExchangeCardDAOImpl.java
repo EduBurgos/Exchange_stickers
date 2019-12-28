@@ -223,9 +223,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     //inutile ho un ogegtto che è una lista di scambi... basta passarlo
 
     /**
-     * Method used to get exchange by its id
+     * Finds exchange by its id
      * @param id_trans a int. Indicates id of the exchange searched
-     * @return Exchange
+     * @return Exchange found
      * @throws SQLException
      */
     @Override
@@ -420,21 +420,21 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     }
 
     /**
-     * Method that allows the logged user to find certain available exchanges,except for the ones starded by logged user,
+     * Allows the logged user to find certain available exchanges,except for the ones started by logged user,
      *  through the filters of the search bar.
      * <p>
      *     depending to parameters specified, the original query is completed in such a way that
      *     it can returned the requested exchanges
      * </p>
      * @param user type User. Indicates logged user
-     * @param name  a String. Indicates name of the card that belongs to searched exchange.
-     * @param category  a String. Indicates category of the card that belong to searched exchange.
-     * @param classCard a String. Indicates class of the card that belong to searched exchange.
-     * @param typeCard  a String. Indicates type of the card that belong to searched exchange.
+     * @param name  a String. Indicates name of the card offered that belongs to searched exchange.
+     * @param category  a String. Indicates category of the card offered that belong to searched exchange.
+     * @param classCard a String. Indicates class of the card offered that belong to searched exchange.
+     * @param typeCard  a String. Indicates type of the card offered that belong to searched exchange.
      * @return ArrayList<Exchange> that contains the requested exchanges from logged user.
      * @throws SQLException
      * */
-    public ArrayList<Exchange>filtersexchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
+    public ArrayList<Exchange>filtersExchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
         conn=null;
         ArrayList<Exchange> answer= new ArrayList<>();
         int j=5;
@@ -579,7 +579,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 }
             //}
         }
-/**..................FINE METODI PER LA RICERCA DI TRATTATIVE**/
 
 
     public void setExchangeNotified(Exchange exchange){

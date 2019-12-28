@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet(name = "LogOutServlet", urlPatterns = "/logout")
 public class LogOutServlet extends AbstractServlet  {
     /**
-     * Method that invalidates session and redirects the request to jsp page(Login)
+     * Invalidates session and redirects the request to jsp page(Login)
      * @param request HTTP request
      * @param response HTTP response
      * @throws IOException Exception coming from an I/O error

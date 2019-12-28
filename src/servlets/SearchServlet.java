@@ -17,7 +17,7 @@ public class SearchServlet extends AbstractServlet {
     }
 
     /**
-     * Method that checks in which jsp page we are and return filtered exchanges/cards
+     * Checks in which jsp page we are and returns filtered exchanges/cards
      * <p>
      *     If we are in jsp page (userprofile) when we use the search filter navbar
      *     it sends the request to the same page and it shows filtered cards
@@ -51,8 +51,7 @@ public class SearchServlet extends AbstractServlet {
     }
 
     /**
-     * Method that sets session's parameters for the filter when at least
-     * one of the filters is applied
+     * Sets session's parameters for the filter when at least one of the filters is applied
      * @param request HTTP request
      * @return true if at least one of the filters is applied, false if no filter is used
      */

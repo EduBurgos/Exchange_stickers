@@ -124,13 +124,13 @@ public class FacadeImplements implements Facade
         return f.openSachet(user);
     }
     /**
-     * method used to find a given card
-     * @param user
-     * @param name
-     * @param category
-     * @param classCard
-     * @param typeCard
-     * @return ArrayList<Card>
+     * Finds certain cards in user's collection through applied filters
+     * @param user type User. Indicates the owner of the collection
+     * @param name type String. Indicates name of the card searched
+     * @param category type String. Indicates category of the cards searched
+     * @param classCard type String Indicates class of the cards searched
+     * @param typeCard type String. Indicates type of the cards searched
+     * @return ArrayList<Card> that contains cards found through filters
      */
     @Override
     public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard) {
@@ -139,8 +139,8 @@ public class FacadeImplements implements Facade
     }
 
     /**
-     * Method that gifts new cards to the user who did daily access. Cards can be gifted max once a day.
-     * @param user type User. It indicates user who receives new cards
+     * Gifts new cards to the user who did daily access. Cards can be gifted max once a day.
+     * @param user type User. Indicates user who receives new cards
      */
     @Override
     public void giftCard(User user){
@@ -182,9 +182,9 @@ public class FacadeImplements implements Facade
         f.delete(id_trans);
     }
     /**
-     * Given an id a transaction is created
-     * @param id_trans
-     * @return Exchange
+     * Through id a transaction is found
+     * @param id_trans a String. Indicates id of the transaction that has to be found
+     * @return Exchange searched
      */
     @Override
     public Exchange getExchange(int id_trans) throws SQLException {
@@ -204,26 +204,26 @@ public class FacadeImplements implements Facade
         return f.getAllExchange(user, Parameter);
     }
     /**
-     * method that filters the exchanges given certain parameters
-     * @param user
-     * @param name
-     * @param category
-     * @param classCard
-     * @param typeCard
-     * @return ArrayList<Exchange>.
+     * Filters the exchanges given certain parameters except for the ones started by a certain user
+     * @param user type User. Indicates user whose exchanges don't have to be found
+     * @param name  a String. Indicates name of the card offered belonging to searched exchange.
+     * @param category  a String. Indicates category of the cards offered belonging to searched exchange.
+     * @param classCard a String. Indicates  class of the cards offered belonging to searched exchange.
+     * @param typeCard  a String. Indicates type  of the cards offered that belonging to searched exchange.
+     * @return ArrayList<Exchange> that contains all the exchanges found
      */
     @Override
-    public ArrayList<Exchange> filtersexchange(User user, String name, String category, String classCard, String typeCard) throws SQLException {
+    public ArrayList<Exchange> filtersExchange(User user, String name, String category, String classCard, String typeCard) throws SQLException {
         ExchangeCardDAOImpl f = new ExchangeCardDAOImpl();
-        return f.filtersexchange(user, name, category, classCard, typeCard);
+        return f.filtersExchange(user, name, category, classCard, typeCard);
     }
 
     /*USER DAO*/
     /**
-     * method that save a new user
-     * @param user
-     * @param pass
-     * @return boolean,save a new user
+     * Saves a new user
+     * @param user type User. Indicates user who is going to be saved
+     * @param pass a String. Indicates password of the new user
+     * @return boolean if new user is saved false otherwise
      */
     @Override
     public boolean save(User user, String pass) throws SQLException {
@@ -231,9 +231,9 @@ public class FacadeImplements implements Facade
         return f.save(user, pass);
     }
     /**
-     * method that find a user
-     * @param username
-     * @return User, find a user
+     * Finds a user by their username
+     * @param username a String. Indicates user's username
+     * @return User found
      */
     @Override
     public User findByUsername(String username) throws SQLException {

@@ -36,9 +36,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     ResultSet result = null;
 
     /**
-     * Method used to insert a card in user's collection
-     * @param user type User. It indicates user who will have the card
-     * @param card type Card. It indicates card that is going to be inserted
+     * Inserts a card in user's collection
+     * @param user type User. Indicates user who will have the card
+     * @param card type Card. Indicates card that is going to be inserted
      * @return true if the card is successfully inserted in user's collection, false otherwise
      */
     public boolean insert(User user, Card card) {
@@ -118,6 +118,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         }
     }
 
+    /**
+     * Inserts in user's collection a card chosen randomly from the catalog
+     * @param user type User. Indicates user who is going to receive the card
+     * @return Card chosen randomly from the catalog
+     */
     @Override
     public Card createRandomCard(User user){
         try{
@@ -136,14 +141,15 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
     /**
-     * Method used to gift five new cards to user when they log to the platform.
+     * Gifts five new cards to user when they log to the platform today.
      * Cards can be gifted once a day
      * <p>
      *     Checks in the database table accesses if the user has logged to the platform today. If it's their first
-     *     time they logged for that day, the user receives new cards and the user's username in  inserted to
+     *     time they logged for that day, the user receives new cards and the user's username is inserted to
      *     the table
      * </p>
-     * @param user type User. It indicates user that has to be checked if they already logged today
+     * @param user type User. Indicates user that has to be checked if they already logged today
+     * @see #createRandomCard(User)
      */
     public void giftCard(User user){
         int nCards=5;
@@ -214,17 +220,17 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
 
     /**
-     * Method that allows the logged user to find certain cards in his collection,
+     * Allows the logged user to find certain cards in their collection,
      * through the filters of the search bar.
      * <p>
      *      depending to parameters specified, the original query is completed in such a way that
      *      it can returned the requested cards
      * </p>
-     * @param user type User.It indicates logged user
-     * @param name  a String.It indicates name of the card searched.
-     * @param category  a String.It indicates category of the card searched.
-     * @param classCard a String.It indicates class of the card searched .
-     * @param typeCard  a String.It indicates type of the card searched.
+     * @param user type User.Indicates logged user
+     * @param name  a String.Indicates name of the card searched.
+     * @param category  a String.Indicates category of the cards searched.
+     * @param classCard a String.Indicates class of the cards searched .
+     * @param typeCard  a String.Indicates type of the cards searched.
      * @return ArrayList<Card> that contains the requested cards from logged user.
      */
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){

@@ -35,9 +35,9 @@ public class UserDaoImpl implements UserDao {
     ResultSet result = null;
 
     /**
-     * Method that adds a new user in the database
-     * @param user type User. It indicates user who is going to be added
-     * @param pass  a String. It indicates new user's password
+     * Adds a new user in the database
+     * @param user type User. Indicates user who is going to be added
+     * @param pass  a String. Indicates new user's password
      * @return true if the user has been successfully added, false if not
      * @throws SQLException
      * @throws Exception
@@ -81,7 +81,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * Method that updates a user in the database
+     * Updates a user in the database
      * @param user user who is going to be updated
      * @return true if the user has been found and successfully updated false if not
      * @throws SQLException
@@ -121,8 +121,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * Method that deletes a user in the database
-     * @param user type Yser. Indicates user who is going to be removed
+     * Deletes a user in the database
+     * @param user type User. Indicates user who is going to be removed
      * @return true if the user has been found and successfully removed false if not
      * @throws SQLException
      * @throws Exception
@@ -157,7 +157,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * Method that checks if the user is present in the database
+     * Checks if the user is present in the database
      * @param user type User. Indicates user that has to be found
      * @return true if the user has been found false if not
      * @throws SQLException
@@ -327,7 +327,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * Method used to search user in database by their username
+     * Searches user in database by their username
      * @param username a String. Indicates username of the user that has to found
      * @return User. Indicates user found in database
      * @throws SQLException

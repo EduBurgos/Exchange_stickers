@@ -23,7 +23,7 @@ public class HomePageServlet extends AbstractServlet {
     private String PROFILE_ROUTE = "/views/userprofile.jsp";
 
     /**
-     * Method to handle the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
+     * Handles the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
      * @param request represents the HTTP request
      * @param response represents the HTTP response
      * @throws ServletException Exception coming from the servlet itself
@@ -50,7 +50,7 @@ public class HomePageServlet extends AbstractServlet {
     }
 
     /**
-     * Method to handle the HTTP get request; in this case is possible to reach welcome.jsp either from doGet or doPost
+     * Handles the HTTP get request; in this case is possible to reach welcome.jsp either from doGet or doPost
      * method
      * @param request is the HTTP request
      * @param response is the HTTP response

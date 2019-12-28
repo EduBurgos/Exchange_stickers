@@ -135,7 +135,7 @@ public class Platform {
     }
 
     /**
-     * Method that checks if the mail is valid
+     * Checks if the mail is valid
      * @param email of the user who is signing up to the platform
      * @return true if the mail is valid false otherwise
      */
@@ -287,13 +287,13 @@ public class Platform {
     }
 
     /**
-     * Method used to filter cards belonging to logged user  by the name, category,
+     * Filters cards belonging to logged user  by the name, category,
      * class and/or type
-     * @param username a String.It indicates username of the user logged
-     * @param nameCard a String.It indicates name of the card searched
-     * @param category a String.It indicates category of the cards searched
-     * @param classCard a String.It indicates class of the cards searched
-     * @param typeCard a String.It indicates type of the cards searched
+     * @param username a String.Indicates username of the user logged
+     * @param nameCard a String.Indicates name of the card searched
+     * @param category a String.Indicates category of the cards searched
+     * @param classCard a String.Indicates class of the cards searched
+     * @param typeCard a String.Indicates type of the cards searched
      * @return ArrayList<Card> Indicates all cards filtered
      * @throws SQLException exception caused by database
      */
@@ -314,13 +314,13 @@ public class Platform {
     }
 
     /**
-     * Method used to filter exchanges by the name, category, class and/or type
-     * of one of the cards offered in the exchange made by other users
-     * @param username a String.It indicates username of logged user
-     * @param nameCard a String.It indicates name of one of the cards searched offered in exchange
-     * @param category a String.It indicates category of one of the cards searched offered in exchange
-     * @param classCard a String.It indicates class of one of the cards searched offered in exchange
-     * @param typeCard a String.It indicates type of one of the cards searched offered in exchange
+     *Filters exchanges by the name, category, class and/or type of one of the cards
+     * offered in the exchange made by other users except logged user
+     * @param username a String.Indicates username of logged user
+     * @param nameCard a String.Indicates name of one of the cards searched offered in exchange
+     * @param category a String.Indicates category of one of the cards searched offered in exchange
+     * @param classCard a String.Indicates class of one of the cards searched offered in exchange
+     * @param typeCard a String.Indicates type of one of the cards searched offered in exchange
      * @return ArrayList<Exchange> Indicates all the exchanges filtered
      * @throws SQLException exception caused by database
      */
@@ -334,7 +334,7 @@ public class Platform {
             //account= user.findByUsername(username);
             if(account!=null){
                 FacadeImplements f = new FacadeImplements();
-                list = f.filtersexchange(account,nameCard,category,classCard,typeCard);
+                list = f.filtersExchange(account,nameCard,category,classCard,typeCard);
 
                 //ExchangeCardDAOImpl exchangeCardDAO= new ExchangeCardDAOImpl();
                 //list=exchangeCardDAO.filtersexchange(account,nameCard,category,classCard,typeCard);
@@ -346,7 +346,7 @@ public class Platform {
     }
 
     /**
-     * Method that gives new cards when a user does their daily access
+     * Gives new cards when a user does their daily access
      * @param user type User. Indicates user tht has to be checked to see if it's their first time they logged to the
      * platform today  and they have to receive their daily cards
      * @throws SQLException Exception caused by database
