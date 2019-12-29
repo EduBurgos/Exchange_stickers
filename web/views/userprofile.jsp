@@ -132,7 +132,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                 <%}%>
                 </div>
 
-                <!-- rimozione filtri-->
+
                 <% request.getSession().removeAttribute("category"); %>
                 <% request.getSession().removeAttribute("class"); %>
                 <% request.getSession().removeAttribute("type"); %>
@@ -262,25 +262,8 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         <% request.getSession().removeAttribute("snitch"); %>
         location.reload();
     }
-    function showDiv(i) {
 
-        var x= document.getElementById("toHide"+i);
-        if (x.style.display === "none") {
-                x.style.display = "block";
-
-                if (document.getElementsByClassName("toHideActive").length!=0)
-                {
-                    var y = document.getElementsByClassName("toHideActive")[0];
-                    y.classList.remove("toHideActive");
-                    y.style.display="none";
-                }
-                x.classList.add("toHideActive");
-            }
-        else
-        {
-            x.style.display="none";
-            x.classList.remove("toHideActive");
-        }
-    }
 </script>
+
+<script type="text/javascript" src="../js/carousel.js"></script>
 </html>
