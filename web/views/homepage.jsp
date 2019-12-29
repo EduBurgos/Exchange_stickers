@@ -212,7 +212,11 @@ FINE COMENTO-->
 
         </div> <!-----END ROW---->
 
-
+            <!-- rimozione filtri-->
+            <% request.getSession().removeAttribute("category"); %>
+            <% request.getSession().removeAttribute("class"); %>
+            <% request.getSession().removeAttribute("type"); %>
+            <% request.getSession().removeAttribute("card"); %>
 
         </div><!----- container page-top----->
 
