@@ -85,11 +85,17 @@ public class PlatformTest {
         ArrayList<Integer> cardsToGive = setTestCards(1);
         ArrayList<Integer> cardsToTake = setTestCards(5);
         try {
-            this.platform.setExchange("Obe", cardsToGive, cardsToTake);
-            //TODO cercare un modo per controllare se scambio è settato anche non sapendo l'id_trans
+            int idExchange = this.platform.setExchange("Obe", cardsToGive, cardsToTake);
+            if(idExchange ==0){
+                fail("setting exchange test failed because idExchange returned is 0");
+            }
+            this.platform.getExchange(idExchange);
+            //se non si rompe nel riprendermi dal DB lo scambio settato, posso ritenerlo settato con successo
+
 
         } catch (Exception e){
             e.printStackTrace();
+            fail();
         }
     }
 

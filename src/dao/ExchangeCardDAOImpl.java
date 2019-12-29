@@ -46,8 +46,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     @Override
-    public void create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException {
+    public int create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException {
         conn = null;
+        int exchangeKey=0;
         try {
             conn = connector.createConnection();
 
@@ -57,8 +58,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
             result=preparedStatement.getGeneratedKeys();
 
-            if (result.next() && result!=null)
-            {
+            if (result.next() && result!=null){
+                exchangeKey = result.getInt(1);
+                System.out.println("la chiave dello scambio è la seguente: "+exchangeKey);
                 for (int c: cardown.keySet()) {
                     preparedStatement=conn.prepareStatement(insert_cardown_query);
                     preparedStatement.setInt(1,result.getInt(1));
@@ -75,7 +77,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 }
             }
 
-        } catch (SQLException e) {
+
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -94,6 +98,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 cse.printStackTrace();
             }
         }
+        return exchangeKey;
     }
     /**
      * Method used to  exchange cards

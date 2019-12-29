@@ -193,7 +193,7 @@ public class Platform {
      * @return  true if the exchange is registered false if the registration fails
      * @throws SQLException
      */
-    public void setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
+    public int setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
         //Exchange exchange = new Exchange(Username, idCardOwn, idCardWanted);
         //ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
 
@@ -237,7 +237,7 @@ public class Platform {
             }
         }
         //exchangeCardDAO.create(user,ownedCards,wantedCards);
-        f.create(user,ownedCards,wantedCards);
+        return f.create(user,ownedCards,wantedCards);
     }
 
     /**
@@ -493,5 +493,10 @@ public class Platform {
     public void setExchangeNotified(Exchange exchange) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
         temp.setExchangeNotified(exchange);
+    }
+
+    public Exchange getExchange(int idExchange) throws SQLException {
+        FacadeImplements temp = new FacadeImplements();
+        return temp.getExchange(idExchange);
     }
 }

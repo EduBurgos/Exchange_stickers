@@ -157,9 +157,9 @@ public class FacadeImplements implements Facade
      * @return Capire cosa fa questo metodo
      */
     @Override
-    public void create(User user, Map<Integer, Integer> cardown, Map<Integer, Integer> cardwanted) throws SQLException {
+    public int create(User user, Map<Integer, Integer> cardown, Map<Integer, Integer> cardwanted) throws SQLException {
         ExchangeCardDAO exchangeCardDAO=new ExchangeCardDAOImpl();
-        exchangeCardDAO.create(user,cardown,cardwanted);
+        return exchangeCardDAO.create(user,cardown,cardwanted);
     }
     /**
      *TODO: Capire cosa fa questo metodo
