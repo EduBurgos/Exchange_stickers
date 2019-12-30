@@ -245,7 +245,13 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             ArrayList<Integer> cardown =new ArrayList<>();
             ArrayList<Integer> cardwanted= new ArrayList<>();
 
+            boolean firstStep=true;
+            String usernameExchangeSetter ="";
             while (result.next()) {
+                if (firstStep){
+                    usernameExchangeSetter = result.getString("username");
+                    firstStep = false;
+                }
                 cardown.add(result.getInt("cardId"));
             }
             preparedStatement = conn.prepareStatement(get_cardWanted);
@@ -257,7 +263,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             while (result.next()) {
                 cardwanted.add(result.getInt("cardId"));
             }
-            return new Exchange(id_trans, result.getString("username"), cardown,cardwanted);
+            return new Exchange(id_trans, usernameExchangeSetter, cardown,cardwanted);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
