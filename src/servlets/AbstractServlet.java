@@ -15,6 +15,7 @@ public class AbstractServlet extends HttpServlet {
     protected String INDEX_ROUTE = "/index.jsp";
     protected String INDEXPROFILE_ROUTE = "/index_profile.jsp";
     protected String INDEXHOMEPAGE_ROUTE = "/index_homepage.jsp";
+    protected String INDEXEXCHANGE_ROUTE="/index_exchange.jsp";
     /**
      * Method to redirect the requests to a jsp page. The method handle the
      * communication between pages and navigation flow in a sort of pipe&filter
