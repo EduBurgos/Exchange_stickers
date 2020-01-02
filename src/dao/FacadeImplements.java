@@ -170,7 +170,7 @@ public class FacadeImplements implements Facade
      * @param user
      * @param cardown
      * @param cardwanted
-     * @return Capire cosa fa questo metodo
+     * @return Create to exchange
      */
     @Override
     public int create(User user, Map<Integer, Integer> cardown, Map<Integer, Integer> cardwanted) throws SQLException {
