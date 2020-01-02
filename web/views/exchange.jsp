@@ -61,6 +61,7 @@ programma
             </script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% ArrayList<Card> allCards = platform.allCardsCatalog();%>
+                <!--It is used to show cards filtered  by users using the search filter of the navbar --->
                 <%ArrayList<Card>filterArray=null;%>
                 <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
                 <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>

@@ -345,6 +345,16 @@ public class Platform {
         return list;
     }
 
+
+    /**
+     * Filters cards of the catalog by the name, category,
+     * class and/or type
+     * @param nameCard a String.Indicates name of the card searched
+     * @param category a String.Indicates category of the cards searched
+     * @param classCard a String.Indicates class of the cards searched
+     * @param typeCard a String.Indicates type of the cards searched
+     * @return ArrayList<Card> Indicates all cards filtered
+     */
     public ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard){
         ArrayList<Card> list= new ArrayList<Card>();
 

@@ -176,6 +176,22 @@ public class CardsDaoImpl implements CardsDao {
         return false;
     }*/
 
+
+    /**
+     * Allows the logged user to find certain cards in the catalog,
+     * through the filters of the search bar.
+     * <p>
+     *      depending to parameters specified, the original query is completed in such a way that
+     *      it can returned the requested cards
+     * </p>
+     *
+     * @param nameCard  a String.Indicates name of the card searched.
+     * @param category  a String.Indicates category of the cards searched.
+     * @param classCard a String.Indicates class of the cards searched .
+     * @param typeCard  a String.Indicates type of the cards searched.
+     * @return ArrayList<Card> that contains the requested cards from logged user.
+     */
+
    public ArrayList<Card> filterCatalog(String nameCard, String category,String classCard, String typeCard){
 
        ArrayList<Card> list= new ArrayList<Card>();
