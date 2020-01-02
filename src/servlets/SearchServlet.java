@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class SearchServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/userprofile.jsp";
     private String HOMEPAGE_ROUTE="/views/homepage.jsp";
+    private String EXCHANGE_ROUTE="/views/exchange.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,18 +33,21 @@ public class SearchServlet extends AbstractServlet {
         try {
             String host=request.getHeader("Referer");
             String profile="http://localhost:8080/progettoF19webApp_war_exploded/views/userprofile.jsp";
+            String exchanges="http://localhost:8080/progettoF19webApp_war_exploded/views/exchange.jsp";
             if (searchFilter(request)) {
                 if(host.equals(profile)) {
                     response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
-                }
-                    else {
+                } else if(host.equals(exchanges)){
+                    response.sendRedirect(request.getContextPath()+EXCHANGE_ROUTE);
+                } else {
                         response.sendRedirect(request.getContextPath()+HOMEPAGE_ROUTE);
                     }
                 }
-             else if(host.equals(profile)) {
+            else if(host.equals(profile)) {
                 forwardTo(request, response, INDEXPROFILE_ROUTE);
-            }
-            else
+            }else if(host.equals(exchanges)){
+                forwardTo(request,response,INDEXEXCHANGE_ROUTE );
+            } else
                 forwardTo(request, response, INDEXHOMEPAGE_ROUTE);
         } catch (Exception e) {
             e.printStackTrace();

@@ -345,6 +345,21 @@ public class Platform {
         return list;
     }
 
+    public ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard){
+        ArrayList<Card> list= new ArrayList<Card>();
+
+        try{
+            Facade f = new FacadeImplements();
+            list = f.filterCatalog(nameCard,category,classCard,typeCard);
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return list;
+
+    }
+
+
     /**
      * Gives new cards when a user does their daily access
      * @param user type User. Indicates user tht has to be checked to see if it's their first time they logged to the

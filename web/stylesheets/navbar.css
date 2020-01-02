@@ -130,7 +130,7 @@ body {
     background-image: url(../img/images/body-bg.jpg);
     background-position: center center;
     background-repeat: repeat;
-    background-size: cover;
+    background-size: auto;
 }
 .navbar-brand{
     color: black;

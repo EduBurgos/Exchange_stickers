@@ -61,18 +61,40 @@ programma
             </script>
             <div style="overflow: auto; width: 100%; height: 100%">
                 <% ArrayList<Card> allCards = platform.allCardsCatalog();%>
+                <%ArrayList<Card>filterArray=null;%>
+                <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
+                <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>
+                <% filterArray= platform.filterCatalog((String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>
+                <%}%>
+                <%}%>
+                <% if(filterArray!=null){       %>
+                <%for(Card filter: filterArray){%>
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=filter.getId()%> , toTake)" id="<%=filter.getId() + "divToTake"%>">
+                <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=filter.getId()%>" id="<%=filter.getId() + "input"%>">
+                <img id="<%=filter.getId() + "cardsToTake"%>" src="../img/<%=filter.getCategoria()%>/<%=(filter.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
+                </input>
+                </div>
+                <%}%>
+                <%if(filterArray.size()==0){       %>
+                <h4 style="color: white">Search produced no results. </h4>
+                <%}%>
+                <%} else{ %>
                 <% for (Card u : allCards) {%>
-
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)" id="<%=u.getId() + "divToTake"%>">
                     <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
                     <img id="<%=u.getId() + "cardsToTake"%>" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
                     </input>
                 </div>
-
+                <%}%>
                 <%}%>
             </div>
         </div>
     </div>
+    <% request.getSession().removeAttribute("category"); %>
+    <% request.getSession().removeAttribute("class"); %>
+    <% request.getSession().removeAttribute("type"); %>
+    <% request.getSession().removeAttribute("card"); %>
+
     <!--------FINE DIV CARTE DA SELEZIONARE DA PRENDERE------->
 
     <!-------- DIV RECAP------->

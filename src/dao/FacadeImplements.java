@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FacadeImplements implements Facade
 {
-    /*CARDDAO IMPLEMENT*/
+    /*CARDSDAO IMPLEMENT*/
     /**
      * method of inserting a card
      * @param card
@@ -31,6 +31,13 @@ public class FacadeImplements implements Facade
         CardsDaoImpl c = new CardsDaoImpl();
         return c.findByID(id);
     }
+
+    @Override
+    public ArrayList<Card> filterCatalog(String nameCard, String category, String classCard, String typeCard) {
+        CardsDaoImpl c=new CardsDaoImpl();
+        return c.filterCatalog(nameCard,category,classCard,typeCard);
+    }
+
     /**
      * method that modifies the object card
      * @param card

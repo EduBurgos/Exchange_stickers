@@ -22,7 +22,7 @@ public class CardsDaoImpl implements CardsDao {
     private static final String FIND_BY_ID = "SELECT * FROM catalog WHERE ID = ?";
 
     /*** query used to find all cards in DB*/
-    private static final String FIND_ALL = "SELECT * FROM catalog";
+    private static String FIND_ALL = "SELECT * FROM catalog ";
 
 
 
@@ -175,6 +175,88 @@ public class CardsDaoImpl implements CardsDao {
         }
         return false;
     }*/
+
+   public ArrayList<Card> filterCatalog(String nameCard, String category,String classCard, String typeCard){
+
+       ArrayList<Card> list= new ArrayList<Card>();
+        String search=FIND_ALL.concat("where true");
+       int j=1;
+              try {
+           conn = connector.createConnection();
+           if( !nameCard.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
+
+               if(!nameCard.equals("")){
+                   search+=" AND CardName=?";
+               }
+               if(category!=null){
+                   search+=" AND Category=?";
+               }
+               if(!classCard.equals("")){
+                   search+=" AND Class=?";
+               }
+               if(!typeCard.equals("")){
+                   search+=" AND CardType =?";
+
+               }
+               preparedStatement = conn.prepareStatement(search);
+
+               if(!nameCard.equals("")){
+                   preparedStatement.setString(j,nameCard);
+                   j++;
+               }
+               if(category!=null){
+                   preparedStatement.setString(j,category);
+                   j++;
+               }
+               if(!classCard.equals("")){
+                   preparedStatement.setString(j,classCard);
+                   j++;
+               }
+               if(!typeCard.equals("")){
+                   preparedStatement.setString(j,typeCard);
+                   j++;
+               }
+           }
+           preparedStatement.execute();
+           result = preparedStatement.getResultSet();
+           while (result.next() && result != null) {
+
+                   Card answer = new Card(result.getInt("ID"),
+                           result.getString("Category"),
+                           result.getString("Class"),
+                           result.getInt("Lvl"),
+                           result.getString("Rarity"),
+                           result.getString("CardType"),
+                           result.getString("CardName"),
+                           result.getString("CardDescription"));
+                   list.add(answer);
+               }
+
+       }catch (SQLException e) {
+           e.printStackTrace();
+       } finally {
+           try {
+               result.close();
+           } catch (Exception rse) {
+               rse.printStackTrace();
+           }
+           try {
+               preparedStatement.close();
+           } catch (Exception sse) {
+               sse.printStackTrace();
+           }
+           try {
+               conn.close();
+           } catch (Exception cse) {
+               cse.printStackTrace();
+           }
+       }
+       return list;
+
+   }
+
+
+
 
 
     /**
