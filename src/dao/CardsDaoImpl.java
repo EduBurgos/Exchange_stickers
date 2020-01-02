@@ -324,9 +324,8 @@ public class CardsDaoImpl implements CardsDao {
     }
 
     /**
-     * method that finds a lot of cards
-     * @param
-     * @return ArrayList<Card>
+     * Finds all the cards of the catalog
+     * @return ArrayList<Card> that contains all the cards that belong to the catalog
      */
     public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
