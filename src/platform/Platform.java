@@ -56,16 +56,14 @@ public class Platform {
 
         try {
 
-            Facade user = new FacadeImplements();
+            Facade f = new FacadeImplements();
 
-            logg = user.findByUsername(username);
+            logg = f.findByUsername(username);
             String a = logg.getPass();
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                FacadeImplements f = new FacadeImplements();
-                CollectionOwn collectionOwn = f.getCollentionOwn(logg);
-                return collectionOwn;
+                return f.getCollentionOwn(logg);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
