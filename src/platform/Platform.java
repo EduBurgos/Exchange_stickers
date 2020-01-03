@@ -1,6 +1,4 @@
-package platform;//singleton pattern
-// Java program implementing Singleton class
-// with getInstance() method
+package platform;
 
 
 import Server.MYSQLConnection;
@@ -9,19 +7,13 @@ import collection.CollectionOwn;
 import dao.*;
 import userSide.Exchange;
 import userSide.User;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-
-import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.*;
 
@@ -84,9 +76,7 @@ public class Platform {
      */
     public boolean SignUp(String name, String lastName, String username, String email, String password,String retype) throws SQLException {
           User reg = new User(name, lastName, username, email);
-
           FacadeImplements userTemp = new FacadeImplements();
-          //UserDaoImpl userTemp = new UserDaoImpl();
           try{
             if (userTemp.checkUnique(reg) && checkEmail(email)) {
                 boolean succ = userTemp.save(reg, password);         /**User salvato correttamente*/
@@ -98,21 +88,6 @@ public class Platform {
 
             return false;
     }
-
-
-
-
-    //mmh inutile per ora
-    public Boolean checkUsername(String user){
-
-       /* for (User i: this.users
-        ) {
-            if(i.getUsername().equals(user)){
-                return false;}
-        }*/
-        return true;
-    }
-    //cerca un utente dal suo username
 
     /**
      * Method that used an id to find to user
@@ -142,47 +117,11 @@ public class Platform {
         return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
     }
 
-
-    //metodo per aggiungere carta scegliendo da Catalogo tramite posizione
-    //perchè string user? non è utente loggato?
-    public void addCard(String user, int indice) {
-      /*  User s;
-        s = findUser(user);
-        try {
-            if (s != null) {
-                s.addCard(cat.getCard(indice));
-            }
-            else //la condizione è già rispettata perchè utente loggato!
-                System.err.println("Utente non trovato");
-        } catch (IndexOutOfBoundsException io){
-            System.err.println("Carta non trovata nel catalogo.\nImpossibile aggiungere carta.");
-        }*/
-    }
     public CollectionOwn searcIntoCollection(CollectionOwn collectionOwn,String toSearch)
     {
         return new CollectionOwn(collectionOwn.getOwner(),collectionOwn.searchCard(toSearch));
     }
 
-    // mai usato
-    public void removeCard(User user, Card card){
-
-        Facade ud = new FacadeImplements();
-
-        //UserDao ud = new UserDaoImpl();
-
-
-       /* User s;
-        s=findUser(user);
-        if(s!=null) {
-            s.removeCard(s.findCard(nomec, tipo));
-        }
-        else
-            System.err.println("utente non trovato");*/
-    }
-    /*public boolean insertIntoCollection(CollectionOwn collectionOwn,Card card,int quantity) throws SQLException
-    {
-        return collectionOwn.insert(card,quantity);
-    }*/
     /**
      * Method used to insert an exchange record
      * @param Username
@@ -192,25 +131,12 @@ public class Platform {
      * @throws SQLException
      */
     public int setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
-        //Exchange exchange = new Exchange(Username, idCardOwn, idCardWanted);
-        //ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
-
         FacadeImplements f = new FacadeImplements();
         FacadeImplements u = new FacadeImplements();
         User user = u.findByUsername(Username);
-
-        //UserDaoImpl userDaoImpl = new UserDaoImpl();
-        //User user = userDaoImpl.findByUsername(Username);
         Map<Integer,Integer> ownedCards = new HashMap<>();
         Map<Integer,Integer> wantedCards = new HashMap<>();
 
-       /*CardsDaoImpl cardsDaoImpl = new CardsDaoImpl();
-        for(int i=0;i<CardOwn.size();i++) {
-            ownedCards.add(cardsDaoImpl.findByID(CardOwn.get(i)));
-        }
-        for(int i=0; i<CardWanted.size(); i++){
-            wantedCards.add(cardsDaoImpl.findByID(CardWanted.get(i)));
-        }*/
         for (int c: CardOwn) {
             if(ownedCards.containsKey(c))
             {
@@ -222,6 +148,7 @@ public class Platform {
                 ownedCards.put(c,1);
             }
         }
+
         for (int c: CardWanted)
         {
             if(wantedCards.containsKey(c))
@@ -234,7 +161,6 @@ public class Platform {
                 wantedCards.put(c,1);
             }
         }
-        //exchangeCardDAO.create(user,ownedCards,wantedCards);
         return f.create(user,ownedCards,wantedCards);
     }
 
@@ -244,15 +170,11 @@ public class Platform {
      * @return true if the exchange is successful, false otherwise
      */
     public boolean marketExchange(Exchange exchange,String loggato) {
-        //ExchangeCardDAO exchangeCardDAO = new  ExchangeCardDAOImpl();
-        //exchange.setUsername_offerente(loggato);
-        //exchangeCardDAO.marketExchange(exchange);
-
         Facade f = new FacadeImplements();
         exchange.setUsername_offerente(loggato);
         return f.marketExchange(exchange);
-
     }
+
     /**
      * Shows cards that belong to the collection of the user searched
      * @param username a String. Indicates username of user searched
@@ -264,17 +186,10 @@ public class Platform {
             Facade u = new FacadeImplements();
             nick = u.findByUsername(username);
 
-            //UserDao userDao = new UserDaoImpl();
-            //nick = userDao.findByUsername(username);
-
-            if(nick != null)
-            {
+            if(nick != null) {
                 //quando loggo carico anche carte utente in collectionOwn
                 FacadeImplements f = new FacadeImplements();
                 CollectionOwn collectionOwn = f.getCollentionOwn(nick);
-
-                //CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
-                //CollectionOwn collectionOwn = new CollectionOwn(nick, collectionOwnDao.getCollentionOwn(nick));
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
@@ -327,14 +242,9 @@ public class Platform {
         try{
             Facade user = new FacadeImplements();
             account= user.findByUsername(username);
-            //UserDao user=new UserDaoImpl();
-            //account= user.findByUsername(username);
             if(account!=null){
                 FacadeImplements f = new FacadeImplements();
                 list = f.filtersExchange(account,nameCard,category,classCard,typeCard);
-
-                //ExchangeCardDAOImpl exchangeCardDAO= new ExchangeCardDAOImpl();
-                //list=exchangeCardDAO.filtersexchange(account,nameCard,category,classCard,typeCard);
             }
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -363,7 +273,6 @@ public class Platform {
             e.printStackTrace();
         }
         return list;
-
     }
 
 
@@ -394,10 +303,7 @@ public class Platform {
   * @return ArrayList<Exchange> get all exchanges*/
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
-          //ExchangeCardDAO ex = new ExchangeCardDAOImpl();
-
           Facade f = new FacadeImplements();
-
           return  f.getAllExchange(user,"all");
       }catch(NullPointerException e){
           e.printStackTrace();
@@ -411,7 +317,6 @@ public class Platform {
      * @return ArrayList<Exchange> get all my exchanges*/
   public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
       try {
-          //ExchangeCardDAO exchangeCardDAO= new ExchangeCardDAOImpl();
           Facade f = new FacadeImplements();
           return f.getAllExchange(user,"mine");
       }
@@ -447,6 +352,8 @@ public class Platform {
             e.printStackTrace();
         }
     }
+
+
     /**
      * Method that take strToEncrypt using as seed secret*/
     public static String encrypt(String strToEncrypt, String secret)
@@ -492,6 +399,12 @@ public class Platform {
         return allCards.findAllGeneric();
     }
 
+    /**
+     * Method that find exchanges not yet notified to the user
+     * @param user
+     * @return ArrayList<Exchange> Exchanges ought to be notified
+     * @throws SQLException
+     */
     public ArrayList<Exchange> notifyDoneExchanges(User user) throws SQLException{
         FacadeImplements temp = new FacadeImplements();
         ArrayList<Exchange> result = temp.getAllExchange(user,"notify");
@@ -512,12 +425,12 @@ public class Platform {
         return temp.findByID(id);
     }
 
-    //TODO: METODO NON IMPLEMENTATO.
-    public void setExchangeNotified(Exchange exchange) throws SQLException {
-        FacadeImplements temp = new FacadeImplements();
-        temp.setExchangeNotified(exchange);
-    }
-
+    /**
+     * Find an exchange by its id
+     * @param idExchange int
+     * @return Exchange
+     * @throws SQLException
+     */
     public Exchange getExchange(int idExchange) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
         return temp.getExchange(idExchange);

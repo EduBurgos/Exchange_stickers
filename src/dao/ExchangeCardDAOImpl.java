@@ -592,6 +592,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
 
 
+    /**
+     * Method that set on DB the exchange as notified
+     * @param exchange Exchange that has to be set as notified
+     */
     public void setExchangeNotified(Exchange exchange){
         conn = null;
         try {
