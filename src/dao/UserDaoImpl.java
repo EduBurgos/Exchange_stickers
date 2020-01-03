@@ -258,14 +258,16 @@ public class UserDaoImpl implements UserDao {
 
             Statement s = conn.createStatement();
             result = s.executeQuery(check);
+            result.next();
+            int countUser = result.getInt("count(Username)");
             result = s.executeQuery(checkmail);
             result.next();
+            int countMail = result.getInt("count(Mail)");
 
 
             //System.out.println(result.getInt("count(Username)"));
 
-            int countUser = result.getInt("count(Username)");
-            int countMail = result.getInt("count(Mail)");
+
 
             if(countUser == 0 && countMail == 0){
                 return true;
