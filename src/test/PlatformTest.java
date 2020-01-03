@@ -19,7 +19,7 @@ public class PlatformTest {
     private Platform platform = Platform.getInstance();
     private User testUser = new User("nomeProva"+randomStringGeneratore(), "cognomeProva"+randomStringGeneratore(), "usernameProva"+randomStringGeneratore(), "emailProva"+randomStringGeneratore()+"@test.com");;
     private String passwordTest="1234";
-    private Map<Card,Integer> cardsOwn;
+    private CollectionOwn cardsOwn;
     private Map<Card,Integer> cardsWanted;
 
 
@@ -32,7 +32,7 @@ public class PlatformTest {
         try {
             Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
             cardsOwn = new CollectionOwnDaoImpl().getCollentionOwn(testUser);
-            assertTrue(result);
+            assertTrue(result && (cardsOwn!=null));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -49,10 +49,10 @@ public class PlatformTest {
             String secretkey = "chiavesupersegretissimaXD";
             String pass = Platform.encrypt(passwordTest, secretkey);
             CollectionOwn testCollection = this.platform.LogIn("Obe", pass);
-            //_________________________________________________________
+
             Facade daoFacade = new FacadeImplements();
             User testUser = daoFacade.findByUsername("Obe");
-            Map<Card,Integer> collectionOwn = daoFacade.getCollentionOwn(testUser);
+            Map<Card,Integer> collectionOwn = daoFacade.getCollentionOwn(testUser).getCardsOwn();
             boolean equalCollResult = true;
             boolean checkedCard = false;
             for (Card collToTest : testCollection.getCardsOwn().keySet()

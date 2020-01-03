@@ -64,7 +64,7 @@ public class Platform {
             {
                 //quando loggo carico anche carte utente in collectionOwn
                 FacadeImplements f = new FacadeImplements();
-                CollectionOwn collectionOwn = new CollectionOwn(logg,f.getCollentionOwn(logg));
+                CollectionOwn collectionOwn = f.getCollentionOwn(logg);
                 return collectionOwn;
             }
         } catch (NullPointerException e) {
@@ -273,7 +273,7 @@ public class Platform {
             {
                 //quando loggo carico anche carte utente in collectionOwn
                 FacadeImplements f = new FacadeImplements();
-                CollectionOwn collectionOwn = new CollectionOwn(nick, f.getCollentionOwn(nick));
+                CollectionOwn collectionOwn = f.getCollentionOwn(nick);
 
                 //CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
                 //CollectionOwn collectionOwn = new CollectionOwn(nick, collectionOwnDao.getCollentionOwn(nick));
