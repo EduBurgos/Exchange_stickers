@@ -1,7 +1,6 @@
 package dao;
 
 import collection.Card;
-import collection.CollectionOwn;
 import userSide.Exchange;
 import userSide.User;
 
@@ -86,7 +85,7 @@ public class FacadeImplements implements Facade
      * @return get collection Own
      */
     @Override
-    public CollectionOwn getCollentionOwn(User user) {
+    public Map<Card, Integer> getCollentionOwn(User user) {
         CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
         return f.getCollentionOwn(user);
     }

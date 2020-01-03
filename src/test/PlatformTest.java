@@ -19,7 +19,7 @@ public class PlatformTest {
     private Platform platform = Platform.getInstance();
     private User testUser = new User("nomeProva"+randomStringGeneratore(), "cognomeProva"+randomStringGeneratore(), "usernameProva"+randomStringGeneratore(), "emailProva"+randomStringGeneratore()+"@test.com");;
     private String passwordTest="1234";
-    private CollectionOwn cardsOwn;
+    private Map<Card,Integer> cardsOwn;
     private Map<Card,Integer> cardsWanted;
 
 
@@ -32,14 +32,10 @@ public class PlatformTest {
         try {
             Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
             cardsOwn = new CollectionOwnDaoImpl().getCollentionOwn(testUser);
-            if(cardsOwn == null){
-                fail("Test failed because it was not able to get collection owned");
-            }
             assertTrue(result);
         }
         catch (Exception e){
             e.printStackTrace();
-            fail("Test failed because it throws exception");
         }
     }
 
@@ -56,15 +52,15 @@ public class PlatformTest {
             //_________________________________________________________
             Facade daoFacade = new FacadeImplements();
             User testUser = daoFacade.findByUsername("Obe");
-            CollectionOwn collectionOwn = daoFacade.getCollentionOwn(testUser);
+            Map<Card,Integer> collectionOwn = daoFacade.getCollentionOwn(testUser);
             boolean equalCollResult = true;
             boolean checkedCard = false;
             for (Card collToTest : testCollection.getCardsOwn().keySet()
                  ) {
-                for (Card collection : collectionOwn.getCardsOwn().keySet()
+                for (Card collection : collectionOwn.keySet()
                      ) {
                     boolean cond1 = collection.getId() == collToTest.getId();
-                    boolean cond2 = testCollection.getCardsOwn().get(collToTest) != collectionOwn.getCardsOwn().get(collection);
+                    boolean cond2 = testCollection.getCardsOwn().get(collToTest) != collectionOwn.get(collection);
                     if (cond1 && cond2){
                         checkedCard = true;
                         equalCollResult=false;
@@ -77,7 +73,6 @@ public class PlatformTest {
             assertTrue(equalCollResult);
         }catch (Exception e){
             e.printStackTrace();
-            fail();
         }
     }
 

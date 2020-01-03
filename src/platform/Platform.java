@@ -63,12 +63,9 @@ public class Platform {
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
-                Facade f = new FacadeImplements();
-                CollectionOwn collectionOwn = f.getCollentionOwn(logg);
-                if (collectionOwn != null){
-                    return collectionOwn;
-                }
-
+                FacadeImplements f = new FacadeImplements();
+                CollectionOwn collectionOwn = new CollectionOwn(logg,f.getCollentionOwn(logg));
+                return collectionOwn;
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -90,7 +87,7 @@ public class Platform {
     public boolean SignUp(String name, String lastName, String username, String email, String password,String retype) throws SQLException {
           User reg = new User(name, lastName, username, email);
 
-          Facade userTemp = new FacadeImplements();
+          FacadeImplements userTemp = new FacadeImplements();
           //UserDaoImpl userTemp = new UserDaoImpl();
           try{
             if (userTemp.checkUnique(reg) && checkEmail(email)) {
@@ -276,13 +273,11 @@ public class Platform {
             {
                 //quando loggo carico anche carte utente in collectionOwn
                 FacadeImplements f = new FacadeImplements();
-                CollectionOwn collectionOwn = f.getCollentionOwn(nick);
+                CollectionOwn collectionOwn = new CollectionOwn(nick, f.getCollentionOwn(nick));
 
                 //CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
                 //CollectionOwn collectionOwn = new CollectionOwn(nick, collectionOwnDao.getCollentionOwn(nick));
-                if(collectionOwn!=null) {
-                    return collectionOwn;
-                }
+                return collectionOwn;
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
