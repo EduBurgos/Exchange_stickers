@@ -1,6 +1,7 @@
 package dao;
 
 import collection.Card;
+import collection.CollectionOwn;
 import userSide.User;
 
 //import javax.jws.soap.SOAPBinding;
@@ -86,8 +87,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     }
 
     @Override
-    public Map<Card,Integer> getCollentionOwn(User user){
+    public CollectionOwn getCollentionOwn(User user){//TODO chiedere se modificare ritornando in collection owned
         Map<Card,Integer> c=new HashMap<>();
+        CollectionOwn collectionOwn=null;
         //String listaCarte = VIEW_COLLECTION_QUERY;
         user.getUsername();
         try {
@@ -110,7 +112,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                         c.put(card,result.getInt("quantity"));
                 //to do: farla diventare mappa con quantità
             }
-            return c;
+            collectionOwn = new CollectionOwn(user, c);
+            return collectionOwn;
         }catch (SQLException e){
             return null;
         }
