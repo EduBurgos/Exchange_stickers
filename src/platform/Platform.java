@@ -252,9 +252,8 @@ public class Platform {
 
         Facade f = new FacadeImplements();
         exchange.setUsername_offerente(loggato);
-        f.marketExchange(exchange);
+        return f.marketExchange(exchange);
 
-        return true;
     }
     /**
      * Shows cards that belong to the collection of the user searched
