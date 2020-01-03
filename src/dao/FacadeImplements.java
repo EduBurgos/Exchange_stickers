@@ -32,6 +32,15 @@ public class FacadeImplements implements Facade
         return c.findByID(id);
     }
 
+    /**
+     * Finds certain cards in the catalog through applied filters
+     * @param nameCard type String. Indicates name of the card searched
+     * @param category type String. Indicates category of the cards searched
+     * @param classCard type String Indicates class of the cards searched
+     * @param typeCard type String. Indicates type of the cards searched
+     * @return ArrayList<Card> that contains cards found through filters
+     */
+
     @Override
     public ArrayList<Card> filterCatalog(String nameCard, String category, String classCard, String typeCard) {
         CardsDaoImpl c=new CardsDaoImpl();
@@ -161,7 +170,7 @@ public class FacadeImplements implements Facade
      * @param user
      * @param cardown
      * @param cardwanted
-     * @return Capire cosa fa questo metodo
+     * @return Create to exchange
      */
     @Override
     public int create(User user, Map<Integer, Integer> cardown, Map<Integer, Integer> cardwanted) throws SQLException {

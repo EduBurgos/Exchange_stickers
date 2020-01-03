@@ -518,9 +518,9 @@ INSERT INTO users VALUES( 'Elge', 'Dav', 'Bur', 'dav@gmail.it', 'GbEZsnkEipLEhXM
 INSERT INTO users VALUES( 'Pol', 'Pao', 'Gre', 'pao@yahoo.it','GbEZsnkEipLEhXM/lV4C8A==' );
 INSERT INTO users VALUES( 'Lorenzo1995', 'Lorenzo', 'Remo', 'lorenzoremo@hotmail.com', 'GbEZsnkEipLEhXM/lV4C8A==');
 INSERT INTO users VALUES( 'AntoCere', 'Antonio', 'Cereali', 'antoniocere@gmail.it', 'GbEZsnkEipLEhXM/lV4C8A==');
-INSERT INTO users VALUES( 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'doctorwho');
-INSERT INTO users VALUES( 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'castelloverde');
-INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'piscinaolimpica22');
+INSERT INTO users VALUES( 'SerenaBeuci', 'Serena', 'Beuci', 'serenabeuci@gmail.com', 'GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'EmanueliStefano','Stefano', 'Emanueli', 'emanueli1994@hotmail.com', 'GbEZsnkEipLEhXM/lV4C8A==');
+INSERT INTO users VALUES( 'Fra1999','Francesca', 'Pellegrini', 'francescapellegrini@yahoo.com', 'GbEZsnkEipLEhXM/lV4C8A==');
 
 
 

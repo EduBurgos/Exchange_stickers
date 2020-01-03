@@ -26,11 +26,10 @@ public class LoginServlet extends AbstractServlet {
      *     On the other hand if the username or the password are not correct it sets an error message
      *     and redirect the request to the same page (login)
      * </p>
-     * @param request
-     * @param response
-     *
-     * @throws ServletException
-     * @throws IOException
+     * @param request HTTP request
+     * @param response HTTP response
+     * @throws ServletException Exception coming from the servlet itself
+     * @throws IOException Exception coming from an I/O problem
      *
      */
 
@@ -68,9 +67,9 @@ public class LoginServlet extends AbstractServlet {
     /**
      * Checks if the input fields from the login form are correct using platform's login method
      * which returns the collection of the logged user.
-     * @param request
+     * @param request HTTP request
      * @return CollectionOwn the card's collection of the logged user.
-     * @throws SQLException
+     * @throws SQLException Exception coming from database
      */
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
 

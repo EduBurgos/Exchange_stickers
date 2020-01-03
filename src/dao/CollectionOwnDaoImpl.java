@@ -11,9 +11,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CollectionOwnDaoImpl implements CollectionOwnDao {
-    /**
-     * query used to select an exchange in DB
-     */
+
     private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) AND Username = ?";
 
     private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username)"+"VALUES";
@@ -149,7 +147,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      *     the table
      * </p>
      * @param user type User. Indicates user that has to be checked if they already logged today
-     * @see #createRandomCard(User)
      */
     public void giftCard(User user){
         int nCards=5;

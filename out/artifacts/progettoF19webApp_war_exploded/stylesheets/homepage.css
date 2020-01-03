@@ -29,8 +29,26 @@ img.zoom {
 }
 
 .carousel {
-    width: 250px;
-    height: 325px;
+    position: relative;
+    width: 23rem;
+    height: 31rem;
+    margin-bottom: 5rem;
+}
+
+.toHide
+{
+    margin-top: 2.5%;
+    height: 29rem;
+    width: 25rem;
+}
+#cardW{
+    width: 18.5rem;
+    margin-top: 0.5%;
+    margin-left: 7%;
+
+}
+#push{
+    margin-top: 7.8%;
 }
 .item {
     text-align: center;

@@ -46,9 +46,9 @@ public class Platform {
     /**
      * Returns the collection of the logged users
      * This method checks if the user is already registered to the platform and if username and password are correct
-     * @param username a String of the user to check
-     * @param pass a String
-     * @return  CollectionOwn logged
+     * @param username a String. Username of the user to check
+     * @param pass a String. User's password
+     * @return  CollectionOwn collection of the user who successfully logged
      * @exception SQLException
      */
     public CollectionOwn LogIn(String username,String pass) throws SQLException {
@@ -136,7 +136,7 @@ public class Platform {
 
     /**
      * Checks if the mail is valid
-     * @param email of the user who is signing up to the platform
+     * @param email a String. Indicates the mail of the user who is signing up to the platform
      * @return true if the mail is valid false otherwise
      */
     private Boolean checkEmail(String email)
@@ -257,9 +257,9 @@ public class Platform {
         return true;
     }
     /**
-     * Method that show cars of another user
-     * @param username
-     * @return Collection cards.
+     * Shows cards that belong to the collection of the user searched
+     * @param username a String. Indicates username of user searched
+     * @return CollectionOwn all cards that belong to the user
      */
     public CollectionOwn SnitchCards(String username) throws SQLException{
         User nick = null;
@@ -345,6 +345,16 @@ public class Platform {
         return list;
     }
 
+
+    /**
+     * Filters cards of the catalog by the name, category,
+     * class and/or type
+     * @param nameCard a String.Indicates name of the card searched
+     * @param category a String.Indicates category of the cards searched
+     * @param classCard a String.Indicates class of the cards searched
+     * @param typeCard a String.Indicates type of the cards searched
+     * @return ArrayList<Card> Indicates all cards filtered
+     */
     public ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard){
         ArrayList<Card> list= new ArrayList<Card>();
 
@@ -477,8 +487,9 @@ public class Platform {
     }
 
     /**
-     * method that take all cards catalog
-     * @return ArrayList<Card> all cards catalog */
+     * Finds all the cards in the catalog
+     * @return ArrayList<Card> all cards that belong to the catalog
+     * */
     public ArrayList<Card> allCardsCatalog () throws SQLException {
         FacadeImplements allCards = new FacadeImplements();
         return allCards.findAllGeneric();
@@ -495,9 +506,9 @@ public class Platform {
     }
 
     /**
-     * method that find a card using an id
-     * @param id
-     * @return Card
+     * Finds a card by its id in the catalog
+     * @param id a int. Indicates id of the card searched
+     * @return Card searched
      * */
     public Card findCardByID(int id)throws SQLException{
         FacadeImplements temp = new FacadeImplements();
