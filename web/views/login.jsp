@@ -160,7 +160,7 @@
                             </label>
                             <input type="password" required autocomplete="off" name="password" id="password"/>
                         </div>
-                        <p class="forgot"><a href="#">Forgot Password?</a></p>
+                        <p class="forgot"><a href="mailto:Luciafederica.cappucci01@universitadipavia.it?cc=paolo.gremi01@universitadipavia.it&subject=Richiesta%20per%20password%20dimenticata">Forgot Password?</a></p>
                         <button class="button button-block" />Log In</button>
 
                         <!---It shows warning message if login fails. --->
