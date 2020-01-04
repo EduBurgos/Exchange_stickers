@@ -85,13 +85,8 @@ public class SignUpServlet extends AbstractServlet {
                 request.getSession().setAttribute("message", "You have successfully signed up!");
 
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
-                //passare da platform
-                User u = new User(name, lastName, username, email);
-                Facade card = new FacadeImplements();
+                platform.userStartUpCards(name, lastName, username, email);
 
-                for(int i = 0; i<numbercard; i++) {
-                    card.createRandomCard(u);
-                }
                 forwardTo(request, response, INDEX_ROUTE);
             }
             else{
@@ -101,8 +96,6 @@ public class SignUpServlet extends AbstractServlet {
         } catch(SQLException e){
             e.printStackTrace();
         }
-
-        return;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
