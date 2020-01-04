@@ -435,4 +435,14 @@ public class Platform {
         FacadeImplements temp = new FacadeImplements();
         return temp.getExchange(idExchange);
     }
+
+    private final int numbercard = 6;
+
+    public void userStartUpCards(String name, String lastName, String username, String email) throws SQLException{
+        User u = new User(name, lastName, username, email);
+        Facade card = new FacadeImplements();
+        for(int i = 0; i<numbercard; i++) {
+            card.createRandomCard(u);
+        }
+    }
 }
