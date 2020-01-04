@@ -36,6 +36,7 @@ public class PlatformTest {
         }
         catch (Exception e){
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -73,6 +74,7 @@ public class PlatformTest {
             assertTrue(equalCollResult);
         }catch (Exception e){
             e.printStackTrace();
+            fail();
         }
     }
 
