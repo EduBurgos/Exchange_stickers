@@ -30,7 +30,7 @@ public class PlatformTest {
     @Order(1)
     public void signupTest(){
         try {
-            Boolean result = this.platform.SignUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
+            Boolean result = this.platform.signUp(testUser.getNome(), testUser.getCognome(), testUser.getUsername(), testUser.getEmail(), passwordTest, "retype");
             cardsOwn = new CollectionOwnDaoImpl().getCollentionOwn(testUser);
             assertTrue(result && (cardsOwn!=null));
         }

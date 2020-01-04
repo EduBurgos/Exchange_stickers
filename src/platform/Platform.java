@@ -74,7 +74,7 @@ public class Platform {
      * @return  true if the user is registered false if the registration fails
      * @throws SQLException
      */
-    public boolean SignUp(String name, String lastName, String username, String email, String password,String retype) throws SQLException {
+    public boolean signUp(String name, String lastName, String username, String email, String password, String retype) throws SQLException {
           User reg = new User(name, lastName, username, email);
           FacadeImplements userTemp = new FacadeImplements();
           try{

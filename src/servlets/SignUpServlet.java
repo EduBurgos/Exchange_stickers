@@ -1,18 +1,12 @@
 package servlets;
 /*StandardCharsets.US_ASCII*/
-import dao.*;
 import platform.Platform;
-import userSide.User;
 
-import javax.print.DocFlavor;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.security.interfaces.RSAKey;
 import java.sql.SQLException;
 
 @WebServlet(name = "SignUpServlet", urlPatterns = "/signUp")
@@ -81,7 +75,7 @@ public class SignUpServlet extends AbstractServlet {
         request.getSession().setAttribute("message", null);
         Platform platform = Platform.getInstance();
         try{
-            if (platform.SignUp(name, lastName, username, email, password, retype)) {
+            if (platform.signUp(name, lastName, username, email, password, retype)) {
                 request.getSession().setAttribute("message", "You have successfully signed up!");
 
                 /**CREO LE 6 CARTE ALLA REGISTRAZIONE*/
