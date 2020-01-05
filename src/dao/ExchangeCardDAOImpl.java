@@ -27,7 +27,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     //transaction for update flag
     private static final String select_transaction = "select * from exchanges where id_trans=? and trans_comp='0'";
-    private static final String flag_complete = "update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE id_trans=? ";
+    private static final String flag_complete = "update exchanges SET  USERNAME_Offer=? , trans_comp='1' WHERE id_trans=? AND trans_comp='0'";
 
 
     private static final String get_exchange ="select exchanges.* , cards_own.cardId from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=?  ";
@@ -126,10 +126,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 result=preparedStatement.getResultSet();
                 savepoint = conn.setSavepoint();
                 //se non trovo la transazione vuol dire che qualcuno l'ha già accettata quindi esco dal metodo con false
-                if(result==null && !result.next()) {
-                    return false;
-                }
-                //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
+            if (!result.isBeforeFirst() ) {
+                return false;
+            }
+            //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
                 preparedStatement=conn.prepareStatement(flag_complete);
                 preparedStatement.setString(1,exchangeCard.getUsername_offerente());
                 preparedStatement.setInt(2,exchangeCard.getId_trans());
@@ -204,7 +204,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         {
             //in caso di errore eseguo dei rollback per tornare allo stato precedente alle modifiche
             try {
-                conn.rollback(savepoint);
+                if(savepoint!=null) {
+                    conn.rollback(savepoint);
+                }
                 for (Savepoint s:insert) {
                     conn.rollback(s);
                 }
@@ -217,15 +219,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             {
 
             }
-
-            return true;
+            return false;
         }
-        return false;
-
-
+        return true;
     }
 
-    //inutile ho un ogegtto che è una lista di scambi... basta passarlo
+    //inutile ho un oggetto che è una lista di scambi... basta passarlo
 
     /**
      * Finds exchange by its id
