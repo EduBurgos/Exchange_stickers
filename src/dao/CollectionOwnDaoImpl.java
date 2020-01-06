@@ -29,10 +29,13 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String insert_collection="insert into collections (ID_CARD,Username) values ((select id from catalog order by rand() limit 1),?) ON DUPLICATE KEY UPDATE quantity=quantity+1;";
 
+    private FilterDao filter= new FilterDaoImpl();
+
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
+
 
     /**
      * Inserts a card in user's collection
@@ -231,48 +234,18 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      * @param classCard a String.Indicates class of the cards searched .
      * @param typeCard  a String.Indicates type of the cards searched.
      * @return ArrayList<Card> that contains the requested cards from logged user.
+     * @throws SQLException exception caused by database error.
      */
-    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
+    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard )throws SQLException{
 
         ArrayList<Card> list= new ArrayList<Card>();
         int j=2;
         String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
         try {
             conn = connector.createConnection();
-            if( !name.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
-
-                if(!name.equals("")){
-                    search_cards+=" AND CardName=?";
-                }
-                if(category!=null){
-                    search_cards+=" AND Category=?";
-                }
-                if(!classCard.equals("")){
-                    search_cards+=" AND Class=?";
-                }
-                if(!typeCard.equals("")){
-                    search_cards+=" AND CardType =?";
-
-                }
-                preparedStatement = conn.prepareStatement(search_cards);
-                preparedStatement.setString(1, user.getUsername());
-                if(!name.equals("")){
-                    preparedStatement.setString(j,name);
-                    j++;
-                }
-                if(category!=null){
-                    preparedStatement.setString(j,category);
-                    j++;
-                }
-                if(!classCard.equals("")){
-                    preparedStatement.setString(j,classCard);
-                    j++;
-                }
-                if(!typeCard.equals("")){
-                    preparedStatement.setString(j,typeCard);
-                    j++;
-                }
-            }
+            preparedStatement = conn.prepareStatement(filter.completeQuery(search_cards,name,category,classCard,typeCard));
+            preparedStatement.setString(1, user.getUsername());
+            filter.setQuery(j,preparedStatement,name,category,classCard,typeCard);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {

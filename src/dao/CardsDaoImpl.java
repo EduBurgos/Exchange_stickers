@@ -23,7 +23,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /*** query used to find all cards in DB*/
     private static String FIND_ALL = "SELECT * FROM catalog ";
-
+    private FilterDao filter=new FilterDaoImpl();
 
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
@@ -190,49 +190,18 @@ public class CardsDaoImpl implements CardsDao {
      * @param classCard a String.Indicates class of the cards searched .
      * @param typeCard  a String.Indicates type of the cards searched.
      * @return ArrayList<Card> that contains the requested cards from logged user.
+     * @throws SQLException exception caused by database error.
      */
 
-   public ArrayList<Card> filterCatalog(String nameCard, String category,String classCard, String typeCard){
+   public ArrayList<Card> filterCatalog(String nameCard, String category,String classCard, String typeCard)throws SQLException{
 
        ArrayList<Card> list= new ArrayList<Card>();
         String search=FIND_ALL.concat("where true");
        int j=1;
               try {
            conn = connector.createConnection();
-           if( !nameCard.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
-
-               if(!nameCard.equals("")){
-                   search+=" AND CardName=?";
-               }
-               if(category!=null){
-                   search+=" AND Category=?";
-               }
-               if(!classCard.equals("")){
-                   search+=" AND Class=?";
-               }
-               if(!typeCard.equals("")){
-                   search+=" AND CardType =?";
-
-               }
-               preparedStatement = conn.prepareStatement(search);
-
-               if(!nameCard.equals("")){
-                   preparedStatement.setString(j,nameCard);
-                   j++;
-               }
-               if(category!=null){
-                   preparedStatement.setString(j,category);
-                   j++;
-               }
-               if(!classCard.equals("")){
-                   preparedStatement.setString(j,classCard);
-                   j++;
-               }
-               if(!typeCard.equals("")){
-                   preparedStatement.setString(j,typeCard);
-                   j++;
-               }
-           }
+           preparedStatement = conn.prepareStatement(filter.completeQuery(search,nameCard,category,classCard,typeCard));
+           filter.setQuery(j,preparedStatement,nameCard,category,classCard,typeCard);
            preparedStatement.execute();
            result = preparedStatement.getResultSet();
            while (result.next() && result != null) {

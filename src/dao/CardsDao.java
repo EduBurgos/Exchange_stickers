@@ -11,7 +11,7 @@ public interface CardsDao {
     //tutte le query che faremo
     boolean insert(Card card) throws SQLException;
     Card findByID(int id) throws  SQLException;
-   ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard);
+   ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard)throws SQLException;
     boolean update(Card card) throws SQLException;
     boolean delete(Card card) throws SQLException;
 

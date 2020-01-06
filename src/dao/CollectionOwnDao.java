@@ -20,5 +20,5 @@ public interface CollectionOwnDao {
     void giftCard(User user);
     Card get_last_card(User user);
     ArrayList<Card> openSachet(User user);
-    ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard );
+    ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ) throws SQLException;
 }

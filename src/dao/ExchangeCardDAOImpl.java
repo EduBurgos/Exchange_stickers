@@ -40,7 +40,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String delete_exchange = "delete from exchanges where id_trans=?";
     //private static final String view_catalog = "select * from catalog";
     private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
-
+    private FilterDao filter=new FilterDaoImpl();
 
 
 
@@ -442,7 +442,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
      * @param classCard a String. Indicates class of the card offered that belong to searched exchange.
      * @param typeCard  a String. Indicates type of the card offered that belong to searched exchange.
      * @return ArrayList<Exchange> that contains the requested exchanges from logged user.
-     * @throws SQLException
+     * @throws SQLException exception caused by database error.
      * */
     public ArrayList<Exchange>filtersExchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
         conn=null;
@@ -455,43 +455,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
                 try {
                 conn = connector.createConnection();
-                if( !name.equals("")|| category!=null || !classCard.equals("") || !typeCard.equals("")) {
-
-                    if (!name.equals("")) {
-                        get_all_exchangeFilter += " AND CardName=?";
-                    }
-                    if (category!=null) {
-                        get_all_exchangeFilter += " AND Category=?";
-                    }
-                    if (!classCard.equals("")) {
-                        get_all_exchangeFilter += " AND Class=?";
-                    }
-                    if (!typeCard.equals("")) {
-                        get_all_exchangeFilter += " AND CardType =?";
-
-                    }
-                    preparedStatement = conn.prepareStatement(get_all_exchangeFilter);
+                    preparedStatement = conn.prepareStatement(filter.completeQuery(get_all_exchangeFilter,name,category,classCard,typeCard));
                     preparedStatement.setString(1, user.getUsername());
                     preparedStatement.setString(2, user.getUsername());
                     preparedStatement.setString(3, user.getUsername());
                     preparedStatement.setBoolean(4,false);
-                    if (!name.equals("")) {
-                        preparedStatement.setString(j, name);
-                        j++;
-                    }
-                    if (category!=null) {
-                        preparedStatement.setString(j, category);
-                        j++;
-                    }
-                    if (!classCard.equals("")) {
-                        preparedStatement.setString(j, classCard);
-                        j++;
-                    }
-                    if (!typeCard.equals("")) {
-                        preparedStatement.setString(j, typeCard);
-                        j++;
-                    }
-                }
+                    filter.setQuery(j,preparedStatement,name,category,classCard,typeCard);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
 
