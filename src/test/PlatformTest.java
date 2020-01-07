@@ -108,6 +108,7 @@ public class PlatformTest {
     @Order(4)
     public void acceptExchangeTest(){
         try {
+            //TODO usare carte veramente possedute dai due users
             ArrayList<Integer> cardsToGive = setTestCards(1);
             ArrayList<Integer> cardsToTake = setTestCards(5);
             //TODO check if users have target cards
@@ -115,9 +116,10 @@ public class PlatformTest {
             UserDaoImpl userDao = new UserDaoImpl();
             User testUserSetExchange = userDao.findByUsername("Obe");
             User testUserAccepting = userDao.findByUsername("Pol");
-            this.platform.setExchange(testUserSetExchange.getUsername(), cardsToGive, cardsToTake);
+            int idExchange = this.platform.setExchange(testUserSetExchange.getUsername(), cardsToGive, cardsToTake);
+            Exchange exchangeid= exchangeCardDAO.getExchange(idExchange);
             Exchange exchange =  exchangeCardDAO.getAllExchange(testUserSetExchange, "mine").get(0);
-            boolean result = this.platform.marketExchange(exchange, testUserAccepting.getUsername());
+            boolean result = this.platform.marketExchange(exchangeid, testUserAccepting.getUsername());
             assertTrue(result);
 
         } catch (Exception e){
