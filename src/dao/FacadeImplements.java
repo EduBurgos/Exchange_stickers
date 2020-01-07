@@ -43,7 +43,7 @@ public class FacadeImplements implements Facade
      */
 
     @Override
-    public ArrayList<Card> filterCatalog(String nameCard, String category, String classCard, String typeCard) {
+    public ArrayList<Card> filterCatalog(String nameCard, String category, String classCard, String typeCard) throws SQLException{
         CardsDaoImpl c=new CardsDaoImpl();
         return c.filterCatalog(nameCard,category,classCard,typeCard);
     }
@@ -150,7 +150,7 @@ public class FacadeImplements implements Facade
      * @return ArrayList<Card> that contains cards found through filters
      */
     @Override
-    public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard) {
+    public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard) throws SQLException{
         CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
         return f.filters(user, name, category, classCard, typeCard);
     }

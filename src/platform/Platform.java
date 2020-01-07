@@ -132,8 +132,7 @@ public class Platform {
      */
     public int setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
         FacadeImplements f = new FacadeImplements();
-        FacadeImplements u = new FacadeImplements();
-        User user = u.findByUsername(Username);
+        User user = f.findByUsername(Username);
         Map<Integer,Integer> ownedCards = new HashMap<>();
         Map<Integer,Integer> wantedCards = new HashMap<>();
 
@@ -269,7 +268,7 @@ public class Platform {
             Facade f = new FacadeImplements();
             list = f.filterCatalog(nameCard,category,classCard,typeCard);
 
-        }catch (NullPointerException e){
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return list;
