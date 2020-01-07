@@ -25,7 +25,7 @@ public class ExchangeServlet extends AbstractServlet {
 
     // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Platform platform = Platform.getInstance();
         //prendere gli id delle carte da scambiare
         try {
             String[] cardsToTake = request.getParameterValues("cardsToTake");
@@ -48,14 +48,15 @@ public class ExchangeServlet extends AbstractServlet {
             }
 
             CollectionOwn collectionOwn=(CollectionOwn) request.getSession().getAttribute("logged");
-
             String username=collectionOwn.getOwner().getUsername();
-            Platform platform = Platform.getInstance();
+
             platform.setExchange(username, intArrayToGive, intArrayToTake);
             //settaggio del parametro che farà capire alla jsp che deve uscire il pop up del riuscito settaggio dello scambio
 
             request.getSession().setAttribute("role", "notification");
+            request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(collectionOwn.getOwner()));
             response.sendRedirect(request.getContextPath()+DEFAULT_ROUTE);
+
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath()+"/views/exchange.jsp");
