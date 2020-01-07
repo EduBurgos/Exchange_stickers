@@ -126,7 +126,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 result=preparedStatement.getResultSet();
                 savepoint = conn.setSavepoint();
                 //se non trovo la transazione vuol dire che qualcuno l'ha già accettata quindi esco dal metodo con false
-            if (!result.isBeforeFirst() ) {
+            if (!result.isBeforeFirst()) {
                 return false;
             }
             //setto flag completato = 1 per evitare che altri utenti accettino lo stesso scambio
@@ -281,8 +281,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             } catch (Exception cse) {
                 cse.printStackTrace();
             }
-            return null;
         }
+        return null;
     }
 
     /**this methos takes all user's exchanges or all the exchanges that he can accept
