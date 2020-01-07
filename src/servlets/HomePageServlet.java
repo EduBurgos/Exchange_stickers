@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class HomePageServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
     private String PROFILE_ROUTE = "/views/userprofile.jsp";
+    private String INDEX_HOMEPAGE = "index_homepage.jsp";
 
     /**
      * Handles the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
@@ -39,7 +40,8 @@ public class HomePageServlet extends AbstractServlet {
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
             } else {
                 request.getSession().setAttribute("doneExchange", "false");
-                forwardTo(request, response, DEFAULT_ROUTE);
+                //forwardTo(request, response, DEFAULT_ROUTE);
+                response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
 
             }
 
