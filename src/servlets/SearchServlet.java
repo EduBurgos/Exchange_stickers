@@ -13,9 +13,7 @@ public class SearchServlet extends AbstractServlet {
     private String HOMEPAGE_ROUTE="/views/homepage.jsp";
     private String EXCHANGE_ROUTE="/views/exchange.jsp";
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
 
     /**
      * Checks in which jsp page we are and returns filtered exchanges/cards

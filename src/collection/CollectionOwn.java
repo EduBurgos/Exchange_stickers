@@ -7,8 +7,6 @@ import java.util.Map;
 
 
 /** Class that represents the collection owned by the user
- * @see User
- * @see Card
  */
 public class CollectionOwn {
     private User owner;
