@@ -109,16 +109,30 @@ public class PlatformTest {
     public void acceptExchangeTest(){
         try {
             //TODO usare carte veramente possedute dai due users
-            ArrayList<Integer> cardsToGive = setTestCards(1);
-            ArrayList<Integer> cardsToTake = setTestCards(5);
+            ArrayList<Integer> cardsToGive = new ArrayList<>();// = setTestCards(1);
+            ArrayList<Integer> cardsToTake = new ArrayList<>();// = setTestCards(5);
             //TODO check if users have target cards
             ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
             UserDaoImpl userDao = new UserDaoImpl();
             User testUserSetExchange = userDao.findByUsername("Obe");
             User testUserAccepting = userDao.findByUsername("Pol");
+
+            CollectionOwnDao collectionOwnDao = new CollectionOwnDaoImpl();
+            for (Card c : collectionOwnDao.getCollentionOwn(testUserSetExchange).getCardsOwn().keySet()
+                 ) {
+                cardsToGive.add(c.getId());
+                if (cardsToGive.size()>=5)
+                    break;
+            }
+
+            for (Card c : collectionOwnDao.getCollentionOwn(testUserAccepting).getCardsOwn().keySet()
+            ) {
+                cardsToTake.add(c.getId());
+                if (cardsToTake.size()>=5)
+                    break;
+            }
             int idExchange = this.platform.setExchange(testUserSetExchange.getUsername(), cardsToGive, cardsToTake);
             Exchange exchangeid= exchangeCardDAO.getExchange(idExchange);
-            Exchange exchange =  exchangeCardDAO.getAllExchange(testUserSetExchange, "mine").get(0);
             boolean result = this.platform.marketExchange(exchangeid, testUserAccepting.getUsername());
             assertTrue(result);
 
