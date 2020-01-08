@@ -217,8 +217,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
             }
             catch (SQLException e1)
             {
-
+                e1.printStackTrace();
+                System.out.println("ERROR DURING ROLLBACK");
             }
+            System.out.println("ERROR DURING EXCHANGE, ROLLBACK EXECUTED");
             return false;
         }
         return true;
