@@ -17,6 +17,9 @@ import javax.crypto.spec.SecretKeySpec;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Class that represents platform where users can create exchanges and exchange their cards
+ */
 public class Platform {
 
     /** connection to MYSql*/
@@ -41,7 +44,7 @@ public class Platform {
      * @param username a String. Username of the user to check
      * @param pass a String. User's password
      * @return  CollectionOwn collection of the user who successfully logged
-     * @exception SQLException
+     * @exception SQLException exception caused by database access error
      */
     public CollectionOwn LogIn(String username,String pass) throws SQLException {
         User logg = null;
@@ -66,13 +69,13 @@ public class Platform {
 
     /**
      * Method used to sign up a new user
-     * @param name of new user
-     * @param lastName of new user
-     * @param username of new user
-     * @param email of new user
-     * @param password of new user
+     * @param name a String. Indicates name of new user
+     * @param lastName a String. Indicates surname of new user
+     * @param username a String. Indicates username of new user
+     * @param email a String. Indicates email of new user
+     * @param password a String. Indicates password of new user
      * @return  true if the user is registered false if the registration fails
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     public boolean signUp(String name, String lastName, String username, String email, String password, String retype) throws SQLException {
           User reg = new User(name, lastName, username, email);
@@ -90,9 +93,9 @@ public class Platform {
     }
 
     /**
-     * Method that used an id to find to user
-     * @param id
-     * @return User
+     * Finds a user by their id
+     * @param id a int. Indicates id of the searched user
+     * @return User user searched
      * */
     public User findUser(String id) throws SQLException
     {
@@ -124,11 +127,11 @@ public class Platform {
 
     /**
      * Method used to insert an exchange record
-     * @param Username
-     * @param CardOwn
-     * @param CardWanted
+     * @param Username a String. Indicates username of the user who creates a new exchange
+     * @param CardOwn a ArrayList<Integer>. Contains the ids of all the cards the user want to offer
+     * @param CardWanted a ArrayList<Integer>. Contains the ids of  all the cards the user want to have
      * @return  true if the exchange is registered false if the registration fails
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     public int setExchange(String Username, ArrayList<Integer> CardOwn, ArrayList<Integer> CardWanted) throws SQLException {
         FacadeImplements f = new FacadeImplements();
@@ -164,8 +167,9 @@ public class Platform {
     }
 
     /**
-     * Method used to accept exchanges
-     * @param exchange that i want to accept
+     * Accepts exchange created by another user
+     * @param exchange type Exchange. Indicates exchange that a user wants to accept
+     * @param loggato a String. Indicates username of the user who accepts the exchange
      * @return true if the exchange is successful, false otherwise
      */
     public boolean marketExchange(Exchange exchange,String loggato) {
@@ -297,9 +301,10 @@ public class Platform {
 
 
  /**
-  * Method that show all exchange
-  * @param user
-  * @return ArrayList<Exchange> get all exchanges*/
+  * Shows all the exchanges the logged user can accept
+  * @param user type User. Indicates user who logged to the platform
+  * @return ArrayList<Exchange> all the available exchanges created by other users
+  * */
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
           Facade f = new FacadeImplements();
@@ -311,9 +316,10 @@ public class Platform {
   }
 
     /**
-     * Method that show all my exchange
-     * @param user
-     * @return ArrayList<Exchange> get all my exchanges*/
+     * Shows all my exchanges
+     * @param user type User. Indicates user who is the owner of the exchanges
+     * @return ArrayList<Exchange> get all my exchanges
+     * */
   public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
       try {
           Facade f = new FacadeImplements();
@@ -333,7 +339,7 @@ public class Platform {
     /**
      * Digest myKey using a hashing algorithm
      * @param myKey
-     * @return*/
+     * */
     public static void setKey(String myKey)
     {
         MessageDigest sha = null;
@@ -400,7 +406,7 @@ public class Platform {
 
     /**
      * Method that find exchanges not yet notified to the user
-     * @param user
+     * @param user type User. Indicates user who  has to be notified
      * @return ArrayList<Exchange> Exchanges ought to be notified
      * @throws SQLException
      */
@@ -426,9 +432,9 @@ public class Platform {
 
     /**
      * Find an exchange by its id
-     * @param idExchange int
-     * @return Exchange
-     * @throws SQLException
+     * @param idExchange int. Indicates id of the exchange searched
+     * @return Exchange that is searched
+     * @throws SQLException exception caused by database access error
      */
     public Exchange getExchange(int idExchange) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
@@ -437,6 +443,14 @@ public class Platform {
 
     private final int numbercard = 6;
 
+    /**
+     * Gives cards to the user who just signed up to the platform
+     * @param name a String. Indicates name of the user
+     * @param lastName a String. Indicates surname of the user
+     * @param username a String. Indicates username of the user
+     * @param email a String. Indicates email of the user
+     * @throws SQLException exception caused by database access error
+     */
     public void userStartUpCards(String name, String lastName, String username, String email) throws SQLException{
         User u = new User(name, lastName, username, email);
         Facade card = new FacadeImplements();

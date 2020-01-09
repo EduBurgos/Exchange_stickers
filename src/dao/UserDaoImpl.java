@@ -39,8 +39,6 @@ public class UserDaoImpl implements UserDao {
      * @param user type User. Indicates user who is going to be added
      * @param pass  a String. Indicates new user's password
      * @return true if the user has been successfully added, false if not
-     * @throws SQLException
-     * @throws Exception
      */
     @Override
     public boolean save(User user, String pass){
@@ -85,7 +83,6 @@ public class UserDaoImpl implements UserDao {
      * @param user user who is going to be updated
      * @return true if the user has been found and successfully updated false if not
      * @throws SQLException
-     * @throws Exception
      */
 
     @Override
@@ -125,7 +122,6 @@ public class UserDaoImpl implements UserDao {
      * @param user type User. Indicates user who is going to be removed
      * @return true if the user has been found and successfully removed false if not
      * @throws SQLException
-     * @throws Exception
      */
 
     @Override
@@ -161,7 +157,6 @@ public class UserDaoImpl implements UserDao {
      * @param user type User. Indicates user that has to be found
      * @return true if the user has been found false if not
      * @throws SQLException
-     * @throws Exception
      */
     @Override
     public boolean checkByUser(User user) throws SQLException {
@@ -204,7 +199,6 @@ public class UserDaoImpl implements UserDao {
      * Method that finds all users in the database
      * @return ArrayList<User> which contains users in DB
      * @throws SQLException
-     * @throws Exception
      */
 
     public ArrayList<User> findAll() throws SQLException {

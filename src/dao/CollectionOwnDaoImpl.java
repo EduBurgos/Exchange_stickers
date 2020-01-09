@@ -89,6 +89,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         return false;
     }
 
+    /**
+     * Gets collection of a user
+     * @param user type User. Indicates user that owns the collectiom
+     * @return CollectionOwn collection of the user
+     */
     @Override
     public CollectionOwn getCollentionOwn(User user){
         Map<Card,Integer> c=new HashMap<>();
