@@ -40,7 +40,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String delete_exchange = "delete from exchanges where id_trans=?";
     //private static final String view_catalog = "select * from catalog";
     private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
-    private FilterDao filter=new FilterDaoImpl();
+    private FacadeImplements f=new FacadeImplements();
 
 
 
@@ -457,12 +457,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
                 try {
                 conn = connector.createConnection();
-                    preparedStatement = conn.prepareStatement(filter.completeQuery(get_all_exchangeFilter,name,category,classCard,typeCard));
+                    preparedStatement = conn.prepareStatement(f.completeQuery(get_all_exchangeFilter,name,category,classCard,typeCard));
                     preparedStatement.setString(1, user.getUsername());
                     preparedStatement.setString(2, user.getUsername());
                     preparedStatement.setString(3, user.getUsername());
                     preparedStatement.setBoolean(4,false);
-                    filter.setQuery(j,preparedStatement,name,category,classCard,typeCard);
+                    f.setQuery(j,preparedStatement,name,category,classCard,typeCard);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
 

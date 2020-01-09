@@ -29,7 +29,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String insert_collection="insert into collections (ID_CARD,Username) values ((select id from catalog order by rand() limit 1),?) ON DUPLICATE KEY UPDATE quantity=quantity+1;";
 
-    private FilterDao filter= new FilterDaoImpl();
+    private FacadeImplements f= new FacadeImplements();
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -243,9 +243,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";
         try {
             conn = connector.createConnection();
-            preparedStatement = conn.prepareStatement(filter.completeQuery(search_cards,name,category,classCard,typeCard));
+            preparedStatement = conn.prepareStatement(f.completeQuery(search_cards,name,category,classCard,typeCard));
             preparedStatement.setString(1, user.getUsername());
-            filter.setQuery(j,preparedStatement,name,category,classCard,typeCard);
+            f.setQuery(j,preparedStatement,name,category,classCard,typeCard);
             preparedStatement.execute();
             result = preparedStatement.getResultSet();
             while (result.next() && result != null) {

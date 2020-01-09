@@ -23,13 +23,13 @@ public class CardsDaoImpl implements CardsDao {
 
     /*** query used to find all cards in DB*/
     private static String FIND_ALL = "SELECT * FROM catalog ";
-    private FilterDao filter=new FilterDaoImpl();
 
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
+    private FacadeImplements f=new FacadeImplements();
 
     /**
      * Inserts a card in DB
@@ -200,8 +200,8 @@ public class CardsDaoImpl implements CardsDao {
        int j=1;
               try {
            conn = connector.createConnection();
-           preparedStatement = conn.prepareStatement(filter.completeQuery(search,nameCard,category,classCard,typeCard));
-           filter.setQuery(j,preparedStatement,nameCard,category,classCard,typeCard);
+           preparedStatement = conn.prepareStatement(f.completeQuery(search,nameCard,category,classCard,typeCard));
+           f.setQuery(j,preparedStatement,nameCard,category,classCard,typeCard);
            preparedStatement.execute();
            result = preparedStatement.getResultSet();
            while (result.next() && result != null) {
