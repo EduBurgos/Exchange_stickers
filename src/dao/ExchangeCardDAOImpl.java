@@ -35,15 +35,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String get_cardWanted="select cards_wanted.* from (exchanges join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans)  where exchanges.id_trans=? ";
     private static final String get_all_exchange ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";
     private static final String get_exchange_to_notify="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.cardId as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans where username=? and trans_comp=1 and notified=0 order by exchanges.id_trans";
-
-
     private static final String delete_exchange = "delete from exchanges where id_trans=?";
-    //private static final String view_catalog = "select * from catalog";
     private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
     private FacadeImplements f=new FacadeImplements();
-
-
-
 
     @Override
     public int create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException {
@@ -111,7 +105,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         Savepoint savepoint = null;
         List<Savepoint> insert = new LinkedList<>();
         List<Savepoint> insert2 =new LinkedList<>();
-        //cancello carte presenti in entrambe le liste perchè non ha senso scambiare due carte uguali
         try {
                 //seleziono il record della transazione e creo un savepoint a cui fare rollback in caso di errori
                 conn = connector.createConnection();
@@ -225,8 +218,6 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return true;
     }
-
-    //inutile ho un oggetto che è una lista di scambi... basta passarlo
 
     /**
      * Finds exchange by its id
@@ -475,10 +466,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                         cardwanted.add(result.getInt("want"));
                     }
                     while (result != null) {
-                        cardown=new ArrayList<>();
-                        cardwanted=new ArrayList<>();
-                        username=result.getString("username");
-                        username_offer=result.getString("username_offer");
+                        cardown = new ArrayList<>();
+                        cardwanted = new ArrayList<>();
+                        username = result.getString("username");
+                        username_offer = result.getString("username_offer");
                         trans_compl = result.getBoolean("trans_comp");
                         while (result.getInt(1) == id_trans) {
 

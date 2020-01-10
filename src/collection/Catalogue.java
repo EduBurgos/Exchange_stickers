@@ -1,17 +1,9 @@
 package collection;
 
-import dao.MySQLDAOFactory;
-import userSide.User;
-
 import java.io.IOException;
-import java.io.Reader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+//TODO CLASSE NON IMPLEMENTATA
 public class Catalogue
 {
     //lista di carte contenute nella piattaforma,l'utente sceglie le carte della sua collezione dal catalogo

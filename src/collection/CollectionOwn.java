@@ -1,7 +1,6 @@
 package collection;
 
 import userSide.User;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,17 +52,4 @@ public class CollectionOwn {
         }
         return false;
     }
-    /*public int getlastQt()
-    {
-        return cardsOwn.lastEntry().getValue();
-    }
-    public Card getLastCard()
-    {
-        return cardsOwn.lastKey();
-    }
-    public boolean insert(Card card,int quantity) throws SQLException {
-        cardsOwn.put(card,quantity);
-        CollectionOwnDaoImpl collectionOwnDao=new CollectionOwnDaoImpl();
-        return collectionOwnDao.insert(card,owner,quantity);
-    }*/
 }

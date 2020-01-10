@@ -1,9 +1,3 @@
-<%@ page import="collection.Card" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="dao.CollectionOwnDaoImpl" %>
-<%@ page import="dao.UserDaoImpl" %>
-<%@ page import="userSide.User" %>
-<%@ page import="static javax.swing.text.html.CSS.getAttribute" %>
 <!DOCTYPE html>
 <html>
 <head>

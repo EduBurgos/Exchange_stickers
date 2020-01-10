@@ -1,14 +1,11 @@
 <!--- USERPROFILE: This page shows informations about  the user who is logged to the platform,their collection and the exchanges made by them;
 It contains the feature "snitch card" which allows to see other users' profiles.-->
 
-<%@ page import="userSide.User" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="collection.Card" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="collection.CollectionOwn" %>
 <%@ page import="platform.Platform" %>
 <%@ page import="userSide.Exchange" %>
-<%@ page import="dao.*" %>
 
 
 <!DOCTYPE html>
@@ -62,6 +59,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
             <p><i class="email"></i>E-mail: <%=c.getOwner().getEmail()%></p>
         </div>
     </section>
+
     <div class="section center-col content">
 
         <!-- Nav tabs -->

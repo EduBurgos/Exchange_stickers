@@ -3,15 +3,14 @@ package dao;
 import collection.Card;
 import collection.CollectionOwn;
 import userSide.User;
-
-//import javax.jws.soap.SOAPBinding;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class CollectionOwnDaoImpl implements CollectionOwnDao {
+
+    private static final int numbercards = 6;
 
     private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) AND Username = ?";
 
@@ -224,8 +223,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         }
     }
 
-
-
     /**
      * Allows the logged user to find certain cards in their collection,
      * through the filters of the search bar.
@@ -288,15 +285,11 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         return list;
     }
 
-
-
-
-
     @Override
     public ArrayList<Card> openSachet(User user){
         ArrayList<Card> c = new ArrayList<Card>();
 
-        for(int i=0; i<6; i++){                 // TODO: cambiare il 6 per una costante globale (no hardcode).
+        for(int i=0; i<numbercards; i++){
             c.add(createRandomCard(user));
         }
         return c;
@@ -307,7 +300,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
         try {
             conn = connector.createConnection();
-            //TODO fare in modo che vengo eseguito per ogni carta dell' arraylist, meglio prendere tutte le carte con una query e operare poi con un ciclo
+            //TODO fare in modo che venga eseguito per ogni carta dell' arraylist, meglio prendere tutte le carte con una query e operare poi con un ciclo
             preparedStatement = conn.prepareStatement(HAS_CARDS_QUERY);
 
         } catch (SQLException e) {

@@ -17,8 +17,6 @@ public class ProfileServlet extends AbstractServlet{
 
     private String DEFAULT_ROUTE = "/views/userprofile.jsp";
 
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         forwardTo(request, response, INDEX_ROUTE);
     }
@@ -39,7 +37,6 @@ public class ProfileServlet extends AbstractServlet{
 
         try{
             CollectionOwn nickname = confirmNickname(request);
-            //ArrayList<Exchange> lista_market = Platform.getInstance().getExchange();
             request.getSession().setAttribute("snitch",null);
 
             if(nickname != null){

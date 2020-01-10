@@ -1,10 +1,7 @@
 package userSide;
 
-import collection.Card;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 /**
  * Class that represents a user
@@ -16,7 +13,6 @@ public class User {
     private String username;
     private String pass;
     private String email;
-
 
     /**
      * Constructor for user
@@ -71,10 +67,6 @@ public class User {
         this.email = email;
     }
 
-
-
-
-
     /**
      * Checks if there are two users with the same name, surname, username and email
      * @param   second type User.Indicates a user who will be compared
@@ -85,22 +77,11 @@ public class User {
         return (this.nome.equals(second.nome)) && (this.cognome.equals(second.cognome)) && (this.username.equals(second.username)) && (this.email.equals(second.email));
     }
 
-
-
-
-
-
-
-
-
-
-
     public String passToHash(String p) throws NoSuchAlgorithmException  {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(p.getBytes());
         byte[] digest = md.digest();
         //String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
-
         //assertThat(myHash.equals(hash)).isTrue();
         System.out.println(digest.toString());
         return "asd";

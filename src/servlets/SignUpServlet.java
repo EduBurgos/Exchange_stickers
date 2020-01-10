@@ -1,7 +1,6 @@
 package servlets;
 /*StandardCharsets.US_ASCII*/
 import platform.Platform;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -70,7 +69,6 @@ public class SignUpServlet extends AbstractServlet {
         String username = request.getParameter("Username");
         String email = request.getParameter("Email");
         String password = Platform.encrypt(request.getParameter("Password"), secretkey);
-        //String password = request.getParameter("Password");
         String retype = request.getParameter("ReType");
         request.getSession().setAttribute("message", null);
         Platform platform = Platform.getInstance();

@@ -9,13 +9,11 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Caporetto homepage</title>
-
 
     <!-- Custom styles for this template -->
     <link href="../bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -54,14 +52,18 @@
                 <%for(int i=0;i<ex.size();i++){%>
                     <% User u1=platform.findUser(ex.get(i).getId_user());   %>
                     <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+
                     <!-- Wrapper for slides -->
                     <div class="display: inline">
                         <form  method="post" action="../homepage">
-                            <label style="color:darkblue"><strong><%=u1.getUsername()   %></strong></label>
+                            <label style="color:darkblue"><strong><%=u1.getUsername()%></strong></label>
                             <input type="hidden" name="btn"  value="<%=i%>"/>
-                            <input type="submit"  class="btn-primary"  value="accept" name="btn"  id="<%=i%>"/>
+
+                   <input type="submit" class="btn-primary"  value="accept" name="btn"  id="<%=i%>" />
+
                     </form>
                     </div>
+
                     <div class="carousel-inner" role="listbox">
                         <%int attivo=0;%>
                         <% for (int ca: ex.get(i).get_id_card_owm()) { %>
@@ -128,7 +130,6 @@
                     </div>
                     <div class="row">
                         <%}%>
-
 
                         <%}%>
                     </div>
@@ -333,9 +334,14 @@ function showOpacity(){
    var mostra = document.getElementById("mostra");
     var save = document.getElementById("save");
 
-
+    function removeCarousel(id) {
+        var divToRemove = document.getElementById("carousel".concat(id.toString()));
+        divToRemove.remove();
+    }
 </script>
+
+
+
 <script type="text/javascript" src="../js/carousel.js"></script>
 </body>
-
 </html>

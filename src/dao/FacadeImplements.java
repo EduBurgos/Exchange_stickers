@@ -4,7 +4,6 @@ import collection.Card;
 import collection.CollectionOwn;
 import userSide.Exchange;
 import userSide.User;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -168,11 +167,11 @@ public class FacadeImplements implements Facade
 
     /*EXCHANGE CARD DAO*/
     /**
-     * TODO: Capire cosa fa questo metodo
+     * Create to exchange and return an id int
      * @param user
      * @param cardown
      * @param cardwanted
-     * @return Create to exchange
+     * @return int
      */
     @Override
     public int create(User user, Map<Integer, Integer> cardown, Map<Integer, Integer> cardwanted) throws SQLException {
@@ -180,7 +179,7 @@ public class FacadeImplements implements Facade
         return exchangeCardDAO.create(user,cardown,cardwanted);
     }
     /**
-     *TODO: Capire cosa fa questo metodo
+     * Accepts exchange created by another user
      * @param exchangeCard
      * @return boolean
      */
@@ -358,6 +357,4 @@ public class FacadeImplements implements Facade
         }
         return p;
     }
-
-
 }

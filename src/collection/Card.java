@@ -119,12 +119,6 @@ public class Card extends AbstractCard implements Comparable {
         }
         return -1;
     }
-
-        //@Override
-        //public Boolean setNewOwner(User oldUser, User newUser) {
-        //  return null;
-        //}
-
 }
 
 

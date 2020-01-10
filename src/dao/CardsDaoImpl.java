@@ -1,13 +1,11 @@
 package dao;
 
 import collection.Card;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardsDaoImpl implements CardsDao {
 
@@ -147,6 +145,7 @@ public class CardsDaoImpl implements CardsDao {
     }
         return false;
 
+        //TODO CACELLARE ?
 }/* METODO DA MODIFICARE*/
    /* public boolean findByCategory(Card card) throws SQLException {
         Card card1=null;
@@ -239,10 +238,6 @@ public class CardsDaoImpl implements CardsDao {
        return list;
 
    }
-
-
-
-
 
     /**
      * Finds a card by its ID in the catalog

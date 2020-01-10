@@ -34,7 +34,7 @@ public class ExchangeServlet extends AbstractServlet {
             System.out.println("carte da prendere "+ Arrays.toString(cardsToTake));
             System.out.println("carte da dare "+ Arrays.toString(cardsToGive));
             //TODO cambiare controllo sul null, non solo se carte da scambiare sono uguali
-            if(cardsToGive ==null) {
+            if(cardsToGive == null) {
                 cardsToGive = cardsToTake.clone();
             }
             ArrayList<Integer> intArrayToGive = new ArrayList<>();

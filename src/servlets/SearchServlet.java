@@ -1,19 +1,14 @@
 package servlets;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet(name = "SearchServlet", urlPatterns = "/Search")
 public class SearchServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/userprofile.jsp";
     private String HOMEPAGE_ROUTE="/views/homepage.jsp";
     private String EXCHANGE_ROUTE="/views/exchange.jsp";
-
-
 
     /**
      * Checks in which jsp page we are and returns filtered exchanges/cards

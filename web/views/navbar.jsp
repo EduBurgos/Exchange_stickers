@@ -1,7 +1,6 @@
 <!-- NAVIGATION BAR : this page contains the top navigation bar with links to Home, Exchange, Search's Navbar, Notification, Help and Account ;
 it is included in each page of the application -->
 
-
 <%@ page import="dao.CardsDao" %>
 <%@ page import="userSide.Exchange" %>
 <%@ page import="java.util.ArrayList" %>

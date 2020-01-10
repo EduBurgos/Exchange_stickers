@@ -3,15 +3,11 @@ package dao;
 import collection.Card;
 import collection.CollectionOwn;
 import userSide.User;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public interface CollectionOwnDao {
-    //CRUD
     CollectionOwn getCollentionOwn(User user);
-    //boolean insert(Card card,User user,int quantity) throws SQLException;
     boolean update() throws SQLException;
     boolean delete() throws SQLException;
 

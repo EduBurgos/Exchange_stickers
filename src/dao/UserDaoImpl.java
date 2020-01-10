@@ -47,15 +47,7 @@ public class UserDaoImpl implements UserDao {
             conn=connector.createConnection();
 
             String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass+"')";
-            preparedStatement = conn.prepareStatement(query /*,Statement.RETURN_GENERATED_KEYS*/);
-
-            /*preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getNome());
-            preparedStatement.setString(3, user.getCognome());
-            preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getPass());*/
-
-
+            preparedStatement = conn.prepareStatement(query);
 
             int res= preparedStatement.executeUpdate();
             if (res >0){
@@ -84,7 +76,6 @@ public class UserDaoImpl implements UserDao {
      * @return true if the user has been found and successfully updated false if not
      * @throws SQLException
      */
-
     @Override
     public boolean update(User user) throws SQLException {
         PreparedStatement preparedStatement = null;
@@ -123,7 +114,6 @@ public class UserDaoImpl implements UserDao {
      * @return true if the user has been found and successfully removed false if not
      * @throws SQLException
      */
-
     @Override
     public boolean delete(User user) throws SQLException {
 
@@ -258,11 +248,6 @@ public class UserDaoImpl implements UserDao {
             result.next();
             int countMail = result.getInt("count(Mail)");
 
-
-            //System.out.println(result.getInt("count(Username)"));
-
-
-
             if(countUser == 0 && countMail == 0){
                 return true;
             }else{
@@ -277,11 +262,6 @@ public class UserDaoImpl implements UserDao {
             } catch (Exception rse) {
                 rse.printStackTrace();
             }
-            /*try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }*/
             try {
                 conn.close();
             } catch (Exception cse) {
@@ -316,7 +296,7 @@ public class UserDaoImpl implements UserDao {
                         result.getString("CardName"),
                         result.getString("CardDescription"));
                 c.add(card);
-                //to do: farla diventare mappa con quantità
+                //TODO farla diventare mappa con quantità
                 //cards.put(card,result.getInt(9));
                 System.out.printf("c");
             }

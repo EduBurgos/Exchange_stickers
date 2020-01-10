@@ -2,37 +2,37 @@ package collection;
 
 public interface Cards {
 
-    public int getId();
+    int getId();
 
-    public void setId(int id);
+    void setId(int id);
 
-    public String getCategoria();
+    String getCategoria();
 
-    public void setCategoria(String categoria);
+    void setCategoria(String categoria);
 
-    public String getClasse();
+    String getClasse();
 
-    public void setClasse(String classe);
+    void setClasse(String classe);
 
-    public int getLivello();
+    int getLivello();
 
-    public void setLivello(int livello) ;
+    void setLivello(int livello) ;
 
-    public String getRarità();
+    String getRarità();
 
-    public void setRarità(String rarità);
+    void setRarità(String rarità);
 
-    public String getTipo();
-    public void setTipo(String tipo);
-    public String getNome();
+    String getTipo();
+    void setTipo(String tipo);
+    String getNome();
 
-    public void setNome(String nome);
+    void setNome(String nome);
 
-    public String getDescrizione();
+    String getDescrizione();
 
-    public void setDescrizione(String descrizione);
+    void setDescrizione(String descrizione);
 
     @Override
-    public String toString();
+    String toString();
 
 }

@@ -255,7 +255,6 @@ public class Platform {
         return list;
     }
 
-
     /**
      * Filters cards of the catalog by the name, category,
      * class and/or type
@@ -377,7 +376,7 @@ public class Platform {
         return null;
     }
 
-    //TODO: DA CANCELLARE ? RISCHIAMO DI PRESENTARE QUESTO METODO O PENSIAMO IN UNO PIU SICURO?
+
     /**Metodo decryp*/
     public static String decrypt(String strToDecrypt, String secret)
     {

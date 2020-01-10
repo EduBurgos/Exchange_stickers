@@ -1,11 +1,6 @@
 package userSide;
 
-import collection.Card;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /** Class that represents the exchanges created by a user
  **/
@@ -74,7 +69,7 @@ public class Exchange {
     public void setTrans_comp(boolean trans_comp) { this.trans_comp = trans_comp;}
     public String getUsername_offerente() {return username_offerente;}
     public void setUsername_offerente(String username_offerente) {this.username_offerente=username_offerente;}
-     public boolean get_trans_com() {
+    public boolean get_trans_com() {
         return trans_comp;
      }
 }

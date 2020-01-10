@@ -2,14 +2,10 @@ package servlets;
 
 import collection.CollectionOwn;
 import platform.Platform;
-import userSide.User;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -75,7 +71,6 @@ public class LoginServlet extends AbstractServlet {
 
         String name = request.getParameter("name");
         String pass = Platform.encrypt(request.getParameter("password"), secretkey);
-        //String pass= request.getParameter("password");
         Platform platform = Platform.getInstance();
         return platform.LogIn(name,pass);
     }
