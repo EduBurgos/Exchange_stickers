@@ -83,7 +83,7 @@ public class CardsDaoImpl implements CardsDao {
      * @throws SQLException
      */
     @Override
-    public boolean delete(Card card) throws SQLException {
+    public boolean delete(Card card) {
         try {
             conn = connector.createConnection();
             preparedStatement = conn.prepareStatement(DELETE_QUERY);
@@ -115,7 +115,7 @@ public class CardsDaoImpl implements CardsDao {
      * @throws SQLException
      */
     @Override
-    public boolean update(Card card) throws SQLException{
+    public boolean update(Card card){
         try {
             conn= connector.createConnection();
             preparedStatement= conn.prepareStatement(UPDATE_QUERY);
@@ -129,36 +129,7 @@ public class CardsDaoImpl implements CardsDao {
             preparedStatement.setString(8,card.getDescrizione());
             preparedStatement.execute();
             return true;
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } finally {
-        try {
-            preparedStatement.close();
-        } catch (Exception sse) {
-            sse.printStackTrace();
-        }
-        try {
-            conn.close();
-        } catch (Exception cse) {
-            cse.printStackTrace();
-        }
-    }
-        return false;
-
-        //TODO CACELLARE ?
-}/* METODO DA MODIFICARE*/
-   /* public boolean findByCategory(Card card) throws SQLException {
-        Card card1=null;
-        try{
-        conn = connector.createConnection();
-        preparedStatement = conn.prepareStatement(FINDBYCATEGORY);
-        preparedStatement.setString(1, card.getCategoria());
-        preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            if (result.next() && result != null) {
-                card1 = new Card(result.getInt(2), result.getString(1), result.getString(3), result.getInt(4),result.getString(5),result.getString(6),result.getString(7),result.getString(8));
-            }
-    } catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -173,8 +144,7 @@ public class CardsDaoImpl implements CardsDao {
             }
         }
         return false;
-    }*/
-
+    }
 
     /**
      * Allows the logged user to find certain cards in the catalog,
@@ -246,7 +216,7 @@ public class CardsDaoImpl implements CardsDao {
      * @throws SQLException
      */
     @Override
-    public Card findByID(int id) throws SQLException {
+    public Card findByID(int id){
         Card card = null;
         conn = null;
         try {
@@ -291,7 +261,7 @@ public class CardsDaoImpl implements CardsDao {
      * Finds all the cards of the catalog
      * @return ArrayList<Card> that contains all the cards that belong to the catalog
      */
-    public ArrayList<Card> findAllGeneric() throws SQLException {
+    public ArrayList<Card> findAllGeneric() {
         ArrayList<Card> allCards = new ArrayList<Card>();
         conn = null;
         try {
@@ -331,6 +301,4 @@ public class CardsDaoImpl implements CardsDao {
         }
         return allCards;
     }
-
-
 }

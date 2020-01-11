@@ -12,7 +12,7 @@ public class QueryTest {
             CardsDaoImpl x = new CardsDaoImpl();
             try{
                 x.findAllGeneric();
-            } catch(SQLException e){
+            } catch(Exception e){
                 e.printStackTrace();
             }
         }

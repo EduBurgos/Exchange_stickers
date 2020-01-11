@@ -226,7 +226,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
      * @throws SQLException
      */
     @Override
-    public Exchange getExchange(int id_trans) throws SQLException {
+    public Exchange getExchange(int id_trans){
         conn = null;
         try {
             conn = connector.createConnection();
@@ -290,9 +290,10 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     public ArrayList<Exchange> getAllExchange(User user,String parameter) throws SQLException {
         conn=null;
         ArrayList<Integer> cardown = new ArrayList<>();
-        ArrayList<Integer> cardwanted=new ArrayList<>();
+        ArrayList<Integer> cardwanted = new ArrayList<>();
         ArrayList<Exchange> allExchange = new ArrayList<>();
         conn = connector.createConnection();
+
         //switch per decidere quale query utilizzare
         switch (parameter)
                 {
@@ -337,11 +338,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
                 addCard(result.getInt("wqt"), cardown, result.getInt("want"));
             }
             while (result != null) {
-                cardown=new ArrayList<Integer>();
-                cardwanted=new ArrayList<Integer>();
-                username=result.getString("username");
-                username_offer=result.getString("username_offer");
+                cardown = new ArrayList<Integer>();
+                cardwanted = new ArrayList<Integer>();
+                username = result.getString("username");
+                username_offer = result.getString("username_offer");
                 trans_compl = result.getBoolean("trans_comp");
+
                 //finchè l'id_trans contenuto nel result_set è uguale a quello salvato non crea una nuovo scambio,
                 // quando l'id cambia lo scambio viene aggiunto alla lista
                 while (result.getInt("id_trans") == id_trans) {
@@ -394,7 +396,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return allExchange;
     }
    @Override
-    public void delete(int id_trans) throws SQLException {
+    public void delete(int id_trans) {
         conn = null;
         try {
             conn = connector.createConnection();
@@ -437,7 +439,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
      * @return ArrayList<Exchange> that contains the requested exchanges from logged user.
      * @throws SQLException exception caused by database error.
      * */
-    public ArrayList<Exchange>filtersExchange(User user, String name, String category , String classCard, String typeCard) throws SQLException{
+    public ArrayList<Exchange>filtersExchange(User user, String name, String category , String classCard, String typeCard){
         conn=null;
         ArrayList<Exchange> answer= new ArrayList<>();
         int j=5;

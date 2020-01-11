@@ -79,12 +79,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
 
     @Override
-    public boolean update() throws SQLException {
+    public boolean update(){
         return false;
     }
 
     @Override
-    public boolean delete() throws SQLException {
+    public boolean delete(){
         return false;
     }
 
@@ -96,8 +96,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     @Override
     public CollectionOwn getCollentionOwn(User user){
         Map<Card,Integer> c=new HashMap<>();
-        CollectionOwn collectionOwn;
-        //String listaCarte = VIEW_COLLECTION_QUERY;
         user.getUsername();
         try {
             conn = connector.createConnection();
@@ -117,7 +115,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                         result.getString("CardName"),
                         result.getString("CardDescription"));
                         c.put(card,result.getInt("quantity"));
-                //to do: farla diventare mappa con quantità
             }
             return new CollectionOwn(user, c);
         }catch (SQLException e){
@@ -238,7 +235,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      * @return ArrayList<Card> that contains the requested cards from logged user.
      * @throws SQLException exception caused by database error.
      */
-    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard )throws SQLException{
+    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
 
         ArrayList<Card> list= new ArrayList<Card>();
         int j=2;
