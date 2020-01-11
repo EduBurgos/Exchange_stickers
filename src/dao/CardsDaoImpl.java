@@ -10,16 +10,16 @@ import java.util.ArrayList;
 public class CardsDaoImpl implements CardsDao {
 
     //esplicitazione query
-    /**query used to insert a new card in DB*/
+
     private static final String INSERT_QUERY = "INSERT INTO catalog (ID, Category,Class,Lvl,Rarity,CardType,CardName,CardDescription) VALUES (?,?,?,?,?,?,?,?)";
-    /**query used to delete a card in DB*/
+
     private static final String DELETE_QUERY = "DELETE FROM catalog WHERE ID = ?";
-    /** query used to update a card in DB*/
+
     private static final String UPDATE_QUERY = "UPDATE catalog SET ID=? , Category=? , Class=? , Lvl=?, Rarity=?,CardType=?, CardName=?, CardDescription=?) WHERE ID = ?";
-    /*** query used to find a card ny its ID in DB*/
+
     private static final String FIND_BY_ID = "SELECT * FROM catalog WHERE ID = ?";
 
-    /*** query used to find all cards in DB*/
+
     private static String FIND_ALL = "SELECT * FROM catalog ";
 
 
@@ -30,10 +30,10 @@ public class CardsDaoImpl implements CardsDao {
     private FacadeImplements f=new FacadeImplements();
 
     /**
-     * Inserts a card in DB
+     * Inserts a card in catalog
      * @param card type Card. Indicates card which is going to be added
      * @return true if the card is added, false if not
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public boolean insert(Card card) throws SQLException {
@@ -77,10 +77,10 @@ public class CardsDaoImpl implements CardsDao {
     }
 
     /**
-     * Deletes a card in DB
+     * Deletes a card in catalog
      * @param card type Card.Indicates card which is going to be delete
      * @return true if the card has been successfully deleted, false otherwise
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public boolean delete(Card card) throws SQLException{
@@ -109,10 +109,10 @@ public class CardsDaoImpl implements CardsDao {
     }
 
     /**
-     * Updates a card in DB
+     * Updates a card in catalog
      * @param card type Card. Indicates card that has to be updated
      * @return true if the card has  been successfully updated, false otherwise
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public boolean update(Card card) throws SQLException{
@@ -213,7 +213,7 @@ public class CardsDaoImpl implements CardsDao {
      * Finds a card by its ID in the catalog
      * @param id a int. Indicates id of the card searched
      * @return Card that has to be searched
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public Card findByID(int id) throws SQLException {
@@ -260,6 +260,7 @@ public class CardsDaoImpl implements CardsDao {
     /**
      * Finds all the cards of the catalog
      * @return ArrayList<Card> that contains all the cards that belong to the catalog
+     * @throws SQLException exception caused by database access error
      */
     public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();

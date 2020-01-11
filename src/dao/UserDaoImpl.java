@@ -7,17 +7,17 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class UserDaoImpl implements UserDao {
-    /** Query used to add a new user*/
+
     private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
-    /** Query used to read a single user */
+
     private static final String READ_QUERY = "SELECT * FROM users WHERE Username = ?";
-    /** Query used to read all users */
+
     private static final String READ_ALL_QUERY = "SELECT id, first_name, last_name FROM customers";
-    /** Query used to update a single user. */
+
     private static final String UPDATE_QUERY = "UPDATE users SET Username=? , NameUser=? , Surname=? , Mail=? WHERE Username = ?";
-    /** Query used to delete a single user. */
+
     private static final String DELETE_QUERY = "DELETE FROM users WHERE Username = ?";
-    /** Query used to read a single user. */
+
     private static final String CHECKBYUSER_QUERY = "SELECT * FROM users WHERE Username = ?, NameUser = ?, Surname = ?, Mail = ?";
 
     private static final String PASSWORD_QUERY="SELECT Pass FROM users WHERE Username= ?";
@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     // private static final String  CHECK_UNIQ = "SELECT COUNT(Username) FROM users WHERE Username = ?";       //Verifica lesistenza del USERNAME del DB.
 
-    /**query used to find all users in DB*/
+
     private static final String FIND_ALL= "SELECT * FROM users";
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
      * Updates a user in the database
      * @param user user who is going to be updated
      * @return true if the user has been found and successfully updated false if not
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public boolean update(User user) throws SQLException {
@@ -112,7 +112,7 @@ public class UserDaoImpl implements UserDao {
      * Deletes a user in the database
      * @param user type User. Indicates user who is going to be removed
      * @return true if the user has been found and successfully removed false if not
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public boolean delete(User user) throws SQLException {
@@ -146,7 +146,7 @@ public class UserDaoImpl implements UserDao {
      * Checks if the user is present in the database
      * @param user type User. Indicates user that has to be found
      * @return true if the user has been found false if not
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public boolean checkByUser(User user) throws SQLException {
@@ -188,7 +188,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * Method that finds all users in the database
      * @return ArrayList<User> which contains users in DB
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
 
     public ArrayList<User> findAll() throws SQLException {
@@ -228,6 +228,11 @@ public class UserDaoImpl implements UserDao {
         return allUsers;
     }
 
+    /**
+     * Checks if there is already a user with same username and/or mail
+     * @param user type User. Indicates user that has to be checked
+     * @return false if a user already exists, true otherwise
+     */
     @Override
     public boolean checkUnique(User user){
         conn=null;
@@ -311,7 +316,7 @@ public class UserDaoImpl implements UserDao {
      * Searches user in database by their username
      * @param username a String. Indicates username of the user that has to found
      * @return User. Indicates user found in database
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     public User findByUsername(String username) throws SQLException {
         User user = null;
