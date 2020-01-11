@@ -209,12 +209,8 @@ it is included in each page of the application -->
     function topFunction() {
         document.documentElement.scrollTop = 0;
     }
-    function cleaAttr()
-    {
-        <% request.getSession().removeAttribute("snitched"); %>
-        location.href(" ../views/userprofile.jsp").load;
-    }
 
+    // Removes the notifications, after viewing them.
     function removeIndex() {
         document.getElementById("notifNumber").style.display = "none";
         <% request.getSession().setAttribute("exchangesToNotify",null); %>

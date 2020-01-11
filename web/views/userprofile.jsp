@@ -246,6 +246,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 </div>
 </body>
 <script>
+
     //Clears attribute 'snitch' in order to see again the logged user's profile again
     function cleaAttr()
     {

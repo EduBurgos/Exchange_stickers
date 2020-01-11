@@ -89,9 +89,9 @@
                         }%>
 
                         <script>
-                            /**
-                             * It shows warning message when new password and confirm password don't match.
-                             * **/
+
+                             // It shows warning message when new password and confirm password don't match.
+
                             var check = function() {
                                 var message=document.getElementById('message');
                                 if (document.getElementById('newpassword').value!=document.getElementById('confirm_password').value) {
@@ -108,10 +108,9 @@
 
                             var regex = /^([A-z0-9.+_-]+)*@([A-z0-9._-]+\.)+([A-z]{2,6})$/;
                             var emailMessage= document.getElementById("emailmessage");
-                            /**
-                             * Method that shows warning message if the email is not valid.
-                             * @param email
-                             */
+
+                             //Shows warning message if the email is not valid.
+
                             function validate(email){
                                 if(!regex.test(email))
                                 {

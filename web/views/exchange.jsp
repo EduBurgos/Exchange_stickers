@@ -125,15 +125,10 @@
 
 
 <script>
-    //------------------------------------------------------------
-    /**
-     * main selection method to add or remove a card to give
-     * @param array Is the array made by cards id
-     * @param card Card id(it's not ought to be unique for each owned card)
-     * @param value String that identify the div where will be cloned the image
-     * @param i Int rappresents the index used to identify each card
-     * @param tempArray Is the array made by cards index
-     */
+
+    // main selection method to add or remove a card to give
+
+
     function chooseCardsToGive(array, card, value, i, tempArray){
         var divId=card+"divToGive"+i;
         console.log("divId: "+divId);
@@ -171,12 +166,9 @@
         }
     }
 
-    /**
-     * method to add the selected card in recap div to give
-     * @param id String that rapresents the image id of card we want to add
-     * @param where
-     * @param idCard Int that rapresents the id of card we want to add
-     */
+
+    //  Adds the selected card in recap div to give
+
     function showPictureToGive(id, where,i) {
         var idWhereToAdd = where.toString().concat("Recap");//create id div where the card will be cloned
         var completeWhere = where.concat(i.toString());
@@ -196,12 +188,10 @@
         src.appendChild(divCln);//add the clone div to div recap
     }
 
-    /**
-     * method to remove the selected card in recap div to give
-     * @param id String that rappresents the id of card we want to remove
-     * @param where
-     * @param i Int that rapresents unique index
-     */
+
+     //removes the selected card in recap div to give
+
+
     function removePictureToGive(id, where, i) {
         //var idWhereToAdd = where.toString().concat("Recap");
         var completeWhere = where.concat(i.toString());
@@ -218,12 +208,9 @@
         return elem.parentNode.removeChild(elem);
     }
 
-    /**
-     * method to add a cards in the array that will be sent to server. This method works on divs
-     * @param array Array where il be added or removed ids
-     * @param card Int that rapresents the card id
-     * @param value It's a string that rapresent where I'm working(toGive or toTake)
-     */
+
+      //adds a cards in the array that will be sent to server. This method works on divs
+
     function chooseCards(array, card, value){
         var id = card.toString().concat("inputcardsToTake");
         console.log("questo è l'id dell'input: "+id);
@@ -240,12 +227,9 @@
             timer: 1500})
     }
 
-    /**
-     * method to remove a cards from the array that will be sent to server
-     * @param array
-     * @param card
-     * @param value
-     */
+
+     // Removes a cards from the array that will be sent to server
+
     function removeSelectedCard(array, card, value) {
         console.log("inizia il removeSelectedCard");
         var id = card.toString().concat("input");
@@ -262,12 +246,9 @@
             timer: 1500})
     }
 
-    /**
-     * method to add the selected card in recap div to take
-     * @param id Rapresents the image id of card we want to add
-     * @param where
-     * @param idCard Rapresents the id of card we want to add
-     */
+
+     //Adds the selected card in recap div to take
+
     function showPicture(id, where, idCard) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
@@ -286,11 +267,9 @@
         $('input', divCln).attr("name","cardsToTake");
 
     }
-    /**
-     * method to remove the selected card in recap div to take
-     * @param id Rapresents the id of card we want to remove
-     * @param where
-     */
+
+     //Removes the selected card in recap div to take
+
     function removePicture(id, where) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
@@ -307,11 +286,9 @@
         return elem.parentNode.removeChild(elem);
     }
 
-    /**
-     * Method used to add and remove attribute 'name', which is the way to manipulate and sent cards we choose
-     * @param array rapresenyts wich array will be modified
-     * @param action rapresents what div we will operate in
-     */
+
+     //Adds and removes attribute 'name', which is the way to manipulate and sent cards we choose
+
     function selDeselCards(array, action) {
         var me = document.currentScript;
         console.log(me);
@@ -325,20 +302,22 @@
             addToArray(array, value, action);
         }
     }
-    // method to add an element selected to array, we will use it to create the arrays to pass to servlet(one for cards to send and the other to receive)
+    // Adds an element selected to array, in order  to create the arrays to pass to servlet(one for cards to send and the other to receive)
     function addToArray(array, card){
+
         array.push(card);
     }
+
+    // Removes an element from Array.
     function removeFromArray(array, card){
         var pos = array.indexOf(card);
         array.splice(pos, 1);
     }
 
-    /**
-     * method to start exchange, except if user selected no cards or more than 5
-     * @param array1 Array with cards to give
-     * @param array2 Array with cards to take
-     */
+
+
+     //Starts exchange, except if user selected no cards or more than 5
+
     function startChange(array1, array2) {
         if (array1.length > 5 || array2.length > 5 ) {
             Swal.fire({

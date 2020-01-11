@@ -83,7 +83,7 @@ public class Platform {
           FacadeImplements userTemp = new FacadeImplements();
           try{
             if (userTemp.checkUnique(reg) && checkEmail(email)) {
-                boolean succ = userTemp.save(reg, password);         /**User salvato correttamente*/
+                boolean succ = userTemp.save(reg, password);         //User salvato correttamente
                 return succ;
             }
                 } catch (NullPointerException e) {
@@ -121,13 +121,14 @@ public class Platform {
         return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
     }
 
+    /** A dopo*/
     public CollectionOwn searcIntoCollection(CollectionOwn collectionOwn,String toSearch)
     {
         return new CollectionOwn(collectionOwn.getOwner(),collectionOwn.searchCard(toSearch));
     }
 
     /**
-     * Method used to insert an exchange record
+     * Inserts an exchange record.
      * @param Username a String. Indicates username of the user who creates a new exchange
      * @param CardOwn a ArrayList<Integer>. Contains the ids of all the cards the user want to offer
      * @param CardWanted a ArrayList<Integer>. Contains the ids of  all the cards the user want to have
@@ -348,7 +349,7 @@ public class Platform {
 
     /**
      * Digest myKey using a hashing algorithm
-     * @param myKey
+     * @param myKey assegna dal programma
      * */
     public static void setKey(String myKey)
     {
@@ -369,7 +370,12 @@ public class Platform {
     }
 
     /**
-     * Method that take strToEncrypt using as seed secret*/
+
+     * Method that take strToEncrypt using as seed secret
+     * @param strToEncrypt
+
+     *
+    **/
     public static String encrypt(String strToEncrypt, String secret)
     {
         try
