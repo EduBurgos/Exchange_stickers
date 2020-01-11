@@ -41,7 +41,7 @@
                 <%for(Card entry : c.getCardsOwn().keySet()){%>
                 <%for(int i =0; i<c.getCardsOwn().get(entry); i++){%>
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb" id="<%=entry.getId() + "divToGive"+j%>" onclick="chooseCardsToGive(CardsToGiveArray, <%=entry.getId()%>, toGive, <%=j%>, temporaryArray)" >
-                    <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "input"%>">
+                    <input type="hidden" onclick="selDeselCards(CardsToGiveArray, toGive)" value="<%=entry.getId()%>" id="<%=entry.getId() + "inputcardsToGive"%>">
                     <img id="<%=entry.getId() + "cardsToGive" + j%>" src="../img/<%=entry.getCategoria()%>/<%=(entry.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catlogim" alt="">
                     </input>
                 </div>
@@ -70,7 +70,7 @@
                 <% if(filterArray!=null){       %>
                 <%for(Card filter: filterArray){%>
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=filter.getId()%> , toTake)" id="<%=filter.getId() + "divToTake"%>">
-                <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=filter.getId()%>" id="<%=filter.getId() + "input"%>">
+                <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=filter.getId()%>" id="<%=filter.getId() + "inputcardsToTake"%>">
                 <img id="<%=filter.getId() + "cardsToTake"%>" src="../img/<%=filter.getCategoria()%>/<%=(filter.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
                 </input>
                 </div>
@@ -81,7 +81,7 @@
                 <%} else{ %>
                 <% for (Card u : allCards) {%>
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb" onclick="chooseCards(CardsToTakeArray, <%=u.getId()%> , toTake)" id="<%=u.getId() + "divToTake"%>">
-                    <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "input"%>">
+                    <input type="hidden" onclick="selDeselCards(CardsToTakeArray, toTake)" value="<%=u.getId()%>" id="<%=u.getId() + "inputcardsToTake"%>">
                     <img id="<%=u.getId() + "cardsToTake"%>" src="../img/<%=u.getCategoria()%>/<%=(u.getNome()).replaceAll("\\s","")%>.png" class="zoom img-fluid catalogImages" alt="">
                     </input>
                 </div>
@@ -135,7 +135,8 @@
      * @param tempArray Is the array made by cards index
      */
     function chooseCardsToGive(array, card, value, i, tempArray){
-        var id = card.toString().concat("input");//create the input id
+        var id = card.toString().concat("inputcardsToGive");//create the input id
+        console.log("questo è l'id dell'input: "+id);
         var idImg = card.toString() + value + i.toString();//create the img id
         console.log("l'idImg è "+idImg);
         var me = document.getElementById(id);//retrieve input element
@@ -220,7 +221,8 @@
      * @param value It's a string that rapresent where I'm working(toGive or toTake)
      */
     function chooseCards(array, card, value){
-        var id = card.toString().concat("input");
+        var id = card.toString().concat("inputcardsToTake");
+        console.log("questo è l'id dell'input: "+id);
         var idImg = card.toString() + value;
         var me = document.getElementById(id);
         showPicture(idImg, value, card);
@@ -305,7 +307,9 @@
      */
     function selDeselCards(array, action) {
         var me = document.currentScript;
+        console.log(me);
         var value = me.getAttribute("value");
+        console.log("value: "+me);
         if (array.includes(value) == true) {
             me.removeAttribute("name");
             removeFromArray(array, value);
