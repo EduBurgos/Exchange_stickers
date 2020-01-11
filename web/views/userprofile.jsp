@@ -29,13 +29,14 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 
 
 </head>
-<body>
+<div>
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
 <div class="cover-photo"></div>
-<div class="body">
-    <section class="left-col user-info">
+ <div class="body">
+   <div class="row-height">
+    <section class="left-col user-info col-height">
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
@@ -51,9 +52,9 @@ It contains the feature "snitch card" which allows to see other users' profiles.
             <p><i class="name"></i>Name: <%=c.getOwner().getNome()+" "+c.getOwner().getCognome()%></p>
             <p><i class="email"></i>E-mail: <%=c.getOwner().getEmail()%></p>
         </div>
-    </section>
+</section>
 
-    <div class="section center-col content" >
+    <div class="section center-col content col-height" >
 
         <!-- Nav tabs -->
         <div class="row">
@@ -240,8 +241,8 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 
         </div>
     </div>
-
-</div.container>
+</div>
+</div>
 </div>
 </body>
 <script>

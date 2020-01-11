@@ -37,12 +37,12 @@ a {
 
 .body {
 
-    width: 1140px;
-    height: 1000px;
+    width:114rem;
     margin: 0 auto;
     z-index: 4;
     position: relative;
-    background-color: beige;
+    background-color: whitesmoke;
+
 }
 .left-col {
     width: 226px;
@@ -54,6 +54,17 @@ a {
     right: 0px;
 
 }
+.row-height{
+    display:table;
+    table-layout: fixed;
+    height:100%;
+    width:calc(100% + 30px);
+}
+.col-height{
+    display: table-cell;
+    height: auto;
+}
+
 
 .center-col {
     float: left;
@@ -64,9 +75,9 @@ a {
 
 }
 
-/** .right-col {
-    background-color: blue;
-}*/
+
+
+
 
 /* LEFT COL */
 .user-info h1 {
