@@ -225,9 +225,9 @@
         console.log("questo è l'id dell'input: "+id);
         var idImg = card.toString() + value;
         var me = document.getElementById(id);
-        showPicture(idImg, value, card);
+        showPicture(idImg, value, card,array.length);
         addToArray(array, card);
-        me.setAttribute("name", value);
+
         console.log("a card is just added, array:"+array);
         Swal.fire({
             icon: 'success',
@@ -264,20 +264,24 @@
      * @param where
      * @param idCard Rapresents the id of card we want to add
      */
-    function showPicture(id, where, idCard) {
+    function showPicture(id, where, idCard,position) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
         var idDivCopy = idDiv.concat("Copy");
+
         console.log(idDiv);
         var divCard = document.getElementById(idDiv);
         var divCln = divCard.cloneNode(true);
-        var img = document.getElementById(id);
-        var imgCln = img.cloneNode(true);
         var src = document.getElementById(idWhereToAdd);
+
         divCln.setAttribute("id", idDivCopy);
+
         divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
         divCln.setAttribute("onclick", "removeSelectedCard(CardsToTakeArray,"+ idCard+" , toTake)");
         src.appendChild(divCln);
+        var id=idCard+"CardsToTakeCopy"+(position+1);
+        $('input', divCln).attr("id",id);
+        document.getElementById(id).setAttribute("name","cardsToTake");
     }
     /**
      * method to remove the selected card in recap div to take
