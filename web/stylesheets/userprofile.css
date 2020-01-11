@@ -1,5 +1,4 @@
 
-
 /* apply a natural box layout model to all elements */
 *, *:before, *:after {
     -moz-box-sizing: border-box;
@@ -226,4 +225,10 @@ img.zoom {
 }
 .carousel-control {
     width: 10px;
+}
+
+.containerprofile {
+    border: 1px solid #000000;
+    overflow: auto;
+    width: 100%
 }

@@ -252,6 +252,5 @@ It contains the feature "snitch card" which allows to see other users' profiles.
     }
 
 </script>
-
 <script type="text/javascript" src="../js/carousel.js"></script>
 </html>

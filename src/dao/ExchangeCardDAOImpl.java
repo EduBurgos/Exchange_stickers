@@ -104,7 +104,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         conn = null;
         Savepoint savepoint = null;
         List<Savepoint> insert = new LinkedList<>();
-        List<Savepoint> insert2 =new LinkedList<>();
+        List<Savepoint> insert2 = new LinkedList<>();
         try {
                 //seleziono il record della transazione e creo un savepoint a cui fare rollback in caso di errori
                 conn = connector.createConnection();

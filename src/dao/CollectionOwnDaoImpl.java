@@ -235,7 +235,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      * @return ArrayList<Card> that contains the requested cards from logged user.
      * @throws SQLException exception caused by database error.
      */
-    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ){
+    public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ) throws SQLException{
 
         ArrayList<Card> list= new ArrayList<Card>();
         int j=2;

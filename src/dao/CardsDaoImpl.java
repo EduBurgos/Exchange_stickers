@@ -83,7 +83,7 @@ public class CardsDaoImpl implements CardsDao {
      * @throws SQLException
      */
     @Override
-    public boolean delete(Card card) {
+    public boolean delete(Card card) throws SQLException{
         try {
             conn = connector.createConnection();
             preparedStatement = conn.prepareStatement(DELETE_QUERY);
@@ -115,7 +115,7 @@ public class CardsDaoImpl implements CardsDao {
      * @throws SQLException
      */
     @Override
-    public boolean update(Card card){
+    public boolean update(Card card) throws SQLException{
         try {
             conn= connector.createConnection();
             preparedStatement= conn.prepareStatement(UPDATE_QUERY);
@@ -129,22 +129,22 @@ public class CardsDaoImpl implements CardsDao {
             preparedStatement.setString(8,card.getDescrizione());
             preparedStatement.execute();
             return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                preparedStatement.close();
-            } catch (Exception sse) {
-                sse.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (Exception cse) {
-                cse.printStackTrace();
-            }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            preparedStatement.close();
+        } catch (Exception sse) {
+            sse.printStackTrace();
         }
-        return false;
+        try {
+            conn.close();
+        } catch (Exception cse) {
+            cse.printStackTrace();
+        }
     }
+        return false;
+}
 
     /**
      * Allows the logged user to find certain cards in the catalog,
@@ -216,7 +216,7 @@ public class CardsDaoImpl implements CardsDao {
      * @throws SQLException
      */
     @Override
-    public Card findByID(int id){
+    public Card findByID(int id) throws SQLException {
         Card card = null;
         conn = null;
         try {
@@ -261,7 +261,7 @@ public class CardsDaoImpl implements CardsDao {
      * Finds all the cards of the catalog
      * @return ArrayList<Card> that contains all the cards that belong to the catalog
      */
-    public ArrayList<Card> findAllGeneric() {
+    public ArrayList<Card> findAllGeneric() throws SQLException {
         ArrayList<Card> allCards = new ArrayList<Card>();
         conn = null;
         try {
@@ -301,4 +301,6 @@ public class CardsDaoImpl implements CardsDao {
         }
         return allCards;
     }
+
+
 }

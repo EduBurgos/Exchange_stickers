@@ -28,7 +28,7 @@ public class FacadeImplements implements Facade
      * @return returns a card given an id
      */
     @Override
-    public Card findByID(int id){
+    public Card findByID(int id) throws SQLException {
         CardsDaoImpl c = new CardsDaoImpl();
         return c.findByID(id);
     }
@@ -54,7 +54,7 @@ public class FacadeImplements implements Facade
      * @return boolean, check if the change was successful
      */
     @Override
-    public boolean update(Card card){
+    public boolean update(Card card) throws SQLException {
         CardsDaoImpl c = new CardsDaoImpl();
         return  c.update(card);
     }
@@ -64,7 +64,7 @@ public class FacadeImplements implements Facade
      * @return boolean
      */
     @Override
-    public boolean delete(Card card){
+    public boolean delete(Card card) throws SQLException {
         CardsDaoImpl c = new CardsDaoImpl();
         return c.delete(card);
     }
@@ -73,7 +73,7 @@ public class FacadeImplements implements Facade
      * @return ArrayList<Card> that contains all cards tht belong to the catalog
      */
     @Override
-    public ArrayList<Card> findAllGeneric(){
+    public ArrayList<Card> findAllGeneric() throws SQLException {
         CardsDaoImpl f = new CardsDaoImpl();
         return f.findAllGeneric();
     }
@@ -149,7 +149,7 @@ public class FacadeImplements implements Facade
      * @return ArrayList<Card> that contains cards found through filters
      */
     @Override
-    public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard){
+    public ArrayList<Card> filters(User user, String name, String category, String classCard, String typeCard) throws SQLException {
         CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
         return f.filters(user, name, category, classCard, typeCard);
     }

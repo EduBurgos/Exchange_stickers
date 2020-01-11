@@ -11,7 +11,6 @@ public class CollectionOwn {
     private User owner;
     private Map<Card,Integer> cardsOwn;
 
-
     public CollectionOwn(User owner, Map<Card,Integer> cardsOwn) {
         this.owner = owner;
         this.cardsOwn = cardsOwn;

@@ -42,7 +42,6 @@
                 <% }  %>
             <% }  %>
 
-
             <div class="row">
                 <h1> TRATTATIVE DISPONIBILI:
                                              </h1>
@@ -145,10 +144,8 @@
 
         </div><!----- container page-top----->
 
-
 </div>
 </div>
-
 </div>
 
 <!-- START NOTIFICATION PART-->

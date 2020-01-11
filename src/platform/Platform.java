@@ -1,7 +1,5 @@
 package platform;
 
-
-
 import collection.Card;
 import collection.CollectionOwn;
 import dao.*;
@@ -370,7 +368,6 @@ public class Platform {
         }
     }
 
-
     /**
      * Method that take strToEncrypt using as seed secret*/
     public static String encrypt(String strToEncrypt, String secret)
@@ -388,7 +385,6 @@ public class Platform {
         }
         return null;
     }
-
 
     /**Metodo decryp*/
     public static String decrypt(String strToDecrypt, String secret)
@@ -437,7 +433,7 @@ public class Platform {
      * @param id a int. Indicates id of the card searched
      * @return Card searched
      * */
-    public Card findCardByID(int id)throws SQLException{
+    public Card findCardByID(int id) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
         return temp.findByID(id);
     }
