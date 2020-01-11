@@ -26,9 +26,9 @@ public class ProfileServlet extends AbstractServlet{
         {
             String value= request.getParameter("delete");
             int id_trans=Integer.parseInt(value);
-            FacadeImplements facadeImplements=new FacadeImplements();
+            Platform platform= Platform.getInstance();
             try {
-                facadeImplements.delete(id_trans);
+                platform.delete(id_trans);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -61,9 +61,10 @@ public class ProfileServlet extends AbstractServlet{
     }
 
     /**
-     * Method that confirms nickname that will load the own collection.
-     * @param request
-     * return collection own*/
+     * Confirms nickname that will load the own collection.
+     * @param request http request
+     * return CollectionOwn collection that belongs to the user searched
+     * */
     private CollectionOwn confirmNickname(HttpServletRequest request) throws SQLException {
         String nickname = request.getParameter("Nickname");
         Platform platform = Platform.getInstance();
