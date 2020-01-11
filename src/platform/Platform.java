@@ -1,7 +1,7 @@
 package platform;
 
 
-import Server.MYSQLConnection;
+
 import collection.Card;
 import collection.CollectionOwn;
 import dao.*;
@@ -10,6 +10,7 @@ import userSide.User;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.util.Arrays;
 import java.util.Base64;
 import javax.crypto.Cipher;
@@ -22,11 +23,13 @@ import java.util.*;
  */
 public class Platform {
 
-    /** connection to MYSql*/
-    private MYSQLConnection conn;
+    MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
+    Connection conn;
     private static Platform Platform_instance=null;
 
-    private Platform() { this.conn= MYSQLConnection.getInstance(); }
+    private Platform() {
+        this.conn=connector.createConnection();
+    }
 
     public static Platform getInstance()
     {
@@ -176,6 +179,16 @@ public class Platform {
         Facade f = new FacadeImplements();
         exchange.setUsername_offerente(loggato);
         return f.marketExchange(exchange);
+    }
+
+    /**
+     * Deletes a transaction by its id
+     * @param id_trans a int. Indicates id that identifies transaction
+     * @throws SQLException exception caused by database access error
+     */
+    public void delete(int id_trans) throws SQLException{
+        Facade f=new FacadeImplements();
+        f.delete(id_trans);
     }
 
     /**
