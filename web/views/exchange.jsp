@@ -135,17 +135,20 @@
      * @param tempArray Is the array made by cards index
      */
     function chooseCardsToGive(array, card, value, i, tempArray){
+        var divId=card+"divToGive"+i;
+        console.log("divId: "+divId);
         var id = card.toString().concat("inputcardsToGive");//create the input id
         console.log("questo è l'id dell'input: "+id);
         var idImg = card.toString() + value + i.toString();//create the img id
         console.log("l'idImg è "+idImg);
         var me = document.getElementById(id);//retrieve input element
+        var id= document.getElementById(divId); // div element
         if(tempArray.includes(i) == true){
             removePictureToGive(idImg, value, i);
             document.getElementById(idImg).style.filter = "opacity(100%)";
             removeFromArray(array, card);
             removeFromArray(tempArray, i);
-            me.setAttribute("name", "");
+            $('input',id).attr("name","");
             console.log("a card is just removed, array:"+array);
             Swal.fire({
                 icon: 'success',
@@ -155,9 +158,10 @@
         } else{
             showPictureToGive(idImg, value, i);
             document.getElementById(idImg).style.filter = "opacity(40%)";
+
             addToArray(array, card);
             addToArray(tempArray, i);
-            me.setAttribute("name", value);
+            $('input',id).attr("name","cardsToGive");
             console.log("a card is just added, array:"+array);
             Swal.fire({
                 icon: 'success',
@@ -225,7 +229,7 @@
         console.log("questo è l'id dell'input: "+id);
         var idImg = card.toString() + value;
         var me = document.getElementById(id);
-        showPicture(idImg, value, card,array.length);
+        showPicture(idImg, value, card);
         addToArray(array, card);
 
         console.log("a card is just added, array:"+array);
@@ -264,7 +268,7 @@
      * @param where
      * @param idCard Rapresents the id of card we want to add
      */
-    function showPicture(id, where, idCard,position) {
+    function showPicture(id, where, idCard) {
         var idWhereToAdd = where.toString().concat("Recap");
         var idDiv = id.replace(where, "divToTake");
         var idDivCopy = idDiv.concat("Copy");
@@ -279,9 +283,8 @@
         divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
         divCln.setAttribute("onclick", "removeSelectedCard(CardsToTakeArray,"+ idCard+" , toTake)");
         src.appendChild(divCln);
-        var id=idCard+"CardsToTakeCopy"+(position+1);
-        $('input', divCln).attr("id",id);
-        document.getElementById(id).setAttribute("name","cardsToTake");
+        $('input', divCln).attr("name","cardsToTake");
+
     }
     /**
      * method to remove the selected card in recap div to take
