@@ -24,7 +24,7 @@ public class FacadeImplements implements Facade
     }
     /**
      * method that finds a card by id
-     * @param id
+     * @param id an int. Indicates id of the card
      * @return returns a card given an id
      */
     @Override
@@ -50,7 +50,7 @@ public class FacadeImplements implements Facade
 
     /**
      * method that modifies the object card
-     * @param card
+     * @param card type Card. Indicates card that is going to be updated
      * @return boolean, check if the change was successful
      */
     @Override
@@ -69,9 +69,8 @@ public class FacadeImplements implements Facade
         return c.delete(card);
     }
     /**
-     * method that finds a lot of cards
-     * @param
-     * @return ArrayList<Card>
+     * Finds all the cards of the catalog
+     * @return ArrayList<Card> that contains all cards tht belong to the catalog
      */
     @Override
     public ArrayList<Card> findAllGeneric() throws SQLException {
@@ -288,9 +287,9 @@ public class FacadeImplements implements Facade
         return f.checkByUser(user);
     }
     /**
-     * method that find all user
-     * @param
-     * @return ArrayList<User>, find all user
+     * Finds all the users signed up to the platform
+     * @return ArrayList<User>, finds all users
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public ArrayList<User> findAll() throws SQLException {
