@@ -29,7 +29,7 @@ public class ProfileServlet extends AbstractServlet{
             FacadeImplements facadeImplements=new FacadeImplements();
             try {
                 facadeImplements.delete(id_trans);
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             forwardTo(request, response, INDEXPROFILE_ROUTE);
