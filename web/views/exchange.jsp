@@ -1,4 +1,3 @@
-programma
 <%@ page import="collection.Card" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="collection.CollectionOwn" %>
@@ -117,20 +116,6 @@ programma
             } else{
                 document.body.innerHTML += "<div id=\"start\" ><button type=\"submit\" class=\"btn\" id=\"startbutton\" onclick='startChange(CardsToGiveArray, CardsToTakeArray)'>AVVIA TRATTATIVA</button></div>";
             }
-            //var startButton = document.getElementById('startbutton');
-            //startButton.setAttribute('id', 'startbutton');
-            //startButton.disabled = false;
-            //startButton.setAttribute('disabled', '');
-            /* if (5>array1.length && 5>array2){
-                var startButton = document.createElement('button');
-                startButton.setAttribute('id', 'startbutton')
-                startButton.setAttribute('disabled', 'true');
-            } else {
-                var startButton = document.createElement('button');
-                startButton.setAttribute('id', 'startbutton')
-                var startButton = document.getElementById('startbutton');
-                startButton.setAttribute('disabled', 'false');
-            } */
         </script>
 
     </div>
@@ -202,7 +187,6 @@ programma
         var imgCln = img.cloneNode(true);
         var src = document.getElementById(idWhereToAdd);//retrieve div recap where will be cloned
         divCln.setAttribute("id", idDivCopy);//set unique id to clone
-        //divCln.removeAttribute("onclick");  //per disabilitare interazione con la copia di recap
         divCard.removeAttribute("style");//set color img without opacity filter
         src.appendChild(divCln);//add the clone div to div recap
     }
@@ -220,14 +204,9 @@ programma
         var idDiv = id.replace(completeWhere, "divToGive");
         idDiv = idDiv.concat(i.toString());
         var idDivCopy = idDiv.concat("Copy").concat(i.toString());
-        //var imgToRemove = document.getElementById(idDivCopy);
         console.log(idDiv);
         console.log(idDivCopy);
-        //var divCard = document.getElementById(idDiv);
-        //var divCln = divCard.cloneNode(true);
         var img = document.getElementById(id);
-        //var imgCln = img.cloneNode(true);
-        //var src = document.getElementById(idWhereToAdd);
         console.log("idDivCopy = "+idDivCopy);
         var elem = document.getElementById(idDivCopy);
         console.log("elem = "+elem);
@@ -248,7 +227,6 @@ programma
         addToArray(array, card);
         me.setAttribute("name", value);
         console.log("a card is just added, array:"+array);
-        //alert
         Swal.fire({
             icon: 'success',
             title: 'carta aggiunta alla trattativa',

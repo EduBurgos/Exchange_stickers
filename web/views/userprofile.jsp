@@ -13,14 +13,9 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <!--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <meta name="viewport" content="width=device-width, initial-swq  cale=1"/>
-    -->
 
     <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/animate.css">
-
 
     <script src="../jquery/jquery-3.4.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -44,8 +39,6 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
-        <!--This part allows me to see informations of the user logged if the attribute "snitch" is null otherwise it shows informations about the user searched
-            if the attribute is set in the userprofile servlet when  "snitch card" feature is used --->
         <% CollectionOwn c; %>
         <% if(request.getSession().getAttribute("snitch")!=null){ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("snitch");}
@@ -60,7 +53,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         </div>
     </section>
 
-    <div class="section center-col content">
+    <div class="section center-col content" >
 
         <!-- Nav tabs -->
         <div class="row">
@@ -129,7 +122,6 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     <%}%>
                                 <%}%>
                 </div>
-
 
                 <% request.getSession().removeAttribute("category"); %>
                 <% request.getSession().removeAttribute("class"); %>
@@ -240,8 +232,6 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                         </div>
                         <div class="row">
                     <%}%>
-
-
                     <%}%>
                 </div>
             </div>
@@ -251,7 +241,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         </div>
     </div>
 
-</div>
+</div.container>
 </div>
 </body>
 <script>

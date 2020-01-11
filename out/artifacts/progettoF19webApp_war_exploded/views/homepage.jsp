@@ -134,82 +134,6 @@
                         <%}%>
                     </div>
                 </div>
-<!-- INIZIO COMENTO IMPLEMENTAZIONE 1 MARKET
-                    <%// Platform market1 = Platform.getInstance(); %>
-                <h6><%// market1.toString(); %></h6>
-                    <%// ArrayList<Exchange>  market = market1.getExchange();  %>
-                    <%// for (Exchange x : market) {%>
-                    <%// System.out.printf("<td>"+x.getId_user()+"<td>");%>
-                    <%// } %>
-      FINE COMENTO-->
-
-                    <!-- INIZIO COMENTO IMPLEMENTAZIONE 2 MARKET
-
-                    <%// ArrayList<Exchange> ec = (ArrayList<Exchange>) request.getSession().getAttribute("market");%>
-                    <%// if(ec == null){%>
-                       <script>alert("DIO BAO BAO")</script>
-                   <%//} %>
-                    <%// ExchangeCardDAOImpl market = new ExchangeCardDAOImpl(); %>
-                    <%// for(Exchange x : ec) {
-                        /*System.out.println("inizio stampa exchange: ");
-                        System.out.println(x.getId_user());
-                        System.out.println(x.getId_trans());
-                        System.out.println(x.getId_card_owm());
-                        System.out.println(x.getId_card_wanted());
-                        System.out.println(x.isTrans_comp());
-                    }*/
-                    %>
-FINE COMENTO-->
-
-
-         <!--   <div class="container">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-
-                    <!-- Wrapper for slides -->
-              <!--      <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <div class="divA">
-                                <div class="divAA">
-                                    <div class="div1" class="targetDiv">
-                                        <p>Div1 Intro: Hidden until Button1 is clicked</p>
-                                    </div>
-                                </div>
-                                <p>
-                                    Div1 Short to be shown by default.
-                                    <span class="div1" class="targetDiv">Hidden span until Button1 is clicked</span>
-                                </p>
-                                <a class="showSingle" target="1">Button1</a>
-                                <div class="divAAA">
-                                    <div class="div1" class="targetDiv">
-                                            <img class="what" src="../img/Pokemon/Axew.png" alt="...">
-                                            <img class="what" src="../img/Pokemon/Axew.png" alt="...">
-                                            Div1 Details: Hidden until Button1 is clicked.
-                                        <a target="2">Accetta</a>
-                                        <INPUT TYPE="BUTTON" VALUE="Save" class="styled-button-2" id="save">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>-->
-
-                    <!-- Left and right controls -->
-                <!--    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>-->
-
-
 
         </div> <!-----END ROW---->
 
@@ -268,79 +192,15 @@ showConfirmButton: true})
 <%}%>
 <!-- END NOTIFICATION PART-->
 
-<!-- jQuery CDN - Slim version (=without AJAX)
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- Popper.JS
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<-- Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!--<script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>-->
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
 <script>
-
-
-    //da cancellare
-    function show() {
-        document.getElementById('id1').style.maxHeight = "200px";
-        var images = document.querySelectorAll("#id1 img");
-        for(var i = 0; i < images.length; i++)
-        {
-            images[i].src = images[i].getAttribute('data-src');
-        }
-    }
-
-    // da cancellare
-    var op=0;
-    function showCards() {
-        document.getElementsByClassName("class1")[0].style.maxHeight = "200px";
-        var images = document.querySelectorAll(".class1 > img");
-        for(var i = 0; i < images.length; i++)
-        {
-            images[i].src = images[i].getAttribute('data-src');
-            images[i].classList.toggle('off');
-        }
-        showOpacity();
-
-    }
-
-    // da cancellare
-function showOpacity(){
-    var imagesactive = document.querySelectorAll(".item > img");
-    if(imagesactive[0].style.opacity==='1') {
-        for (var i = 0; i < imagesactive.length; i++) {
-            imagesactive[i].style.opacity = '0.3';
-
-        }
-        op=1;
-    }else{
-        for (var i = 0; i < imagesactive.length; i++) {
-            imagesactive[i].style.opacity = '1';
-
-        }
-        op=0;
-    }
-}
-
-
     jQuery(function(){
         jQuery('.showSingle').click(function(){
             jQuery('.targetDiv').hide();
             jQuery('.div'+jQuery(this).attr('target')).show();
         });
     });
-
-
-   // da cancellare
-   var mostra = document.getElementById("mostra");
-    var save = document.getElementById("save");
-
-    function removeCarousel(id) {
-        var divToRemove = document.getElementById("carousel".concat(id.toString()));
-        divToRemove.remove();
-    }
 </script>
-
-
 
 <script type="text/javascript" src="../js/carousel.js"></script>
 </body>

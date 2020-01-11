@@ -47,20 +47,20 @@
                             </div>
                             <div class="field-wrap">
                                 <label>
-                                    Last Name<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    Last Name<span class="req">*</span>
                                 </label>
                                 <input type="text" required autocomplete="on" name="LastName"/>
                             </div>
                         </div>
                         <div class="field-wrap">
                             <label>
-                                Username<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                Username<span class="req">*</span>
                             </label>
                             <input type="text" required autocomplete="on" name="Username"/>
                         </div>
                         <div class="field-wrap">
                             <label>
-                                Email<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                Email<span class="req">*</span>
                             </label>
                             <input type="text" required autocomplete="on" name="Email" id="email" onkeydown="validate(this.value);"/>
                             <span id='emailmessage'></span>
@@ -68,7 +68,7 @@
 
                         <div class="field-wrap">
                             <label>
-                                Password<span class="req">* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                                Password<span class="req">*</span>
                             </label>
                             <input type="password" required autocomplete="off" name="Password" id="newpassword" onkeyup='check();' />
 
@@ -105,7 +105,6 @@
                                   document.getElementById('startedButton').disabled=false;
                                 }
                             };
-
 
                             var regex = /^([A-z0-9.+_-]+)*@([A-z0-9._-]+\.)+([A-z]{2,6})$/;
                             var emailMessage= document.getElementById("emailmessage");

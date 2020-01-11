@@ -1,12 +1,9 @@
 <!-- NAVIGATION BAR : this page contains the top navigation bar with links to Home, Exchange, Search's Navbar, Notification, Help and Account ;
 it is included in each page of the application -->
 
-<%@ page import="dao.CardsDao" %>
 <%@ page import="userSide.Exchange" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="platform.Platform" %>
-<%@ page import="collection.Card" %>
-
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -90,7 +87,6 @@ it is included in each page of the application -->
                         </div>
                     </div>
                 </form> <!--- END SEARCH WITH FILTERS--->
-
 
                 <ul class="nav navbar-nav navbar-right">
                     <!-- NOTIFICATION -->
@@ -224,10 +220,6 @@ it is included in each page of the application -->
         <% request.getSession().setAttribute("exchangesToNotify",null); %>
     }
 </script>
-
-
-
-
 
 </body>
 </html>
