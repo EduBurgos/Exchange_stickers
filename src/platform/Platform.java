@@ -348,8 +348,8 @@ public class Platform {
     private static byte[] key;
 
     /**
-     * Digest myKey using a hashing algorithm
-     * @param myKey assegna dal programma
+     * Digests myKey using a hashing algorithm
+     * @param myKey  password assigned by Java.
      * */
     public static void setKey(String myKey)
     {
@@ -372,10 +372,10 @@ public class Platform {
     /**
 
      * Method that take strToEncrypt using as seed secret
-     * @param strToEncrypt
-
-     *
-    **/
+     * @param strToEncrypt password assigned by user
+     * @param secret password assigned by Java
+     * @return  encrypted password
+    */
     public static String encrypt(String strToEncrypt, String secret)
     {
         try
@@ -392,7 +392,8 @@ public class Platform {
         return null;
     }
 
-    /**Metodo decryp*/
+    /*Da pensare*/
+
     public static String decrypt(String strToDecrypt, String secret)
     {
         try
@@ -411,7 +412,8 @@ public class Platform {
 
     /**
      * Finds all the cards in the catalog
-     * @return ArrayList<Card> all cards that belong to the catalog
+     * @return  all cards that belong to the catalog
+     * @throws SQLException exception caused by database access error
      * */
     public ArrayList<Card> allCardsCatalog () throws SQLException {
         FacadeImplements allCards = new FacadeImplements();
@@ -419,10 +421,10 @@ public class Platform {
     }
 
     /**
-     * Method that find exchanges not yet notified to the user
-     * @param user type User. Indicates user who  has to be notified
+     *Finds exchanges not yet notified to the user
+     * @param user who has to be notified
      * @return ArrayList<Exchange> Exchanges ought to be notified
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     public ArrayList<Exchange> notifyDoneExchanges(User user) throws SQLException{
         FacadeImplements temp = new FacadeImplements();
@@ -438,6 +440,7 @@ public class Platform {
      * Finds a card by its id in the catalog
      * @param id a int. Indicates id of the card searched
      * @return Card searched
+     * @throws SQLException exception caused by database access error
      * */
     public Card findCardByID(int id) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
@@ -445,7 +448,7 @@ public class Platform {
     }
 
     /**
-     * Find an exchange by its id
+     * Finds an exchange by its id
      * @param idExchange int. Indicates id of the exchange searched
      * @return Exchange that is searched
      * @throws SQLException exception caused by database access error

@@ -29,6 +29,9 @@ public class CollectionOwn {
         this.cardsOwn = cardsOwn;
     }
 
+    /**
+     *
+    */
     public Map<Card,Integer> searchCard(String search)
     {
         Map<Card,Integer> result=new HashMap<>();
