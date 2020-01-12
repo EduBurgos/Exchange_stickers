@@ -4,18 +4,7 @@ package collection;
  */
 public class Card extends AbstractCard implements Comparable {
 
-    /**
-     * Constructor of card
-     *
-     * @param id          Card's unique id
-     * @param categoria   category of the card
-     * @param classe      class of the card
-     * @param livello     level of the card
-     * @param rarità      rarity of the card
-     * @param tipo        type of the card
-     * @param nome        name of the card
-     * @param descrizione description of the card
-     */
+
     public Card(int id, String categoria, String classe, int livello, String rarità, String tipo, String nome, String descrizione) {
         this.id = id;
         this.categoria = categoria;
@@ -95,7 +84,7 @@ public class Card extends AbstractCard implements Comparable {
 
 
     /**
-     * Override toString method
+     *  toString method
      *
      * @return the description of the card
      */
