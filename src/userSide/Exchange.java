@@ -13,12 +13,11 @@ public class Exchange {
     private boolean trans_comp; //true if completed else false
 
     /**
-     * Constructor for uncompleted exchange
-     * Used for users exchanges that are not accepted by someone , yet
-     * @param id_trans an int number. Indicates the id on the database of the exchange
-     * @param username a String. Indicates the username of the one who created the exchange
-     * @param card_owm an ArrayList of integer. Indicates the ids of  cards to sell
-     * @param card_wanted an ArrayList of integer. Indicates the ids of cards to receive
+     * Constructor to create exchange that are not accepted by someone , yet
+     * @param id_trans the id on the database of the exchange
+     * @param username  the username of the one who created the exchange
+     * @param card_owm the ids of  cards to give
+     * @param card_wanted the ids of cards to receive
      */
     public Exchange(int id_trans,String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted) {
         this.id_trans = id_trans;
@@ -30,13 +29,12 @@ public class Exchange {
     }
     /**
      * Constructor for generic exchange
-     * Used for users exchanges that are not accepted by someone , yet
-     * @param id_trans an int number. Indicates the id on the database of the exchange
-     * @param username a String. Indicates the username of the one who created the exchange
-     * @param card_owm an ArrayList of integer. Indicates the ids of  cards to sell
-     * @param card_wanted an ArrayList of integer. Indicates the ids of cards to receive
-     * @param trans_comp  boolean.Indicates if the transaction is completed
-     * @param username_offerente a String. Indicates the username of the buyer.
+     * @param id_trans the id on the database of the exchange
+     * @param username the username of the one who created the exchange
+     * @param card_owm the ids of  cards to give
+     * @param card_wanted the ids of cards to receive
+     * @param trans_comp  true if the transaction is completed. false otherwise
+     * @param username_offerente the username of the offerer
      */
     public Exchange(int id_trans, String username, ArrayList<Integer> card_owm, ArrayList<Integer> card_wanted,boolean trans_comp,String username_offerente) {
         this.id_trans = id_trans;

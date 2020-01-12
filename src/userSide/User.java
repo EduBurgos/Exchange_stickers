@@ -14,13 +14,7 @@ public class User {
     private String pass;
     private String email;
 
-    /**
-     * Constructor for user
-     * @param nome a String.Indicates user's name
-     * @param cognome a String.Indicates user's surname
-     * @param username a String.Indicates user's email
-     * @param email a String.Indicates user's email
-     */
+
     public User(String nome, String cognome, String username, String email){
         this.nome = nome;
         this.cognome = cognome;
@@ -69,23 +63,15 @@ public class User {
 
     /**
      * Checks if there are two users with the same name, surname, username and email
-     * @param   second type User.Indicates a user who will be compared
-     * @return  true if there are two users with the same name, surname, username and email, false if not
+     * @param   second  user who will be compared
+     * @return  true if there are two users with the same name, surname, username and email, false otherwise
      */
 
     public boolean equals(User second){
         return (this.nome.equals(second.nome)) && (this.cognome.equals(second.cognome)) && (this.username.equals(second.username)) && (this.email.equals(second.email));
     }
 
-    public String passToHash(String p) throws NoSuchAlgorithmException  {
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(p.getBytes());
-        byte[] digest = md.digest();
-        //String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
-        //assertThat(myHash.equals(hash)).isTrue();
-        System.out.println(digest.toString());
-        return "asd";
-    }
+
 
 
 }

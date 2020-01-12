@@ -13,51 +13,6 @@ public class SignUpServlet extends AbstractServlet {
 
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
-    /**dove imposta name, surname e Username ? **/
-    private String name;
-    private String surname;
-    private String userName;
-    private String email;
-    private String pass;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {return email;}
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         final String secretkey = "chiavesupersegretissimaXD";

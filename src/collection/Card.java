@@ -84,15 +84,15 @@ public class Card extends AbstractCard implements Comparable {
 
 
     /**
-     *  toString method
-     *
      * @return the description of the card
      */
     public String toString() {
         return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione +"\n";
     }
 
-
+    /**
+     * Compares the ids of cards
+     */
     @Override
     public int compareTo(Object o) {
         if ((o != null) && (o instanceof Card)) {

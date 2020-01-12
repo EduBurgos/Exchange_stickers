@@ -43,10 +43,9 @@
             <% }  %>
 
             <div class="row">
-                <h1> TRATTATIVE DISPONIBILI:
-                                             </h1>
+                <h1> Exchanges that may interest you: </h1>
                 <%if(ex.size()==0){%>
-                    <h4>Nessuna trattativa disponibile.</h4>
+                    <h4>No available exchanges.</h4>
                 <% }  %>
                 <%for(int i=0;i<ex.size();i++){%>
                     <% User u1=platform.findUser(ex.get(i).getId_user());   %>

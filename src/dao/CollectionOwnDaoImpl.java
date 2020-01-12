@@ -36,8 +36,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     /**
      * Inserts a card in user's collection
-     * @param user type User. Indicates user who will have the card
-     * @param card type Card. Indicates card that is going to be inserted
+     * @param user the user who will have the card
+     * @param card the card that is going to be inserted
      * @return true if the card is successfully inserted in user's collection, false otherwise
      */
     public boolean insert(User user, Card card) {
@@ -88,8 +88,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     /**
      * Gets collection of a user
-     * @param user type User. Indicates user that owns the collectiom
-     * @return CollectionOwn collection of the user
+     * @param user the user that owns the collection
+     * @return collection of the user
      */
     @Override
     public CollectionOwn getCollentionOwn(User user){
@@ -145,12 +145,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     /**
      * Gifts five new cards to user when they log to the platform today.
      * Cards can be gifted once a day
-     * <p>
-     *     Checks in the database table accesses if the user has logged to the platform today. If it's their first
-     *     time they logged for that day, the user receives new cards and the user's username is inserted to
-     *     the table
-     * </p>
-     * @param user type User. Indicates user that has to be checked if they already logged today
+     * @param user the user that has to be checked if they already logged today
      */
     public void giftCard(User user){
         int nCards=5;
@@ -196,8 +191,8 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     /**
      * Gets the last card chosen randomly from the catalog and given to a user
-     * @param user type User. Indicates owner who has the last card chosen randomly
-     * @return Card last card given randomly
+     * @param user  owner who has the last card chosen randomly
+     * @return last card given randomly
      */
     @Override
     public  Card get_last_card(User user){
@@ -226,16 +221,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
     /**
      * Allows the logged user to find certain cards in their collection,
      * through the filters of the search bar.
-     * <p>
-     *      depending to parameters specified, the original query is completed in such a way that
-     *      it can returned the requested cards
-     * </p>
-     * @param user type User.Indicates logged user
-     * @param name  a String.Indicates name of the card searched.
-     * @param category  a String.Indicates category of the cards searched.
-     * @param classCard a String.Indicates class of the cards searched .
-     * @param typeCard  a String.Indicates type of the cards searched.
-     * @return ArrayList<Card> that contains the requested cards from logged user.
+     * @param user  logged user
+     * @param name  the name of the card searched.
+     * @param category  the category of the cards searched.
+     * @param classCard the class of the cards searched .
+     * @param typeCard type of the cards searched.
+     * @return requested cards from logged user.
      * @throws SQLException exception caused by database error.
      */
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ) throws SQLException{
@@ -285,12 +276,12 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         return list;
     }
 
-    /**
+   /**
      * Adds a certain number of cards chosen randomly from catalog to a list and given to a user
-     * @param user type User. Indicates user who is going to receive the cards
-     * @return ArrayList<Card> that contains cards chosen randomly
+     * @param user the user who is going to receive the cards
+     * @return cards chosen randomly
      */
-    @Override
+   @Override
     public ArrayList<Card> openSachet(User user){
         ArrayList<Card> c = new ArrayList<Card>();
 

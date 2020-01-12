@@ -31,7 +31,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Inserts a card in catalog
-     * @param card type Card. Indicates card which is going to be added
+     * @param card the card which is going to be added
      * @return true if the card is added, false if not
      * @throws SQLException exception caused by database access error
      */
@@ -78,7 +78,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Deletes a card in catalog
-     * @param card type Card.Indicates card which is going to be delete
+     * @param card  the card which is going to be delete
      * @return true if the card has been successfully deleted, false otherwise
      * @throws SQLException exception caused by database access error
      */
@@ -110,7 +110,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Updates a card in catalog
-     * @param card type Card. Indicates card that has to be updated
+     * @param card the card that has to be updated
      * @return true if the card has  been successfully updated, false otherwise
      * @throws SQLException exception caused by database access error
      */
@@ -149,16 +149,12 @@ public class CardsDaoImpl implements CardsDao {
     /**
      * Allows the logged user to find certain cards in the catalog,
      * through the filters of the search bar.
-     * <p>
-     *      depending to parameters specified, the original query is completed in such a way that
-     *      it can returned the requested cards
-     * </p>
      *
-     * @param nameCard  a String.Indicates name of the card searched.
-     * @param category  a String.Indicates category of the cards searched.
-     * @param classCard a String.Indicates class of the cards searched .
-     * @param typeCard  a String.Indicates type of the cards searched.
-     * @return ArrayList<Card> that contains the requested cards from logged user.
+     * @param nameCard  name of the card searched.
+     * @param category  the category of the cards searched.
+     * @param classCard class of the cards searched .
+     * @param typeCard   type of the cards searched.
+     * @return the requested cards from logged user.
      * @throws SQLException exception caused by database error.
      */
 
@@ -211,8 +207,8 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Finds a card by its ID in the catalog
-     * @param id a int. Indicates id of the card searched
-     * @return Card that has to be searched
+     * @param id the id of the card searched
+     * @return card that has to be searched
      * @throws SQLException exception caused by database access error
      */
     @Override
@@ -259,7 +255,7 @@ public class CardsDaoImpl implements CardsDao {
 
     /**
      * Finds all the cards of the catalog
-     * @return ArrayList<Card> that contains all the cards that belong to the catalog
+     * @return all the cards that belong to the catalog
      * @throws SQLException exception caused by database access error
      */
     public ArrayList<Card> findAllGeneric() throws SQLException {

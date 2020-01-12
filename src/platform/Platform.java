@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Class that represents platform where users can create exchanges and exchange their cards
+ * Class that represents platform where users can create and accept exchanges
  */
 public class Platform {
 
@@ -42,9 +42,9 @@ public class Platform {
     /**
      * Returns the collection of the logged users
      * This method checks if the user is already registered to the platform and if username and password are correct
-     * @param username a String. Username of the user to check
-     * @param pass a String. User's password
-     * @return  CollectionOwn collection of the user who successfully logged
+     * @param username the username of the user to check
+     * @param pass user's password
+     * @return collection of the user who successfully logged
      * @exception SQLException exception caused by database access error
      */
     public CollectionOwn LogIn(String username,String pass) throws SQLException {
@@ -69,12 +69,12 @@ public class Platform {
     }
 
     /**
-     * Method used to sign up a new user
-     * @param name a String. Indicates name of new user
-     * @param lastName a String. Indicates surname of new user
-     * @param username a String. Indicates username of new user
-     * @param email a String. Indicates email of new user
-     * @param password a String. Indicates password of new user
+     * Registers a new user
+     * @param name the name of new user
+     * @param lastName surname of new user
+     * @param username username of new user
+     * @param email the email of new user
+     * @param password the password of new user
      * @return  true if the user is registered false if the registration fails
      * @throws SQLException exception caused by database access error
      */
@@ -95,8 +95,8 @@ public class Platform {
 
     /**
      * Finds a user by their id
-     * @param id a int. Indicates id of the searched user
-     * @return User user searched
+     * @param id the id of the searched user
+     * @return user searched
      * */
     public User findUser(String id) throws SQLException
     {
@@ -113,7 +113,7 @@ public class Platform {
 
     /**
      * Checks if the mail is valid
-     * @param email a String. Indicates the mail of the user who is signing up to the platform
+     * @param email the mail of the user who is signing up to the platform
      * @return true if the mail is valid false otherwise
      */
     private Boolean checkEmail(String email)
@@ -121,17 +121,17 @@ public class Platform {
         return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
     }
 
-    /** A dopo*/
+    //TODO: da cancellare
     public CollectionOwn searcIntoCollection(CollectionOwn collectionOwn,String toSearch)
     {
         return new CollectionOwn(collectionOwn.getOwner(),collectionOwn.searchCard(toSearch));
     }
 
     /**
-     * Inserts an exchange record.
-     * @param Username a String. Indicates username of the user who creates a new exchange
-     * @param CardOwn a ArrayList<Integer>. Contains the ids of all the cards the user want to offer
-     * @param CardWanted a ArrayList<Integer>. Contains the ids of  all the cards the user want to have
+     * Creates a new exchange
+     * @param Username the username of the user who creates a new exchange
+     * @param CardOwn the ids of all the cards the user wants to offer
+     * @param CardWanted the ids of  all the cards the user wants to have
      * @return  true if the exchange is registered false if the registration fails
      * @throws SQLException exception caused by database access error
      */
@@ -169,10 +169,10 @@ public class Platform {
     }
 
     /**
-     * Accepts exchange created by another user
-     * @param exchange type Exchange. Indicates exchange that a user wants to accept
-     * @param loggato a String. Indicates username of the user who accepts the exchange
-     * @return true if the exchange is successful, false otherwise
+     * Allows the user to accept exchange created by another user
+     * @param exchange the exchange that a user wants to accept
+     * @param loggato username of the user who accepts the exchange
+     * @return true if the exchange is accepted, false otherwise
      */
     public boolean marketExchange(Exchange exchange,String loggato) {
         Facade f = new FacadeImplements();
@@ -181,9 +181,7 @@ public class Platform {
     }
 
     /**
-     * Deletes a transaction by its id
-     * @param id_trans a int. Indicates id that identifies transaction
-     * @throws SQLException exception caused by database access error
+     * @see FacadeImplements#delete()
      */
     public void delete(int id_trans) throws SQLException{
         Facade f=new FacadeImplements();
@@ -192,8 +190,9 @@ public class Platform {
 
     /**
      * Shows cards that belong to the collection of the user searched
-     * @param username a String. Indicates username of user searched
-     * @return CollectionOwn all cards that belong to the user
+     * @param username the username of user searched
+     * @return all cards that belong to the user
+     * @throws SQLException exception caused by database access error
      */
     public CollectionOwn SnitchCards(String username) throws SQLException{
         User nick = null;
@@ -212,16 +211,16 @@ public class Platform {
         }
         return null;
     }
-
+//TODO: da chiedere
     /**
      * Filters cards belonging to logged user  by the name, category,
      * class and/or type
-     * @param username a String.Indicates username of the user logged
-     * @param nameCard a String.Indicates name of the card searched
-     * @param category a String.Indicates category of the cards searched
-     * @param classCard a String.Indicates class of the cards searched
-     * @param typeCard a String.Indicates type of the cards searched
-     * @return ArrayList<Card> Indicates all cards filtered
+     * @param username the username of the user logged
+     * @param nameCard  name of the card searched
+     * @param category the category of the cards searched
+     * @param classCard class of the cards searched
+     * @param typeCard  type of the cards searched
+     * @return all cards filtered
      * @throws SQLException exception caused by database
      */
     public ArrayList<Card> filtersCollections(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
@@ -243,12 +242,12 @@ public class Platform {
     /**
      *Filters exchanges by the name, category, class and/or type of one of the cards
      * offered in the exchange made by other users except logged user
-     * @param username a String.Indicates username of logged user
-     * @param nameCard a String.Indicates name of one of the cards searched offered in exchange
-     * @param category a String.Indicates category of one of the cards searched offered in exchange
-     * @param classCard a String.Indicates class of one of the cards searched offered in exchange
-     * @param typeCard a String.Indicates type of one of the cards searched offered in exchange
-     * @return ArrayList<Exchange> Indicates all the exchanges filtered
+     * @param username the username of logged user
+     * @param nameCard name of one of the cards searched offered in exchange
+     * @param category the category of one of the cards searched offered in exchange
+     * @param classCard class of one of the cards searched offered in exchange
+     * @param typeCard type of one of the cards searched offered in exchange
+     * @return all the exchanges filtered
      * @throws SQLException exception caused by database
      */
     public ArrayList<Exchange> filtersExchanges(String username,String nameCard,String category, String classCard, String typeCard) throws SQLException{
@@ -268,13 +267,7 @@ public class Platform {
     }
 
     /**
-     * Filters cards of the catalog by the name, category,
-     * class and/or type
-     * @param nameCard a String.Indicates name of the card searched
-     * @param category a String.Indicates category of the cards searched
-     * @param classCard a String.Indicates class of the cards searched
-     * @param typeCard a String.Indicates type of the cards searched
-     * @return ArrayList<Card> Indicates all cards filtered
+     * @see FacadeImplements#filterCatalog(String, String, String, String)
      */
     public ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard){
         ArrayList<Card> list= new ArrayList<Card>();
@@ -292,7 +285,7 @@ public class Platform {
 
     /**
      * Gives new cards when a user does their daily access
-     * @param user type User. Indicates user tht has to be checked to see if it's their first time they logged to the
+     * @param user the user that has to be checked to see if it's their first time they logged to the
      * platform today  and they have to receive their daily cards
      * @throws SQLException Exception caused by database
      */
@@ -311,10 +304,8 @@ public class Platform {
     }
 
 
- /**
-  * Shows all the exchanges the logged user can accept
-  * @param user type User. Indicates user who logged to the platform
-  * @return ArrayList<Exchange> all the available exchanges created by other users
+ /**Gets all the exchanges the user can accept
+  * @see FacadeImplements#getAllExchange(User, String)
   * */
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
@@ -326,10 +317,8 @@ public class Platform {
       return null;
   }
 
-    /**
-     * Shows all my exchanges
-     * @param user type User. Indicates user who is the owner of the exchanges
-     * @return ArrayList<Exchange> get all my exchanges
+    /**Gets all the exchanges created by user
+     * @see FacadeImplements#getAllExchange(User, String)
      * */
   public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
       try {
@@ -343,7 +332,7 @@ public class Platform {
       return null;
   }
 
-    /**METODO PASSWORD*/
+    //METODO PASSWORD
     private static SecretKeySpec secretKey;
     private static byte[] key;
 
@@ -411,9 +400,7 @@ public class Platform {
     }
 
     /**
-     * Finds all the cards in the catalog
-     * @return  all cards that belong to the catalog
-     * @throws SQLException exception caused by database access error
+     * @see FacadeImplements#findAllGeneric()
      * */
     public ArrayList<Card> allCardsCatalog () throws SQLException {
         FacadeImplements allCards = new FacadeImplements();
@@ -422,8 +409,8 @@ public class Platform {
 
     /**
      *Finds exchanges not yet notified to the user
-     * @param user who has to be notified
-     * @return ArrayList<Exchange> Exchanges ought to be notified
+     * @param user the user who has to be notified
+     * @return exchanges ought to be notified
      * @throws SQLException exception caused by database access error
      */
     public ArrayList<Exchange> notifyDoneExchanges(User user) throws SQLException{
@@ -437,10 +424,7 @@ public class Platform {
     }
 
     /**
-     * Finds a card by its id in the catalog
-     * @param id a int. Indicates id of the card searched
-     * @return Card searched
-     * @throws SQLException exception caused by database access error
+     * @see FacadeImplements#findByID(int)
      * */
     public Card findCardByID(int id) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
@@ -448,10 +432,7 @@ public class Platform {
     }
 
     /**
-     * Finds an exchange by its id
-     * @param idExchange int. Indicates id of the exchange searched
-     * @return Exchange that is searched
-     * @throws SQLException exception caused by database access error
+     * @see FacadeImplements#getExchange(int)
      */
     public Exchange getExchange(int idExchange) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
@@ -462,10 +443,10 @@ public class Platform {
 
     /**
      * Gives cards to the user who just signed up to the platform
-     * @param name a String. Indicates name of the user
-     * @param lastName a String. Indicates surname of the user
-     * @param username a String. Indicates username of the user
-     * @param email a String. Indicates email of the user
+     * @param name the name of the user
+     * @param lastName surname of the user
+     * @param username username of the user
+     * @param email the email of the user
      * @throws SQLException exception caused by database access error
      */
     public void userStartUpCards(String name, String lastName, String username, String email) throws SQLException{

@@ -30,7 +30,7 @@ public class CollectionOwn {
     }
 
     /**
-     *
+     * dopo la risposta
     */
     public Map<Card,Integer> searchCard(String search)
     {

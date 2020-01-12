@@ -39,6 +39,17 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
     private FacadeImplements f=new FacadeImplements();
 
+
+    /**
+     * allows the user to create an exchange by selecting the cards he would like
+     * to give and the cards he would like to receive
+     * @param user  the user who creates the exchange
+     * @param cardown  id and quantity of the cards the user would like to give
+     * @param cardwanted  id and quantity of the cards the user would like to have
+     * @return the id that identifies the created exchange
+     * @throws SQLException exception caused by database access error
+     * */
+
     @Override
     public int create(User user, Map<Integer,Integer> cardown, Map<Integer,Integer> cardwanted) throws SQLException {
         conn = null;
@@ -95,9 +106,9 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return exchangeKey;
     }
     /**
-     * Method used to  exchange cards
-     * @param exchangeCard
-     * @return true/false
+     * Allows the user who has the required cards to accept the exchange created by another user
+     * @param exchangeCard interested exchange
+     * @return true if the exchange has been successfully accepted, false otherwise
      */
     @Override
     public boolean marketExchange(Exchange exchangeCard) {
@@ -221,9 +232,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
     /**
      * Finds exchange by its id
-     * @param id_trans a int. Indicates id of the exchange searched
-     * @return Exchange found
-     * @throws SQLException
+     * @param id_trans  id of the exchange searched
+     * @return exchange found
      */
     @Override
     public Exchange getExchange(int id_trans){
@@ -278,13 +288,13 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return null;
     }
 
-    /**this methos takes all user's exchanges or all the exchanges that he can accept
+    /**Takes, based on the parameters,  exchanges created by the user  or all the exchanges the logged user can accept
      *
-     * @param user
+     * @param user the logged user
      * @param parameter (switch clause) "mine" to get all user's exchanges - "all" to get exchenges he can accept -
      *                     notify to exchanges not notified,yet
-     * @return ArrayList<Exchanges>
-     * @throws SQLException
+     * @return exchanges created by the logged user  or all the exchanges they can accept
+     * @throws SQLException exception caused by database access error
      */
     @Override
     public ArrayList<Exchange> getAllExchange(User user,String parameter) throws SQLException {
@@ -395,6 +405,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         }
         return allExchange;
     }
+
+   /**
+    * Allows the user to delete the exchanges created by them
+    * @param id_trans id that identifies the exchange
+    */
    @Override
     public void delete(int id_trans) {
         conn = null;
@@ -427,17 +442,12 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     /**
      * Allows the logged user to find certain available exchanges,except for the ones started by logged user,
      *  through the filters of the search bar.
-     * <p>
-     *     depending to parameters specified, the original query is completed in such a way that
-     *     it can returned the requested exchanges
-     * </p>
-     * @param user type User. Indicates logged user
-     * @param name  a String. Indicates name of the card offered that belongs to searched exchange.
-     * @param category  a String. Indicates category of the card offered that belong to searched exchange.
-     * @param classCard a String. Indicates class of the card offered that belong to searched exchange.
-     * @param typeCard  a String. Indicates type of the card offered that belong to searched exchange.
-     * @return ArrayList<Exchange> that contains the requested exchanges from logged user.
-     * @throws SQLException exception caused by database error.
+     * @param user logged user
+     * @param name  the name of the card offered that belongs to searched exchange.
+     * @param category  the category of the card offered that belong to searched exchange.
+     * @param classCard class of the card offered that belong to searched exchange.
+     * @param typeCard  type of the card offered that belong to searched exchange.
+     * @return the requested exchanges from logged user.
      * */
     public ArrayList<Exchange>filtersExchange(User user, String name, String category , String classCard, String typeCard){
         conn=null;
@@ -523,10 +533,11 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
         return answer;
     }
 
-    /** Method used by "getAllExchanges". It Cheacks if a card is alredy contained in a list
-     * @param cards type ArrayList
-     * @param toSearch type int (it is the id of the card to search)
-     * @return true if cards contains toSearch false if not
+    /**Checks if a card is already contained in a list
+     * @param cards list of cards that has to be checked
+     * @param toSearch  id of the card to search
+     * @return true if the card is found, false if not
+     * @see #getAllExchange(User, String)
      */
     public boolean checkCard(ArrayList<Integer> cards, int toSearch)
     {
@@ -537,7 +548,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     }
 
     /**
-     * Methos who add n equals card into a list
+     * Adds n equals card into a list
      * @param quantity  number of cards to add
      * @param cardsArray list where cards have to be added
      * @param card id of the card to add
@@ -556,8 +567,8 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
 
 
     /**
-     * Method that set on DB the exchange as notified
-     * @param exchange Exchange that has to be set as notified
+     * Sets on DB the exchange as notified
+     * @param exchange exchange that has to be set as notified
      */
     public void setExchangeNotified(Exchange exchange){
         conn = null;

@@ -36,9 +36,9 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Adds a new user in the database
-     * @param user type User. Indicates user who is going to be added
-     * @param pass  a String. Indicates new user's password
-     * @return true if the user has been successfully added, false if not
+     * @param user the user who is going to be added
+     * @param pass  new user's password
+     * @return true if the user has been successfully added, false otherwise
      */
     @Override
     public boolean save(User user, String pass){
@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * Updates a user in the database
      * @param user user who is going to be updated
-     * @return true if the user has been found and successfully updated false if not
+     * @return true if the user has been found and successfully updated false otherwise
      * @throws SQLException exception caused by database access error
      */
     @Override
@@ -110,8 +110,8 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Deletes a user in the database
-     * @param user type User. Indicates user who is going to be removed
-     * @return true if the user has been found and successfully removed false if not
+     * @param user the user who is going to be removed
+     * @return true if the user has been found and successfully removed false otherwise
      * @throws SQLException exception caused by database access error
      */
     @Override
@@ -144,8 +144,8 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Checks if the user is present in the database
-     * @param user type User. Indicates user that has to be found
-     * @return true if the user has been found false if not
+     * @param user the  user that has to be found
+     * @return true if the user has been found false otherwise
      * @throws SQLException exception caused by database access error
      */
     @Override
@@ -186,8 +186,8 @@ public class UserDaoImpl implements UserDao {
 
 
     /**
-     * Method that finds all users in the database
-     * @return ArrayList<User> which contains users in DB
+     * Finds all users in the database
+     * @return users in DB
      * @throws SQLException exception caused by database access error
      */
 
@@ -230,7 +230,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Checks if there is already a user with same username and/or mail
-     * @param user type User. Indicates user that has to be checked
+     * @param user the user that has to be checked
      * @return false if a user already exists, true otherwise
      */
     @Override
@@ -278,7 +278,7 @@ public class UserDaoImpl implements UserDao {
 
     private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?)";
 
-
+//TODO da cancellare
     public ArrayList<Card> getCollentionOwn(User user){
 
         ArrayList<Card> c = new ArrayList<Card>();
@@ -314,8 +314,8 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Searches user in database by their username
-     * @param username a String. Indicates username of the user that has to found
-     * @return User. Indicates user found in database
+     * @param username the  username of the user that has to found
+     * @return user found in database
      * @throws SQLException exception caused by database access error
      */
     public User findByUsername(String username) throws SQLException {
