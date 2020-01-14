@@ -15,7 +15,7 @@ public class LoginServlet extends AbstractServlet {
     final String secretkey = "chiavesupersegretissimaXD";
 
     /**
-     * method to check if username and password from login form are correct.
+     * Checks if username and password from login form are correct.
      * <p>
      *     If all is correct sets some session's parameters for that user.
      *     and redirect the request to a new jsp page (Homepage).
@@ -54,6 +54,13 @@ public class LoginServlet extends AbstractServlet {
         }
 
     }
+    /**
+     *  Handles the HTTP get request, redirecting it to INDEX_ROUTE (index.jsp)
+     * @param request  HTTP request
+     * @param response HTTP response
+     * @throws ServletException Exception coming from the servlet itself
+     * @throws IOException Exception coming from an I/O problem
+     */
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,8 +71,8 @@ public class LoginServlet extends AbstractServlet {
      * Checks if the input fields from the login form are correct using platform's login method
      * which returns the collection of the logged user.
      * @param request HTTP request
-     * @return CollectionOwn the card's collection of the logged user.
-     * @throws SQLException Exception coming from database
+     * @return  the collection of the logged user.
+     * @throws SQLException Exception caused by database access error
      */
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
 

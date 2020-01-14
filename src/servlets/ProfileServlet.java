@@ -17,9 +17,29 @@ public class ProfileServlet extends AbstractServlet{
 
     private String DEFAULT_ROUTE = "/views/userprofile.jsp";
 
+    /**
+     * Handle the HTTP post request, redirecting it to INDEX_ROUTE (index.jsp)
+     * @param request  HTTP request
+     * @param response HTTP response
+     * @throws ServletException Exception coming from the servlet itself
+     * @throws IOException Exception coming from an I/O problem
+     */
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         forwardTo(request, response, INDEX_ROUTE);
     }
+
+    /**
+     * Handles the HTTP get request, redirecting it to defined route
+     * <p>
+     *     Allows the logged user to delete the exchanges created and to see other users' profile
+     * </p>
+     * @param request  HTTP request
+     * @param response HTTP response
+     * @throws ServletException Exception coming from the servlet itself
+     * @throws IOException Exception coming from an I/O problem
+     */
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("delete")!=null)
@@ -63,7 +83,8 @@ public class ProfileServlet extends AbstractServlet{
     /**
      * Confirms nickname that will load the own collection.
      * @param request http request
-     * return CollectionOwn collection that belongs to the user searched
+     * @return collection that belongs to the user searched
+     * @throws SQLException exception caused by database access error
      * */
     private CollectionOwn confirmNickname(HttpServletRequest request) throws SQLException {
         String nickname = request.getParameter("Nickname");

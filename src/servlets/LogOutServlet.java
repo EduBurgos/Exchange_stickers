@@ -19,6 +19,15 @@ public class LogOutServlet extends AbstractServlet  {
             response.sendRedirect(request.getContextPath()+INDEX_ROUTE);
     }
 
+
+    /**
+     *  Handles the HTTP get request, redirecting it to INDEX_ROUTE (index.jsp)
+     * @param request  HTTP request
+     * @param response HTTP response
+     * @throws ServletException Exception coming from the servlet itself
+     * @throws IOException Exception coming from an I/O problem
+     */
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         forwardTo(request, response, INDEX_ROUTE);
     }

@@ -11,11 +11,11 @@ public class SearchServlet extends AbstractServlet {
     private String EXCHANGE_ROUTE="/views/exchange.jsp";
 
     /**
-     * Checks in which jsp page we are and returns filtered exchanges/cards
+     * Handles the HTTP get request, redirecting it to the defined route
      * <p>
-     *     If we are in jsp page (userprofile) when we use the search filter navbar
-     *     it sends the request to the same page and it shows filtered cards
-     *     If we are in jsp page(homepage) or (exchange) when we use the search filter navbar
+     *     If  the search bar is used  in jsp page (userprofile) or(exchange)
+     *     it sends the request to the same page and it shows filtered cards;
+     *     else if the search bar is used in  jsp page(homepage)
      *     it sends the request to the jsp page(homepage) and it shows cards filtered exchanges
      *
      * </p>

@@ -11,7 +11,17 @@ import java.sql.SQLException;
 @WebServlet(name = "SignUpServlet", urlPatterns = "/signUp")
 public class SignUpServlet extends AbstractServlet {
 
-    private String DEFAULT_ROUTE = "/views/homepage.jsp";
+     /**
+     *Handles the HTTP post request, redirecting it to the defined route (INDEX_ROUTE, which is login.jsp).
+     * <p>
+     *     allows to get information about the user who would like to sign up.
+     *     In case of successful registration the user is registered and receives six cards otherwise error message is displayed
+     * </p>
+     *  @param request  HTTP request
+     *  @param response  HTTP response
+     *  @throws ServletException Exception coming from the servlet itself
+     *  @throws IOException Exception coming from an I/O problem
+     * */
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,13 +53,8 @@ public class SignUpServlet extends AbstractServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
-        try {
-            forwardTo(request, response, DEFAULT_ROUTE);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
 
 
 }
