@@ -21,12 +21,15 @@ import java.util.ArrayList;
 public class HomePageServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
     private String PROFILE_ROUTE = "/views/userprofile.jsp";
-    private String INDEX_HOMEPAGE = "index_homepage.jsp";
+
 
     /**
      * Handles the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
-     * @param request represents the HTTP request
-     * @param response represents the HTTP response
+     * <p>
+     *     displays a message if the exchange has been successfully completed or not
+     * </p>
+     * @param request HTTP request
+     * @param response HTTP response
      * @throws ServletException Exception coming from the servlet itself
      * @throws IOException Exception coming from an I/O problem
      */
@@ -52,40 +55,12 @@ public class HomePageServlet extends AbstractServlet {
     }
 
     /**
-     * Handles the HTTP get request; in this case is possible to reach welcome.jsp either from doGet or doPost
-     * method
-     * @param request is the HTTP request
-     * @param response is the HTTP response
-     * @throws ServletException Exception coming from the servlet itself
-     * @throws IOException Exception coming from an I/O error
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //richiesta
-        String toSearch = request.getParameter("search");
-        Platform platform= Platform.getInstance();
-        CollectionOwn collectionOwn=(CollectionOwn) request.getSession().getAttribute("logged");
-        if (toSearch==null)
-        {
-            try {
-                collectionOwn = platform.LogIn(collectionOwn.getOwner().getUsername(), collectionOwn.getOwner().getPass());
-            }
-            catch (SQLException e)
-            {
-
-            }
-        }
-        else
-        {
-            collectionOwn=platform.searcIntoCollection((CollectionOwn)request.getSession().getAttribute("logged"),toSearch); //mettere in un thread perchè se clicco altrove si impalla
-        }
-        request.getSession().removeAttribute("logged");
-        request.getSession().setAttribute("logged",collectionOwn);
-        response.sendRedirect(request.getContextPath()+PROFILE_ROUTE);
-        // TODO: AGGIUNGERE ECCEZIONE CARTA NON TROVATA
-
-
-    }
-
+     * Allows to accept an exchange
+     * @param request HTTP request
+     * @return true if the exchange is successfully accepted false otherwise
+     * @throws SQLException exception caused by database access error
+     *
+     * */
     private boolean marketExchange(HttpServletRequest request) throws SQLException {
 
         String id=request.getParameter("btn");

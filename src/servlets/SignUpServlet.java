@@ -23,7 +23,7 @@ public class SignUpServlet extends AbstractServlet {
      *  @throws IOException Exception coming from an I/O problem
      * */
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         final String secretkey = "chiavesupersegretissimaXD";
 

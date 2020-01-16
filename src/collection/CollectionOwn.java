@@ -29,29 +29,5 @@ public class CollectionOwn {
         this.cardsOwn = cardsOwn;
     }
 
-    /**
-     * dopo la risposta
-    */
-    public Map<Card,Integer> searchCard(String search)
-    {
-        Map<Card,Integer> result=new HashMap<>();
-        for (Card c:cardsOwn.keySet()) {
-            if(c.getNome().contains(search))
-            {
-                result.put(c,cardsOwn.get(c));
-            }
-        }
-        return result;
-    }
 
-    public  boolean searchCardById(int id)
-    {
-        for (Card c:cardsOwn.keySet()) {
-            if(c.getId()==id)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 }

@@ -121,11 +121,7 @@ public class Platform {
         return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
     }
 
-    //TODO: da cancellare
-    public CollectionOwn searcIntoCollection(CollectionOwn collectionOwn,String toSearch)
-    {
-        return new CollectionOwn(collectionOwn.getOwner(),collectionOwn.searchCard(toSearch));
-    }
+
 
     /**
      * Creates a new exchange

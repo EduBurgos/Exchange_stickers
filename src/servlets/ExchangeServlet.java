@@ -16,9 +16,15 @@ public class ExchangeServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
 
     /**
-     * Method to handle the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE)
-     * @param request represents the HTTP request
-     * @param response represents the HTTP response
+     * Method to handle the HTTP post request, redirecting it to the defined route (DEFAULT_ROUTE or exchange.jsp)
+     * <p>
+     *   Allows the logged user to select the cards they want to give from their collection
+     *   and the cards they want to have from the catalog.
+     *   A message is displayed after creating the exchange
+     *
+     * </p>
+     * @param request  HTTP request
+     * @param response HTTP response
      * @throws ServletException Exception coming from the servlet itself
      * @throws IOException Exception coming from an I/O problem
      */
@@ -64,9 +70,9 @@ public class ExchangeServlet extends AbstractServlet {
     }
 
     /**
-     * Method to handle the HTTP get request; in this case is possible to reach welcome.jsp either from doGet or doPost
-     * @param request is the HTTP request
-     * @param response is the HTTP response
+     * Handles the HTTP get request, redirecting it to the defined route(DEFAULT_ROUTE)
+     * @param request HTTP request
+     * @param response HTTP response
      * @throws ServletException Exception coming from the servlet itself
      * @throws IOException Exception coming from an I/O error
      */
