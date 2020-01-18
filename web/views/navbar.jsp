@@ -154,13 +154,19 @@ it is included in each page of the application -->
                         <ul>
                             <div class="dropdown-menu" id="info">
                                 <p>
-                                    <strong>Some example text that's free-flowing within the dropdown menu.</strong>
+                                    <strong>A WORD TO THE WISE</strong>
                                 </p>
                                 <p class="mb-0">
-                                    <strong>And this is more example text.</strong>
+                                    <strong>- Login and exchange cards with people from all over the world</strong>
                                 </p>
-                                <p>
-                                    <strong>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur. Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</strong>
+                                <p class="mb-0">
+                                    <strong>- Find cards from most popular brands</strong>
+                                </p>
+                                <p class="mb-0">
+                                    <strong>- Every day 5 free cards</strong>
+                                </p>
+                                <p class="mb-0">
+                                    <strong>- Max 5 cards to give or to take in each exchange</strong>
                                 </p>
                             </div>
                         </ul>
