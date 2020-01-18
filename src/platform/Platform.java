@@ -452,4 +452,26 @@ public class Platform {
             card.createRandomCard(u);
         }
     }
+
+    /**
+     *
+     * @param username username of the user
+     * @return Collection of the user
+     * @throws SQLException
+     */
+    public CollectionOwn getMyCollection(String username) throws SQLException {
+        User logg = null;
+
+        try {
+            Facade f = new FacadeImplements();
+            logg = f.findByUsername(username);
+            CollectionOwn myCollection = f.getCollentionOwn(logg);
+            return myCollection;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
