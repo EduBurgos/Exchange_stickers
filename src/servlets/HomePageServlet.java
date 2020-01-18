@@ -33,8 +33,6 @@ public class HomePageServlet extends AbstractServlet {
      * @throws ServletException Exception coming from the servlet itself
      * @throws IOException Exception coming from an I/O problem
      */
-
-    // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Platform platform = Platform.getInstance();
         try {
