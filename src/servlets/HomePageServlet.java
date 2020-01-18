@@ -40,8 +40,10 @@ public class HomePageServlet extends AbstractServlet {
         try {
             boolean resultExchange = marketExchange(request);
             if (resultExchange) {
+                User u=(User)request.getSession().getAttribute("user");
                 request.getSession().setAttribute("doneExchange", "true");
-                request.getSession().setAttribute("exchangesList",platform.getAllExchanges((User)request.getSession().getAttribute("user")));
+                request.getSession().setAttribute("exchangesList",platform.getAllExchanges(u));
+                request.getSession().setAttribute("logged",platform.getMyCollection(u.getUsername()));
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
             } else {
                 request.getSession().setAttribute("doneExchange", "false");
