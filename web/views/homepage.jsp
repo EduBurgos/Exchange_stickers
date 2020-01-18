@@ -57,7 +57,7 @@
                             <label style="color:darkblue"><strong><%=u1.getUsername()%></strong></label>
                             <input type="hidden" name="btn"  value="<%=i%>"/>
 
-                   <input type="submit" class="btn-primary"  value="accept" name="btn"  id="<%=i%>" />
+                   <input type="submit" class="btn-primary"  value="accept" name="btn"  id="<%=i%>" onclick="acceptExchange(<%=i%>)"/>
 
                     </form>
                     </div>
@@ -199,7 +199,12 @@ showConfirmButton: true})
         });
     });
 </script>
-
+<script>
+    function acceptExchange(id) {
+        <% request.getSession().setAttribute("user",u); %>
+        document.getElementById(id).submit();
+    }
+</script>
 <script type="text/javascript" src="../js/carousel.js"></script>
 </body>
 </html>

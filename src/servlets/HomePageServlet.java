@@ -36,10 +36,12 @@ public class HomePageServlet extends AbstractServlet {
 
     // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Platform platform = Platform.getInstance();
         try {
             boolean resultExchange = marketExchange(request);
             if (resultExchange) {
                 request.getSession().setAttribute("doneExchange", "true");
+                request.getSession().setAttribute("exchangesList",platform.getAllExchanges((User)request.getSession().getAttribute("user")));
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
             } else {
                 request.getSession().setAttribute("doneExchange", "false");
