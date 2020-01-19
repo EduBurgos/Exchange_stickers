@@ -33,7 +33,9 @@
 
             <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
             <% Platform platform=Platform.getInstance();   %>
-            <%ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
+            <%//ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
+            <%ArrayList<Exchange> ex=platform.getAllExchanges(u);
+            %>
 
             <!---It is used to show exchanges filtered  by users using the search filter of the navbar --->
             <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>

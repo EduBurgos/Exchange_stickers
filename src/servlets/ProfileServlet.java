@@ -3,6 +3,7 @@ package servlets;
 import collection.CollectionOwn;
 import dao.FacadeImplements;
 import platform.Platform;
+import userSide.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,11 +43,12 @@ public class ProfileServlet extends AbstractServlet{
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Platform platform= Platform.getInstance();
         if (request.getParameter("delete")!=null)
         {
             String value= request.getParameter("delete");
             int id_trans=Integer.parseInt(value);
-            Platform platform= Platform.getInstance();
+
             try {
                 platform.delete(id_trans);
             } catch (Exception e) {
@@ -58,6 +60,10 @@ public class ProfileServlet extends AbstractServlet{
         try{
             CollectionOwn nickname = confirmNickname(request);
             request.getSession().setAttribute("snitch",null);
+
+            //parte della notifica di quando qualcuno accetta una tua trattativa e da fare il controllo per poi aggiornare la tua collezione aggiornata
+            request.getSession().setAttribute("role", "notification");
+            request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges((User)request.getSession().getAttribute("user")));
 
             if(nickname != null){
                 request.getSession().setAttribute("snitch",nickname);

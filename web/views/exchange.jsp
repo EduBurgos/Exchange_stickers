@@ -3,6 +3,7 @@
 <%@ page import="collection.CollectionOwn" %>
 <%@ page import="platform.Platform" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="userSide.Exchange" %>
 
 <html>
 <head>
@@ -28,7 +29,11 @@
 <form action="../exchange"  method="POST" id="myForm">
     <div id="tot">
         <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
-
+        <%ArrayList<Exchange> notifications = platform.notifyDoneExchanges(c.getOwner());%>
+        <%if (notifications.size()>0){%>
+        <%request.getSession().setAttribute("logged",platform.getMyCollection(c.getOwner().getUsername()));%>
+        <%c=(CollectionOwn)request.getSession().getAttribute("logged");%>
+        <%}%>
         <!-------- DIV CARTE DA SELEZIONARE DA DARE------->
         <div class="leftbox">
             <script>

@@ -33,6 +33,8 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
+
+
 <div class="cover-photo"></div>
  <div class="body">
    <div class="row-height">
@@ -40,11 +42,18 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
+        <%Platform platform=Platform.getInstance();      %>
         <% CollectionOwn c; %>
         <% if(request.getSession().getAttribute("snitch")!=null){ %>
-        <% c= (CollectionOwn)request.getSession().getAttribute("snitch");}
-        else{ %>
-        <% c= (CollectionOwn)request.getSession().getAttribute("logged");} %>
+        <% c= (CollectionOwn)request.getSession().getAttribute("snitch");} else{ %>
+        <%CollectionOwn collectionOwn = (CollectionOwn)request.getSession().getAttribute("logged");%>
+        <%ArrayList<Exchange> notifications = platform.notifyDoneExchanges(collectionOwn.getOwner());%>
+        <%c=(CollectionOwn)request.getSession().getAttribute("logged");%>
+        <%if (notifications.size()>0){%>
+        <%request.getSession().setAttribute("logged",platform.getMyCollection(collectionOwn.getOwner().getUsername()));%>
+        <%c=(CollectionOwn)request.getSession().getAttribute("logged");%>
+        <%}%>
+        <%}%>
 
         <h1><%=c.getOwner().getUsername()%></h1>
 
@@ -87,7 +96,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     <!--It is used to show cards filtered  by users using the search filter of the navbar --->
                     <%int conta=0;%>
                     <% ArrayList<Card> filterArray =null;   %>
-                    <%Platform platform=Platform.getInstance();      %>
+                    <%//Platform platform=Platform.getInstance();      %>
                     <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
                         <%if(request.getSession().getAttribute("category")!=null ||!request.getSession().getAttribute("class").equals("") ||!request.getSession().getAttribute("type").equals("")|| !request.getSession().getAttribute("card").equals("")) {  %>
                             <% filterArray= platform.filtersCollections(c.getOwner().getUsername(),(String)request.getSession().getAttribute("card"),(String)request.getSession().getAttribute("category"),(String) request.getSession().getAttribute("class"),(String)request.getSession().getAttribute("type"));%>

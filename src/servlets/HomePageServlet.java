@@ -42,6 +42,8 @@ public class HomePageServlet extends AbstractServlet {
                 request.getSession().setAttribute("doneExchange", "true");
                 request.getSession().setAttribute("exchangesList",platform.getAllExchanges(u));
                 request.getSession().setAttribute("logged",platform.getMyCollection(u.getUsername()));
+                request.getSession().setAttribute("role", "notification");
+                request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(u));
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
             } else {
                 request.getSession().setAttribute("doneExchange", "false");
