@@ -26,7 +26,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String insert_collection="insert into collections (ID_CARD,Username) values ((select id from catalog order by rand() limit 1),?) ON DUPLICATE KEY UPDATE quantity=quantity+1;";
 
-    private FacadeImplements f= new FacadeImplements();
+
 
     MySQLDAOFactory connector = MySQLDAOFactory.getInstance();
     Connection conn = null;
@@ -75,16 +75,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     }
 
-
-    @Override
-    public boolean update(){
-        return false;
-    }
-
-    @Override
-    public boolean delete(){
-        return false;
-    }
 
     /**
      * Gets collection of a user
@@ -230,7 +220,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      * @throws SQLException exception caused by database error.
      */
     public ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ) throws SQLException{
-
+        FacadeImplements f= new FacadeImplements();
         ArrayList<Card> list= new ArrayList<Card>();
         int j=2;
         String search_cards="select * from collections inner join catalog on (collections.ID_Card=catalog.ID) WHERE Username=?";

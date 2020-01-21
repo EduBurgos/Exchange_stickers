@@ -75,22 +75,6 @@ public class FacadeImplements implements Facade
         return f.getCollentionOwn(user);
     }
     /**
-     * @see CollectionOwnDaoImpl#update()
-     */
-    @Override
-    public boolean update(){
-        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
-        return f.update();
-    }
-    /**
-     * @see CollectionOwnDaoImpl#delete()
-     */
-    @Override
-    public boolean delete(){
-        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
-        return f.delete();
-    }
-    /**
      * @see CollectionOwnDaoImpl#createRandomCard(User)
      */
     @Override

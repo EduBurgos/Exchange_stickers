@@ -37,7 +37,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
     private static final String get_exchange_to_notify="select exchanges.* , cards_own.cardId as own,cards_own.quantity as oqt, cards_wanted.cardId as want, cards_wanted.quantity as wqt from (exchanges join cards_own ON cards_own.Id_trans=exchanges.Id_trans) join cards_wanted ON cards_wanted.Id_trans=exchanges.Id_trans where username=? and trans_comp=1 and notified=0 order by exchanges.id_trans";
     private static final String delete_exchange = "delete from exchanges where id_trans=?";
     private static final String set_exchange_notified = "update exchanges SET  notified='1' WHERE id_trans=? ";
-    private FacadeImplements f=new FacadeImplements();
+
 
 
     /**
@@ -451,6 +451,7 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
      * */
     public ArrayList<Exchange>filtersExchange(User user, String name, String category , String classCard, String typeCard){
         conn=null;
+        FacadeImplements f=new FacadeImplements();
         ArrayList<Exchange> answer= new ArrayList<>();
         int j=5;
        String get_all_exchangeFilter ="select exchanges.*,cards_wanted.cardId as want,cards_own.cardId as own,cards_own.quantity as oqt,cards_wanted.quantity as wqt from (exchanges  join  cards_wanted on exchanges.Id_trans=cards_wanted.id_trans join cards_own on exchanges.Id_trans=cards_own.Id_trans) join catalog ON cards_own.cardId=catalog.ID  where exchanges.id_trans not in (select exchanges.Id_trans  from cards_wanted,collections,exchanges where cards_wanted.cardId not in (select collections.ID_Card from collections WHERE USERNAME=? and quantity >= cards_wanted.quantity)  and exchanges.id_trans=cards_wanted.Id_trans and exchanges.username!=? group by exchanges.id_trans)and username!=? and trans_comp=?";

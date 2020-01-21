@@ -27,7 +27,6 @@ public class CardsDaoImpl implements CardsDao {
     Connection conn = null;
     PreparedStatement preparedStatement = null;
     ResultSet result = null;
-    private FacadeImplements f=new FacadeImplements();
 
     /**
      * Inserts a card in catalog
@@ -159,7 +158,7 @@ public class CardsDaoImpl implements CardsDao {
      */
 
    public ArrayList<Card> filterCatalog(String nameCard, String category,String classCard, String typeCard)throws SQLException{
-
+       FacadeImplements f=new FacadeImplements();
        ArrayList<Card> list= new ArrayList<Card>();
         String search=FIND_ALL.concat("where true");
        int j=1;

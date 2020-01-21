@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 public interface CollectionOwnDao {
     CollectionOwn getCollentionOwn(User user);
-    boolean update() throws SQLException;
-    boolean delete() throws SQLException;
-
     /*Potenzialmente sara refattorizzato , decidere se pasare parte o completamente loggetto*/
     Card createRandomCard(User user) throws  SQLException;
     void giftCard(User user);

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 @WebServlet(name = "HomePageServlet", urlPatterns = "/homepage")
 public class HomePageServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
-    private String PROFILE_ROUTE = "/views/userprofile.jsp";
+
 
 
     /**
