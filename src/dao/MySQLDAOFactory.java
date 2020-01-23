@@ -20,7 +20,7 @@ public class MySQLDAOFactory {
         try {
 
             Class.forName(DRIVER);
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cardwebapplication?useSSL=false&user=root&password=pinkfriday5");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cardwebapplication?useSSL=false&user=root&password=abcd");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
