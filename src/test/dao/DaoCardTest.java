@@ -14,17 +14,17 @@ public class DaoCardTest {
     private String categoria = "categoriaTest";
     private String classe = "classeTest";
     private int livello = 999;
-    private String rarità = "raritàTest";
+    private String rarita = "raritàTest";
     private String tipo = "tipoTest";
     private String nome = "nomeTest";
     private String descrizione = "descrizioneTest";
 
     CardsDaoImpl cardDaoTest = new CardsDaoImpl();
-    Card testCard = new Card(id, categoria, classe, livello, rarità, tipo, nome, descrizione);
+    Card testCard = new Card(id, categoria, classe, livello, rarita, tipo, nome, descrizione);
 
     @BeforeAll
     void insertTest() throws SQLException {
-        Card testCard = new Card(id, categoria, classe, livello, rarità, tipo, nome, descrizione);
+        Card testCard = new Card(id, categoria, classe, livello, rarita, tipo, nome, descrizione);
 
         assertEquals(true, cardDaoTest.insert(testCard));
 
@@ -35,12 +35,12 @@ public class DaoCardTest {
         String categoria2 = "categoriaTest2";
         String classe2 = "classeTest2";
         int livello2 = 666;
-        String rarità2 = "raritàTest2";
+        String rarita2 = "raritàTest2";
         String tipo2 = "tipoTest2";
         String nome2 = "nomeTest2";
         String descrizione2 = "descrizioneTest2";
 
-        Card testCard2 = new Card(id, categoria2, classe2, livello2, rarità2, tipo2, nome2, descrizione2);
+        Card testCard2 = new Card(id, categoria2, classe2, livello2, rarita2, tipo2, nome2, descrizione2);
 
         assertEquals(true, cardDaoTest.update(testCard2));
 

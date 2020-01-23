@@ -145,7 +145,7 @@ public class PlatformTest {
 
     /**
      * method used to generate an user without redundant issue that can be used to test
-     * @return testUser The user will be used to Test
+     * @return the user will be used to Test
      */
     private User getTestUser(){
         User tempUser = new User("nomeProva"+randomStringGeneratore(), "cognomeProva"+randomStringGeneratore(), "emailProva"+randomStringGeneratore()+"@test.com", "passwordTest"+randomStringGeneratore());
@@ -154,6 +154,7 @@ public class PlatformTest {
 
     /**
      * method to generate a random string
+     * @return string generated randomly
      */
     private String randomStringGeneratore(){
             int leftLimit = 97; // letter 'a'
@@ -174,7 +175,7 @@ public class PlatformTest {
     /**
      * method to set 5 sorted cards in arraylist
      * @param i Index of first card
-     * @return setList The list of cards
+     * @return The list of cards
      */
     private ArrayList<Integer> setTestCards(int i){
         ArrayList<Integer> setList = new ArrayList<>();

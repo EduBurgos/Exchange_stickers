@@ -18,9 +18,9 @@ public interface Cards {
 
     void setLivello(int livello) ;
 
-    String getRarità();
+    String getRarita();
 
-    void setRarità(String rarità);
+    void setRarita(String rarita);
 
     String getTipo();
     void setTipo(String tipo);

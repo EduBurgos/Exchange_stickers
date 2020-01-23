@@ -18,7 +18,7 @@ public class AbstractServlet extends HttpServlet {
     protected String INDEXEXCHANGE_ROUTE="/index_exchange.jsp";
     /**
      * Method to redirect the requests to a jsp page. The method handle the
-     * communication between pages and navigation flow in a sort of pipe&filter
+     * communication between pages and navigation flow in a sort of pipe filter
      * way, using:
      * @param request represents the http request made to the servlet
      * @param response represents the http response

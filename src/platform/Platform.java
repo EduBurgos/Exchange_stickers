@@ -75,6 +75,7 @@ public class Platform {
      * @param username username of new user
      * @param email the email of new user
      * @param password the password of new user
+     * @param retype the confirm password of new user
      * @return  true if the user is registered false if the registration fails
      * @throws SQLException exception caused by database access error
      */
@@ -97,6 +98,7 @@ public class Platform {
      * Finds a user by their id
      * @param id the id of the searched user
      * @return user searched
+     * @throws SQLException exception caused by database access error
      * */
     public User findUser(String id) throws SQLException
     {
@@ -176,13 +178,7 @@ public class Platform {
         return f.marketExchange(exchange);
     }
 
-    /**
-     * @see FacadeImplements#delete()
-     */
-    public void delete(int id_trans) throws SQLException{
-        Facade f=new FacadeImplements();
-        f.delete(id_trans);
-    }
+
 
     /**
      * Shows cards that belong to the collection of the user searched
@@ -264,6 +260,11 @@ public class Platform {
 
     /**
      * @see FacadeImplements#filterCatalog(String, String, String, String)
+     * @param nameCard name of the searched card
+     * @param category the category of the searched cards
+     * @param classCard class of the searched cards
+     * @param typeCard type of the searched cards
+     * @return all the cards that belong to the catalog that have been filtered
      */
     public ArrayList<Card>filterCatalog(String nameCard,String category,String classCard, String typeCard){
         ArrayList<Card> list= new ArrayList<Card>();
@@ -302,6 +303,9 @@ public class Platform {
 
  /**Gets all the exchanges the user can accept
   * @see FacadeImplements#getAllExchange(User, String)
+  * @param user logged user who can accept exchanges
+  * @return the exchanges acceptable by the user
+  * @throws SQLException exception caused by database access error
   * */
   public ArrayList<Exchange> getAllExchanges(User user) throws SQLException{
       try {
@@ -315,6 +319,9 @@ public class Platform {
 
     /**Gets all the exchanges created by user
      * @see FacadeImplements#getAllExchange(User, String)
+     * @param user user who is the creator of the exchanges
+     * @return all the exchanges made by the user
+     * @throws SQLException exception caused by database access error
      * */
   public ArrayList<Exchange> getAllMyExchnages(User user)  throws SQLException{
       try {
@@ -379,6 +386,8 @@ public class Platform {
 
     /**
      * @see FacadeImplements#findAllGeneric()
+     * @return all the cards that belong to the catalog
+     * @throws SQLException exception caused by database access error
      * */
     public ArrayList<Card> allCardsCatalog () throws SQLException {
         FacadeImplements allCards = new FacadeImplements();
@@ -403,6 +412,9 @@ public class Platform {
 
     /**
      * @see FacadeImplements#findByID(int)
+     * @param id id that identifies the card
+     * @return card searched
+     * @throws SQLException exception caused by database access error
      * */
     public Card findCardByID(int id) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
@@ -411,6 +423,9 @@ public class Platform {
 
     /**
      * @see FacadeImplements#getExchange(int)
+     * @param idExchange id that identifies the exchange
+     * @return exchange searched
+     * @throws SQLException caused by database access error
      */
     public Exchange getExchange(int idExchange) throws SQLException {
         FacadeImplements temp = new FacadeImplements();
@@ -439,7 +454,7 @@ public class Platform {
      *
      * @param username username of the user
      * @return Collection of the user
-     * @throws SQLException
+     * @throws SQLException exception caused by database access error
      */
     public CollectionOwn getMyCollection(String username) throws SQLException {
         User logg = null;

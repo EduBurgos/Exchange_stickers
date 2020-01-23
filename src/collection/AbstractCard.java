@@ -7,7 +7,7 @@ public abstract class AbstractCard implements Cards {
     protected String categoria;
     protected String classe;
     protected int livello;
-    protected String rarità;
+    protected String rarita;
     protected String tipo;
     protected String nome;
     protected String descrizione;

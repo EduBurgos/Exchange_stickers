@@ -43,7 +43,7 @@ public class CardsDaoImpl implements CardsDao {
             preparedStatement.setString(2, card.getCategoria());
             preparedStatement.setString(3, card.getClasse());
             preparedStatement.setInt(4, card.getLivello());
-            preparedStatement.setString(5, card.getRarità());
+            preparedStatement.setString(5, card.getRarita());
             preparedStatement.setString(6,card.getTipo());
             preparedStatement.setString(7, card.getNome());
             preparedStatement.setString(8, card.getDescrizione());
@@ -122,7 +122,7 @@ public class CardsDaoImpl implements CardsDao {
             preparedStatement.setString(2,card.getCategoria());
             preparedStatement.setString(3,card.getClasse());
             preparedStatement.setInt(4,card.getLivello());
-            preparedStatement.setString(5,card.getRarità());
+            preparedStatement.setString(5,card.getRarita());
             preparedStatement.setString(6,card.getTipo());
             preparedStatement.setString(7,card.getNome());
             preparedStatement.setString(8,card.getDescrizione());

@@ -5,12 +5,12 @@ package collection;
 public class Card extends AbstractCard implements Comparable {
 
 
-    public Card(int id, String categoria, String classe, int livello, String rarità, String tipo, String nome, String descrizione) {
+    public Card(int id, String categoria, String classe, int livello, String rarita, String tipo, String nome, String descrizione) {
         this.id = id;
         this.categoria = categoria;
         this.classe = classe;
         this.livello = livello;
-        this.rarità = rarità;
+        this.rarita = rarita;
         this.tipo = tipo;
         this.nome = nome;
         this.descrizione = descrizione;
@@ -49,12 +49,12 @@ public class Card extends AbstractCard implements Comparable {
         this.livello = livello;
     }
 
-    public String getRarità() {
-        return rarità;
+    public String getRarita() {
+        return rarita;
     }
 
-    public void setRarità(String rarità) {
-        this.rarità = rarità;
+    public void setRarita(String rarita) {
+        this.rarita = rarita;
     }
 
     public String getTipo() {
@@ -87,7 +87,7 @@ public class Card extends AbstractCard implements Comparable {
      * @return the description of the card
      */
     public String toString() {
-        return categoria + " " + classe + " " + livello + " " + rarità + " " + tipo + " " + nome + " " + descrizione +"\n";
+        return categoria + " " + classe + " " + livello + " " + rarita + " " + tipo + " " + nome + " " + descrizione +"\n";
     }
 
     /**
