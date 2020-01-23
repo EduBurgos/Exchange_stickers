@@ -105,10 +105,10 @@
     <!-------- DIV RECAP------->
     <div id="recap">
         <div  id="cardsToGiveRecap">
-            <h1>DIV RECAP DA DARE</h1>
+
         </div>
         <div id="cardsToTakeRecap">
-            <h1>DIV RECAP DA PRENDERE</h1>
+
         </div>
     </div>
     <!-------- FINE DIV RECAP------->
@@ -288,6 +288,11 @@
         var imgCln = img.cloneNode(true);
         var src = document.getElementById(idWhereToAdd);
         var elem = document.getElementById(idDivCopy);
+        Swal.fire({
+            icon: 'success',
+            title: 'carta rimossa dalla trattativa',
+            showConfirmButton: false,
+            timer: 1500})
         return elem.parentNode.removeChild(elem);
     }
 
