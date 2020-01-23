@@ -159,7 +159,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                 <%  ArrayList<Exchange> ex= platform.getAllMyExchnages(c.getOwner());%>
                 <div class="row">
                     <%for(int i=0;i<ex.size();i++){%>
-                <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                <div id="carousel<%=i%>"  class="carousel slide col-sm-3" data-wrap="false">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <%int attivo=0;%>
@@ -207,7 +207,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     </div>
                 </div>
                     <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
-                        <div id="carousel<%=i%>W" class="carousel slide">
+                        <div id="carousel<%=i%>W" class="carousel slide" data-wrap="false">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>

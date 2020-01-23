@@ -51,7 +51,7 @@
                 <% }  %>
                 <%for(int i=0;i<ex.size();i++){%>
                     <% User u1=platform.findUser(ex.get(i).getId_user());   %>
-                    <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                    <div id="carousel<%=i%>" class="carousel slide col-sm-3" data-wrap="false">
 
                     <!-- Wrapper for slides -->
                     <div class="display: inline">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
-                        <div id="carousel<%=i%>W" class="carousel slide">
+                        <div id="carousel<%=i%>W" class="carousel slide" data-wrap="false">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>
