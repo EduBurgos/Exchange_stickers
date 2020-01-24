@@ -2,7 +2,7 @@ package collection;
 //Decorator pattern
 /** Class that represents a card
  */
-public class Card extends AbstractCard implements Comparable {
+public class Card extends AbstractCard {
 
 
     public Card(int id, String categoria, String classe, int livello, String rarita, String tipo, String nome, String descrizione) {
@@ -93,8 +93,8 @@ public class Card extends AbstractCard implements Comparable {
     /**
      * Compares the ids of cards
      */
-    @Override
-    public int compareTo(Object o) {
+   // @Override
+   /* public int compareTo(Object o) {
         if ((o != null) && (o instanceof Card)) {
             Card c = (Card) o;
             if (this.getId() > c.getId()) {
@@ -107,7 +107,7 @@ public class Card extends AbstractCard implements Comparable {
 
         }
         return -1;
-    }
+    }*/
 }
 
 

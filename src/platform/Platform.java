@@ -114,6 +114,16 @@ public class Platform {
     }
 
     /**
+     * @see FacadeImplements#delete(int)
+     * @param id_trans id of the exchange that is going to be deleted
+     * @throws SQLException exception caused by database access error
+     */
+    public void delete(int id_trans) throws SQLException{
+        Facade f=new FacadeImplements();
+        f.delete(id_trans);
+    }
+
+    /**
      * Checks if the mail is valid
      * @param email the mail of the user who is signing up to the platform
      * @return true if the mail is valid false otherwise
