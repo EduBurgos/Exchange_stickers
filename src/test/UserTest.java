@@ -13,12 +13,18 @@ public class UserTest {
     private String mail = "mailProva";
 
 
-
+    /**
+     * Tests creation of new user
+     * @return new user created
+     */
     @Test
     public User userCreation(){
         return new User(nomeProva, cognomeProva, usernameProva, mail);
     }
 
+    /**
+     * Tests if two users are equal
+     */
     @Test
     public void equalUser(){
         User user1 = new User(nomeProva, cognomeProva, usernameProva, mail);

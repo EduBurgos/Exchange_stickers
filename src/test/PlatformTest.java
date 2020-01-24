@@ -24,7 +24,7 @@ public class PlatformTest {
 
 
     /**
-     * Test signup method creating an user and checking if we can get his collection, generated randomly, from database
+     * Test signup method creating an user and checking if his collection can be gotten , generated randomly, from database
      */
     @Test
     @Order(1)
@@ -41,7 +41,7 @@ public class PlatformTest {
     }
 
     /**
-     * Test login method trying access with an user and checking if we find correctly his collection in database
+     * Test login method trying access with an user and checking if his collection is correctly found in database
      */
     @Test
     @Order(2)
@@ -79,7 +79,7 @@ public class PlatformTest {
     }
 
     /**
-     *
+     *Tests set exchange method to see if a user can set an exchange
      */
     @Test
     @Order(3)
