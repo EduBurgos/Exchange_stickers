@@ -59,6 +59,7 @@ public class Platform {
             if(a.equals(pass))
             {
                 //quando loggo carico anche carte utente in collectionOwn
+                f.giftCard(logg);
                 return f.getCollentionOwn(logg);
             }
         } catch (NullPointerException e) {
@@ -213,7 +214,7 @@ public class Platform {
         }
         return null;
     }
-//TODO: da chiedere
+
     /**
      * Filters cards belonging to logged user  by the name, category,
      * class and/or type
@@ -296,18 +297,19 @@ public class Platform {
      * platform today  and they have to receive their daily cards
      * @throws SQLException Exception caused by database
      */
-    public void giftCard(User user) throws SQLException{
+    public boolean giftCard(User user) throws SQLException{
         User account;
         try{
             Facade u = new FacadeImplements();
             account=u.findByUsername(user.getUsername());
             if(account!=null){
                 FacadeImplements f = new FacadeImplements();
-                f.giftCard(user);
+               return f.giftCard(user);
             }
         }catch (NullPointerException e){
             e.printStackTrace();
         }
+        return false;
     }
 
 

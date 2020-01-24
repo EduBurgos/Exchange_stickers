@@ -111,9 +111,9 @@ public class FacadeImplements implements Facade
      * @see CollectionOwnDaoImpl#giftCard(User)
      */
     @Override
-    public void giftCard(User user){
+    public boolean giftCard(User user){
         CollectionOwnDao f = new CollectionOwnDaoImpl();
-        f.giftCard(user);
+        return f.giftCard(user);
     }
 
     /*EXCHANGE CARD DAO*/

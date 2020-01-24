@@ -136,8 +136,9 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
      * Gifts five new cards to user when they log to the platform today.
      * Cards can be gifted once a day
      * @param user the user that has to be checked if they already logged today
+     * @return true if cards are added to the collection, false otherwise
      */
-    public void giftCard(User user){
+    public boolean giftCard(User user){
         int nCards=5;
         try{
             conn = connector.createConnection();
@@ -154,6 +155,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                 preparedStatement.setString(1, user.getUsername());
                 preparedStatement.execute();
                 preparedStatement.setString(1,user.getUsername());
+                return true;
 
                 }
 
@@ -176,7 +178,7 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
                 cse.printStackTrace();
             }
         }
-
+        return false;
     }
 
     /**
@@ -281,18 +283,5 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
         return c;
     }
 
-    //metodo per controllare che possegga le carte inseritegli
-    public boolean hasCards(int userID, ArrayList<Card> cards){
-
-        try {
-            conn = connector.createConnection();
-            //TODO fare in modo che venga eseguito per ogni carta dell' arraylist, meglio prendere tutte le carte con una query e operare poi con un ciclo
-            preparedStatement = conn.prepareStatement(HAS_CARDS_QUERY);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
 }

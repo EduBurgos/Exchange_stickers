@@ -10,7 +10,7 @@ public interface CollectionOwnDao {
     CollectionOwn getCollentionOwn(User user);
     /*Potenzialmente sara refattorizzato , decidere se pasare parte o completamente loggetto*/
     Card createRandomCard(User user) throws  SQLException;
-    void giftCard(User user);
+    boolean giftCard(User user);
     Card get_last_card(User user);
     ArrayList<Card> openSachet(User user);
     ArrayList<Card> filters (User user, String name, String category , String classCard, String typeCard ) throws SQLException;

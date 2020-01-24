@@ -278,39 +278,7 @@ public class UserDaoImpl implements UserDao {
 
     private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE ID_User = (select ID from users where Username = ?)";
 
-//TODO da cancellare
-    public ArrayList<Card> getCollentionOwn(User user){
 
-        ArrayList<Card> c = new ArrayList<Card>();
-        String listaCarte = VIEW_COLLECTION_QUERY;
-        user.getUsername();
-        try {
-            conn = connector.createConnection();
-
-            preparedStatement = conn.prepareStatement(listaCarte);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.execute();
-            result = preparedStatement.getResultSet();
-            while (result.next() && result != null) {
-                Card card=new Card(result.getInt("ID"),
-                        result.getString("Category"),
-                        result.getString("Class"),
-                        result.getInt("Lvl"),
-                        result.getString("Rarity"),
-                        result.getString("CardType"),
-                        result.getString("CardName"),
-                        result.getString("CardDescription"));
-                c.add(card);
-                //TODO farla diventare mappa con quantità
-                //cards.put(card,result.getInt(9));
-                System.out.printf("c");
-            }
-            return c;
-        }catch (SQLException e){
-
-        }
-        return getCollentionOwn(user);
-    }
 
     /**
      * Searches user in database by their username
