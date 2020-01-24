@@ -90,24 +90,6 @@ public class Card extends AbstractCard {
         return categoria + " " + classe + " " + livello + " " + rarita + " " + tipo + " " + nome + " " + descrizione +"\n";
     }
 
-    /**
-     * Compares the ids of cards
-     */
-   // @Override
-   /* public int compareTo(Object o) {
-        if ((o != null) && (o instanceof Card)) {
-            Card c = (Card) o;
-            if (this.getId() > c.getId()) {
-                return 1;
-            } else if (this.getId() < c.getId()) {
-                return -1;
-            } else
-                return 0;
-
-
-        }
-        return -1;
-    }*/
 }
 
 
