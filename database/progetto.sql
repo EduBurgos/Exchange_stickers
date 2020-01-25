@@ -1,3 +1,7 @@
+DROP SCHEMA IF EXISTS cardwebapplication;
+CREATE SCHEMA cardwebapplication;
+USE cardwebapplication;
+
 
 -- Table that contains all cards
 CREATE TABLE catalog(
@@ -560,5 +564,6 @@ INSERT INTO collections VALUES(45 ,'Pol',2);
 INSERT INTO collections VALUES(19 ,'Pol',2);
 INSERT INTO collections VALUES(15 ,'Pol',2);
 INSERT INTO collections VALUES(5 ,'Pol',2);
+
 
 
