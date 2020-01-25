@@ -22,14 +22,11 @@ public class DaoCardTest {
     CardsDaoImpl cardDaoTest = new CardsDaoImpl();
     Card testCard = new Card(id, categoria, classe, livello, rarita, tipo, nome, descrizione);
 
-    @BeforeAll
-    void insertTest() throws SQLException {
-        Card testCard = new Card(id, categoria, classe, livello, rarita, tipo, nome, descrizione);
 
-        assertEquals(true, cardDaoTest.insert(testCard));
-
-    }
-
+    /**
+     * Tests if a card can be updated
+     * @throws SQLException exception caused by database access error
+     */
     @Test
     void updateTest() throws SQLException {
         String categoria2 = "categoriaTest2";
@@ -46,6 +43,9 @@ public class DaoCardTest {
 
     }
 
+    /**
+     * Tests search of card by id
+     */
     @Test
     void findByIdTest(){
         try {
