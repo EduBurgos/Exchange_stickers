@@ -79,7 +79,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">My excahnges</a>
+                        <a class="nav-link" id="myexchanges-tab" data-toggle="tab" href="#myexchanges" role="tab" aria-controls="myexchanges" aria-selected="false">My exchanges</a>
                     </li>
                 </ul>
 
