@@ -66,6 +66,12 @@ public class FacadeImplements implements Facade
 
     /*COLLECTION ONW DAO*/
 
+    @Override
+    public boolean insert(User user, Card card) {
+        CollectionOwnDao f = new CollectionOwnDaoImpl();
+        return f.insert(user,card);
+    }
+
     /**
      * @see CollectionOwnDaoImpl#getCollentionOwn(User)
      */
