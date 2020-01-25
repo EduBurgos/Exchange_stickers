@@ -556,14 +556,13 @@ public class ExchangeCardDAOImpl implements ExchangeCardDAO {
      */
     public void addCard(int quantity, ArrayList<Integer> cardsArray, int card)
         {
-            //if(quantity>1)
-            //{
+
                while (quantity!=0)
                 {
                     cardsArray.add(card);
                     quantity--;
                 }
-            //}
+
         }
 
 

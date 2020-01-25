@@ -10,8 +10,6 @@ import java.util.Map;
 
 public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
-    private static final int numbercards = 6;
-
     private static final String VIEW_COLLECTION_QUERY = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) AND Username = ?";
 
     private static final String INSERT_QUERY = "INSERT INTO collections (ID_Card, Username)"+"VALUES";

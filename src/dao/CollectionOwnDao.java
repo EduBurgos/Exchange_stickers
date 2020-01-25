@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CollectionOwnDao {
+    boolean insert(User user, Card card);
     CollectionOwn getCollentionOwn(User user);
     Card createRandomCard(User user) throws  SQLException;
     boolean giftCard(User user);
