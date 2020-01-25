@@ -12,7 +12,8 @@ Piattaforma che consente agli utenti che si registrano ad essa di effettuare sca
 
 Scaricare e installare nel proprio dispositivo il web server open source Tomcat.
 Realizzare un clone del progetto F19 da GitHub a IntelliJIDEA.
-Per avviare il programma è necessario prima di tutto avere il database a disposizione e funzionante. Per evitare di dover modificare parametri all'interno del codice, creare in” Mysql Workbench” un nuovo schema in localhost sulla porta 3306 e chiamarlo "cardwebapplication". Inserire come script iniziale quello scritto nel file “progetto.sql” del package “database” che si trova all’interno del progetto F19. 
+Per avviare il programma è necessario prima di tutto avere il database a disposizione e funzionante. Per evitare di dover modificare parametri all'interno del codice,prima di tutto settare il server del db con username:"root" , password:"abcd" e numero di porta:3306, poi creare nuova connessione al server con le credenziali sopra indicate,creare un nuovo schema e chiamarlo "cardwebapplication".Inserire come script iniziale quello scritto nel file “progetto.sql” del package “database” che si trova all’interno del progetto F19. 
+
 Una volta creato il database, ritornare sul progetto F19, e configurare il web server tomcat.
 Cliccare sul comando “Run” in alto a sinistra e poi di nuovo sul comando “Edit Configuration”. Si aprirà  una finestra, cliccare sul comando”+” e scegliere “tomcat server” e poi “Local”. A questo punto si dovrà cliccare il pulsante ”Configure” ,che aprirà una finestra nella quale si dovrà inserire il percorso della directory in cui si trova la web server.
 Una volta che si è in possesso di tutti i requisiti del sistema è possibile avviare il programma. In una futura versione online può essere eseguito su uno stesso dispositivo o su più dispositivi.
