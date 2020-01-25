@@ -296,6 +296,7 @@ public class Platform {
      * @param user the user that has to be checked to see if it's their first time they logged to the
      * platform today  and they have to receive their daily cards
      * @throws SQLException Exception caused by database
+     * @return true when cards are gifted false otherwise
      */
     public boolean giftCard(User user) throws SQLException{
         User account;
