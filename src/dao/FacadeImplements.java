@@ -91,13 +91,6 @@ public class FacadeImplements implements Facade
         return f.get_last_card(user);
     }
 
-    // TODO: DA CANCELLARE!
-
-   // @Override
-    public ArrayList<Card> openSachet(User user) {
-        CollectionOwnDaoImpl f = new CollectionOwnDaoImpl();
-        return f.openSachet(user);
-    }
     /**
      * @see CollectionOwnDaoImpl#filters(User, String, String, String, String)
      */

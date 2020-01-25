@@ -18,8 +18,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
 
     private static final String get_last_card_sachet = "select * from collections inner join catalog on (collections.ID_Card = catalog.ID) WHERE  Username = ? order by IDCard desc limit 1";
 
-    private static final String HAS_CARDS_QUERY ="select * from collections where ID_Card = ?, ID_User = ?";
-
     private static final String SEE_GIFTED_QUERY="select * from accesses where Username=?";
 
     private static final String INSERT_GIFTED_QUERY="insert into accesses (Username) VALUES(?)";
@@ -266,21 +264,6 @@ public class CollectionOwnDaoImpl implements CollectionOwnDao {
             }
         }
         return list;
-    }
-
-   /**
-     * Adds a certain number of cards chosen randomly from catalog to a list and given to a user
-     * @param user the user who is going to receive the cards
-     * @return cards chosen randomly
-     */
-   @Override
-    public ArrayList<Card> openSachet(User user){
-        ArrayList<Card> c = new ArrayList<Card>();
-
-        for(int i=0; i<numbercards; i++){
-            c.add(createRandomCard(user));
-        }
-        return c;
     }
 
 

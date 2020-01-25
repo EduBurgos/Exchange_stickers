@@ -1,7 +1,7 @@
 package dao;
 
 
-import collection.Card;
+
 import userSide.User;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,21 +10,12 @@ public class UserDaoImpl implements UserDao {
 
     private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
 
-    private static final String READ_QUERY = "SELECT * FROM users WHERE Username = ?";
-
-    private static final String READ_ALL_QUERY = "SELECT id, first_name, last_name FROM customers";
-
     private static final String UPDATE_QUERY = "UPDATE users SET Username=? , NameUser=? , Surname=? , Mail=? WHERE Username = ?";
 
     private static final String DELETE_QUERY = "DELETE FROM users WHERE Username = ?";
 
-    private static final String CHECKBYUSER_QUERY = "SELECT * FROM users WHERE Username = ?, NameUser = ?, Surname = ?, Mail = ?";
-
-    private static final String PASSWORD_QUERY="SELECT Pass FROM users WHERE Username= ?";
-
     private static final String FIND_BY_USERNAME_QUERY = "SELECT * FROM users WHERE username = ?";
 
-    // private static final String  CHECK_UNIQ = "SELECT COUNT(Username) FROM users WHERE Username = ?";       //Verifica lesistenza del USERNAME del DB.
 
 
     private static final String FIND_ALL= "SELECT * FROM users";

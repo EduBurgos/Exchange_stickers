@@ -173,7 +173,6 @@ It contains the feature "snitch card" which allows to see other users' profiles.
                                 <%}%>
 
                                 <img src="../img/<%=card.getCategoria()%>/<%=(card.getNome()).replaceAll("\\s","")%>.png" class="card-img-top img-fluid d-block w-100" alt="First slide">
-                                <img src="../img/Yu-Gi-Oh!/AnimaImmortale.png" style="display: none" id="toShow<%=card.getNome()%><%=ex.indexOf(ca)%>" onmouseenter="close()">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-7">

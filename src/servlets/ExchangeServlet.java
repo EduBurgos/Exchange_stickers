@@ -29,7 +29,6 @@ public class ExchangeServlet extends AbstractServlet {
      * @throws IOException Exception coming from an I/O problem
      */
 
-    // TODO: improve
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Platform platform = Platform.getInstance();
         //prendere gli id delle carte da scambiare
@@ -39,7 +38,6 @@ public class ExchangeServlet extends AbstractServlet {
 
             System.out.println("carte da prendere "+ Arrays.toString(cardsToTake));
             System.out.println("carte da dare "+ Arrays.toString(cardsToGive));
-            //TODO cambiare controllo sul null, non solo se carte da scambiare sono uguali
             if(cardsToGive == null) {
                 cardsToGive = cardsToTake.clone();
             }

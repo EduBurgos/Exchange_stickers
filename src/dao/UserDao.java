@@ -12,7 +12,5 @@ public interface UserDao {
     boolean delete(User user) throws SQLException;
     boolean checkByUser(User user) throws SQLException;
     ArrayList<User> findAll() throws SQLException;
-
-    /*PROVA CONTRATTO*/
     boolean checkUnique(User user);
 }

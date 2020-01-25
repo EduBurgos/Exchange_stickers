@@ -108,10 +108,10 @@ public class PlatformTest {
     @Order(4)
     public void acceptExchangeTest(){
         try {
-            //TODO usare carte veramente possedute dai due users
+
             ArrayList<Integer> cardsToGive = new ArrayList<>();// = setTestCards(1);
             ArrayList<Integer> cardsToTake = new ArrayList<>();// = setTestCards(5);
-            //TODO check if users have target cards
+
             ExchangeCardDAOImpl exchangeCardDAO = new ExchangeCardDAOImpl();
             UserDaoImpl userDao = new UserDaoImpl();
             User testUserSetExchange = userDao.findByUsername("Obe");
