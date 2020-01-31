@@ -36,6 +36,8 @@
             <%//ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
             <%ArrayList<Exchange> ex=platform.getAllExchanges(u);
             %>
+            <%request.getSession().removeAttribute("exchangesList");%>
+            <% request.getSession().setAttribute("exchangesList",ex); %>
 
             <!---It is used to show exchanges filtered  by users using the search filter of the navbar --->
             <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
@@ -137,6 +139,7 @@
 
         </div> <!-----END ROW---->
 
+
             <!-- rimozione filtri-->
             <% request.getSession().removeAttribute("category"); %>
             <% request.getSession().removeAttribute("class"); %>
@@ -200,12 +203,11 @@ showConfirmButton: true})
             jQuery('.div'+jQuery(this).attr('target')).show();
         });
     });
-</script>
-<script>
     function acceptExchange(id) {
         <% request.getSession().setAttribute("user",u); %>
         document.getElementById(id).submit();
     }
+
 </script>
 <script type="text/javascript" src="../js/carousel.js"></script>
 </body>

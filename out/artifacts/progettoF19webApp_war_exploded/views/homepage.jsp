@@ -24,7 +24,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
-<body>
+<body onbeforeunload="aggiorna()">
 
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
@@ -33,7 +33,11 @@
 
             <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
             <% Platform platform=Platform.getInstance();   %>
-            <%ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
+            <%//ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
+            <%ArrayList<Exchange> ex=platform.getAllExchanges(u);
+            %>
+            <%request.getSession().removeAttribute("exchangesList");%>
+            <% request.getSession().setAttribute("exchangesList",ex); %>
 
             <!---It is used to show exchanges filtered  by users using the search filter of the navbar --->
             <%if(request.getSession().getAttribute("category")!=null ||request.getSession().getAttribute("class")!=null ||request.getSession().getAttribute("type")!=null|| request.getSession().getAttribute("card")!=null) {  %>
@@ -43,14 +47,13 @@
             <% }  %>
 
             <div class="row">
-                <h1> TRATTATIVE DISPONIBILI:
-                                             </h1>
+                <h1> Exchanges that may interest you: </h1>
                 <%if(ex.size()==0){%>
-                    <h4>Nessuna trattativa disponibile.</h4>
+                    <h4>No available exchanges.</h4>
                 <% }  %>
                 <%for(int i=0;i<ex.size();i++){%>
                     <% User u1=platform.findUser(ex.get(i).getId_user());   %>
-                    <div id="carousel<%=i%>" class="carousel slide col-sm-3">
+                    <div id="carousel<%=i%>" class="carousel slide col-sm-3" data-wrap="false">
 
                     <!-- Wrapper for slides -->
                     <div class="display: inline">
@@ -58,7 +61,7 @@
                             <label style="color:darkblue"><strong><%=u1.getUsername()%></strong></label>
                             <input type="hidden" name="btn"  value="<%=i%>"/>
 
-                   <input type="submit" class="btn-primary"  value="accept" name="btn"  id="<%=i%>" />
+                   <input type="submit" class="btn-primary"  value="accept" name="btn"  id="<%=i%>" onclick="acceptExchange(<%=i%>)"/>
 
                     </form>
                     </div>
@@ -99,7 +102,7 @@
                         </div>
                     </div>
                     <div class="col-sm-3 toHide" id="toHide<%=i%>" style="display: none">
-                        <div id="carousel<%=i%>W" class="carousel slide">
+                        <div id="carousel<%=i%>W" class="carousel slide" data-wrap="false">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <%int attivoW=0;%>
@@ -135,6 +138,7 @@
                 </div>
 
         </div> <!-----END ROW---->
+            <form name="reloadForm"  method="get" action="../homepage"></form>
 
             <!-- rimozione filtri-->
             <% request.getSession().removeAttribute("category"); %>
@@ -191,14 +195,22 @@ showConfirmButton: true})
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+
+
     jQuery(function(){
         jQuery('.showSingle').click(function(){
             jQuery('.targetDiv').hide();
             jQuery('.div'+jQuery(this).attr('target')).show();
         });
     });
+    function acceptExchange(id) {
+        <% request.getSession().setAttribute("user",u); %>
+        document.getElementById(id).submit();
+    }
+    function aggiorna() {
+        document.forms['reloadForm'].submit();
+    }
 </script>
-
 <script type="text/javascript" src="../js/carousel.js"></script>
 </body>
 </html>

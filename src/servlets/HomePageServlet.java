@@ -58,6 +58,7 @@ public class HomePageServlet extends AbstractServlet {
 
     }
 
+
     /**
      * Allows to accept an exchange
      * @param request HTTP request
@@ -72,6 +73,9 @@ public class HomePageServlet extends AbstractServlet {
         Platform platform = Platform.getInstance();
         //provare a passare direttamente oggetto utile
         String username=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner().getUsername();
+
+        System.out.println(idExchange);
+        ArrayList<Exchange> ex= (ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");
         return platform.marketExchange(((ArrayList<Exchange>)request.getSession().getAttribute("exchangesList")).get(idExchange),username);
     }
 
