@@ -25,14 +25,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
-
+<!-- NOTIFICATION -->
+<% Platform platform=Platform.getInstance();   %>
+<% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
+<%request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(u));%>
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
         <div class="container page-top">
 
-            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
-            <% Platform platform=Platform.getInstance();   %>
+
+
             <%//ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
             <%ArrayList<Exchange> ex=platform.getAllExchanges(u);
             %>

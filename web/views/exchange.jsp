@@ -19,16 +19,17 @@
 </head>
 
 <body>
-
+<!-- NOTIFICATION -->
 <% Platform platform = Platform.getInstance(); %>
-
+<%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
+<%request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(c.getOwner()));%>
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
 
 <form action="../exchange"  method="POST" id="myForm">
     <div id="tot">
-        <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
+
         <%ArrayList<Exchange> notifications = platform.notifyDoneExchanges(c.getOwner());%>
         <%if (notifications.size()>0){%>
         <%request.getSession().setAttribute("logged",platform.getMyCollection(c.getOwner().getUsername()));%>

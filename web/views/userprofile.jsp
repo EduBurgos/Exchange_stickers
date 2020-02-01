@@ -29,6 +29,11 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 
 
 </head>
+<body>
+<!--NOTIFY-->
+<%Platform platform=Platform.getInstance();      %>
+<%CollectionOwn justToNotify =(CollectionOwn)request.getSession().getAttribute("logged");%>
+<%request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(justToNotify.getOwner()));%>
 <div>
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
@@ -42,7 +47,7 @@ It contains the feature "snitch card" which allows to see other users' profiles.
         <div class="profile-avatar">
             <div class="inner"></div>
         </div>
-        <%Platform platform=Platform.getInstance();      %>
+
         <% CollectionOwn c; %>
         <% if(request.getSession().getAttribute("snitch")!=null){ %>
         <% c= (CollectionOwn)request.getSession().getAttribute("snitch");} else{ %>
