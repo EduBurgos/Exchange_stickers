@@ -7,7 +7,6 @@ It contains the feature "snitch card" which allows to see other users' profiles.
 <%@ page import="platform.Platform" %>
 <%@ page import="userSide.Exchange" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

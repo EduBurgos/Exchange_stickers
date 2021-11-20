@@ -6,21 +6,20 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04e8c0f5-ef17-430f-8b97-0f7ee6046a94" name="Default Changelist" comment="createExchange funzionante!">
+    <list default="true" id="04e8c0f5-ef17-430f-8b97-0f7ee6046a94" name="Default Changelist" comment="This is the university project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/Server/MYSQLConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Catalogue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/AbstractCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/AbstractCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Cards.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/Cards.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/CollectionOwn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/collection/CollectionOwn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/AbstractCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/AbstractCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/CollectionOwn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/CollectionOwn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CardsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CollectionOwnDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ExchangeCardDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/FacadeImplements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/FacadeImplements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/Platform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlets/SignUpServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlets/SignUpServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/CollectionOwnDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/dao/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/platform/Platform.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/HomePageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/servlets/HomePageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/WEB-INF/classes/userSide/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/progettoF19webApp_war_exploded/views/homepage.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/stylesheets/userprofile.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/stylesheets/userprofile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/homepage.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/userprofile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/userprofile.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,7 +67,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -101,7 +99,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -133,7 +131,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.42">
+  <component name="RunManager" selected="JavaScript Debug.login.jsp">
     <configuration name="TestClass" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="progettoF19webApp" />
       <option name="PACKAGE_NAME" value="" />
@@ -142,6 +140,9 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="login.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/progettoF19webApp_war_exploded/views/login.jsp">
+      <method v="2" />
     </configuration>
     <configuration name="Tomcat 8.5.42" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.42" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="12" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/progettoF19webApp_war_exploded" />
@@ -294,6 +295,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.login.jsp" />
         <item itemvalue="JUnit.TestClass" />
       </list>
     </recent_temporary>
@@ -418,7 +420,18 @@
       <workItem from="1577008626088" duration="325000" />
       <workItem from="1578670503910" duration="231000" />
       <workItem from="1578672666496" duration="160000" />
-      <workItem from="1578735962614" duration="10056000" />
+      <workItem from="1578735962614" duration="12144000" />
+      <workItem from="1579088475869" duration="2467000" />
+      <workItem from="1579115559159" duration="3638000" />
+      <workItem from="1580586556348" duration="2872000" />
+      <workItem from="1581078610122" duration="2991000" />
+      <workItem from="1583702960296" duration="3711000" />
+      <workItem from="1603963153854" duration="4181000" />
+      <workItem from="1604063452519" duration="1249000" />
+      <workItem from="1614082694855" duration="1152000" />
+      <workItem from="1614085106637" duration="1035000" />
+      <workItem from="1614089697217" duration="3021000" />
+      <workItem from="1637361963656" duration="1417000" />
     </task>
     <task id="LOCAL-00001" summary="added mapp to CollectionOwn">
       <created>1564401143790</created>
@@ -679,7 +692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578744794514</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="questa è la volta buona">
+      <created>1578746293135</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1578746293135</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -733,8 +753,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="collectionOwn insert" />
-    <MESSAGE value="Registrazione finita, e controlo username." />
     <MESSAGE value="modifiche del homepage( modifica navbar e style) ed userprofile" />
     <MESSAGE value="changes in userprofile.jsp e homepage.jsp" />
     <MESSAGE value="creata pagina navbar" />
@@ -758,24 +776,26 @@
     <MESSAGE value="createExchange funzionante!" />
     <MESSAGE value="fine pulizia" />
     <MESSAGE value="altra pulizia" />
-    <option name="LAST_COMMIT_MESSAGE" value="altra pulizia" />
+    <MESSAGE value="questa è la volta buona" />
+    <MESSAGE value="This is the university project" />
+    <option name="LAST_COMMIT_MESSAGE" value="This is the university project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/servlets/ExchangeServlet.java</url>
-          <line>61</line>
+          <line>65</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/servlets/ExchangeServlet.java</url>
-          <line>50</line>
+          <line>54</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/servlets/ExchangeServlet.java</url>
-          <line>47</line>
+          <line>51</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
@@ -793,83 +813,5 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>progettoF19webApp:war exploded</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Web</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>bootstrap</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>12</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>progettoF19webApp</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Java EE 6</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

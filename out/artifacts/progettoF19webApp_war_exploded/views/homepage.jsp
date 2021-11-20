@@ -24,15 +24,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
-<body onbeforeunload="aggiorna()">
-
+<body>
+<!-- NOTIFICATION -->
+<% Platform platform=Platform.getInstance();   %>
+<% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
+<%request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(u));%>
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>
 
         <div class="container page-top">
 
-            <% User u=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner();   %>
-            <% Platform platform=Platform.getInstance();   %>
+
+
             <%//ArrayList<Exchange> ex=(ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");%>
             <%ArrayList<Exchange> ex=platform.getAllExchanges(u);
             %>
@@ -138,7 +141,7 @@
                 </div>
 
         </div> <!-----END ROW---->
-            <form name="reloadForm"  method="get" action="../homepage"></form>
+
 
             <!-- rimozione filtri-->
             <% request.getSession().removeAttribute("category"); %>
@@ -207,9 +210,7 @@ showConfirmButton: true})
         <% request.getSession().setAttribute("user",u); %>
         document.getElementById(id).submit();
     }
-    function aggiorna() {
-        document.forms['reloadForm'].submit();
-    }
+
 </script>
 <script type="text/javascript" src="../js/carousel.js"></script>
 </body>
