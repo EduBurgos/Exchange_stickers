@@ -5,12 +5,13 @@ WORKDIR /app
 COPY src/ src/
 COPY web/WEB-INF/lib/ lib/
 
-RUN find src -name "*.java" ! -path "*/test/*" > /tmp/sources.txt && \
+RUN find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
+    cat /tmp/sources.txt && \
     mkdir -p build/classes && \
     javac --release 17 \
       -cp "/usr/local/tomcat/lib/servlet-api.jar:lib/mysql-connector-java-5.1.46.jar" \
       -d build/classes \
-      @/tmp/sources.txt
+      @/tmp/sources.txt 2>&1
 
 # Stage 2: deploy su Tomcat
 FROM tomcat:10.0-jdk17
