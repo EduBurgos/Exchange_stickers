@@ -1,0 +1,11 @@
+# Build output
+/build/
+/target/
+
+# File temporanei e screenshot
+ciao.txt
+*.png
+*.jpg
+
+# Dipendenze scaricabili (opzionale, tenerle semplifica il setup)
+# web/WEB-INF/lib/

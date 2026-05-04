@@ -56,7 +56,7 @@ public class Platform {
 
             logg = f.findByUsername(username);
             String a = logg.getPass();
-            if(a.equals(pass))
+            if(PasswordUtils.checkPassword(pass, a))
             {
                 //quando loggo carico anche carte utente in collectionOwn
                 f.giftCard(logg);

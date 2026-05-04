@@ -22,6 +22,7 @@
 <!-- NOTIFICATION -->
 <% Platform platform = Platform.getInstance(); %>
 <%CollectionOwn c = (CollectionOwn)request.getSession().getAttribute("logged"); %>
+<% if (c == null) { response.sendRedirect(request.getContextPath() + "/index.jsp"); return; } %>
 <%request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(c.getOwner()));%>
 <!-------- NAVBAR------->
 <jsp:include page="navbar.jsp"/>

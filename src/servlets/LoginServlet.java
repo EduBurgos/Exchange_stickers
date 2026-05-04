@@ -2,17 +2,16 @@ package servlets;
 
 import collection.CollectionOwn;
 import platform.Platform;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends AbstractServlet {
     private String DEFAULT_ROUTE = "/views/homepage.jsp";
-    final String secretkey = "chiavesupersegretissimaXD";
 
     /**
      * Checks if username and password from login form are correct.
@@ -32,6 +31,7 @@ public class LoginServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+                request.getSession().setAttribute("message", null);
                 CollectionOwn logged = confirmPassword(request);
                 if(logged!=null)
                 {
@@ -76,8 +76,8 @@ public class LoginServlet extends AbstractServlet {
     private CollectionOwn confirmPassword(HttpServletRequest request) throws SQLException {
 
         String name = request.getParameter("name");
-        String pass = Platform.encrypt(request.getParameter("password"), secretkey);
+        String pass = request.getParameter("password");
         Platform platform = Platform.getInstance();
-        return platform.LogIn(name,pass);
+        return platform.LogIn(name, pass);
     }
 }

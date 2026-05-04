@@ -5,10 +5,11 @@ package dao;
 import userSide.User;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass)"+"VALUES";
+    private static final String CREATE_QUERY = "INSERT INTO users (Username, NameUser, Surname, mail, Pass) VALUES (?, ?, ?, ?, ?)";
 
     private static final String UPDATE_QUERY = "UPDATE users SET Username=? , NameUser=? , Surname=? , Mail=? WHERE Username = ?";
 
@@ -36,9 +37,12 @@ public class UserDaoImpl implements UserDao {
         conn=null;
         try {
             conn=connector.createConnection();
-
-            String query = CREATE_QUERY + " ('"+user.getUsername()+"', '"+user.getNome()+"', '"+user.getCognome()+"', '"+user.getEmail()+"', '"+pass+"')";
-            preparedStatement = conn.prepareStatement(query);
+            preparedStatement = conn.prepareStatement(CREATE_QUERY);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getNome());
+            preparedStatement.setString(3, user.getCognome());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, pass);
 
             int res= preparedStatement.executeUpdate();
             if (res >0){
@@ -231,18 +235,17 @@ public class UserDaoImpl implements UserDao {
         try {
             conn=connector.createConnection();
 
-            System.out.println(user.getUsername());
-            System.out.println(user.getEmail());
-            String check = "SELECT COUNT(Username) FROM users WHERE Username=\"" + user.getUsername() + "\";";
-            String checkmail = "SELECT COUNT(Mail) FROM users WHERE Mail=\"" + user.getEmail() + "\";";
+            PreparedStatement psUser = conn.prepareStatement("SELECT COUNT(Username) FROM users WHERE Username=?");
+            psUser.setString(1, user.getUsername());
+            result = psUser.executeQuery();
+            result.next();
+            int countUser = result.getInt(1);
 
-            Statement s = conn.createStatement();
-            result = s.executeQuery(check);
+            PreparedStatement psMail = conn.prepareStatement("SELECT COUNT(Mail) FROM users WHERE Mail=?");
+            psMail.setString(1, user.getEmail());
+            result = psMail.executeQuery();
             result.next();
-            int countUser = result.getInt("count(Username)");
-            result = s.executeQuery(checkmail);
-            result.next();
-            int countMail = result.getInt("count(Mail)");
+            int countMail = result.getInt(1);
 
             if(countUser == 0 && countMail == 0){
                 return true;
@@ -277,6 +280,22 @@ public class UserDaoImpl implements UserDao {
      * @return user found in database
      * @throws SQLException exception caused by database access error
      */
+    public List<User> searchByUsername(String query, String excludeUsername) throws SQLException {
+        List<User> results = new ArrayList<>();
+        String sql = "SELECT Username, NameUser, Surname, Mail FROM users WHERE Username LIKE ? AND Username != ? LIMIT 10";
+        try (Connection conn = connector.createConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + query + "%");
+            ps.setString(2, excludeUsername);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                results.add(new User(rs.getString("NameUser"), rs.getString("Surname"),
+                                     rs.getString("Username"), rs.getString("Mail")));
+            }
+        }
+        return results;
+    }
+
     public User findByUsername(String username) throws SQLException {
         User user = null;
         conn = null;

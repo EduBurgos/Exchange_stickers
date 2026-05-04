@@ -41,6 +41,12 @@ it is included in each page of the application -->
                             <strong>Exchange</strong>
                         </a>
                     </li>
+                    <li>
+                        <a href="../friends">
+                            <i class="fa fa-users"></i>
+                            <strong>Amici</strong>
+                        </a>
+                    </li>
 
                 </ul>
                 <!---SEARCH WITH FILTERS--->

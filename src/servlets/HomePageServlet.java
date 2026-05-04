@@ -6,9 +6,9 @@ import servlets.AbstractServlet;
 import userSide.Exchange;
 import userSide.User;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,10 +38,14 @@ public class HomePageServlet extends AbstractServlet {
         try {
             boolean resultExchange = marketExchange(request);
             if (resultExchange) {
-                User u=(User)request.getSession().getAttribute("user");
+                CollectionOwn logged = (CollectionOwn) request.getSession().getAttribute("logged");
+                User u = logged.getOwner();
                 request.getSession().setAttribute("doneExchange", "true");
                 request.getSession().setAttribute("exchangesList",platform.getAllExchanges(u));
-                request.getSession().setAttribute("logged",platform.getMyCollection(u.getUsername()));
+                CollectionOwn updatedCollection = platform.getMyCollection(u.getUsername());
+                if (updatedCollection != null) {
+                    request.getSession().setAttribute("logged", updatedCollection);
+                }
                 request.getSession().setAttribute("role", "notification");
                 request.getSession().setAttribute("exchangesToNotify", platform.notifyDoneExchanges(u));
                 response.sendRedirect(request.getContextPath() + DEFAULT_ROUTE);
@@ -71,12 +75,19 @@ public class HomePageServlet extends AbstractServlet {
         String id=request.getParameter("btn");
         int idExchange =Integer.parseInt(id);
         Platform platform = Platform.getInstance();
-        //provare a passare direttamente oggetto utile
         String username=((CollectionOwn)request.getSession().getAttribute("logged")).getOwner().getUsername();
 
         System.out.println(idExchange);
-        ArrayList<Exchange> ex= (ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");
-        return platform.marketExchange(((ArrayList<Exchange>)request.getSession().getAttribute("exchangesList")).get(idExchange),username);
+        ArrayList<Exchange> exchangesList = (ArrayList<Exchange>)request.getSession().getAttribute("exchangesList");
+        Exchange targetExchange = null;
+        for (Exchange e : exchangesList) {
+            if (e.getId_trans() == idExchange) {
+                targetExchange = e;
+                break;
+            }
+        }
+        if (targetExchange == null) return false;
+        return platform.marketExchange(targetExchange, username);
     }
 
 }
