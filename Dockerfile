@@ -1,6 +1,11 @@
 # Stage 1: compila il codice sorgente
-FROM tomcat:10.0-jdk17 AS build
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
+
+# Scarica Jakarta Servlet API 5.0 (usata da Tomcat 10)
+RUN apt-get update -q && apt-get install -y -q curl && \
+    curl -sL "https://repo1.maven.org/maven2/jakarta/servlet/jakarta.servlet-api/5.0.0/jakarta.servlet-api-5.0.0.jar" \
+         -o /tmp/servlet-api.jar
 
 COPY src/ src/
 COPY web/WEB-INF/lib/ lib/
@@ -8,10 +13,8 @@ COPY web/WEB-INF/lib/ lib/
 RUN find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
     cat /tmp/sources.txt && \
     mkdir -p build/classes && \
-    CP=$(find /usr/local/tomcat/lib -name "*.jar" | tr '\n' ':')lib/mysql-connector-java-5.1.46.jar && \
-    echo "Classpath: $CP" && \
     javac --release 17 \
-      -cp "$CP" \
+      -cp "/tmp/servlet-api.jar:lib/mysql-connector-java-5.1.46.jar" \
       -d build/classes \
       @/tmp/sources.txt 2>&1
 
