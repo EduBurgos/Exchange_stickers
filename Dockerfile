@@ -8,8 +8,10 @@ COPY web/WEB-INF/lib/ lib/
 RUN find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
     cat /tmp/sources.txt && \
     mkdir -p build/classes && \
+    CP=$(find /usr/local/tomcat/lib -name "*.jar" | tr '\n' ':')lib/mysql-connector-java-5.1.46.jar && \
+    echo "Classpath: $CP" && \
     javac --release 17 \
-      -cp "/usr/local/tomcat/lib/*:lib/mysql-connector-java-5.1.46.jar" \
+      -cp "$CP" \
       -d build/classes \
       @/tmp/sources.txt 2>&1
 
