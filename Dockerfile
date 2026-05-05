@@ -1,29 +1,21 @@
-# Stage 1: compila il codice sorgente
-FROM eclipse-temurin:17-jdk AS build
-WORKDIR /app
-
-COPY src/ src/
-COPY web/WEB-INF/lib/ lib/
-
-RUN find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
-    cat /tmp/sources.txt && \
-    mkdir -p build/classes && \
-    javac --release 17 \
-      -cp "lib/servlet-api.jar:lib/mysql-connector-java-5.1.46.jar" \
-      -d build/classes \
-      @/tmp/sources.txt 2>&1
-
-# Stage 2: deploy su Tomcat
 FROM tomcat:10.0-jdk17
 
 # Rimuovi le app di default di Tomcat
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copia i file web nella ROOT (URL pulito senza /Exchange_stickers/)
+# Copia i file web nella ROOT
 COPY web/ /usr/local/tomcat/webapps/ROOT/
 
-# Copia le classi compilate
-COPY --from=build /app/build/classes/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
+# Copia i sorgenti e compila direttamente con servlet-api.jar di Tomcat
+COPY src/ /tmp/src/
+
+RUN find /tmp/src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
+    cat /tmp/sources.txt && \
+    mkdir -p /usr/local/tomcat/webapps/ROOT/WEB-INF/classes && \
+    javac --release 17 \
+      -cp "/usr/local/tomcat/lib/servlet-api.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/mysql-connector-java-5.1.46.jar" \
+      -d /usr/local/tomcat/webapps/ROOT/WEB-INF/classes \
+      @/tmp/sources.txt
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
