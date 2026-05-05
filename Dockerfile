@@ -9,8 +9,8 @@ COPY web/ /usr/local/tomcat/webapps/ROOT/
 # Copia i sorgenti e compila direttamente con servlet-api.jar di Tomcat
 COPY src/ /tmp/src/
 
-RUN find /tmp/src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
-    cat /tmp/sources.txt && \
+RUN echo "=== Tomcat lib ===" && ls /usr/local/tomcat/lib/ && \
+    find /tmp/src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
     mkdir -p /usr/local/tomcat/webapps/ROOT/WEB-INF/classes && \
     javac --release 17 \
       -cp "/usr/local/tomcat/lib/servlet-api.jar:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/mysql-connector-java-5.1.46.jar" \
