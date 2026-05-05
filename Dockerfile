@@ -1,25 +1,25 @@
-# Stage 1: build con Maven
-FROM maven:3.9-eclipse-temurin-17 AS build
+# Prende servlet-api.jar dall'immagine Tomcat ufficiale
+FROM tomcat:10.0-jdk17 AS tomcat
+
+# Stage build: usa JDK con il JAR preso da Tomcat
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
 
-# Installa servlet-api.jar nel repo Maven locale prima di compilare
-COPY web/WEB-INF/lib/servlet-api.jar /tmp/servlet-api.jar
-RUN mvn install:install-file \
-    -Dfile=/tmp/servlet-api.jar \
-    -DgroupId=jakarta.servlet \
-    -DartifactId=jakarta.servlet-api \
-    -Dversion=5.0.0 \
-    -Dpackaging=jar \
-    -q
-
-COPY pom.xml .
+COPY --from=tomcat /usr/local/tomcat/lib/servlet-api.jar /app/lib/servlet-api.jar
+COPY web/WEB-INF/lib/mysql-connector-java-5.1.46.jar /app/lib/mysql-connector-java-5.1.46.jar
 COPY src/ src/
-COPY web/ web/
-RUN mvn package -Dmaven.test.skip=true
 
-# Stage 2: deploy su Tomcat
+RUN find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
+    mkdir -p build/classes && \
+    javac --release 17 \
+      -cp "lib/servlet-api.jar:lib/mysql-connector-java-5.1.46.jar" \
+      -d build/classes \
+      @/tmp/sources.txt
+
+# Stage finale: Tomcat con le classi compilate
 FROM tomcat:10.0-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
-COPY --from=build /app/target/exchange-stickers-1.0.war /usr/local/tomcat/webapps/ROOT.war
+COPY web/ /usr/local/tomcat/webapps/ROOT/
+COPY --from=build /app/build/classes/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
