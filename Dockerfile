@@ -1,8 +1,18 @@
 # Stage 1: build con Maven
 FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
+
+# Installa servlet-api.jar nel repo Maven locale prima di compilare
+COPY web/WEB-INF/lib/servlet-api.jar /tmp/servlet-api.jar
+RUN mvn install:install-file \
+    -Dfile=/tmp/servlet-api.jar \
+    -DgroupId=jakarta.servlet \
+    -DartifactId=jakarta.servlet-api \
+    -Dversion=5.0.0 \
+    -Dpackaging=jar \
+    -q
+
 COPY pom.xml .
-COPY web/WEB-INF/lib/ web/WEB-INF/lib/
 COPY src/ src/
 COPY web/ web/
 RUN mvn package -Dmaven.test.skip=true
