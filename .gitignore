@@ -1,6 +1,9 @@
 # Build output (non escludere build/classes - servono per Docker)
 /target/
 
+# Documentazione locale
+DIARIO_SVILUPPO.txt
+
 # File temporanei e screenshot
 ciao.txt
 *.png
@@ -11,3 +14,4 @@ ciao.txt
 
 # Dipendenze scaricabili (opzionale, tenerle semplifica il setup)
 # web/WEB-INF/lib/
+/build/
