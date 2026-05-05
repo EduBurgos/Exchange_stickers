@@ -18,7 +18,8 @@
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <version>5.0.0</version>
-      <scope>provided</scope>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/web/WEB-INF/lib/servlet-api.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
