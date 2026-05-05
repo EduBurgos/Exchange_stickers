@@ -5,7 +5,7 @@ COPY pom.xml .
 RUN mvn dependency:go-offline -q
 COPY src/ src/
 COPY web/ web/
-RUN mvn package -q -DskipTests
+RUN mvn package -q -Dmaven.test.skip=true
 
 # Stage 2: deploy su Tomcat
 FROM tomcat:10.0-jdk17
