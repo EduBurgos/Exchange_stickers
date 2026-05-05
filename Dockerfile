@@ -9,7 +9,9 @@ COPY --from=tomcat /usr/local/tomcat/lib/servlet-api.jar /app/lib/servlet-api.ja
 COPY web/WEB-INF/lib/mysql-connector-java-5.1.46.jar /app/lib/mysql-connector-java-5.1.46.jar
 COPY src/ src/
 
-RUN find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
+RUN ls -la lib/ && \
+    jar tf lib/servlet-api.jar | grep -i httpservlet && \
+    find src -name "*.java" -not -path "*/test/*" > /tmp/sources.txt && \
     mkdir -p build/classes && \
     javac --release 17 \
       -cp "lib/servlet-api.jar:lib/mysql-connector-java-5.1.46.jar" \
