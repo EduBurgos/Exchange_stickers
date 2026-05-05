@@ -2,10 +2,11 @@
 FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY pom.xml .
-RUN mvn dependency:go-offline
 COPY src/ src/
 COPY web/ web/
-RUN mvn package -Dmaven.test.skip=true
+RUN mvn dependency:resolve && \
+    ls ~/.m2/repository/jakarta/servlet/jakarta.servlet-api/5.0.0/ && \
+    mvn package -Dmaven.test.skip=true
 
 # Stage 2: deploy su Tomcat
 FROM tomcat:10.0-jdk17
