@@ -1,5 +1,4 @@
-# Build output
-/build/
+# Build output (non escludere build/classes - servono per Docker)
 /target/
 
 # File temporanei e screenshot
